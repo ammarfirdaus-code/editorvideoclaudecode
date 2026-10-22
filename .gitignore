@@ -1,0 +1,13 @@
+# Models and media: large binaries, not for git
+*.bin
+*.mp4
+*.mov
+*.wav
+*.mp3
+
+# Node
+node_modules/
+
+# Render output
+renders/
+out/
