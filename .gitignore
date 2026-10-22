@@ -11,6 +11,7 @@ node_modules/
 # Render output
 renders/
 out/
+out-*/
 
 # Personal permission overrides
 .claude/settings.local.json
