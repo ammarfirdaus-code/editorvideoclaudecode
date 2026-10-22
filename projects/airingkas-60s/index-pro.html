@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<title>AI Ringkas 60s Pro</title>
+<style>
+@font-face{font-family:Mont;font-weight:700;src:url(node_modules/@fontsource/montserrat/files/montserrat-latin-700-normal.woff2)}
+@font-face{font-family:Mont;font-weight:800;src:url(node_modules/@fontsource/montserrat/files/montserrat-latin-800-normal.woff2)}
+@font-face{font-family:Mont;font-weight:900;src:url(node_modules/@fontsource/montserrat/files/montserrat-latin-900-normal.woff2)}
+@font-face{font-family:Pop;font-weight:500;src:url(node_modules/@fontsource/poppins/files/poppins-latin-500-normal.woff2)}
+@font-face{font-family:Pop;font-weight:600;src:url(node_modules/@fontsource/poppins/files/poppins-latin-600-normal.woff2)}
+@font-face{font-family:Pop;font-weight:700;src:url(node_modules/@fontsource/poppins/files/poppins-latin-700-normal.woff2)}
+:root{--bg:#F6F7FB;--pu:#2457F5;--pk:#2457F5;--ye:#2457F5;--wh:#0E1B3D;--mu:#5B6683;--card:#fff;--line:rgba(14,27,61,.06)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--bg)}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden;background:var(--bg);font-family:Pop,sans-serif;color:var(--wh)}
+.bg{position:absolute;inset:0}
+.blob{position:absolute;border-radius:50%;filter:blur(140px);opacity:.18}
+.grid{position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:90px 90px;opacity:1}
+.scene{position:absolute;inset:0;display:none}
+[data-in]{position:absolute;opacity:0;will-change:transform,opacity}
+.c{left:0;width:1080px;display:flex;justify-content:center;text-align:center}
+.h{font-family:Mont;font-weight:900;font-size:88px;line-height:1.05;letter-spacing:-1px}
+.b{font-size:48px;font-weight:600;line-height:1.2}
+.s{font-size:38px;font-weight:500}
+.grad{color:#2457F5}
+.gold{color:#2457F5}
+.chip{display:inline-flex;align-items:center;gap:18px;padding:22px 44px;border-radius:999px;background:linear-gradient(90deg,var(--pu),var(--pk));font-family:Mont;font-weight:800;font-size:52px;box-shadow:0 14px 34px rgba(36,87,245,.28);white-space:nowrap;color:#fff}
+.chip.o{background:#fff;border:3px solid #D5DBEA;box-shadow:none;color:#0E1B3D}
+.card{background:#fff;border:2px solid #E3E7F0;border-radius:32px;box-shadow:0 14px 34px rgba(14,27,61,.08)}
+.row{display:flex;align-items:center;gap:34px;padding:0 44px;height:150px;width:900px;left:90px}
+.ico{width:96px;height:96px;border-radius:28px;display:flex;align-items:center;justify-content:center;flex:none;background:linear-gradient(135deg,var(--pu),var(--pk))}
+.ico svg{width:58px;height:58px;stroke:#fff;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.lbl{font-family:Mont;font-weight:800;font-size:56px;white-space:nowrap}
+.badge{width:440px;height:150px;display:flex;align-items:center;gap:24px;padding:0 34px}
+.dot{width:58px;height:58px;border-radius:50%;flex:none}
+.badge .lbl{font-size:50px}
+#wipe{position:absolute;top:0;left:0;width:2600px;height:1920px;z-index:50;background:linear-gradient(90deg,#0E1B3D 0,#0E1B3D 82%,#2457F5 82%);clip-path:polygon(0 0,2300px 0,2600px 960px,2300px 1920px,0 1920px,300px 960px);display:none}
+/* phone */
+.phone{color:#fff;width:600px;height:1040px;left:240px;top:400px;border-radius:70px;background:#0E1B3D;border:10px solid #1F2E57;box-shadow:0 40px 90px rgba(0,0,0,.55),0 0 0 3px rgba(255,255,255,.08)}
+.ph-in{position:absolute;inset:0;padding:70px 40px 40px}
+.ph-notch{position:absolute;top:18px;left:50%;width:170px;height:34px;margin-left:-85px;border-radius:20px;background:#1F2E57}
+.ph-tag{font-size:36px;font-weight:600;color:#9FB4FF}
+.ph-title{font-family:Mont;font-weight:900;font-size:44px;line-height:1.1;margin-top:14px}
+.step{display:flex;gap:22px;align-items:center;font-size:36px;font-weight:600;left:40px;width:520px}
+.num{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--pu),var(--pk));display:flex;align-items:center;justify-content:center;font-family:Mont;font-weight:900;font-size:36px;flex:none}
+.prompt{left:40px;width:520px;height:240px;border-radius:26px;background:#17264F;border:2px dashed #4F6DB8;padding:24px 26px;font-size:36px;line-height:1.3;color:#DCE4FF;font-family:Pop;font-weight:500}
+.btn{left:40px;width:520px;height:96px;border-radius:24px;display:flex;align-items:center;justify-content:center;font-family:Mont;font-weight:800;font-size:40px;background:linear-gradient(90deg,var(--pu),var(--pk))}
+.price{width:900px;left:90px;display:flex;align-items:center;justify-content:space-between;padding:0 54px}
+.price .n{font-family:Mont;font-weight:900;font-size:110px}
+.price .t{font-family:Mont;font-weight:800;font-size:54px}
+.price .d{font-size:36px;font-weight:500;color:#5B6683;margin-top:6px}
+.hl{background:#2457F5;border:none;color:#fff;box-shadow:0 20px 44px rgba(36,87,245,.32)}.hl .d,.hl .s{color:rgba(255,255,255,.85)!important}.hl .gold{color:#fff}
+.skill{width:900px;left:90px;height:200px;display:flex;align-items:center;gap:34px;padding:0 44px}
+.skill .tt{font-family:Mont;font-weight:800;font-size:46px;line-height:1.15}
+.skill .dd{font-size:36px;color:#5B6683;font-weight:500;margin-top:6px}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div class="bg">
+    <div class="blob" id="b1" style="width:900px;height:900px;background:#9DB5FF"></div>
+    <div class="blob" id="b2" style="width:800px;height:800px;background:#BFD0FF"></div>
+    <div class="blob" id="b3" style="width:600px;height:600px;background:#E0E7FF"></div>
+    <div class="grid"></div>
+  </div>
+
+  <!-- S1 HOOK -->
+  <div class="scene" data-s="0" data-e="5.0">
+    <div class="c h" style="top:300px" data-in="0.25" data-fx="up">Nak pandai guna AI?</div>
+    <div class="c" style="top:480px" data-in="0.5" data-fx="zoom" data-dur="0.6">
+      <svg id="clock" width="560" height="560" viewBox="0 0 200 200">
+        <defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2457F5"/><stop offset="1" stop-color="#4F7BFF"/></linearGradient></defs>
+        <circle cx="100" cy="100" r="88" fill="#fff" stroke="url(#g1)" stroke-width="9"/>
+        <g stroke="#0E1B3D" stroke-width="4" stroke-linecap="round" opacity=".5">
+          <line x1="100" y1="22" x2="100" y2="34"/><line x1="178" y1="100" x2="166" y2="100"/><line x1="100" y1="178" x2="100" y2="166"/><line x1="22" y1="100" x2="34" y2="100"/>
+        </g>
+        <line id="hHour" x1="100" y1="100" x2="100" y2="58" stroke="#0E1B3D" stroke-width="8" stroke-linecap="round"/>
+        <line id="hMin" x1="100" y1="100" x2="100" y2="36" stroke="#2457F5" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="100" cy="100" r="7" fill="#0E1B3D"/>
+      </svg>
+    </div>
+    <div class="c" style="top:1100px" data-in="2.55" data-fx="slam"><span class="h grad" style="font-size:118px">Tutorial sejam?</span></div>
+    <div class="c b" style="top:1270px;opacity:.9" data-in="3.0" data-fx="up">Panjang. Penat. Tak habis.</div>
+    <div class="h" style="color:#8C96B0;top:470px;left:760px;font-size:96px" data-in="4.15" data-fx="pop" data-float="1">Zzz</div>
+    <div class="h" style="color:#8C96B0;top:420px;left:880px;font-size:64px" data-in="4.35" data-fx="pop" data-float="1">z</div>
+  </div>
+
+  <!-- S2 BRAND -->
+  <div class="scene" data-s="5.0" data-e="10.4">
+    <div class="c b" style="top:300px;color:#5B6683" data-in="5.0" data-fx="up">Kenalkan</div>
+    <div class="c" style="top:400px" data-in="5.1" data-fx="zoom" data-sfx="none">
+      <svg width="700" height="700" viewBox="0 0 200 200">
+        <defs><linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2457F5"/><stop offset="1" stop-color="#4F7BFF"/></linearGradient></defs>
+        <circle cx="100" cy="100" r="88" fill="#fff" stroke="#E3E7F0" stroke-width="7"/>
+        <circle id="ring2" cx="100" cy="100" r="88" fill="none" stroke="url(#g2)" stroke-width="7" stroke-linecap="round" transform="rotate(-90 100 100)" stroke-dasharray="553" stroke-dashoffset="553"/>
+      </svg>
+    </div>
+    <div class="c" style="top:525px" data-in="5.9" data-fx="slam"><span class="h grad" style="font-size:250px;line-height:1">AI</span></div>
+    <div class="c h" style="top:775px;font-size:100px" data-in="6.15" data-fx="up">Ringkas</div>
+    <div class="c" style="top:1180px" data-in="7.0" data-fx="pop"><span class="chip">Tip AI 1 minit</span></div>
+    <div class="c" style="top:1330px" data-in="8.95" data-fx="up"><span class="chip o">dalam Bahasa Melayu</span></div>
+  </div>
+
+  <!-- S3 TIP CARD -->
+  <div class="scene" data-s="10.4" data-e="18.4">
+    <div class="c h" style="top:250px;font-size:84px" data-in="10.45" data-fx="up">1 tip = <span class="grad">&nbsp;1 perkara</span></div>
+    <div class="phone" data-in="10.6" data-fx="up" data-dur="0.6">
+      <div class="ph-notch"></div>
+      <div class="ph-in">
+        <div class="ph-tag">Tip 1/5 · 0:40</div>
+        <div class="ph-title">Caption jualan dalam 1 minit</div>
+      </div>
+      <div class="step" style="top:330px" data-in="12.75" data-fx="left"><span class="num">1</span>Buka Claude</div>
+      <div class="step" style="top:420px" data-in="13.15" data-fx="left"><span class="num">2</span>Tampal prompt</div>
+      <div class="step" style="top:510px" data-in="13.55" data-fx="left"><span class="num">3</span>Ubah ikut produk</div>
+      <div class="prompt" style="top:615px" data-in="14.3" data-fx="up">"Tulis 3 caption jualan untuk [produk], nada mesra..."</div>
+      <div class="btn" style="top:885px" data-in="14.9" data-fx="pop" id="copyBtn">Salin prompt</div>
+    </div>
+    <div class="c b" style="top:1500px" data-in="16.1" data-fx="up">Terus guna untuk <span class="gold">&nbsp;produk anda</span></div>
+  </div>
+
+  <!-- S4 TOOLS -->
+  <div class="scene" data-s="18.4" data-e="25.9">
+    <div class="c h" style="top:300px" data-in="18.55" data-fx="up">Boleh guna dengan</div>
+    <div class="card badge" style="top:520px;left:90px" data-in="19.45" data-fx="left"><span class="dot" style="background:#10A37F"></span><span class="lbl">ChatGPT</span></div>
+    <div class="card badge" style="top:520px;left:550px" data-in="20.7" data-fx="right"><span class="dot" style="background:#D97757"></span><span class="lbl">Claude</span></div>
+    <div class="card badge" style="top:710px;left:90px" data-in="21.33" data-fx="left"><span class="dot" style="background:linear-gradient(135deg,#4285F4,#9B72CB)"></span><span class="lbl">Gemini</span></div>
+    <div class="card badge" style="top:710px;left:550px" data-in="22.27" data-fx="right"><span class="dot" style="background:linear-gradient(135deg,#00C4CC,#7D2AE8)"></span><span class="lbl">Canva</span></div>
+    <div class="card badge" style="top:900px;left:90px;width:900px;justify-content:center" data-in="23.15" data-fx="up"><span class="dot" style="background:linear-gradient(135deg,#34A853,#FBBC05)"></span><span class="lbl">Google Flow</span></div>
+    <div class="c" style="top:1150px" data-in="24.2" data-fx="slam"><span class="chip">+ pelbagai AI lain</span></div>
+    <div class="c s" style="top:1300px;color:#5B6683" data-in="24.6" data-fx="fade">Grok · NotebookLM · dan lagi</div>
+  </div>
+
+  <!-- S5 PERSONAS -->
+  <div class="scene" data-s="25.9" data-e="32.4">
+    <div class="c h" style="top:280px" data-in="25.95" data-fx="up">Sesuai untuk</div>
+    <div class="card row" style="top:470px" data-in="26.55" data-fx="left"><span class="ico"><svg viewBox="0 0 24 24"><path d="M3 9l1.5-5h15L21 9M3 9h18M3 9v11h18V9M9 20v-6h6v6"/></svg></span><span class="lbl">Usahawan kecil</span></div>
+    <div class="card row" style="top:650px" data-in="28.15" data-fx="right"><span class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="M16 10l5-3v10l-5-3"/></svg></span><span class="lbl">Content creator</span></div>
+    <div class="card row" style="top:830px" data-in="29.4" data-fx="left"><span class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2M3 13h18"/></svg></span><span class="lbl">Staf pejabat</span></div>
+    <div class="card row" style="top:1010px" data-in="30.58" data-fx="right"><span class="ico"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.5-7-10a4 4 0 017-2.6A4 4 0 0119 10c0 5.5-7 10-7 10z"/></svg></span><span class="lbl">NGO</span></div>
+    <div class="card row" style="top:1190px" data-in="31.5" data-fx="left"><span class="ico"><svg viewBox="0 0 24 24"><path d="M5 21V11a7 7 0 0114 0v10M3 21h18M12 4V2M9 21v-5a3 3 0 016 0v5"/></svg></span><span class="lbl">Masjid</span></div>
+  </div>
+
+  <!-- S6 TREK + SKILLS -->
+  <div class="scene" data-s="32.4" data-e="40.8">
+    <div class="c h" style="top:280px" data-in="32.5" data-fx="up" data-out="36.75" data-fxo="up">Habiskan satu trek</div>
+    <div class="card" style="top:460px;left:90px;width:900px;height:200px;padding:36px 44px" data-in="32.6" data-fx="up" data-out="36.75" data-fxo="up">
+      <div style="display:flex;justify-content:space-between;font-family:Mont;font-weight:800;font-size:44px"><span>Modul 0: Kenal Claude</span><span id="pct">0%</span></div>
+      <div style="margin-top:30px;height:34px;border-radius:20px;background:#E8ECF5;overflow:hidden"><div id="bar" style="height:100%;width:0;background:linear-gradient(90deg,var(--pu),var(--pk));border-radius:20px"></div></div>
+    </div>
+    <div class="card" style="top:700px;left:90px;width:900px;height:180px;display:flex;align-items:center;gap:30px;padding:0 44px" data-in="33.95" data-fx="pop" data-out="36.75" data-fxo="up">
+      <svg width="100" height="100" viewBox="0 0 24 24"><path d="M12 2c1 4 6 6 6 12a6 6 0 01-12 0c0-3 2-5 3-7 0 2 1 3 2 3 0-3 0-5 1-8z" fill="#FF8A3D"/><path d="M12 13c1 2 3 3 3 5a3 3 0 01-6 0c0-1.5 1-2.5 3-5z" fill="#FFD23F"/></svg>
+      <span class="lbl"><span id="streak" class="gold">1</span> hari streak</span>
+    </div>
+    <div class="card hl" style="top:930px;left:150px;width:780px;height:460px;padding:50px;text-align:center;transform-origin:50% 0" data-in="34.95" data-fx="swing" data-out="36.75" data-fxo="up">
+      <div class="s" style="letter-spacing:6px">SIJIL TAMAT TREK</div>
+      <div class="h" style="font-size:84px;margin-top:40px">Nama Anda</div>
+      <div style="height:4px;width:520px;margin:26px auto 0;background:rgba(255,255,255,.6)"></div>
+      <div class="s" style="margin-top:30px">Claude Video · Modul 0</div>
+    </div>
+
+    <div class="c h" style="top:280px" data-in="36.9" data-fx="slam">Skills <span class="grad">&nbsp;siap pakai</span></div>
+    <div class="card skill" style="top:480px" data-in="37.3" data-fx="right"><span class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M10 9l5 3-5 3z"/></svg></span><div><div class="tt">Video Iklan Motion Graphic</div><div class="dd">Brief → storyboard → render</div></div></div>
+    <div class="card skill" style="top:710px" data-in="37.65" data-fx="right"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 19V5l8 4 8-4v14l-8 4z"/></svg></span><div><div class="tt">Video Edukasi AI 1 Minit</div><div class="dd">Skrip, suara, sari kata</div></div></div>
+    <div class="card skill" style="top:940px" data-in="38.0" data-fx="right"><span class="ico"><svg viewBox="0 0 24 24"><path d="M12 3v12M8 11l4 4 4-4M4 19h16"/></svg></span><div><div class="tt">Audio Jadi Video Pop Art</div><div class="dd">Muat turun &amp; terus guna</div></div></div>
+    <div class="c" style="top:1240px" data-in="39.1" data-fx="pop"><span class="chip">Pasang → Guna</span></div>
+    <div class="c s" style="top:1390px;color:#5B6683" data-in="39.5" data-fx="fade">Untuk Claude, ChatGPT &amp; Gemini</div>
+  </div>
+
+  <!-- S7 PRICE -->
+  <div class="scene" data-s="40.8" data-e="49.1">
+    <div class="c h" style="top:260px" data-in="40.85" data-fx="up">Harga <span class="grad">&nbsp;mudah</span></div>
+    <div class="card price" style="top:430px;height:220px" data-in="41.15" data-fx="slam"><div><div class="t">Percuma</div><div class="d">Tip percuma + jejak progres</div></div><div class="n">RM0</div></div>
+    <div class="card price" style="top:690px;height:220px" data-in="42.45" data-fx="left"><div><div class="t">Pas Bulanan</div><div class="d">Semua trek &amp; skill, 30 hari</div></div><div class="n" id="p19">RM19</div></div>
+    <div class="card price hl" style="top:950px;height:320px" data-in="44.45" data-fx="right">
+      <div><div class="t">Pas Tahunan</div><div class="d">365 hari + sijil</div>
+        <div style="position:relative;display:inline-block;margin-top:14px;font-family:Mont;font-weight:800;font-size:56px;color:rgba(255,255,255,.85)">RM149<div id="strike" style="position:absolute;left:-6px;top:50%;height:7px;width:0;background:#FF3B5C;border-radius:4px;transform:rotate(-8deg)"></div></div></div>
+      <div class="n gold" style="font-size:136px" id="p99">RM99</div>
+    </div>
+    <div class="c" style="top:1320px" data-in="47.8" data-fx="swing"><span class="chip" style="background:#0E1B3D">★ Harga pengasas</span></div>
+    <div class="c s" style="top:1470px;color:#5B6683" data-in="48.2" data-fx="fade">Bayar melalui FPX · Tiada caj tersembunyi</div>
+  </div>
+
+  <!-- S8 CTA -->
+  <div class="scene" data-s="49.1" data-e="60.1">
+    <div class="c" style="top:260px" data-in="49.15" data-fx="zoom">
+      <svg width="720" height="720" viewBox="0 0 200 200">
+        <defs><linearGradient id="g3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2457F5"/><stop offset="1" stop-color="#4F7BFF"/></linearGradient></defs>
+        <circle cx="100" cy="100" r="88" fill="#fff" stroke="#E3E7F0" stroke-width="7"/>
+        <circle id="ring8" cx="100" cy="100" r="88" fill="none" stroke="url(#g3)" stroke-width="7" stroke-linecap="round" transform="rotate(-90 100 100)" stroke-dasharray="553" stroke-dashoffset="553"/>
+      </svg>
+    </div>
+    <div class="c" style="top:470px" data-in="49.25" data-fx="slam"><span class="h grad" style="font-size:130px;line-height:1">1 minit</span></div>
+    <div class="c h" style="top:630px;font-size:90px" data-in="49.9" data-fx="up">sehari</div>
+    <div class="c b" style="top:1000px;color:#5B6683" data-in="50.5" data-fx="up">pun dah cukup</div>
+    <div class="c" style="top:1110px" data-in="51.6" data-fx="slam"><span class="chip" id="cta" style="font-size:64px;padding:30px 64px">Daftar Percuma</span></div>
+    <div class="c" style="top:1300px" data-in="53.05" data-fx="pop"><span class="h gold" id="url" style="font-size:118px">airingkas.my</span></div>
+    <div class="c" style="top:1480px;align-items:center;gap:26px" data-in="55.4" data-fx="up">
+      <img src="assets/logo.png" style="width:130px;height:130px">
+      <span class="s" style="text-align:left;line-height:1.25">AI Ringkas<br><span style="color:#5B6683">oleh Al-Firdaus Creava</span></span>
+    </div>
+  </div>
+
+  <div id="wipe"></div>
+</div>
+<script>
+const WIPES=[5.0,10.4,18.4,25.9,32.4,40.8,49.1];
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const eo=x=>1-Math.pow(1-x,3);
+const ex=x=>x>=1?1:1-Math.pow(2,-10*x);
+const back=x=>{const c=1.9;return 1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2)};
+const els=[...document.querySelectorAll('[data-in]')];
+const scenes=[...document.querySelectorAll('.scene')];
+function fxIn(fx,p){
+  const e=eo(p);
+  switch(fx){
+    case 'pop': return [`scale(${0.3+0.7*back(p)})`,clamp(p*3)];
+    case 'up': return [`translateY(${(1-e)*90}px)`,e];
+    case 'down': return [`translateY(${-(1-e)*90}px)`,e];
+    case 'left': return [`translateX(${-(1-e)*220}px)`,e];
+    case 'right': return [`translateX(${(1-e)*220}px)`,e];
+    case 'slam': return [`scale(${1.4-0.4*ex(p)})`,clamp(p*4)];
+    case 'zoom': return [`scale(${1.25-0.25*e})`,e];
+    case 'swing': return [`perspective(1200px) rotateX(${-(1-back(p))*80}deg)`,clamp(p*2.5)];
+    default: return ['',e];
+  }
+}
+function seek(t){
+  for(const s of scenes){const a=+s.dataset.s,b=+s.dataset.e;s.style.display=(t>=a&&t<b)?'block':'none'}
+  for(const el of els){
+    const tin=+el.dataset.in, fx=el.dataset.fx||'fade', dur=+(el.dataset.dur||(fx==='slam'?0.38:0.5));
+    const p=clamp((t-tin)/dur);
+    let [tr,op]=fxIn(fx,p);
+    if(t<tin){op=0}
+    if(el.dataset.out){const q=clamp((t-+el.dataset.out)/0.35),f=el.dataset.fxo;
+      if(f==='up'){tr+=` translateY(${-eo(q)*120}px)`;op*=1-q}else if(f==='cut'){if(q>0)op=0}else op*=1-q}
+    if(el.dataset.float&&p>=1){tr+=` translateY(${Math.sin((t-tin)*3.2)*12}px)`}
+    el.style.transform=tr;el.style.opacity=op;
+  }
+  // background blobs
+  const b=(id,x,y)=>document.getElementById(id).style.transform=`translate(${x}px,${y}px)`;
+  b('b1',-250+Math.sin(t*.35)*160,-200+Math.cos(t*.27)*140);
+  b('b2',520+Math.cos(t*.3)*170,1250+Math.sin(t*.22)*160);
+  b('b3',300+Math.sin(t*.18+1)*220,700+Math.cos(t*.25)*200);
+  // S1 clock spinning fast
+  const sp=t*540;document.getElementById('hMin').setAttribute('transform',`rotate(${sp} 100 100)`);
+  document.getElementById('hHour').setAttribute('transform',`rotate(${sp/12} 100 100)`);
+  // S2 ring
+  document.getElementById('ring2').setAttribute('stroke-dashoffset',553*(1-eo(clamp((t-5.9)/3.4))));
+  // S3 copy button press
+  const cb=document.getElementById('copyBtn');const pr=t>=15.3&&t<15.5;
+  if(t>=14.9+0.5) cb.style.transform=pr?'scale(.93)':'scale(1)';
+  cb.textContent=t>=15.4?'✓ Prompt disalin':'Salin prompt';
+  // S6 bar + streak
+  const bp=eo(clamp((t-32.75)/1.1));document.getElementById('bar').style.width=(bp*100)+'%';document.getElementById('pct').textContent=Math.round(bp*100)+'%';
+  document.getElementById('streak').textContent=Math.max(1,Math.min(7,1+Math.floor((t-34.1)/0.11)));
+  // S7 strike
+  document.getElementById('strike').style.width=(eo(clamp((t-45.3)/0.35))*190)+'px';
+  // S8 ring + pulses
+  document.getElementById('ring8').setAttribute('stroke-dashoffset',553*(1-eo(clamp((t-49.2)/1.8))));
+  if(t>51.6+0.4){const s=1+0.045*Math.max(0,Math.sin((t-52)*5));document.getElementById('cta').style.transform=`scale(${s})`}
+  if(t>53.05+0.5){const s=1+0.035*Math.max(0,Math.sin((t-53.5)*4));document.getElementById('url').style.transform=`scale(${s})`}
+  // wipe
+  const w=document.getElementById('wipe');let on=false;
+  for(const c of WIPES){const q=(t-(c-0.28))/0.56;if(q>=0&&q<=1){on=true;w.style.transform=`translateX(${-2900+q*3980}px)`}}
+  w.style.display=on?'block':'none';
+}
+window.seek=seek;
+window.events=()=>{const ev=[];for(const el of els){if(el.dataset.sfx==='none')continue;const s=el.closest('.scene');ev.push({t:+el.dataset.in,fx:el.dataset.fx||'fade',img:!!el.querySelector('img,svg')&&el.dataset.fx==='zoom'})}
+  for(const c of WIPES)ev.push({t:c-0.28,fx:'wipe'});return ev};
+seek(0);
+</script>
+</body>
+</html>
