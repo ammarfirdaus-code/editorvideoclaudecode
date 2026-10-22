@@ -15,3 +15,6 @@ out-*/
 
 # Personal permission overrides
 .claude/settings.local.json
+
+# Raw full-page website captures (cropped .jpg versions are tracked)
+projects/*/assets/shots/*.png

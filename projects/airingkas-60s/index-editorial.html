@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<title>AI Ringkas 60s Editorial</title>
+<style>
+@font-face{font-family:Fr;font-weight:800;src:url(node_modules/@fontsource/fraunces/files/fraunces-latin-800-normal.woff2)}
+@font-face{font-family:Fr;font-weight:800;font-style:italic;src:url(node_modules/@fontsource/fraunces/files/fraunces-latin-800-italic.woff2)}
+@font-face{font-family:Mono;font-weight:500;src:url(node_modules/@fontsource/jetbrains-mono/files/jetbrains-mono-latin-500-normal.woff2)}
+@font-face{font-family:Jak;font-weight:600;src:url(node_modules/@fontsource/plus-jakarta-sans/files/plus-jakarta-sans-latin-600-normal.woff2)}
+@font-face{font-family:Jak;font-weight:700;src:url(node_modules/@fontsource/plus-jakarta-sans/files/plus-jakarta-sans-latin-700-normal.woff2)}
+@font-face{font-family:Jak;font-weight:800;src:url(node_modules/@fontsource/plus-jakarta-sans/files/plus-jakarta-sans-latin-800-normal.woff2)}
+:root{--ink:#1F1B4D;--pu:#6D3BEB;--lav:#6E5BD9;--lime:#D7F25A;--cream:#EFEBE3;--indigo:#1E1660}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--cream)}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden;font-family:Jak,sans-serif;color:var(--ink)}
+.scene{position:absolute;inset:0;display:none;transform-origin:50% 45%}
+.cream{background:radial-gradient(ellipse 75% 60% at 50% 45%,#F7F4EE 0%,#EDE9E1 60%,#DED8CC 100%)}
+.dark{background:radial-gradient(ellipse 80% 65% at 50% 42%,#2C2185 0%,#1E1660 55%,#130E40 100%);color:#fff}
+[data-in]{position:absolute;opacity:0;will-change:transform,opacity}
+.c{left:0;width:1080px;display:flex;justify-content:center;text-align:center}
+.lbl{font-family:Mono;font-weight:500;font-size:36px;letter-spacing:5px;color:var(--lav);text-transform:uppercase}
+.dark .lbl{color:var(--lime)}
+.serif{font-family:Fr;font-weight:800;font-size:104px;line-height:1.08;letter-spacing:-1.5px;color:var(--ink)}
+.dark .serif{color:#fff}
+.it{font-style:italic}
+.mk{position:relative;display:inline-block;padding:0 14px;margin:0 -6px;z-index:0}
+.mk::before{content:"";position:absolute;left:0;top:14%;height:78%;width:var(--w,0%);background:var(--lime);z-index:-1;transform:skew(-4deg)}
+.circ{position:absolute;pointer-events:none;overflow:visible}
+.circ path{fill:none;stroke:var(--lav);stroke-width:6;stroke-linecap:round}
+.card{background:#fff;border-radius:22px;box-shadow:0 26px 60px rgba(31,27,77,.18),0 3px 10px rgba(31,27,77,.08);overflow:hidden}
+.browser{background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 34px 80px rgba(31,27,77,.25),0 4px 12px rgba(31,27,77,.1)}
+.browser .bar{height:56px;background:#F1EEF7;display:flex;align-items:center;gap:12px;padding:0 22px;border-bottom:1px solid #E2DEEC}
+.browser .bar i{width:16px;height:16px;border-radius:50%;background:#D3CDE3;display:block}
+.browser .bar span{margin-left:16px;font-family:Mono;font-size:26px;color:#6F6A8E;background:#fff;border-radius:10px;padding:4px 18px}
+.browser img{display:block;width:100%}
+.thumb{position:absolute;border-radius:14px;overflow:hidden;box-shadow:0 14px 34px rgba(31,27,77,.18);background:#fff}
+.thumb img{display:block;width:100%;height:100%;object-fit:cover}
+.tag{display:inline-flex;align-items:center;gap:18px;background:#fff;border-radius:18px;padding:22px 34px;font-family:Jak;font-weight:800;font-size:52px;box-shadow:0 18px 40px rgba(31,27,77,.14);white-space:nowrap}
+.tag i{width:30px;height:30px;border-radius:50%;display:block}
+.sticker{width:250px;height:250px;border-radius:50%;background:var(--lime);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;border:5px solid var(--ink);box-shadow:0 14px 30px rgba(0,0,0,.18)}
+.sticker b{font-family:Jak;font-weight:800;font-size:46px;line-height:1;color:var(--ink)}
+.sticker small{font-family:Mono;font-size:22px;letter-spacing:2px;color:var(--ink);margin-top:10px}
+.num{width:84px;height:84px;border-radius:50%;background:#fff;border:5px solid var(--lav);display:flex;align-items:center;justify-content:center;font-family:Jak;font-weight:800;font-size:40px;color:var(--ink)}
+.row{left:110px;display:flex;align-items:baseline;gap:30px;white-space:nowrap}
+.row .ix{font-family:Mono;font-size:34px;color:var(--lav)}
+.row .tx{font-family:Fr;font-weight:800;font-size:92px;letter-spacing:-1px}
+.pr{left:110px;width:860px;display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px dashed rgba(255,255,255,.25);padding-bottom:18px}
+.pr .k{font-family:Mono;font-size:34px;letter-spacing:3px;color:#C9C2FF}
+.pr .v{font-family:Jak;font-weight:800;font-size:96px;color:#fff}
+.vip{width:860px;height:470px;left:110px;border-radius:34px;padding:44px 50px;background:linear-gradient(135deg,#7A4DFF,#4A2BC9 60%,#3A1FA8);box-shadow:0 40px 80px rgba(0,0,0,.4);color:#fff;overflow:hidden}
+.vip .chipc{position:absolute;right:50px;top:48px;width:100px;height:72px;border-radius:14px;background:var(--lime)}
+.chk{left:110px;display:flex;align-items:center;gap:26px;font-family:Jak;font-weight:700;font-size:50px;color:#fff;white-space:nowrap}
+.chk i{width:58px;height:58px;border-radius:50%;background:var(--lime);display:flex;align-items:center;justify-content:center;font-style:normal;color:var(--indigo);font-size:36px;font-weight:800}
+.btn{display:inline-flex;align-items:center;gap:20px;background:var(--pu);color:#fff;border-radius:999px;padding:30px 60px;font-family:Jak;font-weight:800;font-size:58px;box-shadow:0 20px 44px rgba(109,59,235,.4);white-space:nowrap}
+#cap{position:absolute;left:0;width:1080px;top:1530px;display:flex;justify-content:center;z-index:40}
+#capin{max-width:980px;background:#2A2650;border-radius:16px;padding:20px 34px;font-family:Jak;font-weight:700;font-size:46px;line-height:1.3;text-align:center;color:#8F8AB5;box-shadow:0 12px 30px rgba(0,0,0,.22)}
+#capin .on{color:#fff}
+#capin .on.k{color:var(--lime)}
+.pin{width:70px}
+#flash{position:absolute;inset:0;background:#fff;opacity:0;z-index:30;pointer-events:none}
+</style>
+</head>
+<body>
+<div id="stage">
+
+  <!-- S1 HOOK -->
+  <div class="scene cream" data-s="0" data-e="5.0">
+    <div class="c lbl" style="top:270px" data-in="0.15" data-fx="fade">Soalan sebenar</div>
+    <div class="c" style="top:360px" data-in="0.25" data-fx="up">
+      <div style="width:820px;height:120px;border-radius:999px;background:#fff;box-shadow:0 20px 50px rgba(31,27,77,.14);display:flex;align-items:center;gap:26px;padding:0 44px;font-family:Jak;font-weight:600;font-size:48px;color:var(--ink)">
+        <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="#6E5BD9" stroke-width="2.6" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+        <span id="typed"></span><span id="caret" style="width:4px;height:56px;background:var(--ink)"></span>
+      </div>
+    </div>
+    <div id="wall1" style="position:absolute;left:0;top:0;width:1080px;height:1920px"></div>
+    <div class="c serif" style="top:640px;z-index:5" data-in="2.45" data-fx="up">
+      <div style="background:rgba(239,235,227,.92);padding:14px 40px 26px;border-radius:20px;position:relative">Tutorial <span style="position:relative;display:inline-block">sejam?<svg class="circ" style="left:-40px;top:-14px" width="420" height="150" viewBox="0 0 400 150" preserveAspectRatio="none"><path id="circ1" d="M30,80 C40,20 300,10 360,50 C410,85 330,135 190,135 C70,135 0,110 30,70" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/></svg></span></div>
+    </div>
+    <div class="c" style="top:850px;z-index:5" data-in="4.15" data-fx="up"><span class="serif it" style="font-size:80px;background:rgba(239,235,227,.92);padding:6px 30px;border-radius:16px">...dan mengantuk.</span></div>
+  </div>
+
+  <!-- S2 BRAND (dark) -->
+  <div class="scene dark" data-s="5.0" data-e="10.4">
+    <div id="dots2" style="position:absolute;inset:0"></div>
+    <div class="c lbl" style="top:560px" data-in="5.05" data-fx="fade">Kenalkan</div>
+    <div class="c" style="top:660px;align-items:center;gap:34px" data-in="5.95" data-fx="pop">
+      <img src="assets/logo.png" style="width:170px;height:170px;border-radius:44px;border:5px solid #fff;padding:6px;background:#fff">
+      <span style="font-family:Jak;font-weight:800;font-size:116px;color:#fff;letter-spacing:-2px">Airingkas<span style="color:var(--lime)">.my</span></span>
+    </div>
+    <div style="position:absolute;left:120px;top:880px;height:12px;border-radius:6px;background:var(--lime);width:0" id="uline"></div>
+    <div class="c lbl" style="top:950px;color:#fff;font-size:34px" data-in="7.0" data-fx="up">Tip AI 1 minit</div>
+    <div class="c serif it" style="top:1040px;font-size:88px" data-in="8.95" data-fx="up">dalam Bahasa Melayu.</div>
+  </div>
+
+  <!-- S3 TIP PAGE -->
+  <div class="scene cream" data-s="10.4" data-e="18.4">
+    <div class="c lbl" style="top:250px" data-in="10.45" data-fx="fade">Satu tip</div>
+    <div class="c serif" style="top:320px" data-in="10.5" data-fx="up" data-out="16.0" data-fxo="up">Satu tip,</div>
+    <div class="c serif it" style="top:440px" data-in="11.45" data-fx="up" data-out="16.0" data-fxo="up"><span class="mk" data-hl="11.6">satu perkara.</span></div>
+    <div class="c serif" style="top:320px;font-size:92px" data-in="16.1" data-fx="up">Terus guna untuk</div>
+    <div class="c serif it" style="top:430px;font-size:92px" data-in="16.75" data-fx="up"><span class="mk" data-hl="16.9">produk anda.</span></div>
+    <div class="browser" style="left:70px;top:620px;width:940px" data-in="10.7" data-fx="tilt" data-dur="0.8" id="tipcard">
+      <div class="bar"><i></i><i></i><i></i><span>airingkas.my/tip</span></div>
+      <img src="assets/shots/tip_page.jpg">
+    </div>
+    <div class="num" style="left:40px;top:860px" data-in="12.75" data-fx="pop">1</div>
+    <div class="num" style="left:40px;top:980px" data-in="13.15" data-fx="pop">2</div>
+    <div class="num" style="left:40px;top:1100px" data-in="13.55" data-fx="pop">3</div>
+    <div class="sticker" style="left:770px;top:1150px;transform:rotate(-8deg)" data-in="14.35" data-fx="stamp"><b>Prompt<br>siap salin</b><small>✓ 1 KLIK</small></div>
+  </div>
+
+  <!-- S4 TOOLS -->
+  <div class="scene cream" data-s="18.4" data-e="25.9">
+    <svg id="net" style="position:absolute;inset:0" width="1080" height="1920"></svg>
+    <div id="wall4" style="position:absolute;inset:0"></div>
+    <div class="c lbl" style="top:270px" data-in="18.45" data-fx="fade">Alat yang anda dah kenal</div>
+    <div class="c serif" style="top:340px;font-size:90px" data-in="18.55" data-fx="up">Boleh guna dengan</div>
+    <div class="tag" style="left:110px;top:560px;transform:rotate(-3deg)" data-in="19.45" data-fx="drop"><i style="background:#10A37F"></i>ChatGPT</div>
+    <div class="tag" style="left:560px;top:640px;transform:rotate(2deg)" data-in="20.7" data-fx="drop"><i style="background:#D97757"></i>Claude</div>
+    <div class="tag" style="left:150px;top:780px;transform:rotate(2deg)" data-in="21.33" data-fx="drop"><i style="background:#4285F4"></i>Gemini</div>
+    <div class="tag" style="left:600px;top:860px;transform:rotate(-2deg)" data-in="22.27" data-fx="drop"><i style="background:#7D2AE8"></i>Canva</div>
+    <div class="tag" style="left:250px;top:1000px;transform:rotate(-1deg)" data-in="23.15" data-fx="drop"><i style="background:#34A853"></i>Google Flow</div>
+    <div class="c" style="top:1210px" data-in="24.2" data-fx="drop">
+      <div style="background:#F7F4EE;box-shadow:0 22px 50px rgba(31,27,77,.18);padding:22px 40px 34px;transform:rotate(-2deg)"><span class="serif" style="font-size:86px">dan pelbagai <span class="it mk" data-hl="24.75">AI lain.</span></span></div>
+    </div>
+  </div>
+
+  <!-- S5 PERSONAS -->
+  <div class="scene cream" data-s="25.9" data-e="32.4">
+    <div class="lbl" style="left:110px;top:270px" data-in="25.95" data-fx="fade">Untuk siapa</div>
+    <div class="serif" style="left:110px;top:330px" data-in="26.0" data-fx="up">Sesuai untuk</div>
+    <div class="row" style="top:560px" data-in="26.55" data-fx="left" data-p="26.55"><span class="ix">01</span><span class="tx">usahawan kecil</span></div>
+    <div class="row" style="top:720px" data-in="28.15" data-fx="left" data-p="28.15"><span class="ix">02</span><span class="tx">content creator</span></div>
+    <div class="row" style="top:880px" data-in="29.4" data-fx="left" data-p="29.4"><span class="ix">03</span><span class="tx">staf pejabat</span></div>
+    <div class="row" style="top:1040px" data-in="30.58" data-fx="left" data-p="30.58"><span class="ix">04</span><span class="tx">NGO</span></div>
+    <div class="row" style="top:1200px" data-in="31.5" data-fx="left" data-p="31.5"><span class="ix">05</span><span class="tx">&amp; masjid.</span></div>
+  </div>
+
+  <!-- S6 TREK + SKILLS -->
+  <div class="scene cream" data-s="32.4" data-e="40.8">
+    <div class="c lbl" style="top:270px" data-in="32.45" data-fx="fade" data-out="36.7" data-fxo="up">Trek bersijil</div>
+    <div class="c serif" style="top:340px" data-in="32.5" data-fx="up" data-out="36.7" data-fxo="up">Habiskan <span class="it mk" data-hl="32.9">satu trek.</span></div>
+    <div style="position:absolute;left:90px;top:800px;width:900px;border-top:6px dotted #B9B2CF" data-in="32.6" data-fx="fade" data-out="36.7" data-fxo="fade"></div>
+    <svg class="pin" style="left:62px;top:690px" viewBox="0 0 24 32" data-in="32.6" data-fx="drop" data-out="36.7" data-fxo="fade"><path d="M12 1C6 1 2 5.5 2 11c0 7.5 10 20 10 20s10-12.5 10-20C22 5.5 18 1 12 1z" fill="#6E5BD9"/><circle cx="12" cy="11" r="4" fill="#fff"/></svg>
+    <div class="lbl" style="left:40px;top:630px;font-size:28px;background:var(--ink);color:#fff;padding:6px 14px;border-radius:8px;letter-spacing:3px" data-in="32.7" data-fx="fade" data-out="36.7" data-fxo="fade">MULA</div>
+    <div class="thumb" style="left:200px;top:610px;width:263px;height:163px" data-in="32.9" data-fx="pop" data-out="36.7" data-fxo="up"><img src="assets/shots/thumbs/t02.jpg"></div>
+    <div class="thumb" style="left:490px;top:830px;width:263px;height:163px" data-in="33.25" data-fx="pop" data-out="36.7" data-fxo="up"><img src="assets/shots/thumbs/t03.jpg"></div>
+    <div class="thumb" style="left:770px;top:610px;width:263px;height:163px" data-in="33.6" data-fx="pop" data-out="36.7" data-fxo="up"><img src="assets/shots/thumbs/t06.jpg"></div>
+    <div class="c" style="top:1050px;gap:30px" data-in="34.0" data-fx="pop" data-out="36.7" data-fxo="up">
+      <span class="tag" style="font-size:48px"><svg width="54" height="54" viewBox="0 0 24 24"><path d="M12 2c1 4 6 6 6 12a6 6 0 01-12 0c0-3 2-5 3-7 0 2 1 3 2 3 0-3 0-5 1-8z" fill="#FF8A3D"/><path d="M12 13c1 2 3 3 3 5a3 3 0 01-6 0c0-1.5 1-2.5 3-5z" fill="#FFD23F"/></svg><span id="streak">1</span> hari streak</span>
+    </div>
+    <div class="card" style="left:200px;top:1200px;width:680px;height:250px;padding:34px;text-align:center;border:4px solid var(--ink);transform-origin:50% 0" data-in="34.95" data-fx="swing" data-out="36.7" data-fxo="up">
+      <div class="lbl" style="font-size:26px">Sijil tamat trek</div>
+      <div class="serif it" style="font-size:72px;margin-top:14px">Nama Anda</div>
+    </div>
+
+    <div class="c lbl" style="top:270px" data-in="36.85" data-fx="fade">Kedai Skills</div>
+    <div class="c serif" style="top:340px" data-in="36.9" data-fx="up">Skills <span class="it mk" data-hl="37.4">siap pakai.</span></div>
+    <div class="thumb" style="left:60px;top:640px;width:470px;height:265px;transform:rotate(-6deg)" data-in="37.3" data-fx="drop"><img src="assets/shots/thumbs/s41.jpg"></div>
+    <div class="thumb" style="left:550px;top:620px;width:470px;height:265px;transform:rotate(5deg)" data-in="37.65" data-fx="drop"><img src="assets/shots/thumbs/s40.jpg"></div>
+    <div class="thumb" style="left:300px;top:880px;width:470px;height:265px;transform:rotate(-2deg)" data-in="38.0" data-fx="drop"><img src="assets/shots/thumbs/s42.jpg"></div>
+    <div class="c" style="top:1240px;gap:18px;align-items:center" data-in="39.1" data-fx="up">
+      <span class="lbl" style="background:#fff;padding:14px 22px;border-radius:12px;color:var(--ink);box-shadow:0 10px 24px rgba(31,27,77,.12)">Pasang</span>
+      <span class="lbl" style="color:var(--ink)">→</span>
+      <span class="lbl" style="background:var(--lime);padding:14px 22px;border-radius:12px;color:var(--ink)">Terus guna</span>
+    </div>
+  </div>
+
+  <!-- S7 PRICE (dark) -->
+  <div class="scene dark" data-s="40.8" data-e="49.1">
+    <div id="dots7" style="position:absolute;inset:0"></div>
+    <div class="lbl" style="left:110px;top:260px" data-in="40.85" data-fx="fade">Harga mudah</div>
+    <div class="pr" style="top:330px" data-in="40.95" data-fx="up"><span class="k">MULA</span><span class="v">Percuma</span></div>
+    <div class="pr" style="top:470px" data-in="42.45" data-fx="up"><span class="k">PAS BULANAN</span><span class="v">RM19</span></div>
+    <div class="vip" style="top:660px" data-in="44.45" data-fx="tilt" data-dur="0.7">
+      <div class="chipc"></div>
+      <div style="display:flex;align-items:center;gap:16px"><img src="assets/logo.png" style="width:64px;height:64px;border-radius:16px;background:#fff;padding:3px"><span style="font-family:Jak;font-weight:800;font-size:40px">Airingkas.my</span></div>
+      <div style="font-family:Jak;font-weight:800;font-size:72px;margin-top:40px;letter-spacing:-1px">PAS TAHUNAN</div>
+      <div style="display:flex;align-items:baseline;gap:30px;margin-top:10px">
+        <span style="font-family:Jak;font-weight:800;font-size:150px;color:var(--lime);line-height:1">RM99</span>
+        <span style="position:relative;font-family:Jak;font-weight:700;font-size:56px;color:rgba(255,255,255,.7)">RM149<i id="strike" style="position:absolute;left:-4px;top:52%;height:7px;width:0;background:#FF5A7A;border-radius:4px;transform:rotate(-8deg)"></i></span>
+      </div>
+      <div class="lbl" style="color:rgba(255,255,255,.75);font-size:26px;margin-top:12px">365 hari · semua trek &amp; skill</div>
+    </div>
+    <div class="chk" style="top:1180px" data-in="45.6" data-fx="left"><i>✓</i>Semua trek &amp; Skills</div>
+    <div class="chk" style="top:1270px" data-in="46.1" data-fx="left"><i>✓</i>Ebook &amp; prompt</div>
+    <div class="chk" style="top:1360px" data-in="46.6" data-fx="left"><i>✓</i>Sijil bernama</div>
+    <div class="sticker" style="left:790px;top:1010px;width:230px;height:230px;transform:rotate(10deg)" data-in="47.8" data-fx="stamp"><b style="font-size:40px">Harga<br>pengasas</b><small>100 ORANG</small></div>
+  </div>
+
+  <!-- S8 CTA -->
+  <div class="scene cream" data-s="49.1" data-e="60.1">
+    <div class="c lbl" style="top:250px" data-in="49.15" data-fx="fade">Mula di sini</div>
+    <div class="c serif" style="top:320px" data-in="49.2" data-fx="up"><span class="it mk" data-hl="49.5">Satu minit</span>&nbsp;sehari</div>
+    <div class="c serif" style="top:440px" data-in="50.3" data-fx="up">pun dah cukup.</div>
+    <div class="browser" style="left:90px;top:640px;width:900px" data-in="51.55" data-fx="tilt" data-dur="0.8">
+      <div class="bar"><i></i><i></i><i></i><span>airingkas.my</span></div>
+      <img src="assets/shots/home_hero.jpg">
+    </div>
+    <div class="c" style="top:1310px" data-in="52.0" data-fx="pop"><span class="btn" id="cta">Daftar percuma →</span></div>
+    <svg class="circ" style="left:240px;top:1290px" width="600" height="200" viewBox="0 0 600 200"><path id="circ8" d="M40,110 C40,30 520,10 570,80 C610,140 470,190 290,190 C110,190 10,160 40,100" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" style="stroke:var(--lime);stroke-width:8"/></svg>
+  </div>
+
+  <div id="cap"><div id="capin"></div></div>
+  <div id="flash"></div>
+</div>
+<script>
+const WIPES=[5.0,10.4,18.4,25.9,32.4,40.8,49.1];
+const CAPS=[{"s": 0.25, "e": 2.16, "w": [{"t": 0.3, "w": "Nak", "k": false}, {"t": 0.54, "w": "pandai", "k": false}, {"t": 1.02, "w": "guna", "k": false}, {"t": 1.32, "w": "AI,", "k": false}]}, {"s": 2.16, "e": 5.03, "w": [{"t": 2.21, "w": "tapi", "k": false}, {"t": 2.58, "w": "tutorial", "k": false}, {"t": 3.08, "w": "sejam", "k": true}, {"t": 3.7, "w": "buat", "k": false}, {"t": 3.92, "w": "anda", "k": false}, {"t": 4.22, "w": "mengantuk?", "k": false}]}, {"s": 5.03, "e": 6.97, "w": [{"t": 5.08, "w": "Kenalkan,", "k": false}, {"t": 5.97, "w": "AI", "k": false}, {"t": 6.24, "w": "Ringkas.", "k": false}]}, {"s": 6.97, "e": 10.459999999999999, "w": [{"t": 7.02, "w": "Tip", "k": false}, {"t": 7.79, "w": "AI", "k": false}, {"t": 7.98, "w": "satu", "k": false}, {"t": 8.36, "w": "minit,", "k": true}, {"t": 8.98, "w": "dalam", "k": false}, {"t": 9.24, "w": "bahasa", "k": false}, {"t": 9.68, "w": "Melayu.", "k": false}]}, {"s": 10.459999999999999, "e": 12.719999999999999, "w": [{"t": 10.51, "w": "Setiap", "k": false}, {"t": 10.98, "w": "tip,", "k": false}, {"t": 11.5, "w": "satu", "k": false}, {"t": 11.84, "w": "perkara.", "k": true}]}, {"s": 12.719999999999999, "e": 16.09, "w": [{"t": 12.77, "w": "Ada", "k": false}, {"t": 13.14, "w": "langkah", "k": false}, {"t": 13.48, "w": "bernombor", "k": true}, {"t": 14.34, "w": "dan", "k": false}, {"t": 14.46, "w": "prompt", "k": false}, {"t": 14.84, "w": "siap", "k": false}, {"t": 15.34, "w": "salin.", "k": true}]}, {"s": 16.09, "e": 18.169999999999998, "w": [{"t": 16.14, "w": "Terus", "k": false}, {"t": 16.44, "w": "guna", "k": false}, {"t": 16.86, "w": "untuk", "k": false}, {"t": 17.08, "w": "produk", "k": false}, {"t": 17.46, "w": "anda", "k": true}, {"t": 17.78, "w": "sendiri.", "k": false}]}, {"s": 18.169999999999998, "e": 23.189999999999998, "w": [{"t": 18.22, "w": "Boleh", "k": false}, {"t": 18.88, "w": "guna", "k": false}, {"t": 19.22, "w": "dengan", "k": false}, {"t": 19.46, "w": "ChatGPT,", "k": false}, {"t": 20.75, "w": "Claude,", "k": false}, {"t": 21.48, "w": "Gemini,", "k": false}, {"t": 22.32, "w": "Canva,", "k": false}]}, {"s": 23.189999999999998, "e": 25.939999999999998, "w": [{"t": 23.24, "w": "Google", "k": false}, {"t": 23.48, "w": "Flow", "k": false}, {"t": 24.22, "w": "dan", "k": false}, {"t": 24.34, "w": "pelbagai", "k": true}, {"t": 24.84, "w": "AI", "k": true}, {"t": 25.24, "w": "lain.", "k": true}]}, {"s": 25.939999999999998, "e": 29.41, "w": [{"t": 25.99, "w": "Sesuai", "k": false}, {"t": 26.5, "w": "untuk", "k": false}, {"t": 26.76, "w": "usahawan", "k": true}, {"t": 27.32, "w": "kecil,", "k": false}, {"t": 28.22, "w": "content", "k": false}, {"t": 28.52, "w": "creator,", "k": true}]}, {"s": 29.41, "e": 32.49, "w": [{"t": 29.46, "w": "staf", "k": false}, {"t": 29.76, "w": "pejabat,", "k": true}, {"t": 30.7, "w": "NGO,", "k": true}, {"t": 31.06, "w": "dan", "k": false}, {"t": 31.72, "w": "masjid.", "k": true}]}, {"s": 32.49, "e": 34.940000000000005, "w": [{"t": 32.54, "w": "Habiskan", "k": false}, {"t": 33.1, "w": "satu", "k": false}, {"t": 33.4, "w": "trek,", "k": true}, {"t": 34.04, "w": "kumpul", "k": false}, {"t": 34.38, "w": "streak,", "k": true}]}, {"s": 34.940000000000005, "e": 36.43, "w": [{"t": 34.99, "w": "dan", "k": false}, {"t": 35.16, "w": "dapat", "k": false}, {"t": 35.48, "w": "sijil", "k": true}, {"t": 36.02, "w": "bernama.", "k": false}]}, {"s": 36.43, "e": 38.690000000000005, "w": [{"t": 36.48, "w": "Ada", "k": false}, {"t": 37.26, "w": "juga", "k": false}, {"t": 37.66, "w": "Skills", "k": true}, {"t": 38.02, "w": "siap", "k": false}, {"t": 38.36, "w": "pakai,", "k": true}]}, {"s": 38.690000000000005, "e": 40.510000000000005, "w": [{"t": 38.74, "w": "Terus", "k": false}, {"t": 39.36, "w": "pasang", "k": false}, {"t": 39.82, "w": "dan", "k": false}, {"t": 40.1, "w": "guna.", "k": false}]}, {"s": 40.510000000000005, "e": 41.99, "w": [{"t": 40.56, "w": "Mula", "k": false}, {"t": 41.2, "w": "dengan", "k": false}, {"t": 41.5, "w": "percuma.", "k": true}]}, {"s": 41.99, "e": 44.43, "w": [{"t": 42.04, "w": "Pas", "k": false}, {"t": 42.64, "w": "bulanan,", "k": false}, {"t": 43.38, "w": "RM19.", "k": true}]}, {"s": 44.43, "e": 47.13, "w": [{"t": 44.48, "w": "Atau", "k": false}, {"t": 45.0, "w": "pas", "k": false}, {"t": 45.28, "w": "tahunan,", "k": false}, {"t": 45.98, "w": "RM99", "k": true}]}, {"s": 47.13, "e": 49.13, "w": [{"t": 47.18, "w": "sahaja,", "k": false}, {"t": 47.84, "w": "harga", "k": false}, {"t": 48.16, "w": "pengasas.", "k": true}]}, {"s": 49.13, "e": 51.580000000000005, "w": [{"t": 49.18, "w": "Satu", "k": true}, {"t": 49.54, "w": "minit", "k": true}, {"t": 49.94, "w": "sehari", "k": false}, {"t": 50.3, "w": "pun", "k": false}, {"t": 50.56, "w": "dah", "k": false}, {"t": 50.8, "w": "cukup.", "k": false}]}, {"s": 51.580000000000005, "e": 52.690000000000005, "w": [{"t": 51.63, "w": "Daftar", "k": false}, {"t": 52.0, "w": "percuma", "k": true}, {"t": 52.32, "w": "sekarang,", "k": false}]}, {"s": 52.690000000000005, "e": 59.2, "w": [{"t": 52.74, "w": "di", "k": false}, {"t": 53.1, "w": "airingkas.my", "k": true}]}];
+const THUMBS=['t00','t01','t02','t03','t04','t05','t06','t07','t08','t09','t10','t11','t12','t13','t14','t15','t16','t17','t18','t19','t20','t21','t22','t23','t24','t25','t26','t27','t28','t29','t30','t31','s40','s41','s42','s43','s44','s45','s46','s47','s48','s49','s50','s51'];
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const eo=x=>1-Math.pow(1-x,3);
+const eio=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+const back=x=>{const c=1.7;return 1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2)};
+let seed=7;const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
+// thumbnail walls (deterministic layout)
+function wall(id,n,opt){const w=document.getElementById(id);const out=[];
+  for(let i=0;i<n;i++){const d=document.createElement('div');d.className='thumb';
+    const s=opt.s*(0.7+rnd()*0.5);d.style.width=(263*s)+'px';d.style.height=(163*s)+'px';
+    const x=rnd()*1180-150,y=opt.y0+rnd()*(opt.y1-opt.y0);d.style.left=x+'px';d.style.top=y+'px';
+    d.innerHTML=`<img src="assets/shots/thumbs/${THUMBS[(i*7+opt.o)%THUMBS.length]}.jpg">`;w.appendChild(d);
+    out.push({el:d,x,y,r:(rnd()-.5)*14,t:opt.t0+rnd()*opt.spread,z:rnd()});}
+  return out}
+const W1=wall('wall1',34,{s:1.0,y0:520,y1:1450,t0:2.2,spread:1.6,o:0});
+const W4=wall('wall4',30,{s:0.55,y0:180,y1:1480,t0:18.4,spread:0.8,o:3});
+// network lines for scene 4
+(function(){const svg=document.getElementById('net');let h='';for(let i=0;i<W4.length;i++){const a=W4[i],b=W4[(i*5+3)%W4.length];
+  h+=`<line x1="${a.x+70}" y1="${a.y+45}" x2="${b.x+70}" y2="${b.y+45}" stroke="#C9C2DA" stroke-width="2"/>`}svg.innerHTML=h})();
+// dots for dark scenes
+for(const id of ['dots2','dots7']){const d=document.getElementById(id);let h='';for(let i=0;i<40;i++){const s=4+rnd()*8;
+  h+=`<i style="position:absolute;left:${rnd()*1080}px;top:${rnd()*1920}px;width:${s}px;height:${s}px;border-radius:50%;background:${rnd()<.3?'#D7F25A':'#6E5BD9'};opacity:${.25+rnd()*.5}" data-ph="${rnd()*6}"></i>`}d.innerHTML=h}
+const els=[...document.querySelectorAll('[data-in]')];
+const scenes=[...document.querySelectorAll('.scene')];
+const hls=[...document.querySelectorAll('[data-hl]')];
+const rows=[...document.querySelectorAll('[data-p]')];
+function fxIn(fx,p){const e=eo(p);
+  switch(fx){
+    case 'pop':return[`scale(${0.4+0.6*back(p)})`,clamp(p*3)];
+    case 'up':return[`translateY(${(1-e)*70}px)`,e];
+    case 'left':return[`translateX(${-(1-e)*160}px)`,e];
+    case 'drop':return[`translateY(${-(1-back(p))*120}px) rotate(${(1-e)*-8}deg)`,clamp(p*3)];
+    case 'tilt':return[`perspective(1600px) translateY(${(1-e)*260}px) rotateX(${(1-e)*28}deg) rotateZ(${(1-e)*-4}deg)`,clamp(p*2)];
+    case 'stamp':return[`scale(${1.8-0.8*back(p)})`,clamp(p*4)];
+    case 'swing':return[`perspective(1200px) rotateX(${-(1-back(p))*80}deg)`,clamp(p*2.5)];
+    default:return['',e];}}
+function seek(t){
+  for(const s of scenes){const a=+s.dataset.s,b=+s.dataset.e,on=t>=a&&t<b;s.style.display=on?'block':'none';
+    if(on){const q=clamp((t-a)/0.35);s.style.transform=`scale(${1.06-0.06*eo(q)})`;s.style.opacity=a===0?1:0.4+0.6*q;
+      const drift=(t-a)*0.006;s.style.transform+=` translateY(${-drift*100}px)`}}
+  for(const el of els){const tin=+el.dataset.in,fx=el.dataset.fx||'fade',dur=+(el.dataset.dur||(fx==='stamp'?0.4:0.55));
+    const p=clamp((t-tin)/dur);let[tr,op]=fxIn(fx,p);if(t<tin)op=0;
+    if(el.dataset.out){const q=clamp((t-+el.dataset.out)/0.35),f=el.dataset.fxo;
+      if(f==='up'){tr+=` translateY(${-eo(q)*110}px)`;op*=1-q}else op*=1-q}
+    const base=el.style.getPropertyValue('--base');el.style.transform=tr+' '+(el.dataset.rot||'');el.style.opacity=op}
+  // keep authored rotations: elements whose inline transform was rotate() store it once
+  for(const h of hls){const p=eio(clamp((t-+h.dataset.hl)/0.45));h.style.setProperty('--w',(p*100)+'%')}
+  for(const r of rows){const st=+r.dataset.p;const nx=rows.find(x=>+x.dataset.p>st);const act=t>=st&&(!nx||t<+nx.dataset.p);
+    r.querySelector('.tx').style.color=act?'#1F1B4D':'#A9A3C2';r.querySelector('.tx').style.background=act?'linear-gradient(transparent 58%,#D7F25A 58%,#D7F25A 92%,transparent 92%)':'none'}
+  // S1 typing + walls
+  const txt='belajar AI';const n=Math.floor(clamp((t-0.5)/1.1)*txt.length);document.getElementById('typed').textContent=txt.slice(0,n);
+  document.getElementById('caret').style.opacity=(Math.floor(t*2.2)%2)?0:1;
+  for(const c of W1){const p=clamp((t-c.t)/0.5);c.el.style.opacity=clamp(p*3)*(0.55+0.45*c.z);
+    c.el.style.transform=`translateY(${(1-eo(p))*-220}px) rotate(${c.r}deg) scale(${0.9+0.1*eo(p)})`}
+  document.getElementById('circ1').style.strokeDashoffset=1-eio(clamp((t-3.05)/0.5));
+  for(const c of W4){const p=clamp((t-c.t)/0.6);c.el.style.opacity=clamp(p*2)*0.75;c.el.style.transform=`scale(${0.6+0.4*eo(p)}) rotate(${c.r*.5}deg) translate(${Math.sin(t*.4+c.z*6)*10}px,${Math.cos(t*.35+c.z*5)*10}px)`}
+  document.getElementById('net').style.opacity=clamp((t-18.6)/0.8)*0.8;
+  // S2 underline
+  document.getElementById('uline').style.width=(eio(clamp((t-6.35)/0.6))*840)+'px';
+  for(const d of document.querySelectorAll('#dots2 i,#dots7 i')){const ph=+d.dataset.ph;d.style.transform=`translate(${Math.sin(t*.5+ph)*14}px,${Math.cos(t*.4+ph)*18}px)`}
+  // S6 streak / S7 strike / S8 circle+cta
+  document.getElementById('streak').textContent=Math.max(1,Math.min(7,1+Math.floor((t-34.1)/0.11)));
+  document.getElementById('strike').style.width=(eo(clamp((t-45.2)/0.35))*190)+'px';
+  document.getElementById('circ8').style.strokeDashoffset=1-eio(clamp((t-53.05)/0.6));
+  if(t>52.6){document.getElementById('cta').style.transform=`scale(${1+0.035*Math.max(0,Math.sin((t-52.6)*4.5))})`}
+  // captions
+  let cap=null;for(const c of CAPS){if(t>=c.s&&t<c.e)cap=c}
+  const ci=document.getElementById('capin');
+  if(!cap){ci.parentElement.style.opacity=0}else{ci.parentElement.style.opacity=1;
+    ci.innerHTML=cap.w.map(w=>`<span class="${t>=w.t?'on':''} ${w.k?'k':''}">${w.w}</span>`).join(' ')}
+  // scene cut flash (subtle)
+  let f=0;for(const c of WIPES){const d=t-c;if(d>=0&&d<0.18)f=Math.max(f,(1-d/0.18)*0.35)}document.getElementById('flash').style.opacity=f;
+}
+// preserve authored rotate() on [data-in] elements
+for(const el of els){const m=(el.getAttribute('style')||'').match(/transform:\s*(rotate\([^)]*\))/);if(m)el.dataset.rot=m[1]}
+window.seek=seek;
+window.events=()=>{const ev=[];for(const el of els)ev.push({t:+el.dataset.in,fx:el.dataset.fx||'fade'});for(const c of WIPES)ev.push({t:c-0.2,fx:'wipe'});return ev};
+seek(0);
+</script>
+</body>
+</html>

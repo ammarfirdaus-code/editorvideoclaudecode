@@ -35,7 +35,9 @@ def sparkle():
         b=bell(rng.uniform(2200,4200),0.4)*0.5; i=int(k*0.06*SR); y[i:i+len(b)]+=b[:len(y)-i]
     return y
 def swish(): return whoosh(0.3,800,3000,.25)
-ev=json.load(open('out/events.json'))
+import os
+OUT=os.environ.get('OUT','out'); THEME=os.environ.get('THEME','v1')
+ev=json.load(open(OUT+'/events.json'))
 for e in ev:
     t,fx=e['t'],e['fx']
     if fx=='slam': add(t+0.05,impact(),.8); add(t-0.12,whoosh(0.2,500,3000,.25))
@@ -43,17 +45,29 @@ for e in ev:
     elif fx in('left','right'): add(t-0.05,whoosh(0.35,400,3500,.35))
     elif fx in('up','down'): add(t,swish(),.6)
     elif fx=='zoom': add(t,whoosh(0.45,200,1500,.35))
+    elif fx=='stamp': add(t+0.04,impact(),.7); add(t+0.1,bell(1568,0.5),.4)
+    elif fx=='tilt': add(t-0.05,whoosh(0.6,200,2500,.45))
+    elif fx=='drop': add(t,whoosh(0.25,600,3000,.25)); add(t+0.2,pop(300,700),.6)
     elif fx=='swing': add(t,whoosh(0.35,300,2500,.4)); add(t+0.3,bell(1760,0.6),.6); add(t+0.36,bell(2350,0.6),.5)
     elif fx=='wipe': add(t,whoosh(0.6,150,5000,.75))
 # extra cues
-for k in range(9): add(0.6+k*0.5,tick(3200),.35)              # clock ticking
-add(15.3,tick(1800),1.0); add(15.4,bell(1568,0.6),.7)           # copy click + ding
-r=whoosh(1.1,200,2500,.25); add(32.75,r)                        # progress riser
-add(33.85,bell(1975,0.7),.6)
-for k in range(6): add(34.1+0.11*(k+1),tick(2600+k*200),.9)    # streak count
-add(45.3,whoosh(0.3,1500,6000,.4))                              # strike
-add(51.6+0.06,bell(1318,0.9),.8); add(51.78,bell(1760,0.9),.8)  # ding-ding CTA
-add(53.05,sparkle(),.7); add(55.4,sparkle(),.6)
+if THEME=='ed':
+    for k in range(10): add(0.5+k*0.11,tick(3800),.5)         # typing
+    add(3.05,whoosh(0.5,1200,4000,.3)); add(53.05,whoosh(0.6,1200,4000,.3))  # pen circles
+    add(6.35,whoosh(0.6,800,5000,.3)); add(5.95,sparkle(),.5)
+    for k in range(6): add(34.1+0.11*(k+1),tick(2600+k*200),.9)
+    add(45.2,whoosh(0.3,1500,6000,.4))
+    add(52.0+0.06,bell(1318,0.9),.8); add(52.18,bell(1760,0.9),.8)
+    for k,tt in enumerate([45.6,46.1,46.6]): add(tt+0.1,bell(1760+k*220,0.4),.45)
+else:
+  for k in range(9): add(0.6+k*0.5,tick(3200),.35)              # clock ticking
+  add(15.3,tick(1800),1.0); add(15.4,bell(1568,0.6),.7)           # copy click + ding
+  r=whoosh(1.1,200,2500,.25); add(32.75,r)                        # progress riser
+  add(33.85,bell(1975,0.7),.6)
+  for k in range(6): add(34.1+0.11*(k+1),tick(2600+k*200),.9)    # streak count
+  add(45.3,whoosh(0.3,1500,6000,.4))                              # strike
+  add(51.6+0.06,bell(1318,0.9),.8); add(51.78,bell(1760,0.9),.8)  # ding-ding CTA
+  add(53.05,sparkle(),.7); add(55.4,sparkle(),.6)
 out=out/max(1e-6,np.abs(out).max())*0.9
-wavfile.write('assets/sfx.wav',SR,(out*32767).astype(np.int16))
+wavfile.write(os.environ.get('SFX','assets/sfx.wav'),SR,(out*32767).astype(np.int16))
 print('events',len(ev))
