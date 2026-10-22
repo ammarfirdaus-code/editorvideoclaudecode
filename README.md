@@ -53,6 +53,16 @@ bash scripts/vendor-gsap.sh path/to/project
 
 Then change the script tag in `index.html` to `<script src="vendor/gsap.min.js"></script>`.
 
+## VoiceStudio (submodule)
+
+[debpalash/VoiceStudio](https://github.com/debpalash/VoiceStudio) is included as a git submodule at `vendor/voicestudio`, pinned to `28bf2c7`. It provides voice cloning, voice design, dubbing and transcription.
+
+```bash
+git submodule update --init --recursive
+```
+
+VoiceStudio is licensed under AGPL-3.0 and has its own license notice. This repo's own files are not covered by it.
+
 ## Verified
 
 - `hyperframes doctor`: whisper-cpp, TTS (Kokoro) and BGM (MusicGen) detected. Docker is installed but not running, which is not needed for local renders.

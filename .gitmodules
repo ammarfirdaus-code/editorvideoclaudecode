@@ -1,0 +1,3 @@
+[submodule "vendor/voicestudio"]
+	path = vendor/voicestudio
+	url = https://github.com/debpalash/VoiceStudio
