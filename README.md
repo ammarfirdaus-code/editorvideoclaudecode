@@ -35,6 +35,31 @@ whisper-cli -m ~/.cache/whisper/ggml-small.bin -l ms -f some-audio.wav
 
 Optional: `ggml-medium.bin` (~1.5 GB) is more accurate for Malay than `small`.
 
+### Optional: voice and music
+
+```bash
+bash scripts/setup-media.sh
+```
+
+Installs Kokoro TTS (English voices only; it has no Malay voice) and MusicGen for background music. MusicGen weights are downloaded on first use. Large install: PyTorch is several GB.
+
+### GSAP without a CDN
+
+`npx hyperframes init` creates projects that load GSAP from `cdn.jsdelivr.net`. Some sandboxes block that host, and renders then fail. Copy GSAP into the project instead:
+
+```bash
+bash scripts/vendor-gsap.sh path/to/project
+```
+
+Then change the script tag in `index.html` to `<script src="vendor/gsap.min.js"></script>`.
+
+## Verified
+
+- `hyperframes doctor`: whisper-cpp, TTS (Kokoro) and BGM (MusicGen) detected. Docker is installed but not running, which is not needed for local renders.
+- `hyperframes render` of a fresh project with vendored GSAP: 1920×1080, H.264, 10 s.
+- whisper-cli with `ggml-small.bin -l ms` on Malay speech: the first sentence transcribed exactly. English terms in synthetic speech were misheard. Test with a real recording before relying on it.
+- Kokoro and MusicGen each generated a test clip.
+
 ## Transcribe a video
 
 ```bash
