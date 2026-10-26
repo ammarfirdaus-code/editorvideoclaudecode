@@ -1,0 +1,635 @@
+{
+ "words": [
+  {
+   "word": "ZUS",
+   "start": 0.0,
+   "end": 0.22
+  },
+  {
+   "word": "biru",
+   "start": 0.22,
+   "end": 0.7
+  },
+  {
+   "word": "semua",
+   "start": 0.7,
+   "end": 1.0
+  },
+  {
+   "word": "orang",
+   "start": 1.0,
+   "end": 1.24
+  },
+  {
+   "word": "dah",
+   "start": 1.24,
+   "end": 1.38
+  },
+  {
+   "word": "biasa.",
+   "start": 1.38,
+   "end": 1.72
+  },
+  {
+   "word": "Tapi",
+   "start": 2.14,
+   "end": 2.46
+  },
+  {
+   "word": "ZUS",
+   "start": 2.46,
+   "end": 2.78
+  },
+  {
+   "word": "hitam",
+   "start": 2.78,
+   "end": 3.04
+  },
+  {
+   "word": "putih",
+   "start": 3.04,
+   "end": 3.54
+  },
+  {
+   "word": "ni...",
+   "start": 3.54,
+   "end": 4.34
+  },
+  {
+   "word": "korang",
+   "start": 4.34,
+   "end": 4.46
+  },
+  {
+   "word": "dah",
+   "start": 4.46,
+   "end": 4.6
+  },
+  {
+   "word": "try",
+   "start": 4.6,
+   "end": 4.78
+  },
+  {
+   "word": "ke",
+   "start": 4.78,
+   "end": 4.92
+  },
+  {
+   "word": "belum?",
+   "start": 4.92,
+   "end": 5.08
+  },
+  {
+   "word": "Ni",
+   "start": 5.64,
+   "end": 5.84
+  },
+  {
+   "word": "ZUS",
+   "start": 5.84,
+   "end": 6.2
+  },
+  {
+   "word": "Signature.",
+   "start": 6.2,
+   "end": 6.58
+  },
+  {
+   "word": "Konsep",
+   "start": 7.2,
+   "end": 7.52
+  },
+  {
+   "word": "premium",
+   "start": 7.52,
+   "end": 8.02
+  },
+  {
+   "word": "ZUS.",
+   "start": 8.02,
+   "end": 8.65
+  },
+  {
+   "word": "Tagline",
+   "start": 8.65,
+   "end": 9.28
+  },
+  {
+   "word": "dia,",
+   "start": 9.28,
+   "end": 9.48
+  },
+  {
+   "word": "\"Necessity,",
+   "start": 9.8,
+   "end": 10.22
+  },
+  {
+   "word": "meets",
+   "start": 10.22,
+   "end": 10.82
+  },
+  {
+   "word": "luxury.\"",
+   "start": 10.82,
+   "end": 11.28
+  },
+  {
+   "word": "Apa",
+   "start": 11.9,
+   "end": 12.1
+  },
+  {
+   "word": "beza",
+   "start": 12.1,
+   "end": 12.4
+  },
+  {
+   "word": "dia?",
+   "start": 12.4,
+   "end": 12.58
+  },
+  {
+   "word": "Kopi",
+   "start": 12.98,
+   "end": 13.38
+  },
+  {
+   "word": "dia",
+   "start": 13.38,
+   "end": 13.56
+  },
+  {
+   "word": "guna",
+   "start": 13.56,
+   "end": 13.86
+  },
+  {
+   "word": "single",
+   "start": 13.86,
+   "end": 14.16
+  },
+  {
+   "word": "origin",
+   "start": 14.16,
+   "end": 14.58
+  },
+  {
+   "word": "espresso.",
+   "start": 14.58,
+   "end": 15.12
+  },
+  {
+   "word": "Biji",
+   "start": 15.52,
+   "end": 15.76
+  },
+  {
+   "word": "Brazil",
+   "start": 15.76,
+   "end": 16.14
+  },
+  {
+   "word": "dengan",
+   "start": 16.14,
+   "end": 16.44
+  },
+  {
+   "word": "Ethiopia,",
+   "start": 16.44,
+   "end": 16.84
+  },
+  {
+   "word": "bukan",
+   "start": 17.28,
+   "end": 17.54
+  },
+  {
+   "word": "blend.",
+   "start": 17.54,
+   "end": 17.76
+  },
+  {
+   "word": "Mesin",
+   "start": 18.2,
+   "end": 18.56
+  },
+  {
+   "word": "pun",
+   "start": 18.56,
+   "end": 18.76
+  },
+  {
+   "word": "Victoria",
+   "start": 18.76,
+   "end": 19.2
+  },
+  {
+   "word": "Arduino",
+   "start": 19.2,
+   "end": 19.78
+  },
+  {
+   "word": "Eagle",
+   "start": 19.78,
+   "end": 20.1
+  },
+  {
+   "word": "One,",
+   "start": 20.1,
+   "end": 20.42
+  },
+  {
+   "word": "mesin",
+   "start": 20.62,
+   "end": 20.98
+  },
+  {
+   "word": "yang",
+   "start": 20.98,
+   "end": 21.08
+  },
+  {
+   "word": "dipakai",
+   "start": 21.08,
+   "end": 21.56
+  },
+  {
+   "word": "dalam",
+   "start": 21.56,
+   "end": 21.74
+  },
+  {
+   "word": "pertandingan",
+   "start": 21.74,
+   "end": 22.26
+  },
+  {
+   "word": "World",
+   "start": 22.26,
+   "end": 22.56
+  },
+  {
+   "word": "Latte",
+   "start": 22.56,
+   "end": 22.94
+  },
+  {
+   "word": "Art.",
+   "start": 22.94,
+   "end": 23.18
+  },
+  {
+   "word": "Okay.",
+   "start": 23.52,
+   "end": 23.78
+  },
+  {
+   "word": "Jom",
+   "start": 24.16,
+   "end": 24.4
+  },
+  {
+   "word": "try,",
+   "start": 24.4,
+   "end": 24.64
+  },
+  {
+   "word": "dan",
+   "start": 24.96,
+   "end": 25.18
+  },
+  {
+   "word": "rate.",
+   "start": 25.18,
+   "end": 25.4
+  },
+  {
+   "word": "Satu",
+   "start": 25.78,
+   "end": 26.1
+  },
+  {
+   "word": "sampai",
+   "start": 26.1,
+   "end": 26.28
+  },
+  {
+   "word": "sepuluh.",
+   "start": 26.28,
+   "end": 26.66
+  },
+  {
+   "word": "Spanish",
+   "start": 26.94,
+   "end": 27.3
+  },
+  {
+   "word": "Latte",
+   "start": 27.3,
+   "end": 27.64
+  },
+  {
+   "word": "dulu.",
+   "start": 27.64,
+   "end": 27.8
+  },
+  {
+   "word": "Hmm...",
+   "start": 27.8,
+   "end": 30.24
+  },
+  {
+   "word": "manis",
+   "start": 30.24,
+   "end": 30.8
+  },
+  {
+   "word": "dia",
+   "start": 30.8,
+   "end": 30.96
+  },
+  {
+   "word": "lembut,",
+   "start": 30.96,
+   "end": 31.4
+  },
+  {
+   "word": "tak",
+   "start": 31.72,
+   "end": 31.82
+  },
+  {
+   "word": "muak.",
+   "start": 31.82,
+   "end": 32.12
+  },
+  {
+   "word": "Rasa",
+   "start": 32.5,
+   "end": 32.7
+  },
+  {
+   "word": "kopi",
+   "start": 32.7,
+   "end": 33.08
+  },
+  {
+   "word": "dia",
+   "start": 33.08,
+   "end": 33.18
+  },
+  {
+   "word": "lebih",
+   "start": 33.18,
+   "end": 33.38
+  },
+  {
+   "word": "bersih,",
+   "start": 33.38,
+   "end": 33.88
+  },
+  {
+   "word": "ada",
+   "start": 34.2,
+   "end": 34.36
+  },
+  {
+   "word": "sikit",
+   "start": 34.36,
+   "end": 34.76
+  },
+  {
+   "word": "rasa",
+   "start": 34.76,
+   "end": 34.96
+  },
+  {
+   "word": "buah",
+   "start": 34.96,
+   "end": 35.28
+  },
+  {
+   "word": "kat",
+   "start": 35.28,
+   "end": 35.4
+  },
+  {
+   "word": "hujung.",
+   "start": 35.4,
+   "end": 35.7
+  },
+  {
+   "word": "Untuk",
+   "start": 36.02,
+   "end": 36.3
+  },
+  {
+   "word": "harga",
+   "start": 36.3,
+   "end": 36.74
+  },
+  {
+   "word": "dalam",
+   "start": 36.74,
+   "end": 37.02
+  },
+  {
+   "word": "sebelas",
+   "start": 37.02,
+   "end": 37.66
+  },
+  {
+   "word": "ringgit",
+   "start": 37.66,
+   "end": 37.92
+  },
+  {
+   "word": "lebih...",
+   "start": 37.92,
+   "end": 38.74
+  },
+  {
+   "word": "aku",
+   "start": 38.74,
+   "end": 39.12
+  },
+  {
+   "word": "bagi...",
+   "start": 39.12,
+   "end": 40.28
+  },
+  {
+   "word": "lapan",
+   "start": 40.28,
+   "end": 40.42
+  },
+  {
+   "word": "setengah,",
+   "start": 40.42,
+   "end": 40.74
+  },
+  {
+   "word": "per",
+   "start": 40.94,
+   "end": 41.14
+  },
+  {
+   "word": "sepuluh.",
+   "start": 41.14,
+   "end": 41.38
+  },
+  {
+   "word": "Tips:",
+   "start": 41.82,
+   "end": 42.1
+  },
+  {
+   "word": "kalau",
+   "start": 42.52,
+   "end": 42.7
+  },
+  {
+   "word": "datang",
+   "start": 42.7,
+   "end": 43.04
+  },
+  {
+   "word": "ZUS",
+   "start": 43.04,
+   "end": 43.24
+  },
+  {
+   "word": "Signature,",
+   "start": 43.24,
+   "end": 43.64
+  },
+  {
+   "word": "jangan",
+   "start": 44.04,
+   "end": 44.32
+  },
+  {
+   "word": "order",
+   "start": 44.32,
+   "end": 44.66
+  },
+  {
+   "word": "benda",
+   "start": 44.66,
+   "end": 44.94
+  },
+  {
+   "word": "sama",
+   "start": 44.94,
+   "end": 45.26
+  },
+  {
+   "word": "macam",
+   "start": 45.26,
+   "end": 45.54
+  },
+  {
+   "word": "ZUS",
+   "start": 45.54,
+   "end": 45.78
+  },
+  {
+   "word": "biasa.",
+   "start": 45.78,
+   "end": 46.14
+  },
+  {
+   "word": "Try",
+   "start": 46.44,
+   "end": 46.62
+  },
+  {
+   "word": "menu",
+   "start": 46.62,
+   "end": 46.86
+  },
+  {
+   "word": "yang",
+   "start": 46.86,
+   "end": 47.04
+  },
+  {
+   "word": "ada",
+   "start": 47.04,
+   "end": 47.18
+  },
+  {
+   "word": "kat",
+   "start": 47.18,
+   "end": 47.32
+  },
+  {
+   "word": "sini",
+   "start": 47.32,
+   "end": 47.62
+  },
+  {
+   "word": "je.",
+   "start": 47.62,
+   "end": 47.88
+  },
+  {
+   "word": "Korang",
+   "start": 48.22,
+   "end": 48.44
+  },
+  {
+   "word": "nak",
+   "start": 48.44,
+   "end": 48.52
+  },
+  {
+   "word": "aku",
+   "start": 48.52,
+   "end": 48.72
+  },
+  {
+   "word": "review",
+   "start": 48.72,
+   "end": 48.92
+  },
+  {
+   "word": "menu",
+   "start": 48.92,
+   "end": 49.16
+  },
+  {
+   "word": "mana",
+   "start": 49.16,
+   "end": 49.38
+  },
+  {
+   "word": "lepas",
+   "start": 49.38,
+   "end": 49.62
+  },
+  {
+   "word": "ni?",
+   "start": 49.62,
+   "end": 49.8
+  },
+  {
+   "word": "Komen",
+   "start": 50.12,
+   "end": 50.34
+  },
+  {
+   "word": "kat",
+   "start": 50.34,
+   "end": 50.48
+  },
+  {
+   "word": "bawah.",
+   "start": 50.48,
+   "end": 50.8
+  }
+ ],
+ "whisper": "Zeus biru semua orang dah biasa. Tapi Zeus hitam putih ni... Kau orang dah try ke belum? Ini Zeus signature. Concept premium Zeus. Tak lain dia, necessity meets luxury. Apa bezanya dia? Kopi dia guna single origin espresso. Bijik Brazil dengan Ethiopia. Bukan blend. Mesin pun Victoria Arduino Eagle One. Mesin yang dipakai dalam pertandingan World Latte Art. Okey, John Try. Dan Ray. Satu sampai sepuluh. Spanish Latte dulu. Manis dia lembut. Tak muak. Rasa kopi dia lebih bersih. Ada sikit rasa buah kat hujung. Untuk harga dalam 11 ringgit lebih... Aku bagi... 8 .5. Per 10. Tips. Kalau datang Zeus signature, jangan order benda sama macam Zeus biasa. Try menu yang ada kat sini je. Porang nak aku review menu mana lepas ni? Comment kat bawah."
+}

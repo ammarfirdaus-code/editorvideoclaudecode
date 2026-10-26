@@ -1,0 +1,24 @@
+{
+  "_note": "Shot list for the ZUS Signature review. Beats follow the VO (audio/vo-take1.mp3); start/end are VO seconds from audio/vo-take1.words.json. Clip choices are a first guess from the recording times in the filenames (17:44 arrival, 17:52 counter, 18:01 tasting) because the footage could not be viewed yet. Change clip/in after watching the footage. 'zoom' is the punch-in at the end of the beat (1.0 = none).",
+  "voiceover": "audio/vo-take1.mp3",
+  "words": "audio/vo-take1.words.json",
+  "size": [1080, 1920],
+  "fps": 30,
+  "ambience_db": -24,
+  "beats": [
+    {"name": "hook: ZUS hitam putih",   "start": 0.0,   "end": 5.64,  "clip": "footage/VID_20261025_174425.mp4", "in": 0.5, "zoom": 1.08},
+    {"name": "intro + tagline",         "start": 5.64,  "end": 11.9,  "clip": "footage/VID_20261025_174433.mp4", "in": 0.5, "zoom": 1.05},
+    {"name": "single origin espresso",  "start": 11.9,  "end": 18.2,  "clip": "footage/VID_20261025_175204.mp4", "in": 0.5, "zoom": 1.05},
+    {"name": "Victoria Arduino",        "start": 18.2,  "end": 23.52, "clip": "footage/VID_20261025_175219.mp4", "in": 0.5, "zoom": 1.10},
+    {"name": "jom try & rate",          "start": 23.52, "end": 26.94, "clip": "footage/VID_20261025_180100.mp4", "in": 0.5, "zoom": 1.0},
+    {"name": "Spanish Latte, sip",      "start": 26.94, "end": 36.02, "clip": "footage/VID_20261025_180116.mp4", "in": 0.5, "zoom": 1.12},
+    {"name": "harga + rating",          "start": 36.02, "end": 41.82, "clip": "footage/VID_20261025_180126.mp4", "in": 0.5, "zoom": 1.15},
+    {"name": "tips + CTA",              "start": 41.82, "end": null,  "clip": "footage/VID_20261025_180100.mp4", "in": 4.0, "zoom": 1.05}
+  ],
+  "cards": [
+    {"text": "ZUS SIGNATURE",            "start": 5.64,  "end": 8.9},
+    {"text": "Single Origin Espresso\nBrazil · Ethiopia", "start": 13.3, "end": 18.2},
+    {"text": "Victoria Arduino\nEagle One", "start": 18.2, "end": 23.5},
+    {"text": "8.5/10",                   "start": 40.28, "end": 41.82, "big": true}
+  ]
+}
