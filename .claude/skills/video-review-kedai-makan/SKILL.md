@@ -16,7 +16,7 @@ Skill ni untuk **editing sahaja**. Suara (voiceover) dan muzik dibekalkan oleh A
 
 Skrip ada dalam `scripts/`, bunyi efek dalam `sfx/`, dan contoh config sebenar (review ZUS Signature Muar) dalam `templates/config.example.json`.
 
-**Keperluan:** `ffmpeg` (libass + vidstab), `whisper-cli` + `~/.cache/whisper/ggml-small.bin` (pasang guna `scripts/setup.sh` di root repo), Python 3.10 ke atas, dan font **Poppins Bold** + **DejaVu Sans Bold**.
+**Keperluan:** `ffmpeg` (libass + vidstab), `whisper-cli` + `~/.cache/whisper/ggml-small.bin` (pasang guna `scripts/setup.sh` di root repo), Python 3.10 ke atas, dan font **Poppins Bold** + **DejaVu Sans Bold**. Untuk mod HyperFrames, perlu juga Node 22+ dan `npx hyperframes` (juga dipasang oleh `scripts/setup.sh`).
 
 ## Langkah
 
@@ -50,10 +50,14 @@ Langkah ni stabilize, colour grade (hangat, kontras, vignette) dan tukar ke 1080
 Salin `templates/config.example.json` ke folder kerja dan isi ikut masa dalam words.json:
 - `voice`: fail suara asal. `music`: fail muzik (buang baris tu kalau tiada muzik).
 - `scenes`: potong klip **ikut apa yang disebut**. Bila sebut chiller, tunjuk chiller. Bila sebut nama air, tunjuk air tu. Setiap babak 2 hingga 5 saat. `motion` ialah `in`, `out` atau `punch`; guna `punch` untuk bahagian rating. Klip ditulis sebagai `[nama, mula, panjang|null]`.
-- `texts`: headline pembuka (nama kedai, DAH SAMPAI MUO!, nama jalan), kad info atau perbandingan, "NI YANG AKU TRY & RATING AKU", alamat penuh di penutup, dan CTA (KOMEN KAT BAWAH! / JANGAN LUPA FOLLOW). `{y}...{/y}` = kuning, `\n` = baris baru.
+- `texts`: headline pembuka (nama kedai, DAH SAMPAI MUO!, nama jalan), kad info atau perbandingan, "NI YANG AKU TRY & RATING AKU", dan alamat penuh di penutup. `{y}...{/y}` = kuning, `\n` = baris baru.
+- `cta`: soalan penutup + `comment_at` (masa sebut "komen") + `follow_at` (masa sebut "follow"). Loceng berbunyi automatik pada `follow_at`, dan caption bawah dimatikan semasa CTA.
 - `ratings`: `stars_at` = masa perkataan nombor bintang (cth. "lima").
 - `subtitles.skip` = julat bahagian rating (caption bawah dimatikan di situ). `keywords` = perkataan yang ditonjolkan warna kuning.
-- `sfx.boom_at` = [0, masa "rating"]; `sfx.bell_at` = masa perkataan **"follow"**.
+- `sfx.boom_at` = [0, masa "rating"].
+- `overlay_engine`:
+  - `"ass"` (default): semua teks guna FFmpeg. Laju, lebih kurang 2 minit untuk video 1 minit.
+  - `"hyperframes"`: kad rating dan CTA dilukis dengan HyperFrames (HTML + GSAP). Kad slide masuk, bintang berpusing, skor melantun, dan butang FOLLOW dengan loceng bergoyang. Lebih cantik, tapi render lebih lama (lebih kurang 5 saat render bagi setiap 1 saat video). Guna mod ni bila Ammar minta animasi lebih menarik.
 - `duration` = tamat suara + ~0.7 saat.
 
 ### 6. Render dan semak
@@ -76,5 +80,6 @@ python scripts/render.py config.json
 - `scripts/transcribe.py`: whisper-cli, hasilkan words.json.
 - `scripts/prep_clips.py`: stabilize, grade dan saiz 9:16.
 - `scripts/render.py`: babak, caption, bintang dan campuran audio. Hasilkan MP4 dan `semak.jpg`.
+- `scripts/hf_overlay.py`: projek HyperFrames untuk kad rating + CTA (mod `hyperframes`). Projek disimpan dalam `work/hf/`; boleh dibuka dengan `npx hyperframes preview` untuk edit animasi.
 - `sfx/`: swish, ding, boom dan bell.
 - `templates/config.example.json`: contoh penuh review ZUS Signature Muar.

@@ -87,6 +87,7 @@ whisper-cli -m ~/.cache/whisper/ggml-small.bin -l ms -ojf -of transcript audio.w
 - Potong klip ikut apa yang disebut dalam voiceover (masa perkataan dari Whisper)
 - Caption pop, kad info, rating bintang setiap menu, dan CTA
 - Swish lembut, ding bintang, boom, dan loceng di hujung, dengan muzik ducking bila bercakap
+- Pilihan `"overlay_engine": "hyperframes"`: kad rating dan CTA beranimasi dengan HyperFrames + GSAP
 
 Dalam Claude Code: `/video-review-kedai-makan` dan beri folder klip + fail suara (+ muzik).
 Manual:

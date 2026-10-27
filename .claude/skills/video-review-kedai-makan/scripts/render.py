@@ -6,9 +6,11 @@ Guna:
 
 Langkah:
  1. Potong & zoom setiap babak (klip dari prep_clips.py) ikut masa dalam config.
- 2. Bina fail caption ASS: caption bawah ikut perkataan, teks besar/kad info, rating bintang.
+ 2. Bina fail caption ASS: caption bawah ikut perkataan, teks besar/kad info, rating bintang, CTA.
  3. Gabung video + bakar caption.
  4. Campur audio: suara + muzik (ducking) + swish di setiap potongan + ding bintang + boom + loceng.
+ 5. (pilihan) "overlay_engine": "hyperframes" -> kad rating & CTA beranimasi dilukis oleh
+    HyperFrames (hf_overlay.py) di atas video asas. Perlu Node 22+ dan `npx hyperframes`.
 """
 import json
 import os
@@ -17,6 +19,7 @@ import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE))  # supaya hf_overlay boleh diimport
 SFX = HERE.parent / "sfx"
 FPS = 30
 AF = "aresample=48000,aformat=sample_fmts=fltp:channel_layouts=stereo"
@@ -110,7 +113,9 @@ def build_ass(cfg, words, work):
         ev.append(f"Dialogue: {layer},{ts(a)},{ts(b)},{style},,0,0,0,,{text}")
 
     sub = cfg.get("subtitles", {})
-    skip = sub.get("skip", [])
+    skip = list(sub.get("skip", []))
+    if cfg.get("cta"):  # caption bawah dimatikan semasa CTA (elak teks berganda)
+        skip.append([cfg["cta"]["start"], cfg["cta"]["end"] + 1])
     kws = sorted(sub.get("keywords", []), key=len, reverse=True)
     chunks, cur = [], []
     for w in words:
@@ -146,9 +151,15 @@ def build_ass(cfg, words, work):
         D(3, t["start"], t["end"], t.get("style", "big"), "{" + tags + "}" + anim + markup(t["text"]))
 
     stars = []
+    hf = cfg.get("overlay_engine") == "hyperframes"
     total = len(cfg.get("ratings", []))
     for i, r in enumerate(cfg.get("ratings", []), 1):
         a, b, sc, t0 = r["start"], r["end"], float(r["score"]), r["stars_at"]
+        for j in range(5):  # masa bintang diperlukan untuk bunyi ding dalam kedua-dua mod
+            if sc - j > 0:
+                stars.append(t0 + 0.12 * j)
+        if hf:  # kad rating dilukis oleh HyperFrames
+            continue
         D(3, a, b, "yellow", r"{\pos(540,560)\fs80}" + POP + r["name"].upper())
         D(3, a, b, "small", r"{\pos(540,450)\fad(120,0)}" + f"{cfg.get('rating_label', 'RATING AKU')}  #{i}/{total}")
         xs = [300, 420, 540, 660, 780]
@@ -157,11 +168,15 @@ def build_ass(cfg, words, work):
             val = sc - j
             if val <= 0:
                 continue
-            st = t0 + 0.12 * j
             clip = "" if val >= 1 else r"\clip(%d,1100,%d,1400)" % (x - 70, x)
-            D(5, st, b, "Star", r"{\pos(%d,1250)%s\fscx40\fscy40\t(0,140,\fscx125\fscy125)\t(140,240,\fscx100\fscy100)}★" % (x, clip))
-            stars.append(st)
+            D(5, t0 + 0.12 * j, b, "Star", r"{\pos(%d,1250)%s\fscx40\fscy40\t(0,140,\fscx125\fscy125)\t(140,240,\fscx100\fscy100)}★" % (x, clip))
         D(5, t0 + 0.7, b, "Score", r"{\pos(540,1410)}" + POP + f"{sc:g}/5")
+    cta = cfg.get("cta")
+    if cta and not hf:
+        a, b = cta["start"], cta["end"]
+        D(3, a, b, "big", r"{\pos(540,620)\fs96}" + POP + markup(cta["question"]))
+        D(3, cta.get("comment_at", a + 1.5), b, "yellow", r"{\pos(540,1000)}" + POP + cta.get("comment", "KOMEN KAT BAWAH!"))
+        D(3, cta.get("follow_at", a + 3) - 0.1, b, "dark", r"{\pos(540,1140)\fs64}" + POP + cta.get("follow", "JANGAN LUPA FOLLOW"))
     ass = work / "captions.ass"
     ass.write_text(HDR + "\n".join(ev) + "\n", encoding="utf-8")
     return ass, stars
@@ -237,7 +252,16 @@ def main():
          "-vf", f"{ass_f},fade=out:st={T - 0.6}:d=0.6", "-t", str(T), "-an",
          "-c:v", "libx264", "-preset", "veryfast", "-crf", "19", "-pix_fmt", "yuv420p", str(video)])
     out = Path(cfg["output"])
-    mix(cfg, video, cuts, stars, out)
+    cta = cfg.get("cta") or {}
+    if "bell_at" not in cfg.setdefault("sfx", {}) and cta.get("follow_at") is not None:
+        cfg["sfx"]["bell_at"] = cta["follow_at"]
+    if cfg.get("overlay_engine") == "hyperframes":
+        import hf_overlay
+        base = work / "base.mp4"
+        mix(cfg, video, cuts, stars, base)
+        hf_overlay.build(cfg, base, out, work)
+    else:
+        mix(cfg, video, cuts, stars, out)
     print("SIAP:", out.resolve(), f"({dur(out):.1f}s)")
 
     # semakan: contact sheet 12 frame

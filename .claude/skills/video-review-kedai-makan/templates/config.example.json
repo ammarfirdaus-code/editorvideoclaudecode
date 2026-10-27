@@ -9,6 +9,8 @@
   "output": "Review ZUS Signature Muo (Rating).mp4",
   "duration": 66.3,
   "rating_label": "RATING AKU",
+  "overlay_engine": "ass",
+  "_overlay_engine": "ass = laju, semua guna FFmpeg. hyperframes = kad rating & CTA beranimasi (slide, bintang berpusing, loceng goyang); perlu Node 22+, render lebih lama.",
 
   "scenes": [
     {"end": 3.78,  "clips": [["VID_20261025_173520", 0, null], ["VID_20261025_173525", 0, 1.4]], "motion": "in"},
@@ -41,11 +43,11 @@
     {"start": 19.5,  "end": 21.3,  "style": "yellow", "y": 580, "size": 66, "text": "BRAZIL  •  ETHIOPIA"},
     {"start": 39.3,  "end": 42.2,  "style": "big",    "y": 780, "size": 118, "text": "NI YANG AKU TRY\n{y}& RATING AKU{/y}"},
     {"start": 55.9,  "end": 61.15, "style": "big",    "y": 400, "size": 96, "text": "ZUS SIGNATURE {y}MUO{/y}"},
-    {"start": 56.2,  "end": 61.15, "style": "dark",   "y": 540, "size": 50, "text": "NO. 82 & 44 (BAWAH), JALAN BAKRI 2"},
-    {"start": 61.15, "end": 66.3,  "style": "big",    "y": 620, "size": 96, "text": "KORANG NAK AKU\nPERGI MANA LAGI\nKAT {y}MUO?{/y}"},
-    {"start": 63.4,  "end": 66.3,  "style": "yellow", "y": 1000, "text": "KOMEN KAT BAWAH!"},
-    {"start": 64.9,  "end": 66.3,  "style": "dark",   "y": 1140, "size": 64, "text": "JANGAN LUPA FOLLOW"}
+    {"start": 56.2,  "end": 61.15, "style": "dark",   "y": 540, "size": 50, "text": "NO. 82 & 44 (BAWAH), JALAN BAKRI 2"}
   ],
+
+  "cta": {"start": 61.15, "end": 66.3, "question": "KORANG NAK AKU\nPERGI MANA LAGI\nKAT {y}MUO?{/y}",
+          "comment_at": 63.4, "comment": "KOMEN KAT BAWAH!", "follow_at": 64.9, "follow": "JANGAN LUPA FOLLOW"},
 
   "ratings": [
     {"start": 42.2,  "end": 45.6,  "name": "Rocher Latte",            "score": 5,   "stars_at": 44.6},
@@ -62,6 +64,6 @@
   "sfx": {
     "swish_on_cuts": true,
     "boom_at": [0, 39.2],
-    "bell_at": 64.95
+    "_bell": "loceng berbunyi automatik pada cta.follow_at; set bell_at untuk ubah"
   }
 }
