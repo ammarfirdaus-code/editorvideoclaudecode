@@ -4,6 +4,8 @@
 *.mov
 *.wav
 *.mp3
+# kecuali bunyi efek skill video review
+!.claude/skills/video-review-kedai-makan/sfx/*.mp3
 
 # Node
 node_modules/
@@ -14,3 +16,7 @@ out/
 
 # Personal permission overrides
 .claude/settings.local.json
+
+# Fail kerja skill video review
+work/
+__pycache__/

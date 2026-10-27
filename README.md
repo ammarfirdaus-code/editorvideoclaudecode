@@ -78,3 +78,22 @@ whisper-cli -m ~/.cache/whisper/ggml-small.bin -l ms -ojf -of transcript audio.w
 ```
 
 `-l ms` sets Malay. Use `-l auto` if the clip mixes languages.
+
+## Skill: video review kedai makan
+
+`.claude/skills/video-review-kedai-makan/` mengedit klip mentah review kedai makan/kafe menjadi video TikTok/Reels 9:16. Ia guna FFmpeg dan whisper-cli tempatan, tanpa jana suara atau muzik:
+
+- Stabilize, colour grade hangat, dan zoom halus
+- Potong klip ikut apa yang disebut dalam voiceover (masa perkataan dari Whisper)
+- Caption pop, kad info, rating bintang setiap menu, dan CTA
+- Swish lembut, ding bintang, boom, dan loceng di hujung, dengan muzik ducking bila bercakap
+
+Dalam Claude Code: `/video-review-kedai-makan` dan beri folder klip + fail suara (+ muzik).
+Manual:
+
+```bash
+S=.claude/skills/video-review-kedai-makan/scripts
+python $S/transcribe.py suara.mp3 work/words.json
+python $S/prep_clips.py "<folder klip>" work/prepped
+python $S/render.py config.json   # salin dari templates/config.example.json
+```
