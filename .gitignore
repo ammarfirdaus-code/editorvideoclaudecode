@@ -8,6 +8,10 @@
 # Node
 node_modules/
 
+# Python
+.venv/
+__pycache__/
+
 # Render output
 renders/
 out/

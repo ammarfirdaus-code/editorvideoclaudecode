@@ -1,0 +1,6 @@
+# Python tools from the motion studio list. Installed into motion-studio/.venv by
+# scripts/setup-motion-studio.sh. ComfyUI and CosyVoice get their own venvs
+# because their dependencies conflict with these.
+manim==0.22.1      # 05 animated diagrams, equations, explainers
+librosa==1.0.0     # 16 beat detection for music-synced animation
+whisperx==3.8.6    # 17 word-level caption timing (pulls PyTorch, several GB)

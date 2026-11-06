@@ -1,0 +1,24 @@
+{
+  "name": "motion-studio",
+  "private": true,
+  "description": "JS libraries from the 20-repo motion studio list (Remotion, Anime.js, Motion, Lottie, Three.js stack, Tweakpane).",
+  "scripts": {
+    "studio": "remotion studio",
+    "render": "remotion render"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.541",
+    "remotion": "4.0.541",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "animejs": "^4.5.0",
+    "motion": "^14.9.1",
+    "lottie-web": "^5.13.0",
+    "three": "^0.187.0",
+    "three-gpu-pathtracer": "^0.0.28",
+    "jolt-physics": "^1.1.1",
+    "postprocessing": "^6.39.6",
+    "three.quarks": "^0.17.1",
+    "tweakpane": "^4.0.5"
+  }
+}
