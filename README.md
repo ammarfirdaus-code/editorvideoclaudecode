@@ -53,6 +53,22 @@ bash scripts/vendor-gsap.sh path/to/project
 
 Then change the script tag in `index.html` to `<script src="vendor/gsap.min.js"></script>`.
 
+## Motion studio (20 open-source repos)
+
+Remotion, Anime.js, Motion, Manim, Lottie, Three.js and its add-ons, MCP for Blender, ComfyUI, CosyVoice, librosa, WhisperX, OBS, LosslessCut and FFmpeg. The full list, what each one does and how it is installed is in [`motion-studio/REPOS.md`](motion-studio/REPOS.md).
+
+```bash
+bash scripts/setup-motion-studio.sh            # all 20
+bash scripts/setup-motion-studio.sh 2d 3d      # only some groups: 2d, 3d, audio, apps
+```
+
+JS libraries go into `motion-studio/node_modules`, Python tools into `motion-studio/.venv`, and ComfyUI, CosyVoice and LosslessCut into `~/motion-studio` (change with `MOTION_HOME=...`). On Windows, run the script in WSL and install the desktop apps with winget:
+
+```powershell
+winget install OBSProject.OBSStudio mifi.losslesscut Gyan.FFmpeg BlenderFoundation.Blender
+uvx mcp-for-blender setup
+```
+
 ## VoiceStudio (submodule)
 
 [debpalash/VoiceStudio](https://github.com/debpalash/VoiceStudio) is included as a git submodule at `vendor/voicestudio`, pinned to `28bf2c7`. It provides voice cloning, voice design, dubbing and transcription.
