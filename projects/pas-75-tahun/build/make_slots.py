@@ -6,7 +6,8 @@ PH = os.path.join(ROOT, "assets/photos")
 SLOTS = {
     "founding": ("pas-awal-majlis.jpg", {}),
     "founding2": ("kongres-pas-1952.jpg", {}),
-    "fuad": ("ahmad-fuad-kongres-1953.jpg", {}),
+    "fuad": ("r3-ahmad-fuad-hassan-potret.jpg", {}),
+    "fuad1953": ("ahmad-fuad-kongres-1953.jpg", {}),
     "abbas": ("abbas-alias-1.jpg", {"pos": "50% 20%"}),
     "election1955": ("poster-pru-1955.jpg", {}),
     "burhanuddin": ("burhanuddin-nehru.jpg", {}),

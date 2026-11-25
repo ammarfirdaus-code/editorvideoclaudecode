@@ -57,7 +57,7 @@ window.DATA = {
    "type": "photo",
    "photo": "fuad",
    "caption": "Haji Ahmad Fuad Hassan",
-   "sub": "Yang Dipertua pertama · 1951–1953<br>(dibulatkan, Kongres PAS 1953)",
+   "sub": "Yang Dipertua pertama · 1951–1953",
    "year": 1951,
    "start": 29.769,
    "end": 34.389,
@@ -1369,7 +1369,7 @@ window.DATA = {
  ],
  "presidents": [
   [
-   "fuad_p",
+   "fuad",
    "Ahmad Fuad Hassan",
    "1951–1953"
   ],
@@ -1428,13 +1428,27 @@ window.DATA = {
    "bwh": 588
   },
   "fuad": {
+   "file": "use/r3-ahmad-fuad-hassan-potret.jpg",
+   "blur": "use/blur-r3-ahmad-fuad-hassan-potret.jpg",
+   "w": 644,
+   "h": 796,
+   "credit": "tokoh1038.blogspot.com",
+   "source": "https://tokoh1038.blogspot.com/2012/02/tuan-guru-haji-ahmad-fuad-hassan.html",
+   "cut": "cut/fuad.png",
+   "cw": 659,
+   "ch": 802,
+   "bw": "cut/bw-fuad.jpg",
+   "bww": 644,
+   "bwh": 796
+  },
+  "fuad1953": {
    "file": "use/ahmad-fuad-kongres-1953.jpg",
    "blur": "use/blur-ahmad-fuad-kongres-1953.jpg",
    "w": 400,
    "h": 244,
    "credit": "ibnuhasyim.com",
    "source": "http://www.ibnuhasyim.com/2013/11/siapa-orang-cina-terlibat-tubuh-pas.html",
-   "bw": "cut/bw-fuad.jpg",
+   "bw": "cut/bw-fuad1953.jpg",
    "bww": 400,
    "bwh": 244
   },

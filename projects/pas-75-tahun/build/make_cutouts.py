@@ -12,7 +12,7 @@ OUT = os.path.join(PH, "cut")
 os.makedirs(OUT, exist_ok=True)
 # slot -> optional crop box (fractions l, t, r, b) applied before background removal
 PEOPLE = {
-    "abbas": None, "burhanuddin2": None, "burhanuddin_p": None, "zulkifli": None, "zulkifli2": None,
+    "fuad": None, "abbas": None, "burhanuddin2": None, "burhanuddin_p": None, "zulkifli": None, "zulkifli2": None,
     "kelantan1959": None, "asri": (0.0, 0.0, 1.0, 0.9), "yusofrawa": None, "fadzil": (0.17, 0.0, 0.87, 1.0), "nikaziz": None,
     "hadi_p": None, "samsuri": None,
 }

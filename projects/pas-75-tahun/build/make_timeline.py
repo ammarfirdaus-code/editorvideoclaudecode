@@ -109,7 +109,7 @@ MAIN = [
          text="Persidangan ulama itu melahirkan Persatuan Islam Se-Malaya, ringkasnya PAS, dengan Tuan Haji Ahmad Fuad Hassan sebagai Yang Dipertua pertama. Dua tahun kemudian, Dr. Haji Abbas Alias mengambil alih. Pada pilihan raya pertama Tanah Melayu tahun 1955, PAS hanya menang satu kerusi: Krian, melalui Tuan Guru Haji Ahmad Tuan Hussein. Satu kerusi. Tetapi itulah satu-satunya suara pembangkang dalam Majlis Perundangan Persekutuan.",
          scenes=[
              (None, dict(type="words", big="Persatuan Islam Se-Malaya", sub="PAS · ditubuhkan 24 November 1951", photo="founding2", year=1951)),
-             ("dengan", dict(type="photo", photo="fuad", caption="Haji Ahmad Fuad Hassan", sub="Yang Dipertua pertama · 1951–1953<br>(dibulatkan, Kongres PAS 1953)", year=1951)),
+             ("dengan", dict(type="photo", photo="fuad", caption="Haji Ahmad Fuad Hassan", sub="Yang Dipertua pertama · 1951–1953", year=1951)),
              ("Dua", dict(type="photo", photo="abbas", caption="Dr. Haji Abbas Alias", sub="Yang Dipertua Agung · 1953–1956", year=1953)),
              ("pilihan", dict(type="seats", photo="election1955", total=52, won=1, label="Pilihan Raya Persekutuan 1955", sub="52 kerusi dipertandingkan", year=1955)),
              ("Satu", dict(type="stat", big="1", label="kerusi · Krian, Perak", sub="Tuan Guru Haji Ahmad Tuan Hussein", year=1955)),
@@ -231,7 +231,7 @@ SEATS = [[1955, 1], [1959, 13], [1964, 9], [1969, 12], [1978, 5], [1982, 5], [19
 SEAT_LABELS = [1955, 1959, 1986, 1999, 2004, 2008, 2018, 2022]
 
 PRESIDENTS = [
-    ["fuad_p", "Ahmad Fuad Hassan", "1951–1953"],
+    ["fuad", "Ahmad Fuad Hassan", "1951–1953"],
     ["abbas", "Abbas Alias", "1953–1956"],
     ["burhanuddin_p", "Burhanuddin al-Helmy", "1956–1969"],
     ["asri", "Mohd Asri Muda", "1969–1982"],
