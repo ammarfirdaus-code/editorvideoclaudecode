@@ -210,8 +210,8 @@ window.DATA = {
   {
    "type": "photo",
    "photo": "burhanuddin2",
-   "caption": "1965 – 1969",
-   "sub": "Dr. Burhanuddin ditahan di bawah ISA, meninggal dunia 1969",
+   "caption": "1965",
+   "sub": "Dr. Burhanuddin ditahan di bawah ISA<br>Meninggal dunia pada 1969",
    "year": 1965,
    "start": 104.036,
    "end": 113.036,
@@ -269,7 +269,7 @@ window.DATA = {
       "KEL"
      ],
      "stat": "1977",
-     "statsub": "PAS keluar daripada Barisan Nasional",
+     "statsub": "PAS disingkirkan daripada Barisan Nasional, Disember 1977",
      "at": 132.176
     },
     {

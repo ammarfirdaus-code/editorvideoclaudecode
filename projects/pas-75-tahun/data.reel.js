@@ -76,7 +76,7 @@ window.DATA = {
    ],
    "photo": "asri",
    "caption": "1977",
-   "sub": "Darurat Kelantan · PAS keluar daripada BN",
+   "sub": "Darurat Kelantan · PAS tidak lagi dalam BN",
    "year": 1977,
    "start": 22.59,
    "end": 24.07,

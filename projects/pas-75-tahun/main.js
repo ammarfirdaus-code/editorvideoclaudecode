@@ -282,7 +282,8 @@
   const refs = ['Mohd Fadli Ghani, Ensiklopedia Harian PAS', 'Jurnal Sejarah, Universiti Malaya', 'Wikipedia Bahasa Melayu: Parti Islam Se-Malaysia', 'Berita Harian · NST · Utusan Malaysia'];
   cr.append(el('cr-h', 'Sumber gambar'), el('cr-p', usedCredits.join(' &nbsp;·&nbsp; ') || '—'),
     el('cr-h', 'Rujukan'), el('cr-p', refs.join(REEL ? '<br>' : ' &nbsp;·&nbsp; ')),
-    el('cr-n', (D.audioCredit || 'Narasi: ElevenLabs') + '<br>Sempena ulang tahun ke-75 PAS · 24 November 2026'));
+    el('cr-n', (D.audioCredit || 'Narasi: ElevenLabs') + '<br>Sempena ulang tahun ke-75 PAS · 24 November 2026'),
+    el('cr-ed', 'Video ini disunting oleh <b>Ammar Firdaus</b>'));
   master.fromTo(cr, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.6, ease: 'none' }, D.credits.start);
   master.to('#hud', { autoAlpha: 0, duration: 0.4 }, D.credits.start);
   master.to('#stage', { opacity: 0, duration: 1.0, ease: 'none' }, D.duration - 1.0);

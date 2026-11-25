@@ -177,3 +177,7 @@ body.reel .logos { justify-content: center; }
 .logo-card img { display: block; height: 92px; width: auto; }
 body.reel .logo-card img { height: 96px; }
 .tiles .logos, .sc-tiles .logos { margin-top: 10px; }
+
+.cr-ed { margin-top: 34px; color: var(--white); font-weight: 600; }
+.cr-ed b { font-weight: 900; color: #19b56a; }
+body.main .cr-ed { font-size: 34px; } body.reel .cr-ed { font-size: 34px; }

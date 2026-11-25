@@ -131,11 +131,11 @@ MAIN = [
          text="Dekad seterusnya penuh ujian. Zulkifli Muhammad terkorban dalam kemalangan pada 1964. Dr. Burhanuddin ditahan di bawah ISA pada 1965, dan meninggal dunia pada 1969. Di bawah Dato' Mohd Asri Muda, PAS menukar nama kepada Parti Islam Se-Malaysia, menyertai kerajaan campuran, lalu menjadi antara pengasas Barisan Nasional. Tetapi krisis Kelantan 1977 mengakhiri segalanya. Darurat diisytiharkan, PAS keluar daripada Barisan Nasional, dan pada 1978, Kelantan terlepas selepas sembilan belas tahun.",
          scenes=[
              (None, dict(type="photo", photo="zulkifli2", caption="1964", sub="Zulkifli Muhammad terkorban dalam kemalangan", year=1964)),
-             ("Burhanuddin", dict(type="photo", photo="burhanuddin2", caption="1965 – 1969", sub="Dr. Burhanuddin ditahan di bawah ISA, meninggal dunia 1969", year=1965)),
+             ("Burhanuddin", dict(type="photo", photo="burhanuddin2", caption="1965", sub="Dr. Burhanuddin ditahan di bawah ISA<br>Meninggal dunia pada 1969", year=1965)),
              ("bawah#2", dict(type="photo", photo="asri", caption="Dato' Mohd Asri Muda", sub="Yang Dipertua Agung · 1969–1982", year=1969)),
              ("menyertai", dict(type="words", logos=["pas", "bn"], big="Parti Islam Se-Malaysia", sub="Kerajaan Campuran 1973 · Barisan Nasional 1974", photo="bn1974", year=1973)),
              ("krisis", dict(type="tiles", logos=["bn"], label="Krisis Kelantan", year=1977, init=dict(on=["KEL"], stat="1977", statsub="Darurat diisytiharkan di Kelantan"), steps=[
-                 ("keluar", dict(on=["KEL"], stat="1977", statsub="PAS keluar daripada Barisan Nasional")),
+                 ("keluar", dict(on=["KEL"], stat="1977", statsub="PAS disingkirkan daripada Barisan Nasional, Disember 1977")),
                  ("terlepas", dict(on=[], stat="19 tahun", statsub="Kelantan terlepas, 1959–1978", year=1978)),
              ])),
          ]),
@@ -210,7 +210,7 @@ REEL = [
              ("Pilihan", dict(type="stat", big="1", label="kerusi", sub="Pilihan Raya Persekutuan 1955", photo="election1955", year=1955)),
              ("Empat", dict(type="tiles", label="Pilihan Raya 1959", year=1959, init=dict(on=["KEL", "TRG"], stat="1959", statsub="Kelantan dan Terengganu ditawan"), steps=[])),
              ("datang", dict(type="photo", photo="burhanuddin2", caption="Tahun-tahun ujian", sub="Dr. Burhanuddin ditahan di bawah ISA, 1965", year=1965)),
-             ("darurat", dict(type="photo", logos=["bn"], photo="asri", caption="1977", sub="Darurat Kelantan · PAS keluar daripada BN", year=1977)),
+             ("darurat", dict(type="photo", logos=["bn"], photo="asri", caption="1977", sub="Darurat Kelantan · PAS tidak lagi dalam BN", year=1977)),
              ("dan", dict(type="stat", big="1", label="kerusi Parlimen", sub="Pilihan Raya Umum 1986", year=1986)),
              ("Tetapi", dict(type="photo", photo="fadzil", caption="Kebangkitan", sub="Dato' Haji Fadzil Noor · Presiden 1989–2002", year=1989)),
              ("1990", dict(type="photo", photo="nikaziz", caption="Tok Guru Nik Aziz", sub="Kelantan disapu bersih, 39 / 39 · 1990", year=1990)),
