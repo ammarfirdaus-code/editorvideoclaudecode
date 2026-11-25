@@ -17,3 +17,6 @@ out/
 
 # Cloned upstream repos (large, own git history)
 vendor/external/
+
+# Local Python virtualenvs
+.venv*/
