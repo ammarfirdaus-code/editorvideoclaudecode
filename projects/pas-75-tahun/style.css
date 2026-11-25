@@ -172,3 +172,17 @@ body.main .cr-h { font-size: 22px; } body.main .cr-p { font-size: 26px; } body.m
 body.reel .cr-h { font-size: 24px; } body.reel .cr-p { font-size: 27px; } body.reel .cr-n { font-size: 23px; }
 
 body.main .frame .credit, body.reel .frame .credit { left: 2px; right: auto; top: 100%; bottom: auto; margin-top: 12px; white-space: nowrap; text-align: left; }
+
+/* ---------- real-shape state map, logo, watermark */
+.mapviz svg { display: block; overflow: visible; }
+.st-base { fill: rgba(243,239,228,.07); stroke: rgba(243,239,228,.42); stroke-width: 2.2; stroke-linejoin: round; }
+.st-on { fill: #1fa55b; stroke: #7be0a6; stroke-width: 3; stroke-linejoin: round; opacity: 0; }
+.st-lab { font-family: var(--sans); font-weight: 700; font-size: 25px; fill: rgba(243,239,228,.5); }
+#mark .logo { height: 1.5em; width: auto; margin-right: .9em; border-radius: 2px; }
+.t-logo .logo { display: block; border-radius: 4px; box-shadow: 0 6px 24px rgba(0,0,0,.5); }
+body.main .t-logo .logo { width: 150px; margin-bottom: 34px; }
+body.reel .t-logo .logo { width: 150px; margin-bottom: 36px; }
+#wm { position: absolute; font-weight: 700; letter-spacing: .12em; color: rgba(255,255,255,.42); text-shadow: 0 1px 3px rgba(0,0,0,.45); }
+body.main #wm { right: 3%; top: 4.2%; font-size: 21px; }
+body.reel #wm { left: 0; right: 0; top: 3.4%; text-align: center; font-size: 24px; }
+body.reel .t-years { font-size: 25px; letter-spacing: .26em; }

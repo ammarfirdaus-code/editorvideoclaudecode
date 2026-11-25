@@ -6,6 +6,8 @@
   const el = (cls, html, tag) => { const e = document.createElement(tag || 'div'); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; };
   const master = gsap.timeline({ paused: true });
   const FADE = 0.7;
+  const LOGO = '<svg class="logo" viewBox="0 0 647 448"><rect width="647" height="448" fill="#008000"/><circle cx="323.5" cy="224" r="157" fill="#ffffff"/></svg>';
+  document.querySelector('#mark .dot').outerHTML = LOGO;
   const scenesEl = $('#scenes');
   const usedCredits = [];
 
@@ -48,11 +50,13 @@
     },
     title(sc) {
       const c = el('center');
+      const lg = el('t-logo', LOGO);
       const k = el('t-kicker', '1951 – 2026');
       const m = el('t-main', 'PAS <b>75</b><br>TAHUN');
       const r = el('t-rule');
       const sub = el('t-sub', 'Perjalanan Sebuah Perjuangan');
-      c.append(k, m, r, sub); sc.appendChild(c);
+      c.append(lg, k, m, r, sub); sc.appendChild(c);
+      master.fromTo(lg, { autoAlpha: 0, y: -14 }, { autoAlpha: 1, y: 0, duration: 1.0, ease: 'power2.out' }, sc._start + 0.6);
       master.fromTo(m, { autoAlpha: 0, scale: 1.08 }, { autoAlpha: 1, scale: 1, duration: 1.4, ease: 'power2.out' }, sc._start + 0.2);
       master.fromTo(r, { scaleX: 0 }, { scaleX: 1, duration: 0.9, ease: 'power2.out' }, sc._start + 1.0);
       rise(sc, [k, sub], 1.2, 0.3);
@@ -64,7 +68,9 @@
       const r = el('t-rule');
       const sub = el('t-sub', 'Satu perjalanan yang belum selesai');
       const y = el('t-years', '1951 – 2026 · MENUJU SEABAD 2051');
-      c.append(m, r, sub, y); sc.appendChild(c);
+      const lg = el('t-logo', LOGO);
+      c.append(lg, m, r, sub, y); sc.appendChild(c);
+      master.fromTo(lg, { autoAlpha: 0 }, { autoAlpha: 1, duration: 1.0 }, sc._start + 0.4);
       master.fromTo(m, { autoAlpha: 0, scale: 1.06 }, { autoAlpha: 1, scale: 1, duration: 1.2, ease: 'power2.out' }, sc._start + 0.2);
       master.fromTo(r, { scaleX: 0 }, { scaleX: 1, duration: 0.9 }, sc._start + 0.9);
       rise(sc, [sub, y], 1.1, 0.4);
@@ -135,18 +141,21 @@
       if (p) sc.classList.add('noframe');
     },
     tiles(sc, s) {
-      const sp = el('split'); const viz = el('viz tiles'); const info = el('info');
-      const unit = REEL ? 190 : 150, gap = REEL ? 14 : 12;
-      viz.style.width = (unit * 4 + gap * 3) + 'px'; viz.style.height = (unit * 0.72 * 5 + gap * 4) + 'px';
+      const sp = el('split'); const viz = el('viz mapviz'); const info = el('info');
+      const M = window.MYMAP, hpx = REEL ? 610 : 600, wpx = hpx * M.w / M.h;
+      const out = { PLS: [-18, -6, 'end'], PNG: [-20, 8, 'end'], MLK: [-22, 26, 'end'] };
+      let svg = `<svg width="${wpx.toFixed(0)}" height="${hpx}" viewBox="0 0 ${M.w} ${M.h}">`;
+      Object.keys(M.states).forEach(k => { const st = M.states[k];
+        svg += `<path class="st-base" data-k="${k}" d="${st.d}"/><path class="st-on" data-k="${k}" d="${st.d}"/>`; });
+      Object.keys(M.states).forEach(k => { const st = M.states[k]; if (!st.name) return;
+        const o = out[k] || [0, 8, 'middle'];
+        svg += `<text class="st-lab" data-k="${k}" x="${st.cx + o[0]}" y="${st.cy + o[1]}" text-anchor="${o[2]}">${st.name}</text>`; });
+      svg += '</svg>';
+      viz.innerHTML = svg;
       const fills = {};
-      Object.keys(TILES).forEach((k, i) => {
-        const [c, r, span, name] = TILES[k];
-        const t = el('tile'); const f = el('fillg'); const lb = el('', name, 'span');
-        t.style.left = (c * (unit + gap)) + 'px'; t.style.top = (r * (unit * 0.72 + gap)) + 'px';
-        t.style.width = (unit * span + gap * (span - 1)) + 'px'; t.style.height = (unit * 0.72) + 'px';
-        t.append(f, lb); viz.appendChild(t); fills[k] = [f, lb];
-        master.fromTo(t, { autoAlpha: 0, y: 16 }, { autoAlpha: 1, y: 0, duration: 0.45, ease: 'power2.out' }, sc._start + 0.15 + i * 0.04);
-      });
+      viz.querySelectorAll('.st-on').forEach(p => { fills[p.dataset.k] = [p, viz.querySelector(`.st-lab[data-k="${p.dataset.k}"]`)]; });
+      master.fromTo(viz, { autoAlpha: 0, scale: 0.94 }, { autoAlpha: 1, scale: 1, duration: 0.9, ease: 'power2.out' }, sc._start + 0.15);
+      master.to(viz, { scale: 1.04, duration: Math.max(1, sc._dur - 1), ease: 'none' }, sc._start + 1.05);
       info.appendChild(el('w-label', s.label));
       const stats = el('stats'); info.appendChild(stats);
       sp.append(viz, info); sc.appendChild(sp);
@@ -155,11 +164,11 @@
       s.steps.forEach(x => states.push(x));
       let prevOn = [], prevBox = null;
       states.forEach((st) => {
-        Object.keys(TILES).forEach(k => {
+        Object.keys(fills).forEach(k => {
           const on = st.on.includes(k), was = prevOn.includes(k);
           if (on !== was) {
-            master.to(fills[k][0], { opacity: on ? 1 : 0, duration: 0.6, ease: 'power2.out' }, st.at);
-            master.to(fills[k][1], { color: on ? '#ffffff' : 'rgba(243,239,228,.45)', duration: 0.6 }, st.at);
+            master.to(fills[k][0], { opacity: on ? 1 : 0, duration: 0.7, ease: 'power2.out' }, st.at);
+            if (fills[k][1]) master.to(fills[k][1], { fill: on ? '#ffffff' : 'rgba(243,239,228,.5)', duration: 0.6 }, st.at);
           }
         });
         prevOn = st.on;
