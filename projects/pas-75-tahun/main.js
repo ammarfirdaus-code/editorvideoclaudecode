@@ -12,6 +12,8 @@
   const usedCredits = [];
   const dark = []; // [start, end] spans where the stage is dark (title, cards, outro, credits)
   let tilt = 0;
+  const SFX = []; window.SFX = SFX;
+  const sfx = (k, t) => SFX.push([k, Math.round(t * 1000) / 1000]);
 
   const photoOf = key => (key && D.photos[key] ? D.photos[key] : null);
   const noteCredit = p => { if (p && p.credit && !usedCredits.includes(p.credit)) usedCredits.push(p.credit); };
@@ -20,6 +22,7 @@
   // "slap" an element onto the page like a sticker
   function slap(sc, node, at, rot) {
     const r = rot == null ? 0 : rot;
+    sfx(node.classList.contains('vis') || node.classList.contains('note') || node.classList.contains('headline') ? 'slap' : 'tick', sc._start + at);
     master.fromTo(node, { autoAlpha: 0, scale: 1.14, rotation: r - 4 }, { autoAlpha: 1, scale: 1, rotation: r, duration: 0.42, ease: 'back.out(1.7)' }, sc._start + at);
   }
   function drift(sc, node, from) {
@@ -57,6 +60,7 @@
       const sub = el('chip', s.sub || '');
       c.append(t, sub); sc.appendChild(c);
       slap(sc, t, 0.35, -1.2);
+      for (let i = 0; i < s.text.length; i++) if (s.text[i] !== ' ') sfx('key', sc._start + 0.9 + (i + 0.5) * 2.2 / s.text.length);
       const o = { n: 0 };
       master.to(o, { n: s.text.length, duration: 2.2, ease: 'none', onUpdate: () => { txt.textContent = s.text.slice(0, Math.round(o.n)); } }, sc._start + 0.9);
       slap(sc, sub, 3.3, 1);
@@ -77,8 +81,10 @@
       });
       sc.appendChild(row);
       slap(sc, b, 0.25, 0);
+      sfx('whoosh', sc._start - 0.15); sfx('hit', sc._start + 0.5);
       master.fromTo(m, { autoAlpha: 0, scale: 1.12 }, { autoAlpha: 1, scale: 1, duration: 0.55, ease: 'back.out(1.5)' }, sc._start + 0.45);
       master.fromTo(sub, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.5 }, sc._start + 1.0);
+      ps.forEach((w, i) => sfx('pop', sc._start + 0.95 + i * 0.14));
       ps.forEach((w, i) => master.fromTo(w, { autoAlpha: 0, y: 90 }, { autoAlpha: 1, y: 0, duration: 0.5, ease: 'back.out(1.4)' }, sc._start + 0.9 + i * 0.14));
     },
     outro(sc, s) {
@@ -91,6 +97,7 @@
       m.style.marginTop = '30px';
       c.append(b, m, sub, y); sc.appendChild(c);
       slap(sc, b, 0.2, 0);
+      sfx('whoosh', sc._start - 0.15); sfx('hit', sc._start + 0.45);
       master.fromTo(m, { autoAlpha: 0, scale: 1.12 }, { autoAlpha: 1, scale: 1, duration: 0.55, ease: 'back.out(1.5)' }, sc._start + 0.4);
       master.fromTo([sub, y], { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.5, stagger: 0.35 }, sc._start + 1.0);
     },
@@ -120,6 +127,7 @@
       const lab = el('tag', s.label || ''); const sub = s.sub ? el('chip', s.sub) : null;
       info.append(big, lab); if (sub) info.appendChild(sub);
       if (p) duo(sc, visual(sc, p, 0.2, true), info); else sc.appendChild(info);
+      sfx('thud', sc._start + 0.38);
       master.fromTo(big, { autoAlpha: 0, scale: 0.6 }, { autoAlpha: 1, scale: 1, duration: 0.6, ease: 'back.out(1.8)' }, sc._start + 0.3);
       pops(sc, [lab, sub], 0.7, 0.22);
     },
@@ -135,6 +143,7 @@
       slap(sc, note, 0.45, 1);
       master.fromTo(dots, { scale: 0 }, { scale: 1, duration: 0.3, stagger: 0.025, ease: 'back.out(2)' }, sc._start + 0.8);
       const w = dots[s.total - 1];
+      sfx('roll', sc._start + 0.8); sfx('ding', sc._start + 2.6);
       master.set(w, { className: 'seat won' }, sc._start + 2.6);
       master.fromTo(w, { scale: 1 }, { scale: 1.6, duration: 0.45, yoyo: true, repeat: 3, ease: 'sine.inOut' }, sc._start + 2.6);
       slap(sc, sub, 1.0, 0);
@@ -164,6 +173,7 @@
         Object.keys(fills).forEach(k => {
           const on = st.on.includes(k), was = prevOn.includes(k);
           if (on !== was) {
+            sfx(on ? 'pop' : 'drop', st.at);
             master.to(fills[k][0], { opacity: on ? 1 : 0, duration: 0.5, ease: 'power2.out' }, st.at);
             if (fills[k][1]) master.to(fills[k][1], { fill: on ? '#ffffff' : '#4a4741', duration: 0.5 }, st.at);
           }
@@ -202,6 +212,7 @@
       let prevBox = null, prevW = 0;
       states.forEach((st, i) => {
         const w = x(st.upto) + 12;
+        sfx('swish', st.at);
         master.fromTo(rect, { attr: { width: prevW } }, { attr: { width: w }, duration: i ? 1.1 : 1.8, ease: 'power1.inOut' }, st.at);
         prevW = w;
         const box = el('statbox'); box.append(el('st-big', String(seatOf(st.upto))), el('st-sub', 'kerusi Parlimen · ' + st.upto)); stats.appendChild(box);
@@ -248,6 +259,7 @@
   const card = $('#card');
   D.cards.forEach(c => {
     dark.push([c.start, c.end - 0.2]);
+    sfx('whoosh', c.start - 0.2); sfx('hit', c.start + 0.25); sfx('whoosh', c.end - 0.5);
     master.set($('.card-era'), { textContent: c.era }, c.start - 0.02);
     master.set($('.card-title'), { textContent: c.title }, c.start - 0.02);
     master.fromTo(card, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.3, ease: 'none' }, c.start);
