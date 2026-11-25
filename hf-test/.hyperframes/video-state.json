@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "historyId": "1c02f501-12be-43cf-abcb-6946ab74accc",
+  "currentRevision": null,
+  "pendingChanges": false,
+  "files": {
+    "AGENTS.md": {
+      "hash": "729e31835a21c7b42ee006e2aacc63016abc05d26883f871ad3bf206943f2cfb",
+      "content": "/root/.cache/hyperframes/history/1c02f501-12be-43cf-abcb-6946ab74accc/blobs/72/729e31835a21c7b42ee006e2aacc63016abc05d26883f871ad3bf206943f2cfb"
+    },
+    "CLAUDE.md": {
+      "hash": "729e31835a21c7b42ee006e2aacc63016abc05d26883f871ad3bf206943f2cfb",
+      "content": "/root/.cache/hyperframes/history/1c02f501-12be-43cf-abcb-6946ab74accc/blobs/72/729e31835a21c7b42ee006e2aacc63016abc05d26883f871ad3bf206943f2cfb"
+    },
+    "hyperframes.json": {
+      "hash": "53dbce1e19aa713cbb12ee0bc4d206143b45ab15e6ffbfcaa8f69572d4d24d50",
+      "content": "/root/.cache/hyperframes/history/1c02f501-12be-43cf-abcb-6946ab74accc/blobs/53/53dbce1e19aa713cbb12ee0bc4d206143b45ab15e6ffbfcaa8f69572d4d24d50"
+    },
+    "index.html": {
+      "hash": "65c4a8d4821d60f7e51d0f64e81b8c4293284090f5ca59940ee3c409d6626a1f",
+      "content": "/root/.cache/hyperframes/history/1c02f501-12be-43cf-abcb-6946ab74accc/blobs/65/65c4a8d4821d60f7e51d0f64e81b8c4293284090f5ca59940ee3c409d6626a1f"
+    },
+    "meta.json": {
+      "hash": "676ab6777a609b3f5394184f3d9838047a50cb9b7a2a00627093c85d1c35a79d",
+      "content": "/root/.cache/hyperframes/history/1c02f501-12be-43cf-abcb-6946ab74accc/blobs/67/676ab6777a609b3f5394184f3d9838047a50cb9b7a2a00627093c85d1c35a79d"
+    },
+    "package.json": {
+      "hash": "5ffce0d596d39caf04e1525740917a2439640dd34f082727f935bf7d3535153b",
+      "content": "/root/.cache/hyperframes/history/1c02f501-12be-43cf-abcb-6946ab74accc/blobs/5f/5ffce0d596d39caf04e1525740917a2439640dd34f082727f935bf7d3535153b"
+    }
+  },
+  "revisions": {},
+  "checks": {
+    "latest": null,
+    "revisions": {},
+    "unversioned": []
+  },
+  "snapshots": {
+    "latest": null,
+    "revisions": {},
+    "unversioned": []
+  },
+  "renders": {
+    "latest": {
+      "id": "afb85355-d2d4-4ba5-b800-b67633499047",
+      "completedAt": 1795573327026,
+      "output": "/home/user/editorvideoclaudecode/renders/test-hyperframes.mp4",
+      "status": "completed",
+      "revision": null
+    },
+    "retainedRevisions": []
+  },
+  "pendingArtifactCleanup": []
+}
