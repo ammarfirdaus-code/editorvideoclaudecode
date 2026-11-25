@@ -1,5 +1,28 @@
 # editorvideoclaudecode
 
+Studio video Ammarcreava untuk Claude Code: katalog template video, peraturan kerja, dan toolchain (HyperFrames, FFmpeg, GSAP, Whisper).
+
+## Cara guna
+
+1. Buka repo ni dengan Claude Code.
+2. Taip `/video-baru <apa yang nak dibuat>` atau cerita je video apa yang nak. Claude akan cadang **satu template utama + satu alternatif** dari `templates/KATALOG.md` dulu.
+3. Pilih template. Claude buat folder `projek/YYYY-MM-DD_Tajuk/` dan ikut `templates/<id>/TEMPLATE.md`.
+4. MP4 yang dah lulus dipindah ke Drive. Footage, audio dan render tak masuk git.
+
+```
+templates/
+  KATALOG.md          senarai semua template
+  PILIH-TEMPLATE.md   cara pilih template ikut bahan dan tujuan
+  <id>/TEMPLATE.md    spec setiap template
+  <id>/enjin/         kod render (salin dari Drive kalau masih kosong)
+projek/               folder kerja setiap video (tak masuk git)
+scripts/projek-baru.sh
+```
+
+Peraturan penuh untuk Claude ada dalam `CLAUDE.md`.
+
+## Toolchain
+
 Tools for editing talking-head videos with HyperFrames, FFmpeg, GSAP and local Whisper transcription.
 
 ## Tools and why they're needed

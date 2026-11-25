@@ -14,3 +14,17 @@ out/
 
 # Personal permission overrides
 .claude/settings.local.json
+
+# Folder kerja video (cuma README masuk git)
+projek/*
+!projek/README.md
+
+# Media dan aset lain
+*.m4a
+*.aac
+*.webm
+*.mkv
+*.psd
+*.zip
+aset/
+render/
