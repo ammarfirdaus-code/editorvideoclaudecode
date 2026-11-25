@@ -74,7 +74,7 @@
       const sub = el('t-sub', 'Perjalanan sebuah perjuangan · 1951 – 2026');
       top.append(b, m, sub); sc.appendChild(top);
       const row = el('t-row'); const ps = [];
-      [['zulkifli', 'Zulkifli'], ['burhanuddin_p', 'Burhanuddin', 1], ['asri', 'Asri Muda'], ['nikaziz', 'Nik Aziz', 1], ['hadi_p', 'Hadi Awang']].forEach(([k, n, big]) => {
+      [['asri', 'Asri Muda'], ['burhanuddin_p', 'Burhanuddin', 1], ['fadzil', 'Fadzil Noor'], ['nikaziz', 'Nik Aziz', 1], ['hadi_p', 'Hadi Awang']].forEach(([k, n, big]) => {
         const p = photoOf(k); if (!p || !p.cut) return; noteCredit(p);
         const w = el('t-p' + (big ? ' big' : '')); const im = el('', null, 'img'); im.src = src(p.cut);
         w.append(im, el('ntag', n)); row.appendChild(w); ps.push(w);

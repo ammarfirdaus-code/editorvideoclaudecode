@@ -151,14 +151,14 @@ MAIN = [
     dict(id="ch5", era="1989 – 2002", title="Kebangkitan",
          text="1989, Dato' Haji Fadzil Noor menerajui parti. Setahun kemudian, bersama Angkatan Perpaduan Ummah, kesemua 39 kerusi di Kelantan disapu bersih. Tuan Guru Dato' Nik Abdul Aziz Nik Mat menjadi Menteri Besar, dan kekal selama 23 tahun. Pada 1999, di tengah gelombang Reformasi, PAS menang 27 kerusi Parlimen, menawan semula Terengganu, dan Fadzil Noor menjadi Ketua Pembangkang. Beliau pergi buat selama-lamanya pada Jun 2002.",
          scenes=[
-             (None, dict(type="photo", photo="fadzil", caption="Dato' Haji Fadzil Noor", sub="Presiden · 1989–2002<br>(kiri, bersama Tuan Guru Nik Abdul Aziz)", year=1989)),
+             (None, dict(type="photo", photo="fadzil", caption="Dato' Haji Fadzil Noor", sub="Presiden · 1989–2002", year=1989)),
              ("Setahun", dict(type="tiles", label="Pilihan Raya Umum 1990", year=1990, init=dict(on=["KEL"], stat="39 / 39", statsub="kerusi DUN Kelantan · Angkatan Perpaduan Ummah"), steps=[])),
              ("Tuan", dict(type="photo", photo="nikaziz", caption="Tuan Guru Dato' Nik Abdul Aziz Nik Mat", sub="Menteri Besar Kelantan · 1990–2013", year=1990)),
              ("Pada", dict(type="photo", photo="reformasi", caption="1999", sub="Di tengah gelombang Reformasi", year=1999)),
              ("menang", dict(type="tiles", label="Pilihan Raya Umum 1999", year=1999, init=dict(on=["KEL"], stat="27", statsub="kerusi Parlimen"), steps=[
                  ("menawan", dict(on=["KEL", "TRG"], stat="27", statsub="kerusi Parlimen · Terengganu ditawan semula")),
              ])),
-             ("Beliau", dict(type="photo", photo="fadzil2", caption="Dato' Haji Fadzil Noor", sub="1937 – 2002", year=2002)),
+             ("Beliau", dict(type="photo", photo="fadzil2", caption="1937 – 2002", sub="Dato' Haji Fadzil Noor berceramah di Indera Kayangan, Januari 2002", year=2002)),
          ]),
     dict(id="ch6", era="2002 – 2018", title="Pasang dan Surut",
          text="Tuan Guru Haji Abdul Hadi Awang mengambil alih kepimpinan. 2004: tinggal tujuh kerusi, Terengganu terlepas. 2008: bangkit bersama Pakatan Rakyat. 23 kerusi, Kedah ditawan, dan Perak dipimpin seorang Menteri Besar daripada PAS. 2015, tahun yang berat. Tok Guru Nik Aziz kembali ke rahmatullah, Pakatan Rakyat berakhir, dan parti berpecah. Ramai meramalkan PAS akan tenggelam. Pada 2018, bertanding dengan haluan sendiri, PAS mengekalkan Kelantan, dan merampas semula Terengganu.",

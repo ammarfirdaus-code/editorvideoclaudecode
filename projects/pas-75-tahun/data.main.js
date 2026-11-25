@@ -313,7 +313,7 @@ window.DATA = {
    "type": "photo",
    "photo": "fadzil",
    "caption": "Dato' Haji Fadzil Noor",
-   "sub": "Presiden · 1989–2002<br>(kiri, bersama Tuan Guru Nik Abdul Aziz)",
+   "sub": "Presiden · 1989–2002",
    "year": 1989,
    "start": 178.253,
    "end": 186.483,
@@ -387,8 +387,8 @@ window.DATA = {
   {
    "type": "photo",
    "photo": "fadzil2",
-   "caption": "Dato' Haji Fadzil Noor",
-   "sub": "1937 – 2002",
+   "caption": "1937 – 2002",
+   "sub": "Dato' Haji Fadzil Noor berceramah di Indera Kayangan, Januari 2002",
    "year": 2002,
    "start": 214.043,
    "end": 218.62,
@@ -1476,18 +1476,18 @@ window.DATA = {
    "bwh": 878
   },
   "burhanuddin2": {
-   "file": "use/burhanuddin-1.jpg",
-   "blur": "use/blur-burhanuddin-1.jpg",
-   "w": 590,
-   "h": 400,
-   "credit": "Astro Awani",
-   "source": "https://www.astroawani.com/berita-malaysia/tokoh-tanpa-memorial-jejak-dr-burhanuddin-alhelmy-536596",
+   "file": "use/r2-burhanuddin-3.jpg",
+   "blur": "use/blur-r2-burhanuddin-3.jpg",
+   "w": 800,
+   "h": 600,
+   "credit": "Sinar Harian",
+   "source": "https://www.sinarharian.com.my/article/53964/sinar-islam/menyingkap-semangat-dr-burhanuddin",
    "cut": "cut/burhanuddin2.png",
-   "cw": 469,
-   "ch": 489,
+   "cw": 482,
+   "ch": 526,
    "bw": "cut/bw-burhanuddin2.jpg",
-   "bww": 590,
-   "bwh": 400
+   "bww": 800,
+   "bwh": 600
   },
   "burhanuddin_p": {
    "file": "use/burhanuddin-2.jpg",
@@ -1621,16 +1621,29 @@ window.DATA = {
    "bwh": 574
   },
   "fadzil": {
-   "file": "use/fadzil-noor-nik-aziz.jpg",
-   "blur": "use/blur-fadzil-noor-nik-aziz.jpg",
-   "w": 600,
-   "h": 382,
-   "credit": "Arkib PAS",
-   "source": "https://www.abim.org.my/mengenang-ustaz-fadzil-noor-tokoh-wasatiah-gerakan-islam/",
-   "pos": "18% 30%",
+   "file": "use/r2-fadzil-noor-1.jpg",
+   "blur": "use/blur-r2-fadzil-noor-1.jpg",
+   "w": 590,
+   "h": 400,
+   "credit": "Astro Awani",
+   "source": "https://www.astroawani.com/topic/fadzil-noor",
+   "cut": "cut/fadzil.png",
+   "cw": 671,
+   "ch": 688,
    "bw": "cut/bw-fadzil.jpg",
-   "bww": 600,
-   "bwh": 382
+   "bww": 590,
+   "bwh": 400
+  },
+  "fadzil2": {
+   "file": "use/r2-fadzil-noor-ceramah-2002.jpg",
+   "blur": "use/blur-r2-fadzil-noor-ceramah-2002.jpg",
+   "w": 1024,
+   "h": 616,
+   "credit": "ABIM",
+   "source": "https://www.abim.org.my/ustaz-fadzil-noor-tokoh-wassatiyyah-gerakan-islam/",
+   "bw": "cut/bw-fadzil2.jpg",
+   "bww": 1024,
+   "bwh": 616
   },
   "nikaziz": {
    "file": "use/nik-aziz-2.jpg",
@@ -1706,15 +1719,15 @@ window.DATA = {
    "bwh": 1066
   },
   "ge15": {
-   "file": "use/pru15-bendera-pas.jpg",
-   "blur": "use/blur-pru15-bendera-pas.jpg",
-   "w": 1000,
-   "h": 668,
-   "credit": "The Malaysian Insight",
-   "source": "https://www.themalaysianinsight.com/bahasa/s/413610",
+   "file": "use/r2-pru15-himpunan-pn-2022.jpg",
+   "blur": "use/blur-r2-pru15-himpunan-pn-2022.jpg",
+   "w": 1248,
+   "h": 560,
+   "credit": "Fulcrum",
+   "source": "https://fulcrum.sg/malaysias-green-wave-was-a-long-time-coming",
    "bw": "cut/bw-ge15.jpg",
-   "bww": 1000,
-   "bwh": 668
+   "bww": 1248,
+   "bwh": 560
   },
   "crowd_modern": {
    "file": "use/ceramah-pn-negeri-sembilan.jpg",
