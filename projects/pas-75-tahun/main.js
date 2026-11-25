@@ -183,7 +183,7 @@
       svg += `<g clip-path="url(#${id})"><path d="${path}" fill="none" stroke="#27b566" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>`;
       D.seats.forEach(([y, v], i) => {
         svg += `<circle cx="${pts[i][0]}" cy="${pts[i][1]}" r="8" fill="#0b1410" stroke="#27b566" stroke-width="5"/>`;
-        if (D.seatLabels.includes(y)) svg += `<text x="${pts[i][0]}" y="${pts[i][1] - 20}" font-size="26" font-weight="700" text-anchor="middle" style="fill:#f3efe4">${v}</text>`;
+        if (D.seatLabels.includes(y)) svg += `<text x="${pts[i][0] - 14}" y="${pts[i][1] - 20}" font-size="26" font-weight="700" text-anchor="middle" style="fill:#f3efe4">${v}</text>`;
       });
       svg += '</g></svg>';
       viz.innerHTML = svg;

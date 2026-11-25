@@ -135,7 +135,7 @@ body.reel .pres-title { font-size: 30px; margin-bottom: 50px; } body.reel .pres 
 body.reel .pres-title { margin-bottom: 30px; font-size: 26px; }
 
 /* ---------- chapter card */
-#card { visibility: hidden; background: rgba(8,14,11,.9); display: flex; align-items: center; justify-content: center; text-align: center; }
+#card { visibility: hidden; background: rgba(8,14,11,.975); display: flex; align-items: center; justify-content: center; text-align: center; }
 .card-era { color: var(--gold); letter-spacing: .45em; font-weight: 600; }
 .card-rule { height: 2px; background: var(--gold); margin: 30px auto; width: 160px; }
 .card-title { font-family: var(--serif); font-weight: 800; line-height: 1.05; }
