@@ -5,7 +5,10 @@
   "w": 556,
   "h": 316,
   "credit": "Arkib PAS",
-  "source": "https://pas.org.my/kenali-pas/"
+  "source": "https://pas.org.my/kenali-pas/",
+  "bw": "cut/bw-founding.jpg",
+  "bww": 556,
+  "bwh": 316
  },
  "founding2": {
   "file": "use/kongres-pas-1952.jpg",
@@ -13,7 +16,10 @@
   "w": 963,
   "h": 588,
   "credit": "fwaliman.blogspot.com",
-  "source": "https://fwaliman.blogspot.com/2020/10/pas.html"
+  "source": "https://fwaliman.blogspot.com/2020/10/pas.html",
+  "bw": "cut/bw-founding2.jpg",
+  "bww": 963,
+  "bwh": 588
  },
  "fuad": {
   "file": "use/ahmad-fuad-kongres-1953.jpg",
@@ -21,7 +27,10 @@
   "w": 400,
   "h": 244,
   "credit": "ibnuhasyim.com",
-  "source": "http://www.ibnuhasyim.com/2013/11/siapa-orang-cina-terlibat-tubuh-pas.html"
+  "source": "http://www.ibnuhasyim.com/2013/11/siapa-orang-cina-terlibat-tubuh-pas.html",
+  "bw": "cut/bw-fuad.jpg",
+  "bww": 400,
+  "bwh": 244
  },
  "abbas": {
   "file": "use/abbas-alias-1.jpg",
@@ -30,7 +39,13 @@
   "h": 978,
   "credit": "theearlymalaydoctors.blogspot.com",
   "source": "http://theearlymalaydoctors.blogspot.com/2013/08/dr-haji-abbas-bin-alias-1914-2004.html?m=1",
-  "pos": "50% 20%"
+  "pos": "50% 20%",
+  "cut": "cut/abbas.png",
+  "cw": 525,
+  "ch": 819,
+  "bw": "cut/bw-abbas.jpg",
+  "bww": 561,
+  "bwh": 978
  },
  "election1955": {
   "file": "use/poster-pru-1955.jpg",
@@ -38,7 +53,10 @@
   "w": 1920,
   "h": 2452,
   "credit": "Wikimedia Commons / Taufik, CC0",
-  "source": "https://commons.wikimedia.org/wiki/File:Poster_pemenang_pilihan_raya_umum_Tanah_Melayu_1955.jpg"
+  "source": "https://commons.wikimedia.org/wiki/File:Poster_pemenang_pilihan_raya_umum_Tanah_Melayu_1955.jpg",
+  "bw": "cut/bw-election1955.jpg",
+  "bww": 1253,
+  "bwh": 1600
  },
  "burhanuddin": {
   "file": "use/burhanuddin-nehru.jpg",
@@ -46,7 +64,10 @@
   "w": 1231,
   "h": 878,
   "credit": "lestarihikmah.com",
-  "source": "https://lestarihikmah.com/2019/08/dr-burhanuddin-al-helmy-cekal-memperjuang-kemerdekaan/"
+  "source": "https://lestarihikmah.com/2019/08/dr-burhanuddin-al-helmy-cekal-memperjuang-kemerdekaan/",
+  "bw": "cut/bw-burhanuddin.jpg",
+  "bww": 1231,
+  "bwh": 878
  },
  "burhanuddin2": {
   "file": "use/burhanuddin-1.jpg",
@@ -54,7 +75,13 @@
   "w": 590,
   "h": 400,
   "credit": "Astro Awani",
-  "source": "https://www.astroawani.com/berita-malaysia/tokoh-tanpa-memorial-jejak-dr-burhanuddin-alhelmy-536596"
+  "source": "https://www.astroawani.com/berita-malaysia/tokoh-tanpa-memorial-jejak-dr-burhanuddin-alhelmy-536596",
+  "cut": "cut/burhanuddin2.png",
+  "cw": 469,
+  "ch": 489,
+  "bw": "cut/bw-burhanuddin2.jpg",
+  "bww": 590,
+  "bwh": 400
  },
  "burhanuddin_p": {
   "file": "use/burhanuddin-2.jpg",
@@ -63,7 +90,13 @@
   "h": 500,
   "credit": "Flickr / 10tahun",
   "source": "https://www.flickr.com/photos/10tahun/2178595758",
-  "pos": "50% 20%"
+  "pos": "50% 20%",
+  "cut": "cut/burhanuddin_p.png",
+  "cw": 660,
+  "ch": 901,
+  "bw": "cut/bw-burhanuddin_p.jpg",
+  "bww": 375,
+  "bwh": 500
  },
  "zulkifli": {
   "file": "use/zulkifli-muhammad-1.jpg",
@@ -71,7 +104,13 @@
   "w": 726,
   "h": 1044,
   "credit": "abunuha.wordpress.com",
-  "source": "https://abunuha.wordpress.com/2015/05/23/dr-zulkifli-muhammad-lantera-perjuangan/"
+  "source": "https://abunuha.wordpress.com/2015/05/23/dr-zulkifli-muhammad-lantera-perjuangan/",
+  "cut": "cut/zulkifli.png",
+  "cw": 428,
+  "ch": 687,
+  "bw": "cut/bw-zulkifli.jpg",
+  "bww": 726,
+  "bwh": 1044
  },
  "zulkifli2": {
   "file": "use/zulkifli-muhammad-2.jpg",
@@ -79,7 +118,13 @@
   "w": 381,
   "h": 596,
   "credit": "kalamperantau.wordpress.com",
-  "source": "https://kalamperantau.wordpress.com/tag/kolej-universiti-islam-zulkifli-muhammad"
+  "source": "https://kalamperantau.wordpress.com/tag/kolej-universiti-islam-zulkifli-muhammad",
+  "cut": "cut/zulkifli2.png",
+  "cw": 568,
+  "ch": 914,
+  "bw": "cut/bw-zulkifli2.jpg",
+  "bww": 381,
+  "bwh": 596
  },
  "kelantan1959": {
   "file": "use/ishak-lotfi-1.jpg",
@@ -87,7 +132,13 @@
   "w": 1378,
   "h": 1566,
   "credit": "sokmodotnet.wordpress.com",
-  "source": "https://sokmodotnet.wordpress.com/category/artikel/kelantan-dalam-sejarah"
+  "source": "https://sokmodotnet.wordpress.com/category/artikel/kelantan-dalam-sejarah",
+  "cut": "cut/kelantan1959.png",
+  "cw": 644,
+  "ch": 706,
+  "bw": "cut/bw-kelantan1959.jpg",
+  "bww": 1378,
+  "bwh": 1566
  },
  "trg1959": {
   "file": "use/terengganu-1959-kerajaan-pas.jpg",
@@ -95,7 +146,10 @@
   "w": 2165,
   "h": 1380,
   "credit": "PAS Terengganu",
-  "source": "https://pasterengganu.com/kenali-pas-terengganu"
+  "source": "https://pasterengganu.com/kenali-pas-terengganu",
+  "bw": "cut/bw-trg1959.jpg",
+  "bww": 1600,
+  "bwh": 1020
  },
  "asri": {
   "file": "use/asri-muda-1.jpg",
@@ -104,7 +158,13 @@
   "h": 960,
   "credit": "sejarahkelantan.wordpress.com",
   "source": "https://sejarahkelantan.wordpress.com/2012/09/27/menteri-besar-kelantan-5-dato-haji-mohd-asri-bin-haji-muda-1964-1973",
-  "pos": "50% 15%"
+  "pos": "50% 15%",
+  "cut": "cut/asri.png",
+  "cw": 599,
+  "ch": 707,
+  "bw": "cut/bw-asri.jpg",
+  "bww": 722,
+  "bwh": 960
  },
  "bn1974": {
   "file": "use/asri-tun-razak.jpg",
@@ -112,7 +172,10 @@
   "w": 598,
   "h": 404,
   "credit": "cilisos.my",
-  "source": "https://cilisos.my/wait-pas-used-to-be-part-of-bn-arent-they-enemies-now/"
+  "source": "https://cilisos.my/wait-pas-used-to-be-part-of-bn-arent-they-enemies-now/",
+  "bw": "cut/bw-bn1974.jpg",
+  "bww": 598,
+  "bwh": 404
  },
  "yusofrawa": {
   "file": "use/yusof-rawa-1.jpg",
@@ -121,7 +184,13 @@
   "h": 568,
   "credit": "ibnuhasyim.com",
   "source": "http://www.ibnuhasyim.com/2012/02/sejarah-tuan-guru-haji-yusof-rawa-1922.html",
-  "pos": "50% 15%"
+  "pos": "50% 15%",
+  "cut": "cut/yusofrawa.png",
+  "cw": 516,
+  "ch": 714,
+  "bw": "cut/bw-yusofrawa.jpg",
+  "bww": 396,
+  "bwh": 568
  },
  "memali": {
   "file": "use/memali-1985-sekatan-polis.jpg",
@@ -130,7 +199,9 @@
   "h": 822,
   "credit": "The Star",
   "source": "https://thestar.com.my/news/nation/2026/07/18/story-behind-the-headline-bloodshed-in-kampung-memali",
-  "bw": true
+  "bw": "cut/bw-memali.jpg",
+  "bww": 1240,
+  "bwh": 822
  },
  "crowd_old": {
   "file": "use/kelantan-1970an-perhimpunan.jpg",
@@ -138,7 +209,10 @@
   "w": 951,
   "h": 574,
   "credit": "pwaliman.blogspot.com",
-  "source": "http://pwaliman.blogspot.com/2017/11/dri.html"
+  "source": "http://pwaliman.blogspot.com/2017/11/dri.html",
+  "bw": "cut/bw-crowd_old.jpg",
+  "bww": 951,
+  "bwh": 574
  },
  "fadzil": {
   "file": "use/fadzil-noor-nik-aziz.jpg",
@@ -147,7 +221,10 @@
   "h": 382,
   "credit": "Arkib PAS",
   "source": "https://www.abim.org.my/mengenang-ustaz-fadzil-noor-tokoh-wasatiah-gerakan-islam/",
-  "pos": "18% 30%"
+  "pos": "18% 30%",
+  "bw": "cut/bw-fadzil.jpg",
+  "bww": 600,
+  "bwh": 382
  },
  "nikaziz": {
   "file": "use/nik-aziz-2.jpg",
@@ -155,7 +232,13 @@
   "w": 900,
   "h": 1116,
   "credit": "cilisos.my",
-  "source": "https://cilisos.my/5-fascinating-things-you-didnt-know-about-nik-aziz/"
+  "source": "https://cilisos.my/5-fascinating-things-you-didnt-know-about-nik-aziz/",
+  "cut": "cut/nikaziz.png",
+  "cw": 725,
+  "ch": 871,
+  "bw": "cut/bw-nikaziz.jpg",
+  "bww": 900,
+  "bwh": 1116
  },
  "hadi": {
   "file": "use/hadi-awang-kuliah-dhuha.jpg",
@@ -163,7 +246,10 @@
   "w": 2200,
   "h": 1466,
   "credit": "Wikimedia Commons / Aremerare, CC BY 4.0",
-  "source": "https://commons.wikimedia.org/wiki/File:Kuliah_Dhuha_Tuan_Guru.jpg"
+  "source": "https://commons.wikimedia.org/wiki/File:Kuliah_Dhuha_Tuan_Guru.jpg",
+  "bw": "cut/bw-hadi.jpg",
+  "bww": 1600,
+  "bwh": 1066
  },
  "hadi_p": {
   "file": "use/hadi-awang-2026.jpg",
@@ -172,7 +258,13 @@
   "h": 1578,
   "credit": "Wikimedia Commons / Aremerare, CC BY 4.0",
   "source": "https://commons.wikimedia.org/wiki/File:Abdul_Hadi_Awang_2026.jpg",
-  "pos": "50% 15%"
+  "pos": "50% 15%",
+  "cut": "cut/hadi_p.png",
+  "cw": 520,
+  "ch": 876,
+  "bw": "cut/bw-hadi_p.jpg",
+  "bww": 1280,
+  "bwh": 1578
  },
  "nikaziz_funeral": {
   "file": "use/nik-aziz-jenazah-1.jpg",
@@ -180,7 +272,10 @@
   "w": 1600,
   "h": 1068,
   "credit": "hazrilhafiz.blogspot.com",
-  "source": "http://hazrilhafiz.blogspot.com/2015/02/gambar-sekitar-pengebumian-tuan-guru.html"
+  "source": "http://hazrilhafiz.blogspot.com/2015/02/gambar-sekitar-pengebumian-tuan-guru.html",
+  "bw": "cut/bw-nikaziz_funeral.jpg",
+  "bww": 1600,
+  "bwh": 1068
  },
  "mn2019": {
   "file": "use/muafakat-nasional-2019-berpelukan.jpg",
@@ -188,7 +283,10 @@
   "w": 1000,
   "h": 750,
   "credit": "Sinar Harian",
-  "source": "https://www.sinarharian.com.my/article/215947/berita/politik/khairuddin-imbau-sejarah-penubuhan-muafakat-nasional"
+  "source": "https://www.sinarharian.com.my/article/215947/berita/politik/khairuddin-imbau-sejarah-penubuhan-muafakat-nasional",
+  "bw": "cut/bw-mn2019.jpg",
+  "bww": 1000,
+  "bwh": 750
  },
  "pn2020": {
   "file": "use/hadi-muhyiddin-ziarah.jpg",
@@ -196,7 +294,10 @@
   "w": 2200,
   "h": 1466,
   "credit": "Wikimedia Commons / Aremerare, CC BY 4.0",
-  "source": "https://commons.wikimedia.org/wiki/File:Tan_Sri_Muhyiddin_Yassin_menziarahi_Tuan_Guru.jpg"
+  "source": "https://commons.wikimedia.org/wiki/File:Tan_Sri_Muhyiddin_Yassin_menziarahi_Tuan_Guru.jpg",
+  "bw": "cut/bw-pn2020.jpg",
+  "bww": 1600,
+  "bwh": 1066
  },
  "ge15": {
   "file": "use/pru15-bendera-pas.jpg",
@@ -204,7 +305,10 @@
   "w": 1000,
   "h": 668,
   "credit": "The Malaysian Insight",
-  "source": "https://www.themalaysianinsight.com/bahasa/s/413610"
+  "source": "https://www.themalaysianinsight.com/bahasa/s/413610",
+  "bw": "cut/bw-ge15.jpg",
+  "bww": 1000,
+  "bwh": 668
  },
  "crowd_modern": {
   "file": "use/ceramah-pn-negeri-sembilan.jpg",
@@ -212,7 +316,10 @@
   "w": 2200,
   "h": 1650,
   "credit": "Wikimedia Commons / Zahirulnukman, CC BY-SA 3.0",
-  "source": "https://commons.wikimedia.org/wiki/File:Ceramah_politik_Perikatan_Nasional_Negeri_Sembilan_9_Jul.jpg"
+  "source": "https://commons.wikimedia.org/wiki/File:Ceramah_politik_Perikatan_Nasional_Negeri_Sembilan_9_Jul.jpg",
+  "bw": "cut/bw-crowd_modern.jpg",
+  "bww": 1600,
+  "bwh": 1200
  },
  "samsuri": {
   "file": "use/samsuri-1.jpg",
@@ -220,7 +327,13 @@
   "w": 1920,
   "h": 2340,
   "credit": "Wikimedia Commons / Team Photographer MB, CC0",
-  "source": "https://commons.wikimedia.org/wiki/File:Dato%27_Seri_Ir._Dr._Sam_Berpakaian_Long_Suit_(cropped).jpg"
+  "source": "https://commons.wikimedia.org/wiki/File:Dato%27_Seri_Ir._Dr._Sam_Berpakaian_Long_Suit_(cropped).jpg",
+  "cut": "cut/samsuri.png",
+  "cw": 766,
+  "ch": 862,
+  "bw": "cut/bw-samsuri.jpg",
+  "bww": 1313,
+  "bwh": 1600
  },
  "muktamar72": {
   "file": "use/muktamar-72-perwakilan.jpg",
@@ -228,6 +341,9 @@
   "w": 1080,
   "h": 810,
   "credit": "Utusan Malaysia",
-  "source": "https://utusan.com.my/nasional/2026/09/muktamar-pas-lulus-usul-penyatuan-ummah"
+  "source": "https://utusan.com.my/nasional/2026/09/muktamar-pas-lulus-usul-penyatuan-ummah",
+  "bw": "cut/bw-muktamar72.jpg",
+  "bww": 1080,
+  "bwh": 810
  }
 }
