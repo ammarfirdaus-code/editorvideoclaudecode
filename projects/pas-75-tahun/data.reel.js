@@ -11,7 +11,8 @@ window.DATA = {
    "start": 0.0,
    "end": 4.51,
    "steps": [],
-   "chapter": 0
+   "chapter": 0,
+   "colour": false
   },
   {
    "type": "photo",
@@ -22,7 +23,8 @@ window.DATA = {
    "start": 4.51,
    "end": 9.79,
    "steps": [],
-   "chapter": 0
+   "chapter": 0,
+   "colour": false
   },
   {
    "type": "stat",
@@ -34,7 +36,8 @@ window.DATA = {
    "start": 9.79,
    "end": 14.73,
    "steps": [],
-   "chapter": 0
+   "chapter": 0,
+   "colour": false
   },
   {
    "type": "tiles",
@@ -51,7 +54,8 @@ window.DATA = {
    "start": 14.73,
    "end": 19.87,
    "steps": [],
-   "chapter": 0
+   "chapter": 0,
+   "colour": false
   },
   {
    "type": "photo",
@@ -62,10 +66,14 @@ window.DATA = {
    "start": 19.87,
    "end": 22.59,
    "steps": [],
-   "chapter": 0
+   "chapter": 0,
+   "colour": false
   },
   {
    "type": "photo",
+   "logos": [
+    "bn"
+   ],
    "photo": "asri",
    "caption": "1977",
    "sub": "Darurat Kelantan · PAS keluar daripada BN",
@@ -73,7 +81,8 @@ window.DATA = {
    "start": 22.59,
    "end": 24.07,
    "steps": [],
-   "chapter": 0
+   "chapter": 0,
+   "colour": false
   },
   {
    "type": "stat",
@@ -84,7 +93,8 @@ window.DATA = {
    "start": 24.07,
    "end": 28.27,
    "steps": [],
-   "chapter": 0
+   "chapter": 0,
+   "colour": false
   },
   {
    "type": "photo",
@@ -95,7 +105,8 @@ window.DATA = {
    "start": 28.27,
    "end": 31.31,
    "steps": [],
-   "chapter": 0
+   "chapter": 0,
+   "colour": false
   },
   {
    "type": "photo",
@@ -106,7 +117,8 @@ window.DATA = {
    "start": 31.31,
    "end": 37.21,
    "steps": [],
-   "chapter": 0
+   "chapter": 0,
+   "colour": false
   },
   {
    "type": "chart",
@@ -132,10 +144,14 @@ window.DATA = {
      "at": 46.23
     }
    ],
-   "chapter": 0
+   "chapter": 0,
+   "colour": false
   },
   {
    "type": "photo",
+   "logos": [
+    "pas"
+   ],
    "photo": "ge15",
    "caption": "Parti tunggal terbesar",
    "sub": "Dewan Rakyat, 2022",
@@ -143,7 +159,8 @@ window.DATA = {
    "start": 50.45,
    "end": 52.91,
    "steps": [],
-   "chapter": 0
+   "chapter": 0,
+   "colour": true
   },
   {
    "type": "presidents",
@@ -151,7 +168,8 @@ window.DATA = {
    "start": 52.91,
    "end": 56.99,
    "steps": [],
-   "chapter": 0
+   "chapter": 0,
+   "colour": true
   },
   {
    "type": "stat",
@@ -162,7 +180,8 @@ window.DATA = {
    "start": 56.99,
    "end": 61.11,
    "steps": [],
-   "chapter": 0
+   "chapter": 0,
+   "colour": true
   },
   {
    "type": "outro",
@@ -170,7 +189,8 @@ window.DATA = {
    "start": 61.11,
    "end": 66.751,
    "steps": [],
-   "chapter": 0
+   "chapter": 0,
+   "colour": true
   }
  ],
  "captions": [
@@ -481,7 +501,8 @@ window.DATA = {
    "source": "https://pas.org.my/kenali-pas/",
    "bw": "cut/bw-founding.jpg",
    "bww": 556,
-   "bwh": 316
+   "bwh": 316,
+   "col": "cut/col-founding.jpg"
   },
   "founding2": {
    "file": "use/kongres-pas-1952.jpg",
@@ -492,7 +513,8 @@ window.DATA = {
    "source": "https://fwaliman.blogspot.com/2020/10/pas.html",
    "bw": "cut/bw-founding2.jpg",
    "bww": 963,
-   "bwh": 588
+   "bwh": 588,
+   "col": "cut/col-founding2.jpg"
   },
   "fuad": {
    "file": "use/r3-ahmad-fuad-hassan-potret.jpg",
@@ -506,7 +528,9 @@ window.DATA = {
    "ch": 802,
    "bw": "cut/bw-fuad.jpg",
    "bww": 644,
-   "bwh": 796
+   "bwh": 796,
+   "cutc": "cut/fuad-c.png",
+   "col": "cut/col-fuad.jpg"
   },
   "fuad1953": {
    "file": "use/ahmad-fuad-kongres-1953.jpg",
@@ -517,7 +541,8 @@ window.DATA = {
    "source": "http://www.ibnuhasyim.com/2013/11/siapa-orang-cina-terlibat-tubuh-pas.html",
    "bw": "cut/bw-fuad1953.jpg",
    "bww": 400,
-   "bwh": 244
+   "bwh": 244,
+   "col": "cut/col-fuad1953.jpg"
   },
   "abbas": {
    "file": "use/abbas-alias-1.jpg",
@@ -532,7 +557,9 @@ window.DATA = {
    "ch": 819,
    "bw": "cut/bw-abbas.jpg",
    "bww": 561,
-   "bwh": 978
+   "bwh": 978,
+   "cutc": "cut/abbas-c.png",
+   "col": "cut/col-abbas.jpg"
   },
   "election1955": {
    "file": "use/poster-pru-1955.jpg",
@@ -543,7 +570,8 @@ window.DATA = {
    "source": "https://commons.wikimedia.org/wiki/File:Poster_pemenang_pilihan_raya_umum_Tanah_Melayu_1955.jpg",
    "bw": "cut/bw-election1955.jpg",
    "bww": 1253,
-   "bwh": 1600
+   "bwh": 1600,
+   "col": "cut/col-election1955.jpg"
   },
   "burhanuddin": {
    "file": "use/burhanuddin-nehru.jpg",
@@ -554,7 +582,8 @@ window.DATA = {
    "source": "https://lestarihikmah.com/2019/08/dr-burhanuddin-al-helmy-cekal-memperjuang-kemerdekaan/",
    "bw": "cut/bw-burhanuddin.jpg",
    "bww": 1231,
-   "bwh": 878
+   "bwh": 878,
+   "col": "cut/col-burhanuddin.jpg"
   },
   "burhanuddin2": {
    "file": "use/r2-burhanuddin-3.jpg",
@@ -568,7 +597,9 @@ window.DATA = {
    "ch": 526,
    "bw": "cut/bw-burhanuddin2.jpg",
    "bww": 800,
-   "bwh": 600
+   "bwh": 600,
+   "cutc": "cut/burhanuddin2-c.png",
+   "col": "cut/col-burhanuddin2.jpg"
   },
   "burhanuddin_p": {
    "file": "use/r4-burhanuddin-potret.jpg",
@@ -582,7 +613,9 @@ window.DATA = {
    "ch": 714,
    "bw": "cut/bw-burhanuddin_p.jpg",
    "bww": 660,
-   "bwh": 790
+   "bwh": 790,
+   "cutc": "cut/burhanuddin_p-c.png",
+   "col": "cut/col-burhanuddin_p.jpg"
   },
   "zulkifli": {
    "file": "use/zulkifli-muhammad-1.jpg",
@@ -596,7 +629,9 @@ window.DATA = {
    "ch": 687,
    "bw": "cut/bw-zulkifli.jpg",
    "bww": 726,
-   "bwh": 1044
+   "bwh": 1044,
+   "cutc": "cut/zulkifli-c.png",
+   "col": "cut/col-zulkifli.jpg"
   },
   "zulkifli2": {
    "file": "use/zulkifli-muhammad-2.jpg",
@@ -610,7 +645,9 @@ window.DATA = {
    "ch": 914,
    "bw": "cut/bw-zulkifli2.jpg",
    "bww": 381,
-   "bwh": 596
+   "bwh": 596,
+   "cutc": "cut/zulkifli2-c.png",
+   "col": "cut/col-zulkifli2.jpg"
   },
   "kelantan1959": {
    "file": "use/ishak-lotfi-1.jpg",
@@ -624,7 +661,9 @@ window.DATA = {
    "ch": 706,
    "bw": "cut/bw-kelantan1959.jpg",
    "bww": 1378,
-   "bwh": 1566
+   "bwh": 1566,
+   "cutc": "cut/kelantan1959-c.png",
+   "col": "cut/col-kelantan1959.jpg"
   },
   "trg1959": {
    "file": "use/terengganu-1959-kerajaan-pas.jpg",
@@ -635,7 +674,8 @@ window.DATA = {
    "source": "https://pasterengganu.com/kenali-pas-terengganu",
    "bw": "cut/bw-trg1959.jpg",
    "bww": 1600,
-   "bwh": 1020
+   "bwh": 1020,
+   "col": "cut/col-trg1959.jpg"
   },
   "asri": {
    "file": "use/asri-muda-1.jpg",
@@ -650,7 +690,9 @@ window.DATA = {
    "ch": 707,
    "bw": "cut/bw-asri.jpg",
    "bww": 722,
-   "bwh": 960
+   "bwh": 960,
+   "cutc": "cut/asri-c.png",
+   "col": "cut/col-asri.jpg"
   },
   "bn1974": {
    "file": "use/asri-tun-razak.jpg",
@@ -661,7 +703,8 @@ window.DATA = {
    "source": "https://cilisos.my/wait-pas-used-to-be-part-of-bn-arent-they-enemies-now/",
    "bw": "cut/bw-bn1974.jpg",
    "bww": 598,
-   "bwh": 404
+   "bwh": 404,
+   "col": "cut/col-bn1974.jpg"
   },
   "yusofrawa": {
    "file": "use/r4-yusof-rawa-potret.jpg",
@@ -675,7 +718,9 @@ window.DATA = {
    "ch": 602,
    "bw": "cut/bw-yusofrawa.jpg",
    "bww": 564,
-   "bwh": 474
+   "bwh": 474,
+   "cutc": "cut/yusofrawa-c.png",
+   "col": "cut/col-yusofrawa.jpg"
   },
   "memali": {
    "file": "use/memali-1985-sekatan-polis.jpg",
@@ -686,7 +731,8 @@ window.DATA = {
    "source": "https://thestar.com.my/news/nation/2026/07/18/story-behind-the-headline-bloodshed-in-kampung-memali",
    "bw": "cut/bw-memali.jpg",
    "bww": 1240,
-   "bwh": 822
+   "bwh": 822,
+   "col": "cut/col-memali.jpg"
   },
   "crowd_old": {
    "file": "use/kelantan-1970an-perhimpunan.jpg",
@@ -697,7 +743,8 @@ window.DATA = {
    "source": "http://pwaliman.blogspot.com/2017/11/dri.html",
    "bw": "cut/bw-crowd_old.jpg",
    "bww": 951,
-   "bwh": 574
+   "bwh": 574,
+   "col": "cut/col-crowd_old.jpg"
   },
   "fadzil": {
    "file": "use/r2-fadzil-noor-1.jpg",
@@ -711,7 +758,9 @@ window.DATA = {
    "ch": 882,
    "bw": "cut/bw-fadzil.jpg",
    "bww": 590,
-   "bwh": 400
+   "bwh": 400,
+   "cutc": "cut/fadzil-c.png",
+   "col": "cut/col-fadzil.jpg"
   },
   "fadzil2": {
    "file": "use/r2-fadzil-noor-ceramah-2002.jpg",
@@ -722,7 +771,8 @@ window.DATA = {
    "source": "https://www.abim.org.my/ustaz-fadzil-noor-tokoh-wassatiyyah-gerakan-islam/",
    "bw": "cut/bw-fadzil2.jpg",
    "bww": 1024,
-   "bwh": 616
+   "bwh": 616,
+   "col": "cut/col-fadzil2.jpg"
   },
   "nikaziz": {
    "file": "use/nik-aziz-2.jpg",
@@ -736,7 +786,9 @@ window.DATA = {
    "ch": 871,
    "bw": "cut/bw-nikaziz.jpg",
    "bww": 900,
-   "bwh": 1116
+   "bwh": 1116,
+   "cutc": "cut/nikaziz-c.png",
+   "col": "cut/col-nikaziz.jpg"
   },
   "hadi": {
    "file": "use/hadi-awang-kuliah-dhuha.jpg",
@@ -747,7 +799,8 @@ window.DATA = {
    "source": "https://commons.wikimedia.org/wiki/File:Kuliah_Dhuha_Tuan_Guru.jpg",
    "bw": "cut/bw-hadi.jpg",
    "bww": 1600,
-   "bwh": 1066
+   "bwh": 1066,
+   "col": "cut/col-hadi.jpg"
   },
   "hadi_p": {
    "file": "use/hadi-awang-2026.jpg",
@@ -762,7 +815,9 @@ window.DATA = {
    "ch": 876,
    "bw": "cut/bw-hadi_p.jpg",
    "bww": 1280,
-   "bwh": 1578
+   "bwh": 1578,
+   "cutc": "cut/hadi_p-c.png",
+   "col": "cut/col-hadi_p.jpg"
   },
   "nikaziz_funeral": {
    "file": "use/nik-aziz-jenazah-1.jpg",
@@ -773,7 +828,8 @@ window.DATA = {
    "source": "http://hazrilhafiz.blogspot.com/2015/02/gambar-sekitar-pengebumian-tuan-guru.html",
    "bw": "cut/bw-nikaziz_funeral.jpg",
    "bww": 1600,
-   "bwh": 1068
+   "bwh": 1068,
+   "col": "cut/col-nikaziz_funeral.jpg"
   },
   "mn2019": {
    "file": "use/muafakat-nasional-2019-berpelukan.jpg",
@@ -784,7 +840,8 @@ window.DATA = {
    "source": "https://www.sinarharian.com.my/article/215947/berita/politik/khairuddin-imbau-sejarah-penubuhan-muafakat-nasional",
    "bw": "cut/bw-mn2019.jpg",
    "bww": 1000,
-   "bwh": 750
+   "bwh": 750,
+   "col": "cut/col-mn2019.jpg"
   },
   "pn2020": {
    "file": "use/hadi-muhyiddin-ziarah.jpg",
@@ -795,7 +852,8 @@ window.DATA = {
    "source": "https://commons.wikimedia.org/wiki/File:Tan_Sri_Muhyiddin_Yassin_menziarahi_Tuan_Guru.jpg",
    "bw": "cut/bw-pn2020.jpg",
    "bww": 1600,
-   "bwh": 1066
+   "bwh": 1066,
+   "col": "cut/col-pn2020.jpg"
   },
   "ge15": {
    "file": "use/r2-pru15-himpunan-pn-2022.jpg",
@@ -806,7 +864,8 @@ window.DATA = {
    "source": "https://fulcrum.sg/malaysias-green-wave-was-a-long-time-coming",
    "bw": "cut/bw-ge15.jpg",
    "bww": 1248,
-   "bwh": 560
+   "bwh": 560,
+   "col": "cut/col-ge15.jpg"
   },
   "crowd_modern": {
    "file": "use/ceramah-pn-negeri-sembilan.jpg",
@@ -817,7 +876,8 @@ window.DATA = {
    "source": "https://commons.wikimedia.org/wiki/File:Ceramah_politik_Perikatan_Nasional_Negeri_Sembilan_9_Jul.jpg",
    "bw": "cut/bw-crowd_modern.jpg",
    "bww": 1600,
-   "bwh": 1200
+   "bwh": 1200,
+   "col": "cut/col-crowd_modern.jpg"
   },
   "samsuri": {
    "file": "use/samsuri-1.jpg",
@@ -831,7 +891,9 @@ window.DATA = {
    "ch": 862,
    "bw": "cut/bw-samsuri.jpg",
    "bww": 1313,
-   "bwh": 1600
+   "bwh": 1600,
+   "cutc": "cut/samsuri-c.png",
+   "col": "cut/col-samsuri.jpg"
   },
   "muktamar72": {
    "file": "use/muktamar-72-perwakilan.jpg",
@@ -842,7 +904,8 @@ window.DATA = {
    "source": "https://utusan.com.my/nasional/2026/09/muktamar-pas-lulus-usul-penyatuan-ummah",
    "bw": "cut/bw-muktamar72.jpg",
    "bww": 1080,
-   "bwh": 810
+   "bwh": 810,
+   "col": "cut/col-muktamar72.jpg"
   }
  }
 };

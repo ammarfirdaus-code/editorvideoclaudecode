@@ -108,7 +108,7 @@ MAIN = [
     dict(id="ch1", era="1951 – 1956", title="Lahirnya Sebuah Cita-cita",
          text="Persidangan ulama itu melahirkan Persatuan Islam Se-Malaya, ringkasnya PAS, dengan Tuan Haji Ahmad Fuad Hassan sebagai Yang Dipertua pertama. Dua tahun kemudian, Dr. Haji Abbas Alias mengambil alih. Pada pilihan raya pertama Tanah Melayu tahun 1955, PAS hanya menang satu kerusi: Krian, melalui Tuan Guru Haji Ahmad Tuan Hussein. Satu kerusi. Tetapi itulah satu-satunya suara pembangkang dalam Majlis Perundangan Persekutuan.",
          scenes=[
-             (None, dict(type="words", big="Persatuan Islam Se-Malaya", sub="PAS · ditubuhkan 24 November 1951", photo="founding2", year=1951)),
+             (None, dict(type="words", logos=["pas"], big="Persatuan Islam Se-Malaya", sub="PAS · ditubuhkan 24 November 1951", photo="founding2", year=1951)),
              ("dengan", dict(type="photo", photo="fuad", caption="Haji Ahmad Fuad Hassan", sub="Yang Dipertua pertama · 1951–1953", year=1951)),
              ("Dua", dict(type="photo", photo="abbas", caption="Dr. Haji Abbas Alias", sub="Yang Dipertua Agung · 1953–1956", year=1953)),
              ("pilihan", dict(type="seats", photo="election1955", total=52, won=1, label="Pilihan Raya Persekutuan 1955", sub="52 kerusi dipertandingkan", year=1955)),
@@ -133,8 +133,8 @@ MAIN = [
              (None, dict(type="photo", photo="zulkifli2", caption="1964", sub="Zulkifli Muhammad terkorban dalam kemalangan", year=1964)),
              ("Burhanuddin", dict(type="photo", photo="burhanuddin2", caption="1965 – 1969", sub="Dr. Burhanuddin ditahan di bawah ISA, meninggal dunia 1969", year=1965)),
              ("bawah#2", dict(type="photo", photo="asri", caption="Dato' Mohd Asri Muda", sub="Yang Dipertua Agung · 1969–1982", year=1969)),
-             ("menyertai", dict(type="words", big="Parti Islam Se-Malaysia", sub="Kerajaan Campuran 1973 · Barisan Nasional 1974", photo="bn1974", year=1973)),
-             ("krisis", dict(type="tiles", label="Krisis Kelantan", year=1977, init=dict(on=["KEL"], stat="1977", statsub="Darurat diisytiharkan di Kelantan"), steps=[
+             ("menyertai", dict(type="words", logos=["pas", "bn"], big="Parti Islam Se-Malaysia", sub="Kerajaan Campuran 1973 · Barisan Nasional 1974", photo="bn1974", year=1973)),
+             ("krisis", dict(type="tiles", logos=["bn"], label="Krisis Kelantan", year=1977, init=dict(on=["KEL"], stat="1977", statsub="Darurat diisytiharkan di Kelantan"), steps=[
                  ("keluar", dict(on=["KEL"], stat="1977", statsub="PAS keluar daripada Barisan Nasional")),
                  ("terlepas", dict(on=[], stat="19 tahun", statsub="Kelantan terlepas, 1959–1978", year=1978)),
              ])),
@@ -167,7 +167,7 @@ MAIN = [
              ("2004", dict(type="chart", label="Kerusi Parlimen PAS", upto=2004, year=2004, steps=[
                  ("2008", dict(upto=2008, year=2008)),
              ])),
-             ("Kedah", dict(type="tiles", label="Pilihan Raya Umum 2008", year=2008, init=dict(on=["KEL", "KED"], stat="23", statsub="kerusi Parlimen · Kedah ditawan"), steps=[
+             ("Kedah", dict(type="tiles", logos=["pr"], label="Pilihan Raya Umum 2008", year=2008, init=dict(on=["KEL", "KED"], stat="23", statsub="kerusi Parlimen · Kedah ditawan"), steps=[
                  ("Perak", dict(on=["KEL", "KED", "PRK"], stat="23", statsub="Menteri Besar Perak daripada PAS")),
              ])),
              ("2015", dict(type="photo", photo="nikaziz_funeral", caption="12 Februari 2015", sub="Tok Guru Nik Aziz kembali ke rahmatullah", year=2015)),
@@ -179,13 +179,13 @@ MAIN = [
     dict(id="ch7", era="2019 – 2023", title="Gelombang Hijau",
          text="2019, Muafakat Nasional dimeterai bersama UMNO. 2020, bersama Perikatan Nasional, PAS kembali ke kerajaan Persekutuan, buat pertama kali sejak 1977. Dan pada Pilihan Raya Umum ke-15, tahun 2022: 43 kerusi. Buat pertama kali dalam sejarah, PAS menjadi parti tunggal terbesar di Dewan Rakyat. Setahun kemudian, Terengganu disapu bersih, 32 kosong, manakala Kelantan dan Kedah dimenangi dengan majoriti besar.",
          scenes=[
-             (None, dict(type="photo", photo="mn2019", caption="Muafakat Nasional", sub="14 September 2019", year=2019)),
-             ("2020", dict(type="photo", photo="pn2020", caption="Perikatan Nasional", sub="Kembali ke kerajaan Persekutuan, 2020", year=2020)),
+             (None, dict(type="photo", logos=["pas", "umno"], photo="mn2019", caption="Muafakat Nasional", sub="14 September 2019", year=2019)),
+             ("2020", dict(type="photo", logos=["pn"], photo="pn2020", caption="Perikatan Nasional", sub="Kembali ke kerajaan Persekutuan, 2020", year=2020)),
              ("Dan", dict(type="chart", label="Kerusi Parlimen PAS", upto=2018, year=2022, steps=[
                  ("43", dict(upto=2022, year=2022)),
              ])),
-             ("Buat", dict(type="photo", photo="ge15", caption="Parti tunggal terbesar", sub="Dewan Rakyat, 2022", year=2022)),
-             ("Setahun", dict(type="tiles", label="Pilihan Raya Negeri 2023", year=2023, init=dict(on=["TRG"], stat="32 – 0", statsub="Terengganu disapu bersih"), steps=[
+             ("Buat", dict(type="photo", logos=["pas"], photo="ge15", caption="Parti tunggal terbesar", sub="Dewan Rakyat, 2022", year=2022)),
+             ("Setahun", dict(type="tiles", logos=["pn"], label="Pilihan Raya Negeri 2023", year=2023, init=dict(on=["TRG"], stat="32 – 0", statsub="Terengganu disapu bersih"), steps=[
                  ("manakala", dict(on=["TRG", "KEL", "KED"], stat="2023", statsub="Kelantan dan Kedah dimenangi dengan majoriti besar")),
              ])),
          ]),
@@ -193,8 +193,8 @@ MAIN = [
          text="Hari ini, tujuh puluh lima tahun kemudian. Februari 2026, Naib Presiden PAS, Dato' Seri Dr. Ahmad Samsuri Mokhtar, dilantik sebagai Pengerusi Perikatan Nasional. September, Muktamar ke-72 berlangsung di Pusat Tarbiyah Islamiyah Kelantan. Daripada satu kerusi pada 1955, kepada 43. Tujuh orang presiden. Menang dan kalah. Memerintah dan membangkang. Tujuh puluh lima tahun. Satu perjalanan yang belum selesai, menuju satu abad, pada 2051.",
          scenes=[
              (None, dict(type="photo", photo="crowd_modern", caption="Hari ini", sub="75 tahun kemudian", year=2026)),
-             ("Februari", dict(type="photo", photo="samsuri", caption="Dato' Seri Dr. Ahmad Samsuri Mokhtar", sub="Pengerusi Perikatan Nasional · Februari 2026", year=2026)),
-             ("September", dict(type="photo", photo="muktamar72", caption="Muktamar Tahunan PAS ke-72", sub="PUTIK, Pengkalan Chepa · September 2026", year=2026)),
+             ("Februari", dict(type="photo", logos=["pn"], photo="samsuri", caption="Dato' Seri Dr. Ahmad Samsuri Mokhtar", sub="Pengerusi Perikatan Nasional · Februari 2026", year=2026)),
+             ("September", dict(type="photo", logos=["pas"], photo="muktamar72", caption="Muktamar Tahunan PAS ke-72", sub="PUTIK, Pengkalan Chepa · September 2026", year=2026)),
              ("daripada", dict(type="stat", big="1 → 43", label="kerusi Parlimen", sub="1955 → 2022", year=2026)),
              ("orang", dict(type="presidents", year=2026)),
              ("Satu", dict(type="outro", year=2026)),
@@ -210,7 +210,7 @@ REEL = [
              ("Pilihan", dict(type="stat", big="1", label="kerusi", sub="Pilihan Raya Persekutuan 1955", photo="election1955", year=1955)),
              ("Empat", dict(type="tiles", label="Pilihan Raya 1959", year=1959, init=dict(on=["KEL", "TRG"], stat="1959", statsub="Kelantan dan Terengganu ditawan"), steps=[])),
              ("datang", dict(type="photo", photo="burhanuddin2", caption="Tahun-tahun ujian", sub="Dr. Burhanuddin ditahan di bawah ISA, 1965", year=1965)),
-             ("darurat", dict(type="photo", photo="asri", caption="1977", sub="Darurat Kelantan · PAS keluar daripada BN", year=1977)),
+             ("darurat", dict(type="photo", logos=["bn"], photo="asri", caption="1977", sub="Darurat Kelantan · PAS keluar daripada BN", year=1977)),
              ("dan", dict(type="stat", big="1", label="kerusi Parlimen", sub="Pilihan Raya Umum 1986", year=1986)),
              ("Tetapi", dict(type="photo", photo="fadzil", caption="Kebangkitan", sub="Dato' Haji Fadzil Noor · Presiden 1989–2002", year=1989)),
              ("1990", dict(type="photo", photo="nikaziz", caption="Tok Guru Nik Aziz", sub="Kelantan disapu bersih, 39 / 39 · 1990", year=1990)),
@@ -219,7 +219,7 @@ REEL = [
                  ("Bangkit", dict(upto=2008, year=2008)),
                  ("Dan", dict(upto=2022, year=2022)),
              ])),
-             ("Parti", dict(type="photo", photo="ge15", caption="Parti tunggal terbesar", sub="Dewan Rakyat, 2022", year=2022)),
+             ("Parti", dict(type="photo", logos=["pas"], photo="ge15", caption="Parti tunggal terbesar", sub="Dewan Rakyat, 2022", year=2022)),
              ("Tujuh", dict(type="presidents", year=2026)),
              ("Daripada", dict(type="stat", big="1 → 43", label="kerusi Parlimen", sub="1955 → 2022", year=2026)),
              ("perjalanan", dict(type="outro", year=2026)),
@@ -280,6 +280,7 @@ def build(kind):
                 sp["at"] = round(vo0 + sp.pop("_at") - LEAD, 3)
                 steps.append(sp)
             p.update(start=round(st, 3), end=round(en, 3), steps=steps, chapter=ci)
+            p["colour"] = (kind == "main" and ci >= 6) or (kind == "reel" and p.get("year", 0) >= 2004)
             scenes.append(p)
         for s, e, line in captions(ch["text"], words, maxlen):
             caps.append([round(vo0 + s, 3), round(vo0 + e, 3), line])

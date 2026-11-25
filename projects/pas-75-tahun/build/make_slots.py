@@ -51,7 +51,7 @@ for key, (f, extra) in SLOTS.items():
     credit = man[f]["credit"].split(" (")[0]
     out[key] = dict(file=use, blur=blur, w=int(wh[0]), h=int(wh[1]), credit=credit, source=man[f].get("page_url"), **extra)
     if old.get(key, {}).get("file") == use:      # keep cut-out / print fields made by make_cutouts.py
-        for k in ("cut", "cw", "ch", "bw", "bww", "bwh"):
+        for k in ("cut", "cw", "ch", "bw", "bww", "bwh", "cutc", "col"):
             if k in old[key]:
                 out[key][k] = old[key][k]
 json.dump(out, open(os.path.join(PH, "slots.json"), "w"), ensure_ascii=False, indent=1)

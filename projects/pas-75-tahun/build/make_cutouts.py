@@ -49,6 +49,12 @@ for key, sl in slots.items():
         out = out.crop((bb[0], bb[1], bb[2], H - pad + 0)) if bb else out   # flat bottom edge like a bust cutout
         name = f"cut/{key}.png"
         out.save(os.path.join(PH, name))
+        colour = Image.new("RGB", (W, H), (255, 255, 255)); colour.paste(src, (pad, pad))
+        outc = Image.new("RGBA", (W, H), (255, 255, 255, 0))
+        outc.paste(Image.new("RGBA", (W, H), (250, 249, 245, 255)), (0, 0), ring)
+        r_, g_, b_ = colour.split(); outc.alpha_composite(Image.merge("RGBA", (r_, g_, b_, alpha)))
+        outc = outc.crop((bb[0], bb[1], bb[2], H - pad)) if bb else outc
+        outc.save(os.path.join(PH, f"cut/{key}-c.png")); sl["cutc"] = f"cut/{key}-c.png"
         cov = sum(1 for v in alpha.getdata() if v > 128) / (W * H)
         sl.update(cut=name, cw=out.width, ch=out.height)
         print(f"{key:14s} cutout {out.size} coverage {cov:.2f}")
@@ -58,4 +64,7 @@ for key, sl in slots.items():
     name = f"cut/bw-{key}.jpg"
     g.save(os.path.join(PH, name), quality=90)
     sl.update(bw=name, bww=g.width, bwh=g.height)
+    full = Image.open(os.path.join(PH, sl["file"])).convert("RGB")
+    full = full.resize((round(full.width * s), round(full.height * s)), Image.LANCZOS)
+    full.save(os.path.join(PH, f"cut/col-{key}.jpg"), quality=90); sl["col"] = f"cut/col-{key}.jpg"
 json.dump(slots, open(os.path.join(PH, "slots.json"), "w"), ensure_ascii=False, indent=1)

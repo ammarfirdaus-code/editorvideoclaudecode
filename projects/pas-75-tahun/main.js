@@ -32,14 +32,20 @@
     nodes.filter(Boolean).forEach((n, i) => slap(sc, n, at + i * (gap == null ? 0.16 : gap), 0));
   }
   // visual for a photo slot: a cut-out sticker when there is one, else a taped black-and-white print
-  function visual(sc, p, at, forcePrint) {
+  function logoRow(sc, s, info, at) {
+    if (!s.logos || !s.logos.length) return;
+    const row = el('logos');
+    s.logos.forEach((k, i) => { const c = el('logo-card'); const im = el('', null, 'img'); im.src = 'assets/logos/' + k + '.png'; c.appendChild(im); row.appendChild(c); slap(sc, c, at + i * 0.18, i % 2 ? 2 : -2); });
+    info.appendChild(row);
+  }
+  function visual(sc, p, at, forcePrint, colour) {
     const wrap = el('vis');
     noteCredit(p);
     if (p.cut && !forcePrint) {
       wrap.classList.add('cutwrap');
-      const im = el('cutout', null, 'img'); im.src = src(p.cut); wrap.appendChild(im);
+      const im = el('cutout', null, 'img'); im.src = src(colour && p.cutc ? p.cutc : p.cut); wrap.appendChild(im);
     } else {
-      const pr = el('print' + (forcePrint ? ' small' : '')); const im = el('', null, 'img'); im.src = src(p.bw || p.file);
+      const pr = el('print' + (forcePrint ? ' small' : '')); const im = el('', null, 'img'); im.src = src(colour && p.col ? p.col : (p.bw || p.file));
       pr.append(el('tape'), im); wrap.appendChild(pr);
     }
     if (p.credit) wrap.appendChild(el('credit', 'Foto: ' + p.credit));
@@ -108,16 +114,18 @@
       const sub = s.sub ? el('chip', s.sub) : null;
       if (t) info.appendChild(t); if (sub) info.appendChild(sub);
       if (!p) { const c = el('center'); c.append(...[t, sub].filter(Boolean)); sc.appendChild(c); pops(sc, [t, sub], 0.3, 0.2); return; }
-      duo(sc, visual(sc, p, 0.2), info);
+      duo(sc, visual(sc, p, 0.2, false, s.colour), info);
       pops(sc, [t, sub], 0.55, 0.2);
+      logoRow(sc, s, info, 1.0);
     },
     words(sc, s) {
       const p = photoOf(s.photo);
       const info = el('info');
       const h = el('headline', s.big); const sub = s.sub ? el('chip', s.sub) : null;
       info.appendChild(h); if (sub) info.appendChild(sub);
-      if (p) duo(sc, visual(sc, p, 0.2, true), info);
+      if (p) duo(sc, visual(sc, p, 0.2, true, s.colour), info);
       else { const c = el('center'); c.append(h); if (sub) c.append(sub); sc.appendChild(c); }
+      logoRow(sc, s, p ? info : sc.querySelector('.center'), 1.1);
       slap(sc, h, p ? 0.5 : 0.25, -1.2); if (sub) slap(sc, sub, p ? 0.8 : 0.6, 0);
     },
     stat(sc, s) {
@@ -163,6 +171,7 @@
       viz.querySelectorAll('.st-on').forEach(p => { fills[p.dataset.k] = [p, viz.querySelector(`.st-lab[data-k="${p.dataset.k}"]`)]; });
       info.appendChild(el('kicker', s.label));
       const stats = el('stats'); info.appendChild(stats);
+      logoRow(sc, s, info, 1.2);
       duo(sc, viz, info);
       slap(sc, viz, 0.15, -2); drift(sc, viz, 0.7);
       const states = [];
@@ -228,7 +237,7 @@
       const row = el('pres'); const cards = [];
       D.presidents.forEach(([key, name, years]) => {
         const p = photoOf(key); const card = el('pcard'); const im = el('pimg');
-        if (p && p.cut) { const i = el('', null, 'img'); i.src = src(p.cut); im.appendChild(i); noteCredit(p); }
+        if (p && p.cut) { const i = el('', null, 'img'); i.src = src(key === 'hadi_p' && p.cutc ? p.cutc : p.cut); im.appendChild(i); noteCredit(p); }
         else if (p) { const f = el('pprint'); f.style.backgroundImage = `url("${src(p.bw || p.file)}")`; if (p.pos) f.style.backgroundPosition = p.pos; im.appendChild(f); noteCredit(p); }
         else im.appendChild(el('pmono', name.split(' ').filter(w => /^[A-Z]/.test(w)).slice(0, 2).map(w => w[0]).join('')));
         card.append(im, el('pname', name), el('pyears', years)); row.appendChild(card); cards.push(card);

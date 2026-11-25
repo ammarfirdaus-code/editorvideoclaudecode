@@ -169,3 +169,11 @@ body.main .pprint { width: 170px; height: 210px; margin-bottom: 14px; } body.ree
 
 body.reel .print.small img { max-height: 400px; max-width: 700px; min-width: 0; }
 body.main .print.small img { max-height: 460px; max-width: 620px; }
+
+/* ---------- party / coalition logos (always in colour) */
+.logos { display: flex; align-items: center; gap: 18px; margin-top: 26px; }
+body.reel .logos { justify-content: center; }
+.logo-card { background: var(--white); padding: 10px; box-shadow: 0 8px 16px rgba(30,26,18,.26); line-height: 0; }
+.logo-card img { display: block; height: 92px; width: auto; }
+body.reel .logo-card img { height: 96px; }
+.tiles .logos, .sc-tiles .logos { margin-top: 10px; }
