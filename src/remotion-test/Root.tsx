@@ -1,4 +1,5 @@
 import React from "react";
+import { ThreeCube } from "./ThreeCube";
 import { Composition, AbsoluteFill, interpolate, useCurrentFrame, useVideoConfig } from "remotion";
 
 const TestScene: React.FC = () => {
@@ -17,5 +18,8 @@ const TestScene: React.FC = () => {
 };
 
 export const RemotionRoot: React.FC = () => (
-  <Composition id="TestScene" component={TestScene} durationInFrames={90} fps={30} width={1920} height={1080} />
+  <>
+    <Composition id="TestScene" component={TestScene} durationInFrames={90} fps={30} width={1920} height={1080} />
+    <Composition id="ThreeCube" component={ThreeCube} durationInFrames={120} fps={30} width={1920} height={1080} />
+  </>
 );
