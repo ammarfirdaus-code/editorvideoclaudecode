@@ -22,10 +22,10 @@ for i, a in enumerate(D["audio"]):
     f.append(f"[{i+2}:a]aresample=48000,aformat=channel_layouts=stereo,adelay={ms}|{ms}[v{i}]")
     vo.append(f"[v{i}]")
 f.append("".join(vo) + f"amix=inputs={len(vo)}:normalize=0,apad=whole_dur={T},atrim=0:{T},asplit=2[vo][key]")
-f.append(f"[1:a]aresample=48000,aformat=channel_layouts=stereo,atrim=0:{T},volume=0.32,afade=t=in:d=1.5,afade=t=out:st={T-3.5}:d=3.5[mu]")
-f.append("[mu][key]sidechaincompress=threshold=0.02:ratio=7:attack=120:release=900[duck]")
+f.append(f"[1:a]aresample=48000,aformat=channel_layouts=stereo,atrim=0:{T},volume=0.46,afade=t=in:d=1.5,afade=t=out:st={T-3.5}:d=3.5[mu]")
+f.append("[mu][key]sidechaincompress=threshold=0.03:ratio=3.5:attack=150:release=1200[duck]")
 if sfx:
-    f.append(f"[{len(D['audio']) + 2}:a]aresample=48000,aformat=channel_layouts=stereo,volume=0.62[fx]")
+    f.append(f"[{len(D['audio']) + 2}:a]aresample=48000,aformat=channel_layouts=stereo,volume=0.42[fx]")
     f.append("[vo]volume=1.5[vo2];[vo2][duck][fx]amix=inputs=3:normalize=0,alimiter=limit=0.95[a]")
 else:
     f.append("[vo]volume=1.5[vo2];[vo2][duck]amix=inputs=2:normalize=0,alimiter=limit=0.95[a]")
