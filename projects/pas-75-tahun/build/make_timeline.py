@@ -118,7 +118,7 @@ MAIN = [
     dict(id="ch2", era="1956 – 1961", title="Fajar di Pantai Timur",
          text="Hujung 1956, Dr. Burhanuddin al-Helmy memimpin PAS, bergandingan dengan Profesor Zulkifli Muhammad. Tiga tahun kemudian, PAS mengejutkan negara. Kelantan ditawan dengan 28 daripada 30 kerusi. Terengganu, dengan 13 daripada 24. Kerajaan Terengganu tumbang pada 1961. Tetapi Kelantan kekal, menjadi kubu yang membentuk jati diri parti.",
          scenes=[
-             (None, dict(type="photo", photo="burhanuddin", caption="Dr. Burhanuddin al-Helmy", sub="Yang Dipertua Agung · 1956–1969", year=1956)),
+             (None, dict(type="photo", photo="burhanuddin_p", caption="Dr. Burhanuddin al-Helmy", sub="Yang Dipertua Agung · 1956–1969", year=1956)),
              ("bergandingan", dict(type="photo", photo="zulkifli", caption="Prof. Zulkifli Muhammad", sub="Timbalan Yang Dipertua Agung · 1956–1964", year=1956)),
              ("Tiga", dict(type="tiles", label="Pilihan Raya 1959", year=1959, steps=[
                  ("Kelantan", dict(on=["KEL"], stat="28 / 30", statsub="kerusi DUN Kelantan")),

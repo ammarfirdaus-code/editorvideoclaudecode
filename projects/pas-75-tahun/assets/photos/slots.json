@@ -98,19 +98,18 @@
   "bwh": 600
  },
  "burhanuddin_p": {
-  "file": "use/burhanuddin-2.jpg",
-  "blur": "use/blur-burhanuddin-2.jpg",
-  "w": 375,
-  "h": 500,
-  "credit": "Flickr / 10tahun",
-  "source": "https://www.flickr.com/photos/10tahun/2178595758",
-  "pos": "50% 20%",
+  "file": "use/r4-burhanuddin-potret.jpg",
+  "blur": "use/blur-r4-burhanuddin-potret.jpg",
+  "w": 660,
+  "h": 790,
+  "credit": "Alchetron",
+  "source": "https://alchetron.com/Burhanuddin-al-Helmy",
   "cut": "cut/burhanuddin_p.png",
-  "cw": 660,
-  "ch": 901,
+  "cw": 595,
+  "ch": 714,
   "bw": "cut/bw-burhanuddin_p.jpg",
-  "bww": 375,
-  "bwh": 500
+  "bww": 660,
+  "bwh": 790
  },
  "zulkifli": {
   "file": "use/zulkifli-muhammad-1.jpg",
@@ -192,19 +191,18 @@
   "bwh": 404
  },
  "yusofrawa": {
-  "file": "use/yusof-rawa-1.jpg",
-  "blur": "use/blur-yusof-rawa-1.jpg",
-  "w": 396,
-  "h": 568,
-  "credit": "ibnuhasyim.com",
-  "source": "http://www.ibnuhasyim.com/2012/02/sejarah-tuan-guru-haji-yusof-rawa-1922.html",
-  "pos": "50% 15%",
+  "file": "use/r4-yusof-rawa-potret.jpg",
+  "blur": "use/blur-r4-yusof-rawa-potret.jpg",
+  "w": 564,
+  "h": 474,
+  "credit": "Penang Institute",
+  "source": "https://penanginstitute.org/publications/suara-nadi/yusof-rawa-lebuh-acheh-dan-penyebaran-ilmu/",
   "cut": "cut/yusofrawa.png",
-  "cw": 516,
-  "ch": 714,
+  "cw": 658,
+  "ch": 602,
   "bw": "cut/bw-yusofrawa.jpg",
-  "bww": 396,
-  "bwh": 568
+  "bww": 564,
+  "bwh": 474
  },
  "memali": {
   "file": "use/memali-1985-sekatan-polis.jpg",
@@ -236,8 +234,8 @@
   "credit": "Astro Awani",
   "source": "https://www.astroawani.com/topic/fadzil-noor",
   "cut": "cut/fadzil.png",
-  "cw": 671,
-  "ch": 688,
+  "cw": 480,
+  "ch": 882,
   "bw": "cut/bw-fadzil.jpg",
   "bww": 590,
   "bwh": 400

@@ -18,7 +18,7 @@ PEOPLE = {
 }
 slots = json.load(open(os.path.join(PH, "slots.json")))
 SESS = {"isnet": new_session("isnet-general-use"), "human": new_session("u2net_human_seg")}
-HUMAN = {"yusofrawa", "fadzil", "asri", "kelantan1959", "zulkifli", "burhanuddin2"}
+HUMAN = {"asri", "kelantan1959", "zulkifli", "burhanuddin2", "burhanuddin_p", "yusofrawa"}
 
 def tone(im):
     g = ImageOps.autocontrast(ImageOps.grayscale(im), cutoff=1)
