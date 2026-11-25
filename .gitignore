@@ -14,3 +14,8 @@ out/
 
 # Personal permission overrides
 .claude/settings.local.json
+
+# PAS 75 documentary: third-party archive photos and rendered video stay out of git
+projects/pas-75-tahun/assets/photos/*.jpg
+projects/pas-75-tahun/assets/photos/use/
+projects/pas-75-tahun/out/

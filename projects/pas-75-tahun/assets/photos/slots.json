@@ -1,0 +1,233 @@
+{
+ "founding": {
+  "file": "use/pas-awal-majlis.jpg",
+  "blur": "use/blur-pas-awal-majlis.jpg",
+  "w": 556,
+  "h": 316,
+  "credit": "Arkib PAS",
+  "source": "https://pas.org.my/kenali-pas/"
+ },
+ "founding2": {
+  "file": "use/kongres-pas-1952.jpg",
+  "blur": "use/blur-kongres-pas-1952.jpg",
+  "w": 963,
+  "h": 588,
+  "credit": "fwaliman.blogspot.com",
+  "source": "https://fwaliman.blogspot.com/2020/10/pas.html"
+ },
+ "fuad": {
+  "file": "use/ahmad-fuad-kongres-1953.jpg",
+  "blur": "use/blur-ahmad-fuad-kongres-1953.jpg",
+  "w": 400,
+  "h": 244,
+  "credit": "ibnuhasyim.com",
+  "source": "http://www.ibnuhasyim.com/2013/11/siapa-orang-cina-terlibat-tubuh-pas.html"
+ },
+ "abbas": {
+  "file": "use/abbas-alias-1.jpg",
+  "blur": "use/blur-abbas-alias-1.jpg",
+  "w": 561,
+  "h": 978,
+  "credit": "theearlymalaydoctors.blogspot.com",
+  "source": "http://theearlymalaydoctors.blogspot.com/2013/08/dr-haji-abbas-bin-alias-1914-2004.html?m=1",
+  "pos": "50% 20%"
+ },
+ "election1955": {
+  "file": "use/poster-pru-1955.jpg",
+  "blur": "use/blur-poster-pru-1955.jpg",
+  "w": 1920,
+  "h": 2452,
+  "credit": "Wikimedia Commons / Taufik, CC0",
+  "source": "https://commons.wikimedia.org/wiki/File:Poster_pemenang_pilihan_raya_umum_Tanah_Melayu_1955.jpg"
+ },
+ "burhanuddin": {
+  "file": "use/burhanuddin-nehru.jpg",
+  "blur": "use/blur-burhanuddin-nehru.jpg",
+  "w": 1231,
+  "h": 878,
+  "credit": "lestarihikmah.com",
+  "source": "https://lestarihikmah.com/2019/08/dr-burhanuddin-al-helmy-cekal-memperjuang-kemerdekaan/"
+ },
+ "burhanuddin2": {
+  "file": "use/burhanuddin-1.jpg",
+  "blur": "use/blur-burhanuddin-1.jpg",
+  "w": 590,
+  "h": 400,
+  "credit": "Astro Awani",
+  "source": "https://www.astroawani.com/berita-malaysia/tokoh-tanpa-memorial-jejak-dr-burhanuddin-alhelmy-536596"
+ },
+ "burhanuddin_p": {
+  "file": "use/burhanuddin-2.jpg",
+  "blur": "use/blur-burhanuddin-2.jpg",
+  "w": 375,
+  "h": 500,
+  "credit": "Flickr / 10tahun",
+  "source": "https://www.flickr.com/photos/10tahun/2178595758",
+  "pos": "50% 20%"
+ },
+ "zulkifli": {
+  "file": "use/zulkifli-muhammad-1.jpg",
+  "blur": "use/blur-zulkifli-muhammad-1.jpg",
+  "w": 726,
+  "h": 1044,
+  "credit": "abunuha.wordpress.com",
+  "source": "https://abunuha.wordpress.com/2015/05/23/dr-zulkifli-muhammad-lantera-perjuangan/"
+ },
+ "zulkifli2": {
+  "file": "use/zulkifli-muhammad-2.jpg",
+  "blur": "use/blur-zulkifli-muhammad-2.jpg",
+  "w": 381,
+  "h": 596,
+  "credit": "kalamperantau.wordpress.com",
+  "source": "https://kalamperantau.wordpress.com/tag/kolej-universiti-islam-zulkifli-muhammad"
+ },
+ "kelantan1959": {
+  "file": "use/ishak-lotfi-1.jpg",
+  "blur": "use/blur-ishak-lotfi-1.jpg",
+  "w": 1378,
+  "h": 1566,
+  "credit": "sokmodotnet.wordpress.com",
+  "source": "https://sokmodotnet.wordpress.com/category/artikel/kelantan-dalam-sejarah"
+ },
+ "trg1959": {
+  "file": "use/terengganu-1959-kerajaan-pas.jpg",
+  "blur": "use/blur-terengganu-1959-kerajaan-pas.jpg",
+  "w": 2165,
+  "h": 1380,
+  "credit": "PAS Terengganu",
+  "source": "https://pasterengganu.com/kenali-pas-terengganu"
+ },
+ "asri": {
+  "file": "use/asri-muda-1.jpg",
+  "blur": "use/blur-asri-muda-1.jpg",
+  "w": 722,
+  "h": 960,
+  "credit": "sejarahkelantan.wordpress.com",
+  "source": "https://sejarahkelantan.wordpress.com/2012/09/27/menteri-besar-kelantan-5-dato-haji-mohd-asri-bin-haji-muda-1964-1973",
+  "pos": "50% 15%"
+ },
+ "bn1974": {
+  "file": "use/asri-tun-razak.jpg",
+  "blur": "use/blur-asri-tun-razak.jpg",
+  "w": 598,
+  "h": 404,
+  "credit": "cilisos.my",
+  "source": "https://cilisos.my/wait-pas-used-to-be-part-of-bn-arent-they-enemies-now/"
+ },
+ "yusofrawa": {
+  "file": "use/yusof-rawa-1.jpg",
+  "blur": "use/blur-yusof-rawa-1.jpg",
+  "w": 396,
+  "h": 568,
+  "credit": "ibnuhasyim.com",
+  "source": "http://www.ibnuhasyim.com/2012/02/sejarah-tuan-guru-haji-yusof-rawa-1922.html",
+  "pos": "50% 15%"
+ },
+ "memali": {
+  "file": "use/memali-1985-sekatan-polis.jpg",
+  "blur": "use/blur-memali-1985-sekatan-polis.jpg",
+  "w": 1240,
+  "h": 822,
+  "credit": "The Star",
+  "source": "https://thestar.com.my/news/nation/2026/07/18/story-behind-the-headline-bloodshed-in-kampung-memali",
+  "bw": true
+ },
+ "crowd_old": {
+  "file": "use/kelantan-1970an-perhimpunan.jpg",
+  "blur": "use/blur-kelantan-1970an-perhimpunan.jpg",
+  "w": 951,
+  "h": 574,
+  "credit": "pwaliman.blogspot.com",
+  "source": "http://pwaliman.blogspot.com/2017/11/dri.html"
+ },
+ "fadzil": {
+  "file": "use/fadzil-noor-nik-aziz.jpg",
+  "blur": "use/blur-fadzil-noor-nik-aziz.jpg",
+  "w": 600,
+  "h": 382,
+  "credit": "Arkib PAS",
+  "source": "https://www.abim.org.my/mengenang-ustaz-fadzil-noor-tokoh-wasatiah-gerakan-islam/",
+  "pos": "18% 30%"
+ },
+ "nikaziz": {
+  "file": "use/nik-aziz-2.jpg",
+  "blur": "use/blur-nik-aziz-2.jpg",
+  "w": 900,
+  "h": 1116,
+  "credit": "cilisos.my",
+  "source": "https://cilisos.my/5-fascinating-things-you-didnt-know-about-nik-aziz/"
+ },
+ "hadi": {
+  "file": "use/hadi-awang-kuliah-dhuha.jpg",
+  "blur": "use/blur-hadi-awang-kuliah-dhuha.jpg",
+  "w": 2200,
+  "h": 1466,
+  "credit": "Wikimedia Commons / Aremerare, CC BY 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Kuliah_Dhuha_Tuan_Guru.jpg"
+ },
+ "hadi_p": {
+  "file": "use/hadi-awang-2026.jpg",
+  "blur": "use/blur-hadi-awang-2026.jpg",
+  "w": 1280,
+  "h": 1578,
+  "credit": "Wikimedia Commons / Aremerare, CC BY 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Abdul_Hadi_Awang_2026.jpg",
+  "pos": "50% 15%"
+ },
+ "nikaziz_funeral": {
+  "file": "use/nik-aziz-jenazah-1.jpg",
+  "blur": "use/blur-nik-aziz-jenazah-1.jpg",
+  "w": 1600,
+  "h": 1068,
+  "credit": "hazrilhafiz.blogspot.com",
+  "source": "http://hazrilhafiz.blogspot.com/2015/02/gambar-sekitar-pengebumian-tuan-guru.html"
+ },
+ "mn2019": {
+  "file": "use/muafakat-nasional-2019-berpelukan.jpg",
+  "blur": "use/blur-muafakat-nasional-2019-berpelukan.jpg",
+  "w": 1000,
+  "h": 750,
+  "credit": "Sinar Harian",
+  "source": "https://www.sinarharian.com.my/article/215947/berita/politik/khairuddin-imbau-sejarah-penubuhan-muafakat-nasional"
+ },
+ "pn2020": {
+  "file": "use/hadi-muhyiddin-ziarah.jpg",
+  "blur": "use/blur-hadi-muhyiddin-ziarah.jpg",
+  "w": 2200,
+  "h": 1466,
+  "credit": "Wikimedia Commons / Aremerare, CC BY 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Tan_Sri_Muhyiddin_Yassin_menziarahi_Tuan_Guru.jpg"
+ },
+ "ge15": {
+  "file": "use/pru15-bendera-pas.jpg",
+  "blur": "use/blur-pru15-bendera-pas.jpg",
+  "w": 1000,
+  "h": 668,
+  "credit": "The Malaysian Insight",
+  "source": "https://www.themalaysianinsight.com/bahasa/s/413610"
+ },
+ "crowd_modern": {
+  "file": "use/ceramah-pn-negeri-sembilan.jpg",
+  "blur": "use/blur-ceramah-pn-negeri-sembilan.jpg",
+  "w": 2200,
+  "h": 1650,
+  "credit": "Wikimedia Commons / Zahirulnukman, CC BY-SA 3.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Ceramah_politik_Perikatan_Nasional_Negeri_Sembilan_9_Jul.jpg"
+ },
+ "samsuri": {
+  "file": "use/samsuri-1.jpg",
+  "blur": "use/blur-samsuri-1.jpg",
+  "w": 1920,
+  "h": 2340,
+  "credit": "Wikimedia Commons / Team Photographer MB, CC0",
+  "source": "https://commons.wikimedia.org/wiki/File:Dato%27_Seri_Ir._Dr._Sam_Berpakaian_Long_Suit_(cropped).jpg"
+ },
+ "muktamar72": {
+  "file": "use/muktamar-72-perwakilan.jpg",
+  "blur": "use/blur-muktamar-72-perwakilan.jpg",
+  "w": 1080,
+  "h": 810,
+  "credit": "Utusan Malaysia",
+  "source": "https://utusan.com.my/nasional/2026/09/muktamar-pas-lulus-usul-penyatuan-ummah"
+ }
+}

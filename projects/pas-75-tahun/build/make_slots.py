@@ -1,0 +1,49 @@
+#!/usr/bin/env python3
+"""Maps scene photo slots to files in assets/photos, makes render-size and blurred copies, writes slots.json."""
+import json, os, subprocess
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PH = os.path.join(ROOT, "assets/photos")
+SLOTS = {
+    "founding": ("pas-awal-majlis.jpg", {}),
+    "founding2": ("kongres-pas-1952.jpg", {}),
+    "fuad": ("ahmad-fuad-kongres-1953.jpg", {}),
+    "abbas": ("abbas-alias-1.jpg", {"pos": "50% 20%"}),
+    "election1955": ("poster-pru-1955.jpg", {}),
+    "burhanuddin": ("burhanuddin-nehru.jpg", {}),
+    "burhanuddin2": ("burhanuddin-1.jpg", {}),
+    "burhanuddin_p": ("burhanuddin-2.jpg", {"pos": "50% 20%"}),
+    "zulkifli": ("zulkifli-muhammad-1.jpg", {}),
+    "zulkifli2": ("zulkifli-muhammad-2.jpg", {}),
+    "kelantan1959": ("ishak-lotfi-1.jpg", {}),
+    "trg1959": ("terengganu-1959-kerajaan-pas.jpg", {}),
+    "asri": ("asri-muda-1.jpg", {"pos": "50% 15%"}),
+    "bn1974": ("asri-tun-razak.jpg", {}),
+    "yusofrawa": ("yusof-rawa-1.jpg", {"pos": "50% 15%"}),
+    "memali": ("memali-1985-sekatan-polis.jpg", {"bw": True}),
+    "crowd_old": ("kelantan-1970an-perhimpunan.jpg", {}),
+    "fadzil": ("fadzil-noor-nik-aziz.jpg", {"pos": "18% 30%"}),
+    "nikaziz": ("nik-aziz-2.jpg", {}),
+    "hadi": ("hadi-awang-kuliah-dhuha.jpg", {}),
+    "hadi_p": ("hadi-awang-2026.jpg", {"pos": "50% 15%"}),
+    "nikaziz_funeral": ("nik-aziz-jenazah-1.jpg", {}),
+    "mn2019": ("muafakat-nasional-2019-berpelukan.jpg", {}),
+    "pn2020": ("hadi-muhyiddin-ziarah.jpg", {}),
+    "ge15": ("pru15-bendera-pas.jpg", {}),
+    "crowd_modern": ("ceramah-pn-negeri-sembilan.jpg", {}),
+    "samsuri": ("samsuri-1.jpg", {}),
+    "muktamar72": ("muktamar-72-perwakilan.jpg", {}),
+}
+man = {m["file"]: m for m in json.load(open(os.path.join(PH, "manifest.json")))}
+os.makedirs(os.path.join(PH, "use"), exist_ok=True)
+out = {}
+for key, (f, extra) in SLOTS.items():
+    src = os.path.join(PH, f)
+    use = "use/" + f
+    blur = "use/blur-" + f
+    subprocess.check_call(["ffmpeg", "-v", "error", "-y", "-i", src, "-vf", "scale='min(2200,iw)':-2", "-q:v", "2", os.path.join(PH, use)])
+    subprocess.check_call(["ffmpeg", "-v", "error", "-y", "-i", src, "-vf", "scale=480:-2,gblur=sigma=14", "-q:v", "4", os.path.join(PH, blur)])
+    wh = subprocess.check_output(["ffprobe", "-v", "error", "-select_streams", "v:0", "-show_entries", "stream=width,height", "-of", "csv=p=0", os.path.join(PH, use)]).decode().strip().split(",")
+    credit = man[f]["credit"].split(" (")[0]
+    out[key] = dict(file=use, blur=blur, w=int(wh[0]), h=int(wh[1]), credit=credit, source=man[f].get("page_url"), **extra)
+json.dump(out, open(os.path.join(PH, "slots.json"), "w"), ensure_ascii=False, indent=1)
+print(len(out), "slots")
