@@ -1,0 +1,58 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; }
+    #pj-wrap { position: absolute; inset: 0; overflow: hidden; }
+    #pj-rig { position: absolute; inset: 0; }
+    #pj-world { position: absolute; left: 0; top: 0; width: 2880px; height: 1920px; }
+    #pj-bg { position: absolute; left: 0; top: 0; width: 2880px; height: 1920px; }
+    #pj-sign { position: absolute; left: 1250px; top: 1330px; width: 300px; }
+    #pj-sign .post { position: absolute; left: 140px; top: 70px; width: 20px; height: 230px; background: #6B4A3A; border-radius: 4px; }
+    #pj-sign .board { position: relative; height: 84px; border-radius: 14px; background: #1E1A68; color: #fff; text-align: center;
+                      font: 700 40px/84px Poppins, sans-serif; box-shadow: 0 10px 24px rgba(15,18,53,.3); }
+    #pj-walker { position: absolute; left: 120px; top: 1020px; width: 609px; height: 820px; }
+    #pj-cap { position: absolute; left: 60px; right: 60px; top: 330px; text-align: center; font-family: Poppins, sans-serif;
+              text-shadow: 0 0 22px rgba(255,244,238,.95), 0 0 6px rgba(255,244,238,.9); }
+    #pj-cap b { display: block; font-weight: 800; font-size: 84px; line-height: 1.08; letter-spacing: -1px; }
+  </style>
+  <div id="root" data-composition-id="perjalanan" data-width="1080" data-height="1920">
+    <div id="pj-wrap">
+      <div id="pj-rig">
+      <div id="pj-world">
+        <img id="pj-bg" src="assets/img/bg-kampung.webp" alt="" />
+        <div id="pj-sign"><div class="post"></div><div class="board">Bakri · Muar</div></div>
+      </div>
+      <img id="pj-walker" src="assets/img/jalan-troli.webp" alt="Sukarelawan menolak troli katil hospital" />
+      </div>
+      <div id="pj-cap"><b id="pj-l1"><span class="w" style="display:inline-block">Dihantar</span> <span class="w" style="display:inline-block">terus</span></b><b id="pj-l2"><span class="w" style="display:inline-block">ke</span> <span class="w" style="display:inline-block">rumah</span></b></div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const T0 = 12.9, A = t => t - T0;
+      const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
+      const later = v => Object.assign({ immediateRender: false }, v);
+      const jolt = (sel, at, amp, prop = "y") => {
+        const k = [-amp, amp * .6, -amp * .3, 0];
+        let prev = 0;
+        k.forEach((v, i) => { tl.fromTo(sel, { [prop]: prev }, later({ [prop]: v, duration: i < 3 ? .034 : .06, ease: "none" }), at + i * .034); prev = v; });
+      };
+
+      // Kiub dari babak lontar mendarat pada kotak teratas troli: troli dan penolaknya terhentak sedikit
+      tl.fromTo("#pj-walker", { scaleY: 1, transformOrigin: "50% 100%" }, { scaleY: .965, duration: .08, yoyo: true, repeat: 1 }, A(13.38));
+      jolt("#pj-wrap", A(13.38), 16);
+      window.cameraShake(tl, "#pj-rig", { profile: "handheld-normal-mild", intensity: .55, duration: 6.9, at: A(13.0), fps: 30 });
+      // Syot mengekori: panorama bergerak, penolak troli kekal; langkah = lantun kecil + goyang
+      tl.fromTo("#pj-world", { x: 0 }, { x: -1773, duration: 5.9, ease: "power1.inOut" }, A(13.1));
+      tl.fromTo("#pj-walker", { y: 0 }, later({ y: -12, duration: .18, yoyo: true, repeat: 29, ease: "sine.inOut" }), A(13.55));
+      tl.fromTo("#pj-walker", { rotation: -1.2, transformOrigin: "50% 100%" }, { rotation: 1.2, duration: .36, yoyo: true, repeat: 13, ease: "sine.inOut" }, A(13.55));
+      tl.fromTo("#pj-cap .w", { opacity: 0 }, { opacity: 1, duration: .1, stagger: .09 }, A(13.6));
+      tl.fromTo("#pj-l1 .w", { color: "#D9D0E6" }, { color: "#1E1A68", duration: .35, stagger: .09, ease: "power2.out" }, A(13.65));
+      tl.fromTo("#pj-l2 .w", { color: "#F2C9CF" }, { color: "#C5162E", duration: .35, stagger: .09, ease: "power2.out" }, A(13.83));
+      tl.fromTo("#pj-cap .w", { opacity: 1, filter: "blur(0px)" }, later({ opacity: 0, filter: "blur(8px)", duration: .18, stagger: .04, ease: "power2.in" }), A(18.9));
+      // Keluar: zum masuk ke pintu biru rumah terakhir
+      tl.fromTo("#pj-wrap", { scale: 1, transformOrigin: "600px 1126px" }, { scale: 2.8, duration: .7, ease: "power2.in" }, A(19.15));
+
+      window.__timelines["perjalanan"] = tl;
+    })();
+  </script>
+</template>

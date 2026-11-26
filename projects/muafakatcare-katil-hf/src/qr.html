@@ -1,0 +1,59 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; }
+    #qr-wrap { position: absolute; inset: 0; overflow: hidden;
+               background: radial-gradient(circle at 50% 45%, #E0283F 0, #C5162E 55%, #9E0F23 100%); }
+    #qr-swing { position: absolute; inset: 0; }
+    #qr-thread { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+    #qr-card { position: absolute; left: 250px; top: 420px; width: 580px; height: 664px; background: #fff;
+               border-radius: 36px; overflow: hidden; box-shadow: 0 40px 90px rgba(15, 18, 53, .42); }
+    #qr-card img { width: 100%; height: 100%; display: block; }
+    #qr-hsvg { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+    #qr-cap { position: absolute; left: 60px; right: 60px; top: 1118px; text-align: center; font-family: Poppins, sans-serif; color: #fff; }
+    #qr-cap b { display: block; font-weight: 800; font-size: 70px; line-height: 1.1; letter-spacing: -1px; }
+    #qr-cap small { display: block; font-family: Inter, sans-serif; font-weight: 600; font-size: 30px; line-height: 1.35; color: #F4D9DE; margin-top: 8px; }
+  </style>
+  <div id="root" data-composition-id="qr" data-width="1080" data-height="1920">
+    <div id="qr-wrap">
+      <!-- Kad QR tergantung pada tali dan manik, berayun dari hujung jari (bergema dengan babak pembuka) -->
+      <div id="qr-swing">
+        <svg id="qr-thread" viewBox="0 0 1080 1920">
+          <path d="M540 150 L540 396" stroke="#FFFFFF" stroke-width="8" />
+          <circle cx="540" cy="404" r="26" fill="#FFB020" filter="url(#shsP)" />
+        </svg>
+        <div id="qr-card"><img src="assets/duitnow-qr.jpg" alt="QR DuitNow Muafakat Care" /></div>
+      </div>
+      {{P.handImg("qr-hand", .5)}}
+      <div id="qr-cap"><b>Imbas untuk wakaf</b><small>QR DuitNow rasmi · Berdaftar ROS PPM-002-10-13032020<br />Pertubuhan Kebajikan Muafakat Bakri</small></div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const T0 = 30.05, A = t => t - T0;
+      const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
+      const later = v => Object.assign({ immediateRender: false }, v);
+      const jolt = (sel, at, amp, prop = "y") => {
+        const k = [-amp, amp * .6, -amp * .3, 0];
+        let prev = 0;
+        k.forEach((v, i) => { tl.fromTo(sel, { [prop]: prev }, later({ [prop]: v, duration: i < 3 ? .034 : .06, ease: "none" }), at + i * .034); prev = v; });
+      };
+
+      // Tangan turun dari atas memegang tali
+      tl.fromTo("#qr-hand", { x: 540, y: -700, rotation: -90 }, { y: 150, duration: .45, ease: "power3.out" }, A(30.1));
+      // Kad jatuh tergantung, kemudian berayun dan reda (pangsi di hujung jari)
+      tl.fromTo("#qr-swing", { y: -1500, rotation: 0, transformOrigin: "540px 150px" }, { y: 0, duration: .75, ease: "back.out(1.3)" }, A(30.35));
+      const swing = [[7, .42], [-5, .46], [3, .42], [-1.4, .38], [0, .34]];
+      let t = 30.95, prev = 0;
+      swing.forEach(([r, d]) => {
+        tl.fromTo("#qr-swing", { rotation: prev }, later({ rotation: r, duration: d, ease: "sine.inOut" }), A(t));
+        prev = r; t += d;
+      });
+      tl.fromTo("#qr-cap", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: .2, ease: "expo.out" }, A(31.0));
+      jolt("#qr-wrap", A(31.1), 8);
+      // Hujung: manik berdenyut sekali supaya mata kembali ke QR
+      tl.fromTo("#qr-thread circle", { scale: 1, transformOrigin: "50% 50%" }, { scale: 1.3, duration: .18, yoyo: true, repeat: 1, ease: "sine.inOut" }, A(33.2));
+
+      window.__timelines["qr"] = tl;
+    })();
+  </script>
+</template>

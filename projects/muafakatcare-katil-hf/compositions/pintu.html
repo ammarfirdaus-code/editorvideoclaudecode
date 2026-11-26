@@ -1,0 +1,53 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; }
+    #pt-wrap { position: absolute; inset: 0; overflow: hidden; }
+    #pt-scene { position: absolute; inset: 0; }
+    #pt-bg { position: absolute; left: -100px; top: 0; width: 1280px; height: 1920px; }
+    #pt-mak { position: absolute; left: 282px; top: 600px; width: 479px; height: 1000px; }
+    #pt-vol { position: absolute; left: -355px; top: 600px; width: 910px; height: 1340px; }
+    #pt-heart { position: absolute; left: 472px; top: 470px; width: 100px; height: 100px; }
+    #pt-cap { position: absolute; left: 50px; right: 50px; top: 300px; text-align: center; font-family: Poppins, sans-serif; color: #fff;
+              text-shadow: 0 4px 22px rgba(15,18,53,.55); }
+    #pt-cap b { display: block; font-weight: 800; font-size: 52px; line-height: 1.15; letter-spacing: -1px; }
+  </style>
+  <div id="root" data-composition-id="pintu" data-width="1080" data-height="1920">
+    <div id="pt-wrap">
+      <div id="pt-scene">
+        <img id="pt-bg" src="assets/img/bg-pintu.webp" alt="" />
+        <img id="pt-mak" src="assets/img/makcik-sambut.webp" alt="Mak cik menyambut katil hospital" />
+        <svg id="pt-heart" viewBox="0 0 100 100"><path d="M50 30 C38 12 8 22 14 48 C18 66 38 78 50 90 C62 78 82 66 86 48 C92 22 62 12 50 30 Z" fill="#C5162E" /></svg>
+        <img id="pt-vol" src="assets/img/sukarelawan-hulur.webp" alt="Sukarelawan menghulur katil hospital" />
+      </div>
+      <div id="pt-cap"><b>Untuk pesakit terlantar</b><b>yang dijaga di rumah</b></div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const T0 = 19.55, A = t => t - T0;
+      const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
+      const later = v => Object.assign({ immediateRender: false }, v);
+
+      tl.fromTo("#pt-wrap", { clipPath: "circle(0px at 600px 1126px)" }, { clipPath: "circle(2300px at 600px 1126px)", duration: .4, ease: "power2.in" }, A(19.58));
+      tl.fromTo("#pt-scene", { scale: 1.12, transformOrigin: "50% 60%" }, { scale: 1, duration: 2.6, ease: "sine.out" }, A(19.55));
+
+      // Serahan: sukarelawan masuk dari kiri menghulur kotak; mak cik menyambut
+      tl.fromTo("#pt-vol", { x: -520, opacity: 1, filter: "blur(0px)" }, { x: 0, duration: .9, ease: "power3.out" }, A(19.8));
+      tl.fromTo("#pt-mak", { y: 20, rotation: 0, opacity: 1, scale: 1, transformOrigin: "50% 100%" }, { y: 0, duration: .5 }, A(19.6));
+      tl.fromTo("#pt-mak", { rotation: 0 }, later({ rotation: 1.6, duration: .45, yoyo: true, repeat: 1, ease: "sine.inOut" }), A(20.8));
+      // Kabur kedalaman pada sukarelawan di latar depan (seperti rujukan saat 46)
+      tl.fromTo("#pt-vol", { filter: "blur(0px)" }, later({ filter: "blur(6px)", duration: .6 }), A(20.6));
+      tl.fromTo("#pt-heart", { opacity: 0, y: 0, scale: .5, transformOrigin: "50% 100%" }, { opacity: 1, y: -60, scale: 1, duration: .6, ease: "back.out(2)" }, A(21.05));
+      tl.fromTo("#pt-heart", { opacity: 1, y: -60 }, later({ opacity: 0, y: -120, duration: .5 }), A(21.75));
+
+      tl.fromTo("#pt-cap", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: .18, ease: "expo.out" }, A(20.0));
+      tl.fromTo("#pt-cap", { opacity: 1, filter: "blur(0px)" }, later({ opacity: 0, filter: "blur(8px)", duration: .2, ease: "power2.in" }), A(22.0));
+
+      // Sebelum potongan: sukarelawan beredar, mak cik masuk ke dalam; tinggal ambang pintu
+      tl.fromTo("#pt-vol", { x: 0, opacity: 1 }, later({ x: -520, opacity: 0, duration: .45, ease: "power2.in" }), A(21.8));
+      tl.fromTo("#pt-mak", { opacity: 1, scale: 1 }, later({ opacity: 0, scale: .9, duration: .4, ease: "power2.in" }), A(21.9));
+
+      window.__timelines["pintu"] = tl;
+    })();
+  </script>
+</template>

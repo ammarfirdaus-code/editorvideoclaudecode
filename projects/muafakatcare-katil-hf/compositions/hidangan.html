@@ -1,0 +1,88 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; }
+    #hd-wrap { position: absolute; inset: 0; overflow: hidden;
+               background: radial-gradient(circle at 50% 50%, #E0283F 0, #C5162E 55%, #9E0F23 100%); }
+    #hd-panel { position: absolute; inset: 0; overflow: hidden; }
+    #hd-panel > svg { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+    #hd-head { position: absolute; left: 0; right: 0; top: 0; height: 230px; background: #1E1A68; color: #fff;
+               display: flex; align-items: center; justify-content: center; gap: 28px; font: 700 86px Poppins, sans-serif; }
+    #hd-head i { width: 62px; height: 62px; border-radius: 50%; background: #2FA36B; display: inline-block; position: relative; }
+    #hd-head i::after { content: ""; position: absolute; left: 17px; top: 9px; width: 18px; height: 32px;
+                        border: solid #fff; border-width: 0 9px 9px 0; transform: rotate(45deg); }
+    #hd-doorbg { position: absolute; left: -100px; top: 0; width: 1280px; height: 1920px; }
+    #hd-rect { position: absolute; left: 224px; top: 410px; width: 596px; height: 1060px; overflow: hidden;
+               background: url("assets/img/bg-pintu.webp") -324px -410px / 1280px 1920px no-repeat; }
+    #hd-rect i { position: absolute; inset: 0; background: #FFFFFF; opacity: 0; }
+    #hd-plate { position: absolute; left: 306px; top: 530px; width: 431px; height: 820px; }
+    #hd-hl { position: absolute; left: 26px; top: 1500px; width: 1029px; height: 530px; }
+    #hd-logo { position: absolute; inset: 0; overflow: hidden; background: radial-gradient(circle at 50% 40%, #FFFFFF 0, #F5F6FA 100%); }
+    #hd-logo img { position: absolute; left: 240px; top: 330px; width: 600px; height: 424px; }
+    #hd-hands { position: absolute; inset: 0; pointer-events: none; }
+    .hd-cap { position: absolute; left: 60px; right: 60px; top: 330px; text-align: center; font-family: Poppins, sans-serif;
+              color: #fff; text-shadow: 0 4px 24px rgba(15,18,53,.25); }
+    .hd-cap b { display: block; font-weight: 800; font-size: 84px; line-height: 1.08; letter-spacing: -1px; }
+    .hd-cap small { display: block; font-weight: 600; font-size: 46px; line-height: 1.3; }
+  </style>
+  <div id="root" data-composition-id="hidangan" data-width="1080" data-height="1920">
+    <div id="hd-wrap">
+      <div id="hd-panel">
+        <svg viewBox="0 0 180 320">
+          <rect width="180" height="320" fill="#2FA36B" /><rect width="180" height="320" fill="url(#glow)" />
+          <g id="hd-cup" filter="url(#sh)"><circle cx="40" cy="256" r="14" fill="#FFFFFF" /><circle cx="40" cy="256" r="10.5" fill="#BFE3F2" /></g>
+        </svg>
+        <img id="hd-plate" src="assets/img/katil-atas.webp" alt="Pesakit berehat di atas katil hospital wakaf" />
+        <div id="hd-head"><i></i>Wakaf Katil</div>
+        <img id="hd-doorbg" src="assets/img/bg-pintu.webp" alt="" />
+        <div id="hd-rect"><i></i></div>
+      </div>
+      <div id="hd-logo"><img src="assets/logo.png" alt="Muafakat Care" /></div>
+      <div id="hd-hands"><div id="hd-hg"><img id="hd-hl" src="assets/img/tangan-pegang-kad.webp" alt="" /></div></div>
+      <div class="hd-cap" id="hd-cap1"><b><span class="w" style="display:inline-block">Dipinjam</span> <span class="w" style="display:inline-block">tanpa</span> <span class="w" style="display:inline-block">caj</span></b><small><span class="w" style="display:inline-block">Hasil</span> <span class="w" style="display:inline-block">wakaf</span> <span class="w" style="display:inline-block">orang</span> <span class="w" style="display:inline-block">ramai</span></small></div>
+      <div class="hd-cap" id="hd-cap2"><b><span class="w" style="display:inline-block">Dipulangkan</span></b><small><span class="w" style="display:inline-block">untuk</span> <span class="w" style="display:inline-block">pesakit</span> <span class="w" style="display:inline-block">seterusnya</span></small></div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const T0 = 22.35, A = t => t - T0;
+      const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
+      const later = v => Object.assign({ immediateRender: false }, v);
+
+      // Masuk (tatabahasa rujukan saat 46–48): ambang pintu gelap kekal, dinding bertukar hijau,
+      // segi empat itu mengecil, berpusing dan menjadi katil
+      tl.fromTo("#hd-doorbg", { opacity: 1 }, { opacity: 0, duration: .4, ease: "power1.inOut" }, A(22.45));
+      tl.fromTo("#hd-rect", { scaleX: 1, scaleY: 1, x: 0, y: 0, borderRadius: "0%", transformOrigin: "50% 50%" },
+        { scaleX: .723, scaleY: .774, x: 0, y: 0, borderRadius: "8%", duration: .5, ease: "power2.inOut" }, A(22.8));
+      tl.fromTo("#hd-rect i", { opacity: 0 }, { opacity: 1, duration: .4, ease: "power1.in" }, A(22.85));
+      tl.fromTo("#hd-rect", { rotation: 0 }, later({ rotation: 12, duration: .25, ease: "power1.out" }), A(22.8));
+      tl.fromTo("#hd-rect", { rotation: 12 }, later({ rotation: 0, duration: .25, ease: "power1.in" }), A(23.05));
+      tl.fromTo("#hd-rect", { opacity: 1 }, later({ opacity: 0, duration: .15 }), A(23.32));
+
+      // Syot dari atas: katil hospital dengan pesakit berehat
+      tl.fromTo("#hd-plate", { opacity: 0, scale: .97, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1, duration: .2 }, A(23.25));
+      tl.fromTo("#hd-cup", { opacity: 0 }, { opacity: 1, duration: .25 }, A(23.3));
+      tl.fromTo("#hd-cap1 .w", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: .13, stagger: .067, ease: "expo.out" }, A(23.4));
+      tl.fromTo("#hd-cap1 .w", { opacity: 1, filter: "blur(0px)" }, later({ opacity: 0, filter: "blur(8px)", duration: .16, stagger: .025, ease: "power2.in" }), A(24.55));
+
+      // Babak mengecil menjadi kad Papan Impak, dipegang dua tangan
+      tl.fromTo("#hd-panel", { scale: 1, y: 0, borderRadius: 0, boxShadow: "0 0 0 rgba(15,18,53,0)", opacity: 1 },
+        { scale: .5, y: 160, borderRadius: 60, boxShadow: "0 40px 90px rgba(15,18,53,.45)", duration: .6, ease: "power3.inOut" }, A(24.8));
+      tl.fromTo("#hd-head", { opacity: 0 }, { opacity: 1, duration: .3 }, A(25.25));
+      tl.fromTo("#hd-hl", { y: 700 }, { y: 0, duration: .6, ease: "power3.out" }, A(25.2));
+      tl.fromTo("#hd-panel", { y: 160 }, later({ y: 120, duration: 1.2, ease: "sine.inOut" }), A(25.9));
+      tl.fromTo("#hd-hg", { y: 0 }, { y: -40, duration: 1.2, ease: "sine.inOut" }, A(25.9));
+      tl.fromTo("#hd-cap2 .w", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: .13, stagger: .067, ease: "expo.out" }, A(25.3));
+      tl.fromTo("#hd-cap2 .w", { opacity: 1, filter: "blur(0px)" }, later({ opacity: 0, filter: "blur(8px)", duration: .18, stagger: .04, ease: "power2.in" }), A(26.55));
+
+      // Keluar (tatabahasa rujukan saat 52–53): kad berpusing 3D, mendedahkan muka logo di sebelahnya,
+      // kemudian muka logo membesar menjadi babak penutup
+      tl.fromTo("#hd-panel", { rotationY: 0, transformPerspective: 2400 }, { rotationY: 90, duration: .18, ease: "power2.in" }, A(26.7));
+      tl.fromTo("#hd-logo", { rotationY: -90, scale: .5, y: 120, borderRadius: 60, transformPerspective: 2400 },
+        { rotationY: 0, duration: .18, ease: "power2.out" }, A(26.88));
+      tl.fromTo("#hd-logo", { scale: .5, y: 120, borderRadius: 60 }, later({ scale: 1, y: 0, borderRadius: 0, duration: .35, ease: "power2.inOut" }), A(27.05));
+      tl.fromTo("#hd-hg", { y: -40 }, later({ y: 700, duration: .4, ease: "power2.in" }), A(26.95));
+
+      window.__timelines["hidangan"] = tl;
+    })();
+  </script>
+</template>
