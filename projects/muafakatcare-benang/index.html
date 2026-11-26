@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<title>Benang Muafakat · Foodbank Bulanan</title>
+<style>
+@font-face { font-family: Poppins; font-weight: 500; src: url(fonts/poppins-latin-500-normal.woff2) format("woff2"); }
+@font-face { font-family: Poppins; font-weight: 600; src: url(fonts/poppins-latin-600-normal.woff2) format("woff2"); }
+@font-face { font-family: Poppins; font-weight: 700; src: url(fonts/poppins-latin-700-normal.woff2) format("woff2"); }
+@font-face { font-family: Poppins; font-weight: 800; src: url(fonts/poppins-latin-800-normal.woff2) format("woff2"); }
+@font-face { font-family: Inter; font-weight: 500; src: url(fonts/inter-latin-500-normal.woff2) format("woff2"); }
+@font-face { font-family: Inter; font-weight: 600; src: url(fonts/inter-latin-600-normal.woff2) format("woff2"); }
+
+/* Warna jenama Muafakat Care (token dari muafakatcare/public/css/app.css) */
+:root { --red:#C5162E; --red-hi:#ED2B3A; --indigo:#1E1A68; --midnight:#0F1235; --off:#F5F6FA;
+        --gray:#E8EAF2; --blush:#F4D9DE; --indigo-tint:#5E59A6; --cool:#7281A8; --green:#2FA36B; --gold:#FFB020; }
+html, body { margin: 0; background: #000; }
+#stage { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: var(--indigo); }
+.scene { position: absolute; inset: 0; }
+.scene svg { width: 1080px; height: 1920px; display: block; }
+text { font-family: Poppins, sans-serif; }
+.t-hd { font-weight: 800; }
+.t-sb { font-weight: 700; }
+.t-md { font-weight: 600; }
+.t-in { font-family: Inter, sans-serif; font-weight: 600; }
+</style>
+</head>
+<body>
+<div id="stage">
+
+<!-- 1. Soalan pembuka (0.0–3.2) -->
+<div class="scene" id="s1"><svg viewBox="0 0 180 320">
+  <rect width="180" height="320" fill="#1E1A68"/>
+  <g id="s1-text" text-anchor="middle">
+    <text class="t-hd" x="90" y="70" font-size="17" fill="#FFFFFF" id="s1-l1">RM50 anda</text>
+    <text class="t-hd" x="90" y="93" font-size="17" fill="#FFB020" id="s1-l2">pergi ke mana?</text>
+  </g>
+  <path id="s1-thread" d="M68 164 C68 196 108 200 90 226" stroke="#ED2B3A" stroke-width="3" fill="none" stroke-linecap="round" pathLength="1"/>
+  <circle id="s1-bead" cx="90" cy="232" r="7" fill="#ED2B3A"/>
+  <g id="s1-hand">
+    <path d="M190 134 L100 138 Q80 139 80 152 Q80 166 100 166 L190 174 Z" fill="#F2C9A5"/>
+    <path d="M118 146 Q126 150 124 158" stroke="#D9A77E" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+    <rect x="56" y="142" width="46" height="23" rx="3" fill="#2FA36B"/>
+    <rect x="59" y="145" width="40" height="17" rx="2" fill="none" stroke="#FFFFFF" stroke-width=".8" opacity=".6"/>
+    <text class="t-sb" x="79" y="157.5" font-size="9" fill="#FFFFFF" text-anchor="middle">RM50</text>
+  </g>
+</svg></div>
+
+<!-- 2. Satu klik (3.2–6.2) -->
+<div class="scene" id="s2"><svg viewBox="0 0 180 320">
+  <rect width="180" height="320" fill="#F5F6FA"/>
+  <g text-anchor="middle">
+    <text class="t-hd" x="90" y="62" font-size="15" fill="#1E1A68" id="s2-l1">Satu klik di</text>
+    <text class="t-hd" x="90" y="83" font-size="15" fill="#C5162E" id="s2-l2">muafakatcare.my</text>
+  </g>
+  <g id="s2-phone">
+    <rect x="42" y="100" width="96" height="176" rx="14" fill="#1E1A68"/>
+    <rect x="49" y="110" width="82" height="156" rx="7" fill="#FFFFFF"/>
+    <rect x="57" y="118" width="66" height="10" rx="5" fill="#E8EAF2"/>
+    <text class="t-in" x="90" y="125.3" font-size="5.6" fill="#1E1A68" text-anchor="middle">muafakatcare.my</text>
+    <rect x="57" y="135" width="66" height="40" rx="5" fill="#F4D9DE"/>
+    <text class="t-sb" x="90" y="152" font-size="6.5" fill="#C5162E" text-anchor="middle">Foodbank Bulanan</text>
+    <text class="t-in" x="90" y="163" font-size="5" fill="#1E1A68" text-anchor="middle">Kempen bulan ini</text>
+    <rect x="57" y="183" width="52" height="6" rx="3" fill="#E8EAF2"/>
+    <rect x="57" y="195" width="38" height="6" rx="3" fill="#E8EAF2"/>
+    <g id="s2-btn">
+      <rect x="57" y="218" width="66" height="26" rx="13" fill="#C5162E"/>
+      <text class="t-sb" x="90" y="234.5" font-size="10" fill="#FFFFFF" text-anchor="middle">Infak</text>
+    </g>
+  </g>
+  <circle id="s2-ripple" cx="90" cy="231" r="16" fill="none" stroke="#ED2B3A" stroke-width="2.4"/>
+  <path id="s2-thread" d="M184 112 C158 132 172 180 156 206 C148 220 138 228 127 231" stroke="#ED2B3A" stroke-width="3" fill="none" stroke-linecap="round" pathLength="1"/>
+  <circle id="s2-bead" cx="125" cy="231" r="5" fill="#ED2B3A"/>
+</svg></div>
+
+<!-- 3. Jadi pek makanan (6.2–10.0) -->
+<div class="scene" id="s3"><svg viewBox="0 0 180 320">
+  <rect width="180" height="320" fill="#F4D9DE"/>
+  <rect x="0" y="238" width="180" height="82" fill="#EBC3CB"/>
+  <g text-anchor="middle">
+    <text class="t-hd" x="90" y="64" font-size="26" fill="#C5162E" id="s3-l1">RM50</text>
+    <text class="t-sb" x="90" y="84" font-size="12" fill="#1E1A68" id="s3-l2">= 1 pek makanan asas</text>
+  </g>
+  <g id="s3-item1"><rect x="64" y="108" width="24" height="52" rx="5" fill="#FFB020"/><rect x="70" y="99" width="12" height="11" rx="2" fill="#C98A10"/><rect x="67" y="124" width="18" height="14" rx="2" fill="#FFFFFF" opacity=".85"/></g>
+  <g id="s3-item2"><rect x="94" y="118" width="32" height="42" rx="4" fill="#FFFFFF"/><text class="t-sb" x="110" y="143" font-size="7.5" fill="#1E1A68" text-anchor="middle">BERAS</text></g>
+  <g id="s3-item3"><rect x="40" y="132" width="20" height="28" rx="3" fill="#2FA36B"/><rect x="40" y="140" width="20" height="8" fill="#FFFFFF" opacity=".7"/></g>
+  <g id="s3-box">
+    <rect x="34" y="154" width="112" height="84" rx="6" fill="#C89B6D"/>
+    <rect x="34" y="154" width="112" height="16" rx="6" fill="#B58656"/>
+    <path id="s3-rib-h" d="M34 196 L146 196" stroke="#ED2B3A" stroke-width="4" pathLength="1"/>
+    <path id="s3-rib-v" d="M90 154 L90 238" stroke="#ED2B3A" stroke-width="4" pathLength="1"/>
+    <path id="s3-bow" d="M90 196 C70 172 62 192 90 196 C118 172 126 192 90 196" fill="#ED2B3A"/>
+  </g>
+</svg></div>
+
+<!-- 4. Dalam perjalanan (10.0–14.0) -->
+<div class="scene" id="s4"><svg viewBox="0 0 180 320">
+  <rect width="180" height="320" fill="#1E1A68"/>
+  <circle id="s4-sun" cx="142" cy="132" r="16" fill="#FFB020"/>
+  <g text-anchor="middle">
+    <text class="t-hd" x="90" y="62" font-size="15" fill="#FFFFFF" id="s4-l1">Dihantar terus</text>
+    <text class="t-hd" x="90" y="83" font-size="15" fill="#FFB020" id="s4-l2">ke rumah</text>
+  </g>
+  <g id="s4-pill"><rect x="56" y="96" width="68" height="16" rx="8" fill="#5E59A6"/><text class="t-in" x="90" y="107" font-size="7" fill="#FFFFFF" text-anchor="middle">Bakri · Muar</text></g>
+  <g id="s4-houses" fill="#5E59A6">
+    <path d="M0 182 L24 154 L48 182 Z"/><rect x="8" y="182" width="32" height="28"/>
+    <path d="M70 186 L90 164 L110 186 Z"/><rect x="76" y="186" width="28" height="24"/>
+    <path d="M128 180 L154 150 L180 180 Z"/><rect x="136" y="180" width="38" height="30"/>
+    <path d="M200 182 L224 154 L248 182 Z"/><rect x="208" y="182" width="32" height="28"/>
+    <path d="M270 186 L290 164 L310 186 Z"/><rect x="276" y="186" width="28" height="24"/>
+    <path d="M328 180 L354 150 L380 180 Z"/><rect x="336" y="180" width="38" height="30"/>
+  </g>
+  <rect x="0" y="210" width="180" height="110" fill="#0F1235"/>
+  <path id="s4-dash" d="M-40 244 L220 244" stroke="#ED2B3A" stroke-width="3" stroke-dasharray="14 10"/>
+  <g id="s4-van">
+    <rect x="44" y="184" width="68" height="40" rx="6" fill="#FFFFFF"/>
+    <path d="M112 196 L130 196 L138 210 L138 224 L112 224 Z" fill="#FFFFFF"/>
+    <rect x="116" y="200" width="14" height="10" rx="2" fill="#7281A8"/>
+    <path d="M78 193 C72 185 65 195 78 204 C91 195 84 185 78 193" fill="#C5162E"/>
+    <text class="t-md" x="78" y="213" font-size="4.6" fill="#1E1A68" text-anchor="middle">MUAFAKAT CARE</text>
+    <g id="s4-w1"><circle cx="64" cy="226" r="9" fill="#2B2E3A"/><circle cx="64" cy="226" r="3.5" fill="#E8EAF2"/><rect x="63" y="219" width="2" height="4" fill="#E8EAF2"/></g>
+    <g id="s4-w2"><circle cx="122" cy="226" r="9" fill="#2B2E3A"/><circle cx="122" cy="226" r="3.5" fill="#E8EAF2"/><rect x="121" y="219" width="2" height="4" fill="#E8EAF2"/></g>
+  </g>
+</svg></div>
+
+<!-- 5. Sampai di pintu (14.0–18.0) -->
+<div class="scene" id="s5"><svg viewBox="0 0 180 320">
+  <rect width="180" height="320" fill="#FFB020"/>
+  <rect x="0" y="280" width="180" height="40" fill="#E89A0C"/>
+  <g text-anchor="middle">
+    <text class="t-hd" x="90" y="62" font-size="13.5" fill="#1E1A68" id="s5-l1">Asnaf · Ibu tunggal</text>
+    <text class="t-hd" x="90" y="82" font-size="13.5" fill="#1E1A68" id="s5-l2">Warga emas · B40</text>
+  </g>
+  <rect x="104" y="128" width="64" height="152" rx="4" fill="#1E1A68"/>
+  <rect x="112" y="138" width="48" height="142" fill="#F5F6FA"/>
+  <g id="s5-recv">
+    <path d="M116 196 Q132 186 148 196 L152 280 L112 280 Z" fill="#5E59A6"/>
+    <path d="M118 176 Q132 150 146 176 L146 194 L118 194 Z" fill="#5E59A6"/>
+    <circle cx="132" cy="178" r="10" fill="#F2C9A5"/>
+    <path id="s5-recv-arm" d="M120 210 L104 216" stroke="#F2C9A5" stroke-width="8" stroke-linecap="round"/>
+  </g>
+  <rect id="s5-door" x="112" y="138" width="48" height="142" fill="#C5162E"/>
+  <g id="s5-vol">
+    <path d="M28 192 Q46 182 64 192 L66 280 L26 280 Z" fill="#C5162E"/>
+    <circle cx="46" cy="172" r="12" fill="#D9A77E"/>
+    <path d="M34 168 Q46 152 58 168 Z" fill="#1E1A68"/>
+    <path d="M60 204 L80 212" stroke="#D9A77E" stroke-width="8" stroke-linecap="round"/>
+  </g>
+  <g id="s5-box">
+    <rect x="74" y="204" width="36" height="28" rx="3" fill="#C89B6D"/>
+    <path d="M74 218 L110 218 M92 204 L92 232" stroke="#ED2B3A" stroke-width="3"/>
+  </g>
+  <g id="s5-heart" opacity="0"><path d="M92 186 C86 178 79 186 92 196 C105 186 98 178 92 186" fill="#C5162E"/></g>
+</svg></div>
+
+<!-- 6. Setiap bulan (18.0–22.0) -->
+<div class="scene" id="s6"><svg viewBox="0 0 180 320">
+  <rect width="180" height="320" fill="#C5162E"/>
+  <g text-anchor="middle">
+    <text class="t-hd" x="90" y="64" font-size="19" fill="#FFFFFF" id="s6-l1">Setiap bulan</text>
+    <text class="t-md" x="90" y="85" font-size="11" fill="#F4D9DE" id="s6-l2">Infak ikut kemampuan</text>
+  </g>
+  <g id="s6-cal">
+    <rect x="46" y="104" width="88" height="88" rx="8" fill="#FFFFFF"/>
+    <rect x="46" y="104" width="88" height="20" rx="8" fill="#1E1A68"/><rect x="46" y="116" width="88" height="8" fill="#1E1A68"/>
+    <circle cx="66" cy="104" r="3.2" fill="#F4D9DE"/><circle cx="114" cy="104" r="3.2" fill="#F4D9DE"/>
+    <g id="s6-pek">
+      <rect x="72" y="140" width="36" height="30" rx="3" fill="#C89B6D"/>
+      <path d="M72 155 L108 155 M90 140 L90 170" stroke="#ED2B3A" stroke-width="3"/>
+      <path d="M90 140 C82 131 78 139 90 140 C102 131 106 139 90 140" fill="#ED2B3A"/>
+    </g>
+    <g id="s6-page3"><rect x="46" y="124" width="88" height="68" fill="#F5F6FA"/><rect x="72" y="140" width="36" height="30" rx="3" fill="#C89B6D"/><path d="M72 155 L108 155 M90 140 L90 170" stroke="#ED2B3A" stroke-width="3"/></g>
+    <g id="s6-page2"><rect x="46" y="124" width="88" height="68" fill="#FFFFFF"/><rect x="72" y="140" width="36" height="30" rx="3" fill="#C89B6D"/><path d="M72 155 L108 155 M90 140 L90 170" stroke="#ED2B3A" stroke-width="3"/></g>
+    <g id="s6-page1"><rect x="46" y="124" width="88" height="68" fill="#F5F6FA"/><rect x="72" y="140" width="36" height="30" rx="3" fill="#C89B6D"/><path d="M72 155 L108 155 M90 140 L90 170" stroke="#ED2B3A" stroke-width="3"/></g>
+  </g>
+  <g id="s6-chips" text-anchor="middle">
+    <g id="s6-c1"><rect x="20" y="206" width="42" height="20" rx="10" fill="#FFFFFF"/><text class="t-sb" x="41" y="220" font-size="9" fill="#C5162E">RM10</text></g>
+    <g id="s6-c2"><rect x="69" y="206" width="42" height="20" rx="10" fill="#FFFFFF"/><text class="t-sb" x="90" y="220" font-size="9" fill="#C5162E">RM20</text></g>
+    <g id="s6-c3"><rect x="118" y="206" width="42" height="20" rx="10" fill="#FFB020"/><text class="t-sb" x="139" y="220" font-size="9" fill="#1E1A68">RM50</text></g>
+  </g>
+  <text class="t-md" x="90" y="246" font-size="9.5" fill="#FFFFFF" text-anchor="middle" id="s6-l3">RM10 pun diterima</text>
+</svg></div>
+
+<!-- 7. Bukti amanah (22.0–26.0) -->
+<div class="scene" id="s7"><svg viewBox="0 0 180 320">
+  <rect width="180" height="320" fill="#F5F6FA"/>
+  <g text-anchor="middle">
+    <text class="t-hd" x="90" y="62" font-size="15" fill="#1E1A68" id="s7-l1">Setiap agihan</text>
+    <text class="t-hd" x="90" y="83" font-size="15" fill="#C5162E" id="s7-l2">direkod</text>
+  </g>
+  <g id="s7-card">
+    <rect x="28" y="100" width="124" height="150" rx="10" fill="#FFFFFF" stroke="#E8EAF2" stroke-width="2"/>
+    <rect x="28" y="100" width="124" height="30" rx="10" fill="#1E1A68"/><rect x="28" y="118" width="124" height="12" fill="#1E1A68"/>
+    <text class="t-sb" x="90" y="120" font-size="11" fill="#FFFFFF" text-anchor="middle">Papan Impak</text>
+    <g stroke="#2FA36B" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path id="s7-k1" d="M42 152 L47 157 L56 146" pathLength="1"/>
+      <path id="s7-k2" d="M42 180 L47 185 L56 174" pathLength="1"/>
+      <path id="s7-k3" d="M42 208 L47 213 L56 202" pathLength="1"/>
+    </g>
+    <text class="t-in" x="66" y="154" font-size="6.6" fill="#2B2E3A">Tarikh agihan</text>
+    <text class="t-in" x="66" y="182" font-size="6.6" fill="#2B2E3A">Bilangan penerima</text>
+    <text class="t-in" x="66" y="210" font-size="6.6" fill="#2B2E3A">Kos</text>
+    <path id="s7-sign" d="M40 234 C60 222 72 242 92 230 C104 223 112 238 140 228" stroke="#ED2B3A" stroke-width="2.6" fill="none" stroke-linecap="round" pathLength="1"/>
+  </g>
+  <text class="t-in" x="90" y="270" font-size="7.2" fill="#7281A8" text-anchor="middle" id="s7-ros">Berdaftar ROS · PPM-002-10-13032020</text>
+</svg></div>
+
+<!-- 8. Penutup dan seruan (26.0–30.0) -->
+<div class="scene" id="s8"><svg viewBox="0 0 180 320">
+  <rect width="180" height="320" fill="#FFFFFF"/>
+  <path id="s8-thread" d="M90 -4 L90 70" stroke="#ED2B3A" stroke-width="3" stroke-linecap="round" pathLength="1"/>
+  <path id="s8-heart" d="M90 96 C74 66 40 82 50 112 C56 132 76 142 90 156 C104 142 124 132 130 112 C140 82 106 66 90 96 Z" fill="#C5162E" fill-opacity="0" stroke="#ED2B3A" stroke-width="3" stroke-linejoin="round" pathLength="1"/>
+  <image id="s8-logo" href="assets/logo.png" x="25" y="62" width="130" height="92" opacity="0"/>
+  <text class="t-in" x="90" y="168" font-size="7.5" fill="#7281A8" text-anchor="middle" id="s8-tag">Care That Unites Communities</text>
+  <g id="s8-btn">
+    <rect x="25" y="182" width="130" height="32" rx="16" fill="#C5162E"/>
+    <text class="t-sb" x="90" y="202.5" font-size="11.5" fill="#FFFFFF" text-anchor="middle">Infak Foodbank</text>
+  </g>
+  <text class="t-hd" x="90" y="238" font-size="14" fill="#1E1A68" text-anchor="middle" id="s8-url">muafakatcare.my</text>
+</svg></div>
+
+</div>
+<script src="vendor/gsap.min.js"></script>
+<script>
+const U = 6; // 1 unit viewBox = 6px
+const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
+window.tl = tl;
+
+// Set awal
+gsap.set(["#s2","#s3","#s4","#s5","#s6","#s7","#s8"], { clipPath: "circle(0px at 540px 1400px)" });
+// Corak "1 2" dengan offset 1.02: garis tersembunyi sepenuhnya, tanpa titik hujung bulat.
+const draw = sel => gsap.set(sel, { strokeDasharray: "1 2", strokeDashoffset: 1.02 });
+draw(["#s1-thread","#s2-thread","#s3-rib-h","#s3-rib-v","#s7-k1","#s7-k2","#s7-k3","#s7-sign","#s8-thread","#s8-heart"]);
+const textIn = (sel, at) => tl.from(sel, { y: 10, opacity: 0, duration: .45 }, at);
+const reveal = (sel, x, y, at, dur = .65) =>
+  tl.fromTo(sel, { clipPath: `circle(0px at ${x*U}px ${y*U}px)` },
+                 { clipPath: `circle(2300px at ${x*U}px ${y*U}px)`, duration: dur, ease: "power2.in" }, at);
+
+// 1. Soalan pembuka
+tl.from("#s1-hand", { x: 120, duration: .8, ease: "power3.out" }, 0.1);
+tl.to("#s1-thread", { strokeDashoffset: 0, duration: .6, ease: "none" }, 0.75);
+tl.from("#s1-bead", { y: -70, opacity: 0, duration: .7, ease: "bounce.out" }, 1.15);
+textIn("#s1-l1", 1.5); textIn("#s1-l2", 1.75);
+tl.to("#s1-hand", { y: -3, duration: .6, yoyo: true, repeat: 1, ease: "sine.inOut" }, 2.0);
+tl.to("#s1-bead", { scale: 1.6, transformOrigin: "50% 50%", duration: .25, ease: "power1.in" }, 2.85);
+reveal("#s2", 90, 232, 2.95);
+
+// 2. Satu klik
+tl.from("#s2-phone", { y: 60, opacity: 0, duration: .6, ease: "back.out(1.4)" }, 3.2);
+textIn("#s2-l1", 3.4); textIn("#s2-l2", 3.6);
+tl.to("#s2-thread", { strokeDashoffset: 0, duration: .7, ease: "power1.inOut" }, 3.6);
+tl.from("#s2-bead", { scale: 0, transformOrigin: "50% 50%", duration: .2 }, 4.25);
+tl.to("#s2-btn", { scale: .9, transformOrigin: "50% 50%", duration: .12, yoyo: true, repeat: 1, ease: "power1.inOut" }, 4.6);
+tl.fromTo("#s2-ripple", { scale: .6, opacity: 0, transformOrigin: "50% 50%" }, { scale: 2.6, opacity: .9, duration: .1 }, 4.62);
+tl.to("#s2-ripple", { opacity: 0, scale: 3.4, duration: .6 }, 4.72);
+tl.to("#s2-bead", { scale: 1.8, duration: .25, ease: "power1.in" }, 5.85);
+reveal("#s3", 125, 231, 5.95);
+
+// 3. Jadi pek makanan
+tl.from("#s3-box", { y: 120, duration: .6, ease: "back.out(1.2)" }, 6.2);
+tl.from("#s3-item1", { y: -220, duration: .55, ease: "bounce.out" }, 6.7);
+tl.from("#s3-item2", { y: -220, duration: .55, ease: "bounce.out" }, 7.05);
+tl.from("#s3-item3", { y: -220, duration: .55, ease: "bounce.out" }, 7.4);
+tl.to("#s3-rib-h", { strokeDashoffset: 0, duration: .35, ease: "none" }, 7.9);
+tl.to("#s3-rib-v", { strokeDashoffset: 0, duration: .3, ease: "none" }, 8.15);
+tl.from("#s3-bow", { scale: 0, transformOrigin: "50% 100%", duration: .5, ease: "back.out(3)" }, 8.4);
+tl.from("#s3-l1", { scale: .3, opacity: 0, transformOrigin: "50% 70%", duration: .55, ease: "back.out(2.2)" }, 8.5);
+textIn("#s3-l2", 8.8);
+tl.to(["#s3-box","#s3-item1","#s3-item2","#s3-item3"], { y: -8, duration: .2, yoyo: true, repeat: 1, ease: "power1.out" }, 9.3);
+reveal("#s4", 90, 196, 9.75);
+
+// 4. Dalam perjalanan
+tl.from("#s4-sun", { y: 40, duration: 3.6, ease: "sine.out" }, 10.0);
+tl.to("#s4-houses", { x: -200, duration: 4.4, ease: "none" }, 9.8);
+tl.to("#s4-dash", { attr: { "stroke-dashoffset": 96 }, duration: 4.4, ease: "none" }, 9.8);
+tl.from("#s4-van", { x: -160, duration: .8, ease: "power3.out" }, 10.1);
+tl.to(["#s4-w1","#s4-w2"], { rotation: 720, transformOrigin: "50% 50%", duration: 4, ease: "none" }, 10.0);
+for (let i = 0; i < 7; i++) tl.to("#s4-van", { y: -1.5, duration: .25, yoyo: true, repeat: 1, ease: "sine.inOut" }, 10.9 + i * .45);
+textIn("#s4-l1", 10.4); textIn("#s4-l2", 10.6);
+tl.from("#s4-pill", { scale: 0, transformOrigin: "50% 50%", duration: .4, ease: "back.out(2)" }, 11.0);
+reveal("#s5", 92, 214, 13.75);
+
+// 5. Sampai di pintu (babak emosi)
+tl.from(["#s5-vol","#s5-box"], { x: -120, duration: .9, ease: "power3.out" }, 14.0);
+tl.to("#s5-door", { scaleX: 0, transformOrigin: "0% 50%", duration: .7, ease: "power2.inOut" }, 14.7);
+textIn("#s5-l1", 14.6); textIn("#s5-l2", 14.85);
+tl.to("#s5-box", { x: 8, y: -2, duration: .9, ease: "sine.inOut" }, 15.6);
+tl.to("#s5-heart", { opacity: 1, y: -16, duration: .7 }, 16.3);
+tl.to(["#s5-vol","#s5-recv"], { rotation: 4, transformOrigin: "50% 100%", duration: .35, yoyo: true, repeat: 1, ease: "sine.inOut" }, 16.5);
+tl.to("#s5-heart", { opacity: 0, y: -26, duration: .6 }, 17.2);
+reveal("#s6", 92, 218, 17.75);
+
+// 6. Setiap bulan
+tl.from("#s6-cal", { y: 50, opacity: 0, duration: .55, ease: "back.out(1.4)" }, 18.0);
+textIn("#s6-l1", 18.2); textIn("#s6-l2", 18.45);
+["#s6-page1","#s6-page2","#s6-page3"].forEach((p, i) =>
+  tl.to(p, { scaleY: 0, transformOrigin: "50% 0%", duration: .32, ease: "power2.in" }, 18.9 + i * .45));
+tl.from("#s6-pek", { scale: .6, transformOrigin: "50% 50%", duration: .4, ease: "back.out(3)" }, 20.2);
+["#s6-c1","#s6-c2","#s6-c3"].forEach((c, i) =>
+  tl.from(c, { scale: 0, transformOrigin: "50% 50%", duration: .4, ease: "back.out(2.5)" }, 20.0 + i * .3));
+textIn("#s6-l3", 20.9);
+reveal("#s7", 90, 160, 21.75);
+
+// 7. Bukti amanah
+tl.from("#s7-card", { y: 60, opacity: 0, duration: .6, ease: "back.out(1.3)" }, 22.0);
+textIn("#s7-l1", 22.2); textIn("#s7-l2", 22.45);
+["#s7-k1","#s7-k2","#s7-k3"].forEach((k, i) => tl.to(k, { strokeDashoffset: 0, duration: .3, ease: "none" }, 22.9 + i * .4));
+tl.to("#s7-sign", { strokeDashoffset: 0, duration: .7, ease: "power1.inOut" }, 24.2);
+textIn("#s7-ros", 24.6);
+reveal("#s8", 90, 175, 25.75);
+
+// 8. Penutup dan seruan
+tl.to("#s8-thread", { strokeDashoffset: 0, duration: .35, ease: "none" }, 26.0);
+tl.to("#s8-heart", { strokeDashoffset: 0, duration: .9, ease: "power1.inOut" }, 26.3);
+tl.to("#s8-heart", { fillOpacity: 1, duration: .3 }, 27.1);
+tl.to(["#s8-heart","#s8-thread"], { opacity: 0, duration: .45 }, 27.45);
+tl.to("#s8-logo", { opacity: 1, duration: .5 }, 27.4);
+textIn("#s8-tag", 27.7);
+tl.from("#s8-btn", { scale: 0, transformOrigin: "50% 50%", duration: .45, ease: "back.out(2)" }, 27.85);
+textIn("#s8-url", 28.0);
+tl.to("#s8-btn", { scale: 1.06, transformOrigin: "50% 50%", duration: .2, yoyo: true, repeat: 3, ease: "sine.inOut" }, 28.4);
+tl.set({}, {}, 30.0); // tahan sehingga 30 s
+
+window.ready = document.fonts.ready.then(() => new Promise(r => {
+  const img = new Image(); img.onload = img.onerror = r; img.src = "assets/logo.png";
+}));
+</script>
+</body>
+</html>
