@@ -1,0 +1,85 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; }
+    #hd-wrap { position: absolute; inset: 0; overflow: hidden;
+               background: radial-gradient(circle at 50% 50%, #E0283F 0, #C5162E 55%, #9E0F23 100%); }
+    #hd-panel { position: absolute; inset: 0; overflow: hidden; }
+    #hd-panel > svg { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+    #hd-head { position: absolute; left: 0; right: 0; top: 0; height: 230px; background: #1E1A68; color: #fff;
+               display: flex; align-items: center; justify-content: center; gap: 28px; font: 700 86px Poppins, sans-serif; }
+    #hd-head i { width: 62px; height: 62px; border-radius: 50%; background: #2FA36B; display: inline-block; position: relative; }
+    #hd-head i::after { content: ""; position: absolute; left: 17px; top: 9px; width: 18px; height: 32px;
+                        border: solid #fff; border-width: 0 9px 9px 0; transform: rotate(45deg); }
+    #hd-hands { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+    .hd-cap { position: absolute; left: 60px; right: 60px; top: 330px; text-align: center; font-family: Poppins, sans-serif;
+              color: #fff; text-shadow: 0 4px 24px rgba(15,18,53,.25); }
+    .hd-cap b { display: block; font-weight: 800; font-size: 84px; line-height: 1.08; letter-spacing: -1px; }
+    .hd-cap small { display: block; font-weight: 600; font-size: 46px; line-height: 1.3; }
+  </style>
+  <div id="root" data-composition-id="hidangan" data-width="1080" data-height="1920">
+    <div id="hd-wrap">
+      <div id="hd-panel">
+        <svg viewBox="0 0 180 320">
+          <rect width="180" height="320" fill="#2FA36B" /><rect width="180" height="320" fill="url(#glow)" />
+          <g id="hd-plate" filter="url(#sh)">
+            <circle cx="90" cy="178" r="50" fill="#FFFFFF" />
+            <circle cx="90" cy="178" r="41" fill="none" stroke="#E8EAF2" stroke-width="1.6" />
+            <circle cx="79" cy="186" r="21" fill="#FBF7EE" /><circle cx="72" cy="182" r="1" fill="#E8E1D0" /><circle cx="84" cy="192" r="1" fill="#E8E1D0" /><circle cx="80" cy="178" r="1" fill="#E8E1D0" />
+            <ellipse cx="108" cy="166" rx="13" ry="11" fill="#FFFFFF" stroke="#F1EEE6" stroke-width="1" /><circle cx="108" cy="166" r="5.4" fill="#FFB020" />
+            <ellipse cx="106" cy="196" rx="12" ry="7" fill="#3E8E4E" transform="rotate(-25 106 196)" /><ellipse cx="111" cy="190" rx="7" ry="4" fill="#5FB36E" transform="rotate(-25 111 190)" />
+            <ellipse cx="74" cy="158" rx="13" ry="8" fill="#B8742F" transform="rotate(-20 74 158)" />
+            <g id="hd-hand"><rect x="132" y="168" width="70" height="24" rx="5" fill="#7A6FB5" /><rect x="122" y="170" width="18" height="20" rx="8" fill="#D9A77E" /><rect x="116" y="172" width="12" height="6" rx="3" fill="#D9A77E" /></g>
+          </g>
+          <g id="hd-steam" stroke="#FFFFFF" stroke-width="2.2" fill="none" stroke-linecap="round">
+            <path d="M78 150 Q74 142 78 134 Q82 126 78 118" /><path d="M90 146 Q86 138 90 130 Q94 122 90 114" /><path d="M102 150 Q98 142 102 134 Q106 126 102 118" />
+          </g>
+          <g filter="url(#sh)"><circle cx="40" cy="256" r="14" fill="#FFFFFF" /><circle cx="40" cy="256" r="10.5" fill="#C98A4B" /></g>
+        </svg>
+        <div id="hd-head"><i></i>Papan Impak</div>
+      </div>
+      <svg id="hd-hands" viewBox="0 0 1080 1920">
+        <g id="hd-hg" filter="url(#sh)">
+          <g id="hd-hl"><rect x="230" y="1600" width="150" height="400" rx="34" fill="#1E1A68" /><rect x="242" y="1500" width="126" height="140" rx="48" fill="#E8B892" /><rect x="262" y="1452" width="40" height="92" rx="20" fill="#E8B892" /></g>
+          <g id="hd-hr"><rect x="700" y="1600" width="150" height="400" rx="34" fill="#1E1A68" /><rect x="712" y="1500" width="126" height="140" rx="48" fill="#E8B892" /><rect x="778" y="1452" width="40" height="92" rx="20" fill="#E8B892" /></g>
+        </g>
+      </svg>
+      <div class="hd-cap" id="hd-cap1"><b>Setiap bulan</b><small>Infak ikut kemampuan</small><small style="font-weight:700;color:#FFE7A8">RM10 pun diterima</small></div>
+      <div class="hd-cap" id="hd-cap2"><b>Setiap agihan</b><b>direkod</b><small style="font-family:Inter,sans-serif;font-size:34px;color:#F4D9DE">Berdaftar ROS · PPM-002-10-13032020</small></div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const T0 = 22.35, A = t => t - T0;
+      const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
+      const later = v => Object.assign({ immediateRender: false }, v);
+
+      // Masuk: tolak dari kanan
+      tl.fromTo("#hd-wrap", { x: 1080 }, { x: 0, duration: .5, ease: "power3.inOut" }, A(22.35));
+
+      // Syot dari atas: pinggan diletak, tangan beredar, wap naik
+      tl.fromTo("#hd-plate", { x: 160, rotation: 40, transformOrigin: "50% 55%" }, { x: 0, rotation: 0, duration: .8, ease: "power3.out" }, A(22.6));
+      tl.fromTo("#hd-hand", { x: 0 }, { x: 90, duration: .6, ease: "power2.in" }, A(23.45));
+      tl.fromTo("#hd-steam", { opacity: 0 }, { opacity: .8, duration: .4 }, A(23.5));
+      tl.fromTo("#hd-steam path", { y: 6 }, { y: -10, duration: 1.4, ease: "sine.inOut", stagger: .2 }, A(23.5));
+      tl.fromTo("#hd-cap1", { y: 36, opacity: 0 }, { y: 0, opacity: 1, duration: .5 }, A(23.0));
+      tl.fromTo("#hd-cap1", { y: 0, opacity: 1 }, later({ y: -24, opacity: 0, duration: .35, ease: "power2.in" }), A(24.9));
+
+      // Babak mengecil menjadi kad Papan Impak, dipegang dua tangan
+      tl.fromTo("#hd-panel", { scale: 1, y: 0, borderRadius: 0, boxShadow: "0 0 0 rgba(15,18,53,0)", opacity: 1 },
+        { scale: .5, y: 160, borderRadius: 60, boxShadow: "0 40px 90px rgba(15,18,53,.45)", duration: .65, ease: "power3.inOut" }, A(25.0));
+      tl.fromTo("#hd-head", { opacity: 0 }, { opacity: 1, duration: .3 }, A(25.45));
+      tl.fromTo("#hd-hl", { y: 600 }, { y: 0, duration: .6, ease: "power3.out" }, A(25.4));
+      tl.fromTo("#hd-hr", { y: 600 }, { y: 0, duration: .6, ease: "power3.out" }, A(25.5));
+      tl.fromTo("#hd-panel", { y: 160 }, later({ y: 120, duration: 1.2, ease: "sine.inOut" }), A(25.9));
+      tl.fromTo("#hd-hg", { y: 0 }, { y: -40, duration: 1.2, ease: "sine.inOut" }, A(25.9));
+      tl.fromTo("#hd-cap2", { y: 36, opacity: 0 }, { y: 0, opacity: 1, duration: .5 }, A(25.5));
+      tl.fromTo("#hd-cap2", { y: 0, opacity: 1 }, later({ y: -24, opacity: 0, duration: .35, ease: "power2.in" }), A(27.05));
+
+      // Keluar: kad terbang menjadi logo
+      tl.fromTo("#hd-panel", { scale: .5, y: 120, opacity: 1 }, later({ scale: .08, y: -100, opacity: 0, duration: .5, ease: "power3.in" }), A(27.15));
+      tl.fromTo("#hd-hg", { y: -40 }, later({ y: 700, duration: .45, ease: "power2.in" }), A(27.15));
+
+      window.__timelines["hidangan"] = tl;
+    })();
+  </script>
+</template>

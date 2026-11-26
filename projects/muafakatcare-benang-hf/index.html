@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ms">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Benang Muafakat · Foodbank Bulanan</title>
+    <script src="vendor/gsap.min.js"></script>
+    <style>
+      /* Jenama Muafakat Care (token dari muafakatcare/public/css/app.css) */
+      :root {
+        --red: #C5162E; --red-hi: #ED2B3A; --indigo: #1E1A68; --midnight: #0F1235;
+        --off: #F5F6FA; --blush: #F4D9DE; --gold: #FFB020; --green: #2FA36B;
+      }
+      @font-face { font-family: Poppins; font-weight: 600; src: url("assets/fonts/poppins-latin-600-normal.woff2") format("woff2"); }
+      @font-face { font-family: Poppins; font-weight: 700; src: url("assets/fonts/poppins-latin-700-normal.woff2") format("woff2"); }
+      @font-face { font-family: Poppins; font-weight: 800; src: url("assets/fonts/poppins-latin-800-normal.woff2") format("woff2"); }
+      @font-face { font-family: Inter; font-weight: 600; src: url("assets/fonts/inter-latin-600-normal.woff2") format("woff2"); }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #000; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; }
+      /* Latar belah dua: kelihatan hanya semasa peralihan kiub */
+      #ground { position: absolute; inset: 0; z-index: 0;
+                background: linear-gradient(90deg, #C5162E 0 50%, #1E1A68 50% 100%); }
+      #hf-vignette { position: absolute; inset: 0; pointer-events: none; z-index: 90;
+        background: radial-gradient(ellipse at center, transparent 58%, rgba(15, 18, 53, 0.28) 100%); }
+      #grain-overlay { position: absolute; inset: 0; pointer-events: none; z-index: 100; overflow: hidden; }
+      @keyframes hf-grain-noise {
+        0%, 100% { transform: translate(0, 0); } 10% { transform: translate(-5%, -5%); }
+        20% { transform: translate(-10%, 5%); } 30% { transform: translate(5%, -10%); }
+        40% { transform: translate(-5%, 15%); } 50% { transform: translate(-10%, 5%); }
+        60% { transform: translate(15%, 0); } 70% { transform: translate(0, 10%); }
+        80% { transform: translate(-15%, 0); } 90% { transform: translate(10%, 5%); }
+      }
+      #grain-overlay .grain-texture {
+        position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+        background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        opacity: 0.07;
+        animation: hf-grain-noise 0.5s steps(1) 60 both; /* 60 × 0.5 s = 30 s, terhad */
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Definisi SVG dikongsi oleh semua babak: bayang lembut, lampu sorot, gradien -->
+    <svg width="0" height="0" style="position: absolute">
+      <defs>
+        <radialGradient id="glow" cx=".5" cy=".42" r=".62"><stop offset="0" stop-color="#fff" stop-opacity=".55" /><stop offset=".55" stop-color="#fff" stop-opacity=".12" /><stop offset="1" stop-color="#fff" stop-opacity="0" /></radialGradient>
+        <radialGradient id="glowSoft" cx=".5" cy=".4" r=".7"><stop offset="0" stop-color="#fff" stop-opacity=".28" /><stop offset="1" stop-color="#fff" stop-opacity="0" /></radialGradient>
+        <radialGradient id="blueBg" cx=".5" cy=".45" r=".75"><stop offset="0" stop-color="#3A6FC4" /><stop offset=".6" stop-color="#25438F" /><stop offset="1" stop-color="#1E1A68" /></radialGradient>
+        <radialGradient id="warm" cx=".5" cy=".55" r=".6"><stop offset="0" stop-color="#FFD9A0" stop-opacity=".55" /><stop offset="1" stop-color="#FFD9A0" stop-opacity="0" /></radialGradient>
+        <radialGradient id="skinShade" cx=".38" cy=".32" r=".8"><stop offset="0" stop-color="#fff" stop-opacity=".22" /><stop offset="1" stop-color="#000" stop-opacity=".1" /></radialGradient>
+        <linearGradient id="cloth" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".14" /><stop offset=".6" stop-color="#fff" stop-opacity="0" /><stop offset="1" stop-color="#000" stop-opacity=".16" /></linearGradient>
+        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FBE3D6" /><stop offset=".7" stop-color="#F5F1EE" /></linearGradient>
+        <filter id="sh" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="2.2" stdDeviation="2.4" flood-color="#0F1235" flood-opacity=".22" /></filter>
+        <filter id="shs" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="1" stdDeviation="1.1" flood-color="#0F1235" flood-opacity=".2" /></filter>
+      </defs>
+    </svg>
+
+    <div id="root" data-composition-id="main" data-start="0" data-duration="30" data-width="1080" data-height="1920">
+      <div id="ground" class="clip" data-start="0" data-duration="30" data-track-index="0"></div>
+
+      <!-- Babak (lorong 1 dan 2 berselang kerana peralihan bertindih) -->
+      <div id="pembuka" data-composition-id="pembuka" data-composition-src="compositions/pembuka.html"
+           data-start="0" data-duration="3.95" data-track-index="1" data-track-kind="graphics"
+           data-width="1080" data-height="1920" style="z-index: 1"></div>
+      <div id="stor" data-composition-id="stor" data-composition-src="compositions/stor.html"
+           data-start="3.9" data-duration="6" data-track-index="2" data-track-kind="graphics"
+           data-width="1080" data-height="1920" style="z-index: 2"></div>
+      <div id="sukarelawan" data-composition-id="sukarelawan" data-composition-src="compositions/sukarelawan.html"
+           data-start="9.35" data-duration="3.9" data-track-index="1" data-track-kind="graphics"
+           data-width="1080" data-height="1920" style="z-index: 3"></div>
+      <div id="perjalanan" data-composition-id="perjalanan" data-composition-src="compositions/perjalanan.html"
+           data-start="12.4" data-duration="7.55" data-track-index="2" data-track-kind="graphics"
+           data-width="1080" data-height="1920" style="z-index: 4"></div>
+      <div id="pintu" data-composition-id="pintu" data-composition-src="compositions/pintu.html"
+           data-start="19.55" data-duration="3.35" data-track-index="1" data-track-kind="graphics"
+           data-width="1080" data-height="1920" style="z-index: 5"></div>
+      <div id="hidangan" data-composition-id="hidangan" data-composition-src="compositions/hidangan.html"
+           data-start="22.35" data-duration="5.4" data-track-index="2" data-track-kind="graphics"
+           data-width="1080" data-height="1920" style="z-index: 6"></div>
+      <div id="penutup" data-composition-id="penutup" data-composition-src="compositions/penutup.html"
+           data-start="27.4" data-duration="2.6" data-track-index="1" data-track-kind="graphics"
+           data-width="1080" data-height="1920" style="z-index: 7"></div>
+
+      <!-- Tekstur: vignette + bijian filem (blok registry, diubah suai) -->
+      <div id="hf-vignette" class="clip" data-start="0" data-duration="30" data-track-index="3"></div>
+      <div id="grain-overlay" class="clip" data-start="0" data-duration="30" data-track-index="4"><div class="grain-texture"></div></div>
+
+      <!-- Muzik + kesan bunyi (music.py) -->
+      <audio id="muzik" class="clip" src="assets/music.wav" data-start="0" data-duration="30" data-track-index="5" data-volume="1"></audio>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

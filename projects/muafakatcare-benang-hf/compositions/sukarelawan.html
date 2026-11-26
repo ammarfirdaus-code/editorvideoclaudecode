@@ -1,0 +1,87 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; }
+    #sk-wrap { position: absolute; inset: 0; overflow: hidden; }
+    #sk-wrap > svg { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+    #sk-cap { position: absolute; left: 60px; right: 60px; top: 330px; text-align: center; font-family: Poppins, sans-serif;
+              text-shadow: 0 4px 24px rgba(15,18,53,.25); }
+    #sk-cap b { display: block; font-weight: 800; font-size: 84px; line-height: 1.08; letter-spacing: -1px; }
+  </style>
+  <div id="root" data-composition-id="sukarelawan" data-width="1080" data-height="1920">
+    <div id="sk-wrap">
+      <svg id="sk-svg" viewBox="0 0 180 320">
+        <rect width="180" height="320" fill="url(#blueBg)" />
+        <rect width="180" height="320" fill="url(#glowSoft)" />
+        <g id="sk-a">
+          <path d="M4 330 Q8 214 58 204 Q104 214 108 330 Z" fill="#C5162E" filter="url(#sh)" />
+          <path d="M4 330 Q8 214 58 204 Q104 214 108 330 Z" fill="url(#cloth)" />
+          <text data-layout-ignore x="56" y="248" font-family="Poppins" font-weight="700" font-size="5.2" fill="#fff" text-anchor="middle" opacity=".9">MUAFAKAT CARE</text>
+          <g id="sk-a-head">
+            <path d="M28 150 Q28 116 57 114 Q86 116 86 150 Q88 196 57 210 Q26 196 28 150 Z" fill="#1E1A68" />
+            <ellipse cx="57" cy="152" rx="20" ry="23" fill="#E8B892" />
+            <ellipse cx="57" cy="152" rx="20" ry="23" fill="url(#skinShade)" />
+            <path d="M37 140 Q57 118 77 140 Q77 128 57 124 Q37 128 37 140 Z" fill="#1E1A68" />
+            <g id="sk-a-eyes"><path d="M47 152 Q50 149 53 152 M61 152 Q64 149 67 152" stroke="#2B2E3A" stroke-width="1.6" fill="none" stroke-linecap="round" /></g>
+            <path d="M51 163 Q57 168 63 163" stroke="#B4614A" stroke-width="1.6" fill="none" stroke-linecap="round" />
+            <ellipse cx="45" cy="160" rx="4" ry="2.4" fill="#F09A8A" opacity=".45" /><ellipse cx="69" cy="160" rx="4" ry="2.4" fill="#F09A8A" opacity=".45" />
+          </g>
+        </g>
+        <g id="sk-b">
+          <path d="M78 330 Q82 218 128 208 Q174 218 178 330 Z" fill="#C5162E" filter="url(#sh)" />
+          <path d="M78 330 Q82 218 128 208 Q174 218 178 330 Z" fill="url(#cloth)" />
+          <text data-layout-ignore x="128" y="252" font-family="Poppins" font-weight="700" font-size="5.2" fill="#fff" text-anchor="middle" opacity=".9">MUAFAKAT CARE</text>
+          <rect x="119" y="182" width="18" height="22" fill="#B98060" />
+          <g id="sk-b-head">
+            <ellipse cx="128" cy="160" rx="19" ry="22" fill="#C98E6A" />
+            <ellipse cx="128" cy="160" rx="19" ry="22" fill="url(#skinShade)" />
+            <path d="M107 156 Q107 124 128 122 Q149 124 149 156 Z" fill="#8FC1D9" />
+            <rect x="106" y="150" width="44" height="8" rx="4" fill="#7AAFCB" />
+            <g id="sk-b-eyes"><path d="M119 166 Q122 163 125 166 M131 166 Q134 163 137 166" stroke="#2B2E3A" stroke-width="1.6" fill="none" stroke-linecap="round" /></g>
+            <path d="M122 175 Q128 180 134 175" stroke="#7A4030" stroke-width="1.6" fill="none" stroke-linecap="round" />
+          </g>
+        </g>
+        <g id="sk-box" filter="url(#sh)">
+          <rect x="58" y="238" width="64" height="46" rx="3" fill="#C89B6D" />
+          <rect x="58" y="238" width="64" height="9" rx="3" fill="#B58656" />
+          <path d="M58 262 L122 262 M90 238 L90 284" stroke="#ED2B3A" stroke-width="3.4" />
+          <path d="M90 238 C80 226 73 236 90 238 C107 226 114 236 90 238" fill="#ED2B3A" />
+        </g>
+        <circle id="sk-ha" cx="60" cy="266" r="7" fill="#E8B892" filter="url(#shs)" />
+        <circle id="sk-hb" cx="120" cy="266" r="7" fill="#C98E6A" filter="url(#shs)" />
+      </svg>
+      <div id="sk-cap"><b style="color:#fff">Dibungkus oleh</b><b style="color:#FFB020">sukarelawan</b></div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const T0 = 9.35, A = t => t - T0, U = 6;
+      const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
+      const later = v => Object.assign({ immediateRender: false }, v);
+
+      // Masuk: bulatan dibuka dari kotak di babak sebelum
+      tl.fromTo("#sk-wrap", { clipPath: `circle(0px at ${90 * U}px ${192 * U}px)` }, { clipPath: `circle(2300px at ${90 * U}px ${192 * U}px)`, duration: .5, ease: "power2.in" }, A(9.35));
+      tl.fromTo("#sk-svg", { scale: 1.12, transformOrigin: "50% 60%" }, { scale: 1, duration: 3.0, ease: "sine.out" }, A(9.35));
+      tl.fromTo("#sk-a", { x: -60, y: 0 }, { x: 0, duration: .7, ease: "power3.out" }, A(9.6));
+      tl.fromTo("#sk-b", { x: 60, y: 0 }, { x: 0, duration: .8, ease: "power3.out" }, A(9.75));
+
+      // Lakonan: kepala dahulu, badan menyusul, amaun berbeza; mata berkelip pada masa berbeza
+      tl.fromTo("#sk-a-head", { rotation: 0, transformOrigin: "50% 90%" }, { rotation: -5, duration: .5, yoyo: true, repeat: 1, ease: "sine.inOut" }, A(10.35));
+      tl.fromTo("#sk-b-head", { rotation: 0, transformOrigin: "50% 90%" }, { rotation: 4, duration: .6, yoyo: true, repeat: 1, ease: "sine.inOut" }, A(10.8));
+      tl.fromTo("#sk-a", { y: 0 }, later({ y: -2, duration: .65, yoyo: true, repeat: 3, ease: "sine.inOut" }), A(10.5));
+      tl.fromTo("#sk-b", { y: 0 }, later({ y: -1.4, duration: .8, yoyo: true, repeat: 2, ease: "sine.inOut" }), A(10.65));
+      tl.fromTo(["#sk-box", "#sk-ha", "#sk-hb"], { y: 0 }, { y: -2.6, duration: .7, yoyo: true, repeat: 2, ease: "sine.inOut" }, A(10.6));
+      tl.fromTo("#sk-a-eyes", { scaleY: 1, transformOrigin: "50% 50%" }, { scaleY: .15, duration: .07, yoyo: true, repeat: 1 }, A(11.1));
+      tl.fromTo("#sk-b-eyes", { scaleY: 1, transformOrigin: "50% 50%" }, { scaleY: .15, duration: .07, yoyo: true, repeat: 1 }, A(11.55));
+      tl.fromTo("#sk-a-eyes", { scaleY: 1 }, later({ scaleY: .15, duration: .07, yoyo: true, repeat: 1 }), A(12.05));
+
+      tl.fromTo("#sk-cap", { y: 36, opacity: 0 }, { y: 0, opacity: 1, duration: .5 }, A(10.0));
+      tl.fromTo("#sk-cap", { y: 0, opacity: 1 }, later({ y: -24, opacity: 0, duration: .35, ease: "power2.in" }), A(12.1));
+
+      // Keluar: putaran kiub (muka kiri)
+      tl.fromTo("#sk-wrap", { rotationY: 0, scale: 1, transformPerspective: 2600, transformOrigin: "50% 50% -540px" },
+        later({ rotationY: -90, scale: .62, duration: .8, ease: "power2.inOut" }), A(12.4));
+
+      window.__timelines["sukarelawan"] = tl;
+    })();
+  </script>
+</template>
