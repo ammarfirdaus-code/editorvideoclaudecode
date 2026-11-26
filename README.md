@@ -63,6 +63,16 @@ git submodule update --init --recursive
 
 VoiceStudio is licensed under AGPL-3.0 and has its own license notice. This repo's own files are not covered by it.
 
+## Background music (Uppbeat)
+
+The `uppbeat-music` skill (`.claude/skills/uppbeat-music/`) helps pick free tracks from [uppbeat.io/music](https://uppbeat.io/music). You download the track yourself while logged in (Claude does not scrape the site or bypass its limits), then mix it under the voice:
+
+```bash
+bash scripts/mix-music.sh talking-head.mp4 assets/music/track.mp3 final.mp4 0.35
+```
+
+The music loops to the video length, ducks while the voice speaks and fades out at the end. Check Uppbeat's current licence and credit requirements before publishing, and record the credit in `assets/music/CREDITS.md`.
+
 ## VectorCraft (SVG overlays)
 
 Generates SVG assets for HyperFrames compositions. No dependencies. Text is XML-escaped.
