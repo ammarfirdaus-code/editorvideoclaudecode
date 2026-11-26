@@ -101,4 +101,4 @@ python $S/render.py config.json   # salin dari templates/config.example.json
 
 ## Knowledge
 
-Folder `knowledge/` menyimpan fail rujukan untuk kerja video. Rujuk `knowledge/FA_VGC_MASTER_KNOWLEDGE.md` (VGC Master Knowledge) untuk formula skrip, sistem editing, aliran kelulusan storyboard dan checklist kualiti. Fail ini diimport dalam `CLAUDE.md`, jadi Claude Code membacanya secara automatik setiap sesi. Fail knowledge baharu letak dalam folder yang sama, senaraikan dalam `knowledge/README.md`, dan tambah baris `@knowledge/<nama-fail>.md` dalam `CLAUDE.md` jika mahu ia dibaca automatik.
+Folder `knowledge/` menyimpan fail rujukan untuk kerja video. Rujuk `knowledge/FA_VGC_MASTER_KNOWLEDGE.md` (VGC Master Knowledge) untuk formula skrip, sistem editing, aliran kelulusan storyboard dan checklist kualiti. `CLAUDE.md` mengarahkan Claude Code membaca fail ini bila buat kerja video sahaja. Fail knowledge baharu letak dalam folder yang sama, senaraikan dalam `knowledge/README.md`, dan sebut dalam `CLAUDE.md` bila ia perlu dibaca.
