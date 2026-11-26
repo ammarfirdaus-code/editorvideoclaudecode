@@ -1,0 +1,44 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; }
+    #pn-wrap { position: absolute; inset: 0; overflow: hidden; background: radial-gradient(circle at 50% 40%, #FFFFFF 0, #F5F6FA 100%); }
+    #pn-logo { position: absolute; left: 240px; top: 330px; width: 600px; height: 424px; }
+    #pn-tag { position: absolute; left: 0; right: 0; top: 790px; text-align: center; color: #7281A8;
+              font: 600 28px Inter, sans-serif; letter-spacing: 6px; }
+    #pn-btn { position: absolute; left: 270px; width: 540px; top: 880px; height: 136px; border-radius: 68px; background: #C5162E;
+              color: #fff; font: 700 58px/136px Poppins, sans-serif; text-align: center; }
+    #pn-url { position: absolute; left: 0; right: 0; top: 1060px; text-align: center; color: #1E1A68; font: 800 74px Poppins, sans-serif; }
+    #pn-fsvg { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+  </style>
+  <div id="root" data-composition-id="penutup" data-width="1080" data-height="1920">
+    <div id="pn-wrap">
+      <img id="pn-logo" src="assets/logo.png" alt="Muafakat Care" />
+      <div id="pn-tag">CARE THAT UNITES COMMUNITIES</div>
+      <div id="pn-btn">Infak Foodbank</div>
+      <div id="pn-url">muafakatcare.my</div>
+      <svg id="pn-fsvg" viewBox="0 0 1080 1920">{{P.pointingHand(0, 0, -90, 1.05, "pn-finger")}}</svg>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const T0 = 27.4, A = t => t - T0;
+      const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
+      const later = v => Object.assign({ immediateRender: false }, v);
+
+      tl.fromTo("#pn-wrap", { clipPath: "circle(0px at 540px 860px)" }, { clipPath: "circle(2300px at 540px 860px)", duration: .55, ease: "power2.in" }, A(27.4));
+      tl.fromTo("#pn-logo", { scale: .4, opacity: 0 }, { scale: 1, opacity: 1, duration: .5, ease: "back.out(1.8)" }, A(27.6));
+      tl.fromTo("#pn-tag", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: .6 }, A(27.9));
+
+      // Jari gergasi kembali: menekan hati pada logo (penutup bergema dengan babak stor)
+      tl.fromTo("#pn-finger", { x: 540, y: -760 }, { y: 368, duration: .5, ease: "power3.out" }, A(28.0));
+      tl.fromTo("#pn-logo", { scale: 1 }, later({ scale: .94, duration: .1, yoyo: true, repeat: 1, ease: "power1.inOut" }), A(28.48));
+      tl.fromTo("#pn-finger", { y: 368 }, later({ y: -800, duration: .45, ease: "power2.in" }), A(28.7));
+
+      tl.fromTo("#pn-btn", { scale: 0 }, { scale: 1, duration: .45, ease: "back.out(2)" }, A(28.55));
+      tl.fromTo("#pn-url", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: .45 }, A(28.7));
+      tl.fromTo("#pn-btn", { scale: 1 }, later({ scale: 1.05, duration: .22, yoyo: true, repeat: 1, ease: "sine.inOut" }), A(29.2));
+
+      window.__timelines["penutup"] = tl;
+    })();
+  </script>
+</template>

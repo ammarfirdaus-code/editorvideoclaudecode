@@ -18,26 +18,27 @@
     <div id="pb-wrap">
       <svg viewBox="0 0 180 320">
         <rect width="180" height="320" fill="#C5162E" /><rect width="180" height="320" fill="url(#glowSoft)" />
-        <path id="pb-thread" d="M160 -2 L160 72" stroke="#fff" stroke-width="1.4" pathLength="1" />
-        <circle id="pb-bead" cx="160" cy="76" r="4.6" fill="#FFB020" filter="url(#shs)" />
-        <g transform="translate(0 -40)"><g id="pb-hand" filter="url(#sh)">
-          <rect x="150" y="136" width="70" height="42" rx="6" fill="#1E1A68" />
-          <rect x="150" y="136" width="70" height="42" rx="6" fill="url(#cloth)" />
-          <path d="M136 146 L152 140 L152 176 L136 172 Z" fill="#E8B892" />
-          <rect x="106" y="143" width="34" height="28" rx="11" fill="#E8B892" />
-          <rect x="106" y="143" width="34" height="28" rx="11" fill="url(#skinShade)" />
-          <rect x="78" y="146" width="36" height="9.5" rx="4.75" fill="#E8B892" />
-          <rect x="80" y="147.5" width="6" height="6.5" rx="3" fill="#F6D7BE" />
-          <rect x="98" y="155" width="18" height="7.5" rx="3.75" fill="#DDA982" />
-          <rect x="100" y="162" width="15" height="7" rx="3.5" fill="#DDA982" />
-          <rect x="112" y="138" width="16" height="7.5" rx="3.75" fill="#E8B892" transform="rotate(-18 120 142)" />
-        </g></g>
+        <path id="pb-thread" d="M160 -2 L160 88" stroke="#fff" stroke-width="1.4" pathLength="1" />
+        <circle id="pb-bead" cx="160" cy="92" r="4.6" fill="#FFB020" filter="url(#shs)" />
       </svg>
       <div id="pb-word"><span>M</span><span>U</span><span>A</span><span>F</span><span>A</span><span>K</span><span>A</span><span>T</span></div>
       <div class="pb-bar"></div><div class="pb-bar"></div><div class="pb-bar"></div><div class="pb-bar"></div>
       <div class="pb-bar"></div><div class="pb-bar"></div><div class="pb-bar"></div><div class="pb-bar"></div>
       <div id="pb-dash"></div>
       <div id="pb-tag">CARE</div>
+      <svg viewBox="0 0 1080 1920"><g id="pb-hand"><g transform="translate(0 0) rotate(0) scale(1)" filter="url(#shP)">
+    <rect x="214" y="-40" width="520" height="128" rx="26" fill="#1E1A68"/>
+    <rect x="214" y="-40" width="40" height="128" rx="12" fill="#fff" opacity=".12"/>
+    <rect x="96" y="-34" width="138" height="112" rx="40" fill="#F2C4A0"/>
+    <rect x="96" y="-34" width="138" height="112" rx="40" fill="url(#skinShade)"/>
+    <rect x="0" y="-15" width="132" height="30" rx="15" fill="#F2C4A0"/>
+    <rect x="6" y="-10" width="24" height="18" rx="8" fill="#F8DCC6"/>
+    <rect x="84" y="16" width="64" height="24" rx="12" fill="#F2C4A0"/>
+    <rect x="88" y="38" width="60" height="22" rx="11" fill="#F2C4A0"/>
+    <rect x="94" y="58" width="54" height="20" rx="10" fill="#F2C4A0"/>
+    <path d="M96 39 l40 0 M100 59 l36 0" stroke="#E3AC85" stroke-width="3" stroke-linecap="round"/>
+    <rect x="128" y="-58" width="78" height="26" rx="13" fill="#F2C4A0" transform="rotate(-12 128 -45)"/>
+  </g></g></svg>
       <!-- Cangkuk pada bingkai pertama: soalan sudah di skrin sejak 0 s -->
       <div id="pb-cap"><b style="color:#fff">RM50 anda</b><b style="color:#FFE7A8">pergi ke mana?</b></div>
       <div class="pb-wipe" id="pb-w1" style="left:0"></div><div class="pb-wipe" id="pb-w2" style="left:270px"></div>
@@ -68,8 +69,8 @@
         // Tangan menyambut manik pada tali
         tl.fromTo("#pb-thread", { strokeDasharray: "1 2", strokeDashoffset: 1.02 }, { strokeDashoffset: 0, duration: .45, ease: "none" }, A(.9));
         tl.fromTo("#pb-bead", { y: -120 }, { y: 0, duration: .55, ease: "bounce.out" }, A(1.15));
-        tl.fromTo("#pb-hand", { x: 110, y: 0 }, { x: 0, duration: .8, ease: "power3.out" }, A(1.0));
-        tl.fromTo("#pb-hand", { y: 0 }, later({ y: -3, duration: .25, yoyo: true, repeat: 1, ease: "sine.inOut" }), A(1.75));
+        tl.fromTo("#pb-hand", { x: 1500, y: 640 }, { x: 760, duration: .8, ease: "power3.out" }, A(1.0));
+        tl.fromTo("#pb-hand", { y: 640 }, later({ y: 624, duration: .25, yoyo: true, repeat: 1, ease: "sine.inOut" }), A(1.75));
         tl.fromTo("#pb-bead", { scale: 1, transformOrigin: "50% 50%" }, { scale: 1.35, duration: .12, yoyo: true, repeat: 1 }, A(1.85));
 
         // Keluar: huruf jatuh, jalur warna menyapu ke atas

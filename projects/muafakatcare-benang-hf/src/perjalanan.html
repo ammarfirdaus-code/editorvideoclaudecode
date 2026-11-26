@@ -1,0 +1,90 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; }
+    #pj-wrap { position: absolute; inset: 0; overflow: hidden; }
+    #pj-world { position: absolute; left: 0; top: 0; width: 3600px; height: 1920px; }
+    #pj-world svg { width: 3600px; height: 1920px; display: block; }
+    #pj-walker { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+    #pj-cap { position: absolute; left: 60px; right: 60px; top: 330px; text-align: center; font-family: Poppins, sans-serif; }
+    #pj-cap b { display: block; font-weight: 800; font-size: 84px; line-height: 1.08; letter-spacing: -1px; }
+  </style>
+  <div id="root" data-composition-id="perjalanan" data-width="1080" data-height="1920">
+    <div id="pj-wrap">
+      <div id="pj-world"><svg viewBox="0 0 600 320">
+        <rect width="600" height="320" fill="url(#sky)" />
+        <circle cx="400" cy="122" r="18" fill="#FFD27A" opacity=".8" />
+        <path d="M0 200 Q60 170 130 190 Q200 160 280 186 Q360 162 430 188 Q510 166 600 190 L600 240 L0 240 Z" fill="#EAD9CC" />
+        <!-- Pokok kelapa -->
+        <g id="pj-palms" fill="#5E9C5A">
+          <path d="M130 240 Q126 190 136 140" stroke="#8A6A4A" stroke-width="3.4" fill="none" stroke-linecap="round" />
+          <path d="M136 140 Q116 132 104 148 Q120 136 136 142 Z" /><path d="M136 140 Q156 130 168 146 Q152 134 136 142 Z" /><path d="M136 140 Q128 120 112 118 Q128 126 135 141 Z" /><path d="M136 140 Q148 120 164 120 Q146 128 137 141 Z" />
+          <path d="M300 240 Q296 190 306 140" stroke="#8A6A4A" stroke-width="3.4" fill="none" stroke-linecap="round" />
+          <path d="M306 140 Q286 132 274 148 Q290 136 306 142 Z" /><path d="M306 140 Q326 130 338 146 Q322 134 306 142 Z" /><path d="M306 140 Q298 120 282 118 Q298 126 305 141 Z" /><path d="M306 140 Q318 120 334 120 Q316 128 307 141 Z" />
+          <path d="M470 240 Q466 190 476 140" stroke="#8A6A4A" stroke-width="3.4" fill="none" stroke-linecap="round" />
+          <path d="M476 140 Q456 132 444 148 Q460 136 476 142 Z" /><path d="M476 140 Q496 130 508 146 Q492 134 476 142 Z" /><path d="M476 140 Q468 120 452 118 Q468 126 475 141 Z" /><path d="M476 140 Q488 120 504 120 Q486 128 477 141 Z" />
+        </g>
+        <!-- Rumah kampung bertiang -->
+        <g filter="url(#shs)">
+          <path d="M38 214 L38 238 M58 214 L58 238 M78 214 L78 238 M96 214 L96 238" stroke="#6B4A3A" stroke-width="2.4" />
+          <rect x="30" y="170" width="74" height="46" rx="1.5" fill="#8FB9B0" /><path d="M23 173 L67 136 L111 173 Z" fill="#5E7F7A" />
+          <rect x="38" y="180" width="14" height="16" rx="1" fill="#FFF3D6" opacity=".85" /><rect x="59" y="180" width="16" height="16" rx="1" fill="#FFF3D6" opacity=".85" /><rect x="82" y="180" width="14" height="16" rx="1" fill="#FFF3D6" opacity=".85" />
+        </g>
+        <g filter="url(#shs)">
+          <path d="M198 214 L198 238 M218 214 L218 238 M238 214 L238 238 M256 214 L256 238" stroke="#6B4A3A" stroke-width="2.4" />
+          <rect x="190" y="170" width="74" height="46" rx="1.5" fill="#E7C58A" /><path d="M183 173 L227 136 L271 173 Z" fill="#B5865A" />
+          <rect x="198" y="180" width="14" height="16" rx="1" fill="#FFF3D6" opacity=".85" /><rect x="219" y="180" width="16" height="16" rx="1" fill="#FFF3D6" opacity=".85" /><rect x="242" y="180" width="14" height="16" rx="1" fill="#FFF3D6" opacity=".85" />
+        </g>
+        <g filter="url(#shs)">
+          <path d="M348 214 L348 238 M368 214 L368 238 M388 214 L388 238 M406 214 L406 238" stroke="#6B4A3A" stroke-width="2.4" />
+          <rect x="340" y="170" width="74" height="46" rx="1.5" fill="#D99A8E" /><path d="M333 173 L377 136 L421 173 Z" fill="#A8605A" />
+          <rect x="348" y="180" width="14" height="16" rx="1" fill="#FFF3D6" opacity=".85" /><rect x="369" y="180" width="16" height="16" rx="1" fill="#FFF3D6" opacity=".85" /><rect x="392" y="180" width="14" height="16" rx="1" fill="#FFF3D6" opacity=".85" />
+        </g>
+        <g filter="url(#shs)">
+          <path d="M526 214 L526 238 M546 214 L546 238 M566 214 L566 238 M584 214 L584 238" stroke="#6B4A3A" stroke-width="2.4" />
+          <rect x="518" y="170" width="74" height="46" rx="1.5" fill="#E7C58A" /><path d="M511 173 L555 136 L599 173 Z" fill="#9C6B43" />
+          <rect x="526" y="180" width="14" height="16" rx="1" fill="#FFF3D6" opacity=".85" /><rect x="570" y="180" width="14" height="16" rx="1" fill="#FFF3D6" opacity=".85" />
+          <rect x="546" y="182" width="18" height="34" rx="1" fill="#2F5D8C" />
+          <path d="M546 216 L540 238 M564 216 L570 238 M543 224 L567 224 M542 231 L568 231" stroke="#6B4A3A" stroke-width="2" />
+        </g>
+        <g filter="url(#shs)"><rect x="166" y="196" width="3" height="44" fill="#6B4A3A" /><rect x="146" y="190" width="44" height="14" rx="2" fill="#1E1A68" />
+          <text data-layout-ignore x="168" y="199.6" font-family="Poppins" font-weight="700" font-size="6" fill="#fff" text-anchor="middle">Bakri · Muar</text></g>
+        <rect y="236" width="600" height="16" fill="#A9C79A" />
+        <rect y="252" width="600" height="68" fill="#DCD5C8" />
+        <path d="M0 252 L600 252" stroke="#C8C0B2" stroke-width="2" />
+        <path d="M0 304 L600 304" stroke="#FFFFFF" stroke-width="2.5" stroke-dasharray="16 12" opacity=".8" />
+      </svg></div>
+      <svg id="pj-walker" viewBox="0 0 1080 1920"><g transform="translate(250 1776) scale(.85) translate(-250 -1776)">{{P.trolleyWalker(250, 1776)}}</g></svg>
+      <div id="pj-cap"><b style="color:#1E1A68">Dihantar terus</b><b style="color:#C5162E">ke rumah</b></div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const T0 = 12.4, A = t => t - T0, U = 6;
+      const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
+      const later = v => Object.assign({ immediateRender: false }, v);
+
+      // Masuk: putaran kiub (muka kanan), kemudian penuh skrin
+      tl.fromTo("#pj-wrap", { rotationY: 90, scale: .62, transformPerspective: 2600, transformOrigin: "50% 50% -540px" },
+        { rotationY: 0, duration: .8, ease: "power2.inOut" }, A(12.4));
+      tl.fromTo("#pj-wrap", { scale: .62 }, later({ scale: 1, duration: .35, ease: "power2.out" }), A(13.15));
+
+      // Syot mengekori: dunia bergerak, troli kekal di tengah
+      tl.fromTo("#pj-world", { x: 0 }, { x: -405 * U, duration: 5.9, ease: "power1.inOut" }, A(13.1));
+      tl.fromTo("#pj-legF", { rotation: -24, transformOrigin: "50% 0%" }, { rotation: 24, duration: .36, yoyo: true, repeat: 14, ease: "sine.inOut" }, A(13.3));
+      tl.fromTo("#pj-legB", { rotation: 24, transformOrigin: "50% 0%" }, { rotation: -24, duration: .36, yoyo: true, repeat: 14, ease: "sine.inOut" }, A(13.3));
+      tl.fromTo("#pj-body", { y: 0 }, { y: -4, duration: .18, yoyo: true, repeat: 29, ease: "sine.inOut" }, A(13.3));
+      tl.fromTo("#pj-head", { rotation: 0, transformOrigin: "50% 100%" }, { rotation: 3, duration: .72, yoyo: true, repeat: 6, ease: "sine.inOut" }, A(13.45));
+      tl.fromTo(["#pj-wh1", "#pj-wh2"], { rotation: 0, transformOrigin: "50% 50%" }, { rotation: 1080, duration: 5.6, ease: "power1.inOut" }, A(13.3));
+      tl.fromTo("#pj-legF", { rotation: 24 }, later({ rotation: 0, duration: .25 }), A(18.75));
+      tl.fromTo("#pj-legB", { rotation: -24 }, later({ rotation: 0, duration: .25 }), A(18.75));
+
+      tl.fromTo("#pj-cap", { y: 36, opacity: 0 }, { y: 0, opacity: 1, duration: .5 }, A(13.6));
+      tl.fromTo("#pj-cap", { y: 0, opacity: 1 }, later({ y: -24, opacity: 0, duration: .35, ease: "power2.in" }), A(18.9));
+
+      // Keluar: zum masuk ke pintu biru
+      tl.fromTo("#pj-wrap", { scale: 1 }, later({ scale: 2.8, transformOrigin: `${(555 - 405) * U}px ${200 * U}px 0px`, duration: .7, ease: "power2.in" }), A(19.15));
+
+      window.__timelines["perjalanan"] = tl;
+    })();
+  </script>
+</template>

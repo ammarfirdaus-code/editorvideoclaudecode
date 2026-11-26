@@ -16,15 +16,19 @@
       <div id="pn-tag">CARE THAT UNITES COMMUNITIES</div>
       <div id="pn-btn">Infak Foodbank</div>
       <div id="pn-url">muafakatcare.my</div>
-      <svg id="pn-fsvg" viewBox="0 0 180 320">
-        <g id="pn-finger" filter="url(#sh)">
-          <rect x="76" y="-60" width="36" height="60" rx="6" fill="#1E1A68" />
-          <rect x="78" y="-6" width="32" height="50" rx="12" fill="#E8B892" />
-          <rect x="78" y="-6" width="32" height="50" rx="12" fill="url(#skinShade)" />
-          <rect x="84.5" y="36" width="11.5" height="52" rx="5.75" fill="#E8B892" />
-          <rect x="86.3" y="79" width="7.8" height="7" rx="3.5" fill="#F6D7BE" />
-        </g>
-      </svg>
+      <svg id="pn-fsvg" viewBox="0 0 1080 1920"><g id="pn-finger"><g transform="translate(0 0) rotate(-90) scale(1.05)" filter="url(#shP)">
+    <rect x="214" y="-40" width="520" height="128" rx="26" fill="#1E1A68"/>
+    <rect x="214" y="-40" width="40" height="128" rx="12" fill="#fff" opacity=".12"/>
+    <rect x="96" y="-34" width="138" height="112" rx="40" fill="#F2C4A0"/>
+    <rect x="96" y="-34" width="138" height="112" rx="40" fill="url(#skinShade)"/>
+    <rect x="0" y="-15" width="132" height="30" rx="15" fill="#F2C4A0"/>
+    <rect x="6" y="-10" width="24" height="18" rx="8" fill="#F8DCC6"/>
+    <rect x="84" y="16" width="64" height="24" rx="12" fill="#F2C4A0"/>
+    <rect x="88" y="38" width="60" height="22" rx="11" fill="#F2C4A0"/>
+    <rect x="94" y="58" width="54" height="20" rx="10" fill="#F2C4A0"/>
+    <path d="M96 39 l40 0 M100 59 l36 0" stroke="#E3AC85" stroke-width="3" stroke-linecap="round"/>
+    <rect x="128" y="-58" width="78" height="26" rx="13" fill="#F2C4A0" transform="rotate(-12 128 -45)"/>
+  </g></g></svg>
     </div>
   </div>
   <script>
@@ -38,9 +42,9 @@
       tl.fromTo("#pn-tag", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: .6 }, A(27.9));
 
       // Jari gergasi kembali: menekan hati pada logo (penutup bergema dengan babak stor)
-      tl.fromTo("#pn-finger", { y: -120 }, { y: -18, duration: .5, ease: "power3.out" }, A(28.0));
+      tl.fromTo("#pn-finger", { x: 540, y: -760 }, { y: 368, duration: .5, ease: "power3.out" }, A(28.0));
       tl.fromTo("#pn-logo", { scale: 1 }, later({ scale: .94, duration: .1, yoyo: true, repeat: 1, ease: "power1.inOut" }), A(28.48));
-      tl.fromTo("#pn-finger", { y: -18 }, later({ y: -130, duration: .45, ease: "power2.in" }), A(28.7));
+      tl.fromTo("#pn-finger", { y: 368 }, later({ y: -800, duration: .45, ease: "power2.in" }), A(28.7));
 
       tl.fromTo("#pn-btn", { scale: 0 }, { scale: 1, duration: .45, ease: "back.out(2)" }, A(28.55));
       tl.fromTo("#pn-url", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: .45 }, A(28.7));

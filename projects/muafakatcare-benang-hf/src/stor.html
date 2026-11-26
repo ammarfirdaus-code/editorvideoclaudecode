@@ -1,0 +1,95 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; }
+    #st-wrap { position: absolute; inset: 0; overflow: hidden; }
+    #st-wrap > svg { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+    #st-cap { position: absolute; left: 60px; right: 60px; top: 296px; text-align: center; font-family: Poppins, sans-serif;
+              color: #1E1A68; }
+    #st-cap b { display: block; font-weight: 800; font-size: 128px; line-height: 1.05; letter-spacing: -2px; }
+    #st-cap small { display: block; font-weight: 700; font-size: 46px; }
+  </style>
+  <div id="root" data-composition-id="stor" data-width="1080" data-height="1920">
+    <div id="st-wrap">
+      <svg id="st-svg" viewBox="0 0 180 320">
+        <rect id="st-wall" width="180" height="320" fill="#D9A35B" />
+        <rect width="180" height="320" fill="url(#glow)" />
+        <rect y="246" width="180" height="74" fill="#0F1235" opacity=".14" />
+        <g id="st-lamp" filter="url(#shs)">
+          <path d="M22 246 L22 110 Q22 92 40 90" stroke="#2B2E3A" stroke-width="2" fill="none" />
+          <path d="M34 84 L50 84 L46 96 L38 96 Z" fill="#2B2E3A" transform="rotate(20 42 90)" />
+          <ellipse cx="22" cy="247" rx="9" ry="2" fill="#2B2E3A" />
+        </g>
+        <path d="M44 96 L76 246 L10 246 Z" fill="#FFF3D6" opacity=".18" />
+        <g filter="url(#shs)">
+          <rect x="30" y="128" width="122" height="5" rx="1.5" fill="#9C6B43" />
+          <rect x="40" y="133" width="3" height="9" fill="#7E5434" /><rect x="138" y="133" width="3" height="9" fill="#7E5434" />
+        </g>
+        <g id="st-i1" filter="url(#shs)"><path d="M36 128 L37 104 Q48 98 59 104 L60 128 Z" fill="#FBF7EE" /><rect x="41" y="112" width="14" height="9" rx="1.5" fill="#2FA36B" /><text data-layout-ignore x="48" y="118.6" font-family="Poppins" font-weight="700" font-size="4.2" fill="#fff" text-anchor="middle">BERAS</text></g>
+        <g id="st-i2" filter="url(#shs)"><rect x="64" y="110" width="15" height="18" rx="2" fill="#F4D9DE" /><rect x="64" y="110" width="15" height="5" rx="2" fill="#C5162E" /><text data-layout-ignore x="71.5" y="123" font-family="Poppins" font-weight="700" font-size="3.6" fill="#C5162E" text-anchor="middle">GULA</text></g>
+        <g id="st-i3" filter="url(#shs)"><rect x="85" y="98" width="13" height="30" rx="3.5" fill="#FFB020" /><rect x="88" y="91" width="7" height="8" rx="1.5" fill="#C98A10" /><rect x="87" y="108" width="9" height="9" rx="1.5" fill="#fff" opacity=".85" /></g>
+        <g id="st-i4" filter="url(#shs)"><rect x="103" y="112" width="11" height="16" rx="2" fill="#7281A8" /><rect x="103" y="116" width="11" height="6" fill="#E8EAF2" /><rect x="116" y="112" width="11" height="16" rx="2" fill="#7281A8" /><rect x="116" y="116" width="11" height="6" fill="#E8EAF2" /></g>
+        <g id="st-i5" filter="url(#shs)"><rect x="131" y="106" width="16" height="22" rx="2" fill="#FFFFFF" /><rect x="131" y="106" width="16" height="6" rx="2" fill="#1E1A68" /><text data-layout-ignore x="139" y="121" font-family="Poppins" font-weight="700" font-size="3.4" fill="#1E1A68" text-anchor="middle">SUSU</text></g>
+        <g filter="url(#sh)">
+          <rect x="34" y="206" width="112" height="6" rx="2" fill="#6B4A3A" />
+          <rect x="42" y="212" width="4" height="34" fill="#55392C" /><rect x="134" y="212" width="4" height="34" fill="#55392C" />
+        </g>
+        <g id="st-box" filter="url(#sh)">
+          <rect id="st-flapL" x="62" y="176" width="28" height="5" rx="1" fill="#B58656" />
+          <rect id="st-flapR" x="90" y="176" width="28" height="5" rx="1" fill="#B58656" />
+          <rect x="62" y="178" width="56" height="28" rx="2" fill="#C89B6D" />
+          <rect x="62" y="178" width="56" height="28" rx="2" fill="url(#cloth)" />
+          <path id="st-rh" d="M62 192 L118 192" stroke="#ED2B3A" stroke-width="3" pathLength="1" />
+          <path id="st-rv" d="M90 178 L90 206" stroke="#ED2B3A" stroke-width="3" pathLength="1" />
+          <path id="st-bow" d="M90 178 C82 168 76 177 90 178 C104 168 110 177 90 178" fill="#ED2B3A" />
+        </g>
+        </svg>
+      <svg viewBox="0 0 1080 1920">{{P.pointingHand(0, 0, 90, 1.1, "st-finger")}}</svg>
+      <div id="st-cap"><b>RM50</b><small>= 1 pek makanan asas</small></div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const T0 = 3.9, A = t => t - T0, U = 6;
+      const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
+      const later = v => Object.assign({ immediateRender: false }, v);
+
+      tl.fromTo(["#st-lamp", "#st-box"], { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: .5, stagger: .1 }, A(3.95));
+      tl.fromTo("#st-cap", { y: 36, opacity: 0 }, { y: 0, opacity: 1, duration: .5 }, A(4.5));
+
+      // Jari gergasi: rehat (40,140) → tiga tekanan
+      const P = { rest: [760, 2300], t1: [292, 636], t2: [640, 664], t3: [540, 1062] };
+      const move = (from, to, t, ease = "power3.out", d = .45) =>
+        tl.fromTo("#st-finger", { x: from[0], y: from[1] }, (t === A(4.4) ? (v => v) : later)({ x: to[0], y: to[1], duration: d, ease }), t);
+      const press = (p, t) => tl.fromTo("#st-finger", { y: p[1] }, later({ y: p[1] + 22, duration: .1, yoyo: true, repeat: 1, ease: "power1.inOut" }), t);
+      move(P.rest, P.t1, A(4.4)); press(P.t1, A(4.85));
+      move(P.t1, P.t2, A(5.7)); press(P.t2, A(6.15));
+      move(P.t2, P.t3, A(7.0)); press(P.t3, A(7.45));
+      move(P.t3, P.rest, A(7.65), "power2.in", .5);
+
+      // Barang muncul di rak; dinding bertukar warna pada setiap tekanan
+      ["#st-i1", "#st-i2"].forEach((s, i) => tl.fromTo(s, { scale: 0, x: 0, y: 0, opacity: 1, transformOrigin: "50% 100%" }, { scale: 1, duration: .45, ease: "back.out(2.4)" }, A(4.95 + i * .12)));
+      ["#st-i3", "#st-i4", "#st-i5"].forEach((s, i) => tl.fromTo(s, { scale: 0, x: 0, y: 0, opacity: 1, transformOrigin: "50% 100%" }, { scale: 1, duration: .45, ease: "back.out(2.4)" }, A(6.25 + i * .1)));
+      tl.fromTo("#st-wall", { attr: { fill: "#D9A35B" } }, { attr: { fill: "#93A88F" }, duration: .35 }, A(4.95));
+      tl.fromTo("#st-wall", { attr: { fill: "#93A88F" } }, later({ attr: { fill: "#D98C93" }, duration: .35 }), A(6.25));
+      tl.fromTo("#st-wall", { attr: { fill: "#D98C93" } }, later({ attr: { fill: "#D9A35B" }, duration: .35 }), A(7.6));
+
+      // Barang terbang masuk kotak, penutup ditutup, reben diikat
+      [["#st-i1", 48], ["#st-i2", 71], ["#st-i3", 91], ["#st-i4", 115], ["#st-i5", 139]].forEach(([s, x], i) => {
+        tl.fromTo(s, { x: 0, y: 0, scale: 1 }, later({ x: 90 - x, y: 66, scale: .35, duration: .45, ease: "power2.in" }), A(7.5 + i * .06));
+        tl.fromTo(s, { opacity: 1 }, later({ opacity: 0, duration: .05 }), A(7.95 + i * .06));
+      });
+      tl.fromTo("#st-flapL", { rotation: -120, transformOrigin: "0% 100%" }, { rotation: 0, duration: .35, ease: "back.out(1.6)" }, A(8.15));
+      tl.fromTo("#st-flapR", { rotation: 120, transformOrigin: "100% 100%" }, { rotation: 0, duration: .35, ease: "back.out(1.6)" }, A(8.15));
+      tl.fromTo("#st-rh", { strokeDasharray: "1 2", strokeDashoffset: 1.02 }, { strokeDashoffset: 0, duration: .25, ease: "none" }, A(8.45));
+      tl.fromTo("#st-rv", { strokeDasharray: "1 2", strokeDashoffset: 1.02 }, { strokeDashoffset: 0, duration: .2, ease: "none" }, A(8.6));
+      tl.fromTo("#st-bow", { scale: 0, transformOrigin: "50% 100%" }, { scale: 1, duration: .4, ease: "back.out(3)" }, A(8.75));
+      tl.fromTo("#st-box", { y: 0 }, later({ y: -6, duration: .18, yoyo: true, repeat: 1 }), A(8.95));
+
+      // Keluar: zum ke kotak
+      tl.fromTo("#st-cap", { y: 0, opacity: 1 }, later({ y: -24, opacity: 0, duration: .35, ease: "power2.in" }), A(9.05));
+      tl.fromTo("#st-svg", { scale: 1, transformOrigin: `${90 * U}px ${192 * U}px` }, { scale: 3.2, duration: .6, ease: "power2.in" }, A(9.1));
+
+      window.__timelines["stor"] = tl;
+    })();
+  </script>
+</template>

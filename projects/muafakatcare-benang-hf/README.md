@@ -26,9 +26,29 @@ mengekori troli, zum ke pintu, syot dari atas, kad dipegang tangan, dan penutup 
 Dalam setiap fail babak, masa ditulis dalam saat mutlak video melalui `A(t)`, jadi mudah dipadankan
 dengan jadual di atas.
 
+## Lukisan dan binaan
+
+Watak dan tangan dilukis sebagai SVG dalam koordinat piksel penuh (1080×1920) oleh `parts/parts.mjs`:
+`volunteersPair`, `trolleyWalker`, `doorHandover`, `cardHands`, `pointingHand`, dengan pembantu
+`hand`, `arm`, `face` dan `box`. Rupa watak berpandukan bingkai gaya `assets/gaya/sukarelawan-gaya.jpg`
+(dijana sekali dengan Cloudinary).
+
+Fail babak disunting dalam `src/`, bukan `compositions/`. `{{ P.namaFungsi(...) }}` dalam `src/*.html`
+diganti dengan lukisan semasa binaan:
+
+```bash
+node build.mjs
+```
+
+Semak satu lukisan sebelum memasukkannya ke babak (PNG ke `.hyperframes/`):
+
+```bash
+node parts/lab.mjs volunteersPair "url(#blueBg)" .hyperframes/lab.png
+```
+
 ## Bina dan render
 
-Muzik tidak disimpan dalam git (`*.wav` diabaikan). Jana semula dahulu:
+Muzik tidak disimpan dalam git (`*.wav` diabaikan). Jana semula dahulu, kemudian bina babak:
 
 ```bash
 python3 music.py assets/music.wav
@@ -39,7 +59,7 @@ npx hyperframes check
 ```
 
 ```bash
-npx hyperframes render -q delivery -f 30 -o renders/muafakatcare-foodbank-hyperframes-30s-9x16.mp4
+npx hyperframes render -q delivery -f 30 -o renders/muafakatcare-foodbank-v4-30s-9x16.mp4
 ```
 
 Pratonton dan suntingan: `npx hyperframes preview`, atau buka projek ini dalam aplikasi desktop HyperFrames.
