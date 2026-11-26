@@ -98,3 +98,7 @@ python $S/transcribe.py suara.mp3 work/words.json
 python $S/prep_clips.py "<folder klip>" work/prepped
 python $S/render.py config.json   # salin dari templates/config.example.json
 ```
+
+## Knowledge
+
+Folder `knowledge/` menyimpan fail rujukan untuk kerja video. Rujuk `knowledge/FA_VGC_MASTER_KNOWLEDGE.md` (VGC Master Knowledge) untuk formula skrip, sistem editing, aliran kelulusan storyboard dan checklist kualiti. Fail knowledge baharu letak dalam folder yang sama dan senaraikan dalam `knowledge/README.md`.
