@@ -5,11 +5,13 @@
     #pj-rig { position: absolute; inset: 0; }
     #pj-world { position: absolute; left: 0; top: 0; width: 2880px; height: 1920px; }
     #pj-bg { position: absolute; left: 0; top: 0; width: 2880px; height: 1920px; }
-    #pj-sign { position: absolute; left: 1250px; top: 1330px; width: 300px; }
+    #pj-sign { position: absolute; left: 1250px; top: 1090px; width: 300px; }
     #pj-sign .post { position: absolute; left: 140px; top: 70px; width: 20px; height: 230px; background: #6B4A3A; border-radius: 4px; }
     #pj-sign .board { position: relative; height: 84px; border-radius: 14px; background: #1E1A68; color: #fff; text-align: center;
                       font: 700 40px/84px Poppins, sans-serif; box-shadow: 0 10px 24px rgba(15,18,53,.3); }
-    #pj-walker { position: absolute; left: 120px; top: 1020px; width: 609px; height: 820px; }
+    #pj-walker { position: absolute; left: 50px; top: 1188px; width: 980px; height: 653px; }
+    #pj-walker img { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .pj-hub { position: absolute; width: 64px; height: 64px; margin: -32px 0 0 -32px; }
     #pj-cap { position: absolute; left: 60px; right: 60px; top: 330px; text-align: center; font-family: Poppins, sans-serif;
               text-shadow: 0 0 22px rgba(255,244,238,.95), 0 0 6px rgba(255,244,238,.9); }
     #pj-cap b { display: block; font-weight: 800; font-size: 84px; line-height: 1.08; letter-spacing: -1px; }
@@ -21,7 +23,7 @@
         <img id="pj-bg" src="assets/img/bg-kampung.webp" alt="" />
         <div id="pj-sign"><div class="post"></div><div class="board">Bakri · Muar</div></div>
       </div>
-      <img id="pj-walker" src="assets/img/jalan-troli.webp" alt="Sukarelawan menolak troli katil hospital" />
+      <div id="pj-walker"><img src="assets/img/lori-katil.webp" alt="Lori kecil membawa katil hospital wakaf" /><svg class="pj-hub" id="pj-hub1" style="left:232px;top:526px" viewBox="0 0 64 64"><circle cx="32" cy="32" r="30" fill="#DADDE6"/><circle cx="49.0" cy="32.0" r="4.5" fill="#8C92A8"/><circle cx="37.3" cy="48.2" r="4.5" fill="#8C92A8"/><circle cx="18.2" cy="42.0" r="4.5" fill="#8C92A8"/><circle cx="18.2" cy="22.0" r="4.5" fill="#8C92A8"/><circle cx="37.3" cy="15.8" r="4.5" fill="#8C92A8"/><circle cx="32" cy="32" r="8" fill="#A5ABBE"/><rect x="29" y="3" width="6" height="12" rx="3" fill="#B5BACB"/></svg><svg class="pj-hub" id="pj-hub2" style="left:747px;top:526px" viewBox="0 0 64 64"><circle cx="32" cy="32" r="30" fill="#DADDE6"/><circle cx="49.0" cy="32.0" r="4.5" fill="#8C92A8"/><circle cx="37.3" cy="48.2" r="4.5" fill="#8C92A8"/><circle cx="18.2" cy="42.0" r="4.5" fill="#8C92A8"/><circle cx="18.2" cy="22.0" r="4.5" fill="#8C92A8"/><circle cx="37.3" cy="15.8" r="4.5" fill="#8C92A8"/><circle cx="32" cy="32" r="8" fill="#A5ABBE"/><rect x="29" y="3" width="6" height="12" rx="3" fill="#B5BACB"/></svg></div>
       </div>
       <div id="pj-cap"><b id="pj-l1">{{P.words("Dihantar terus")}}</b><b id="pj-l2">{{P.words("ke rumah")}}</b></div>
     </div>
@@ -37,14 +39,15 @@
         k.forEach((v, i) => { tl.fromTo(sel, { [prop]: prev }, later({ [prop]: v, duration: i < 3 ? .034 : .06, ease: "none" }), at + i * .034); prev = v; });
       };
 
-      // Kiub dari babak lontar mendarat pada kotak teratas troli: troli dan penolaknya terhentak sedikit
+      // Roda dari babak lontar mendarat sebagai roda belakang lori: lori terhentak sedikit
+      tl.fromTo(".pj-hub", { rotation: 0 }, { rotation: 2520, duration: 6.4, ease: "none" }, A(13.38));
       tl.fromTo("#pj-walker", { scaleY: 1, transformOrigin: "50% 100%" }, { scaleY: .965, duration: .08, yoyo: true, repeat: 1 }, A(13.38));
       jolt("#pj-wrap", A(13.38), 16);
       window.cameraShake(tl, "#pj-rig", { profile: "handheld-normal-mild", intensity: .55, duration: 6.9, at: A(13.0), fps: 30 });
       // Syot mengekori: panorama bergerak, penolak troli kekal; langkah = lantun kecil + goyang
       tl.fromTo("#pj-world", { x: 0 }, { x: -1773, duration: 5.9, ease: "power1.inOut" }, A(13.1));
-      tl.fromTo("#pj-walker", { y: 0 }, later({ y: -12, duration: .18, yoyo: true, repeat: 29, ease: "sine.inOut" }), A(13.55));
-      tl.fromTo("#pj-walker", { rotation: -1.2, transformOrigin: "50% 100%" }, { rotation: 1.2, duration: .36, yoyo: true, repeat: 13, ease: "sine.inOut" }, A(13.55));
+      tl.fromTo("#pj-walker", { y: 0 }, later({ y: -6, duration: .18, yoyo: true, repeat: 29, ease: "sine.inOut" }), A(13.55));
+      tl.fromTo("#pj-walker", { rotation: -.5, transformOrigin: "50% 100%" }, { rotation: .5, duration: .36, yoyo: true, repeat: 13, ease: "sine.inOut" }, A(13.55));
       tl.fromTo("#pj-cap .w", { opacity: 0 }, { opacity: 1, duration: .1, stagger: .09 }, A(13.6));
       tl.fromTo("#pj-l1 .w", { color: "#D9D0E6" }, { color: "#1E1A68", duration: .35, stagger: .09, ease: "power2.out" }, A(13.65));
       tl.fromTo("#pj-l2 .w", { color: "#F2C9CF" }, { color: "#C5162E", duration: .35, stagger: .09, ease: "power2.out" }, A(13.83));

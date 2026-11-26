@@ -1,35 +1,29 @@
 <template>
   <style>
     #root { position: absolute; inset: 0; overflow: hidden; }
-    #st-wrap { position: absolute; inset: 0; overflow: hidden; }
-    #st-scene { position: absolute; inset: 0; }
-    #st-bg { position: absolute; left: -100px; top: 0; width: 1280px; height: 1920px; }
-    /* Tatabahasa rujukan: warna bilik bertukar. Tinta "color" mengekalkan cahaya dan bayang imej asal. */
-    #st-flood, #st-wipe { position: absolute; inset: 0; mix-blend-mode: color; }
-    #st-flood { background: #6FA88A; }
-    #st-wipe { background: #E0849A; }
-    .st-it { position: absolute; }
-    #st-cap { position: absolute; left: 60px; right: 60px; top: 296px; text-align: center; font-family: Poppins, sans-serif; color: #1E1A68; }
-    #st-cap b { display: block; font-weight: 800; font-size: 128px; line-height: 1.05; letter-spacing: -2px; }
-    #st-cap small { display: block; font-weight: 700; font-size: 46px; }
+    #bl-wrap { position: absolute; inset: 0; overflow: hidden; }
+    #bl-scene { position: absolute; inset: 0; }
+    .bl-img { position: absolute; left: -100px; top: 0; width: 1280px; height: 1920px; }
+    #bl-glow { position: absolute; left: 0; top: 0; width: 240px; height: 240px; margin: -120px 0 0 -120px; border-radius: 50%;
+               background: radial-gradient(circle, rgba(255,240,200,.9) 0, rgba(255,214,140,.35) 45%, rgba(255,214,140,0) 70%); }
+    .bl-cap { position: absolute; left: 50px; right: 50px; top: 300px; text-align: center; font-family: Poppins, sans-serif; color: #fff;
+              text-shadow: 0 4px 22px rgba(30,16,8,.55), 0 1px 3px rgba(30,16,8,.4); }
+    .bl-cap b { display: block; font-weight: 800; font-size: 76px; line-height: 1.1; letter-spacing: -1px; }
+    .bl-cap small { display: block; font-weight: 600; font-size: 46px; line-height: 1.3; }
+    #bl-pill { position: absolute; left: 190px; width: 700px; top: 560px; height: 120px; border-radius: 60px; background: #C5162E;
+               color: #fff; text-align: center; font: 800 58px/120px Poppins, sans-serif; box-shadow: 0 14px 34px rgba(15,18,53,.35); }
   </style>
   <div id="root" data-composition-id="stor" data-width="1080" data-height="1920">
-    <div id="st-wrap">
-      <div id="st-scene">
-      <img id="st-bg" src="assets/img/bg-stor.webp" alt="" />
-      <div id="st-flood"></div>
-      <div id="st-wipe"></div>
-      <!-- Barang di atas rak (permukaan rak y≈1000) -->
-      <img class="st-it" id="st-i1" src="assets/img/item-tilam.webp" alt="" style="left:131px; top:847px; width:270px; height:153px" />
-      <img class="st-it" id="st-i2" src="assets/img/item-bantal.webp" alt="" style="left:397px; top:808px; width:210px; height:192px" />
-      <img class="st-it" id="st-i3" src="assets/img/item-rel.webp" alt="" style="left:593px; top:882px; width:190px; height:118px" />
-      <img class="st-it" id="st-i4" src="assets/img/item-roda.webp" alt="" style="left:791px; top:817px; width:160px; height:183px" />
-      <!-- Kotak di atas meja (permukaan meja y≈1328) -->
-      <img class="st-it" id="st-open" src="assets/img/kotak-buka.webp" alt="" style="left:322px; top:1006px; width:436px; height:322px" />
-      <img class="st-it" id="st-closed" src="assets/img/kotak-tutup.webp" alt="" style="left:335px; top:994px; width:410px; height:334px" />
+    <div id="bl-wrap">
+      <div id="bl-scene">
+        <img class="bl-img" id="bl-a" src="assets/img/bilik-lantai.webp" alt="Ayah terlantar di atas tilam nipis di lantai, dijaga anaknya" />
+        <img class="bl-img" id="bl-b" src="assets/img/bilik-katil.webp" alt="Ayah berehat di atas katil hospital, anaknya memegang tangan" />
       </div>
-      <div id="st-finger" style="position:absolute;left:0;top:0;width:0;height:0"><img src="assets/img/tangan-tuding.webp" alt="" style="position:absolute;left:-0.52px;top:-63.440000000000005px;width:774.8000000000001px;height:271.96000000000004px;max-width:none"></div>
-      <div id="st-cap"><b>RM50</b><small><span class="w" style="display:inline-block">=</span> <span class="w" style="display:inline-block">1</span> <span class="w" style="display:inline-block">slot</span> <span class="w" style="display:inline-block">wakaf</span> <span class="w" style="display:inline-block">katil</span> <span class="w" style="display:inline-block">hospital</span></small></div>
+      <div id="bl-glow"></div>
+      <div id="bl-finger" style="position:absolute;left:0;top:0;width:0;height:0"><img src="assets/img/tangan-tuding.webp" alt="" style="position:absolute;left:-0.52px;top:-63.440000000000005px;width:774.8000000000001px;height:271.96000000000004px;max-width:none"></div>
+      <div class="bl-cap" id="bl-cap1"><b><span class="w" style="display:inline-block">Tilam</span> <span class="w" style="display:inline-block">nipis</span> <span class="w" style="display:inline-block">di</span> <span class="w" style="display:inline-block">lantai,</span></b><b><span class="w" style="display:inline-block">susah</span> <span class="w" style="display:inline-block">nak</span> <span class="w" style="display:inline-block">dijaga</span></b></div>
+      <div class="bl-cap" id="bl-cap2"><b><span class="w" style="display:inline-block">Katil</span> <span class="w" style="display:inline-block">hospital</span> <span class="w" style="display:inline-block">wakaf</span></b><small><span class="w" style="display:inline-block">mudah</span> <span class="w" style="display:inline-block">dibaring,</span> <span class="w" style="display:inline-block">mudah</span> <span class="w" style="display:inline-block">dijaga</span></small></div>
+      <div id="bl-pill">RM50 = 1 slot wakaf</div>
     </div>
   </div>
   <script>
@@ -42,42 +36,32 @@
         let prev = 0;
         k.forEach((v, i) => { tl.fromTo(sel, { [prop]: prev }, later({ [prop]: v, duration: i < 3 ? .034 : .06, ease: "none" }), at + i * .034); prev = v; });
       };
+      const PT = [700, 1470]; // titik tekan: dada ayah di atas tilam
 
-      tl.fromTo("#st-scene", { scale: 1.06, transformOrigin: "50% 60%" }, { scale: 1, duration: 5.2, ease: "sine.out" }, A(3.9));
-      tl.fromTo(["#st-open"], { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: .5 }, A(3.95));
-      tl.fromTo("#st-cap b", { scale: 1.7, opacity: 0 }, { scale: 1, opacity: 1, duration: .38, ease: "expo.out" }, A(4.5));
-      jolt("#st-cap b", A(4.62), 9, "x");
-      tl.fromTo("#st-cap .w", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: .13, stagger: .067, ease: "expo.out" }, A(4.78));
+      // Masuk: bilik perlahan mendekat. Kapsyen masalah, kelabu ke putih per perkataan
+      tl.fromTo("#bl-scene", { scale: 1.08, transformOrigin: "60% 70%" }, { scale: 1, duration: 5.4, ease: "sine.out" }, A(3.9));
+      tl.fromTo("#bl-cap1 .w", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: .14, stagger: .07, ease: "expo.out" }, A(4.15));
+      tl.fromTo("#bl-cap1 .w", { opacity: 1, filter: "blur(0px)" }, later({ opacity: 0, filter: "blur(8px)", duration: .16, stagger: .03, ease: "power2.in" }), A(6.0));
 
-      // Jari gergasi dari bawah (tuding atas): rehat → tiga tekanan. Kedudukan = hujung jari.
-      const P = { rest: [700, 2350], t1: [266, 870], t2: [688, 880], t3: [540, 1130] };
-      tl.fromTo("#st-finger", { x: P.rest[0], y: P.rest[1], rotation: 90 }, { x: P.t1[0], y: P.t1[1], duration: .45, ease: "power3.out" }, A(4.4));
-      const press = (p, t) => tl.fromTo("#st-finger", { y: p[1] }, later({ y: p[1] + 22, duration: .1, yoyo: true, repeat: 1, ease: "power1.inOut" }), t);
-      const move = (a, b, t, ease = "power3.out", d = .45) => tl.fromTo("#st-finger", { x: a[0], y: a[1] }, later({ x: b[0], y: b[1], duration: d, ease }), t);
-      press(P.t1, A(4.85)); move(P.t1, P.t2, A(5.7)); press(P.t2, A(6.15)); move(P.t2, P.t3, A(7.0)); press(P.t3, A(7.45));
-      move(P.t3, P.rest, A(7.65), "power2.in", .5);
+      // Jari gergasi dari bawah, cahaya hangat di hujung jari, satu tekanan
+      tl.fromTo("#bl-finger", { x: 860, y: 2350, rotation: 90 }, { x: PT[0], y: PT[1], duration: .55, ease: "power3.out" }, A(4.95));
+      tl.fromTo("#bl-glow", { x: PT[0], y: PT[1] - 10, scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: .4, ease: "back.out(2)" }, A(5.15));
+      tl.fromTo("#bl-finger", { y: PT[1] }, later({ y: PT[1] + 24, duration: .1, yoyo: true, repeat: 1, ease: "power1.inOut" }), A(6.2));
+      tl.fromTo("#bl-glow", { scale: 1, opacity: 1 }, later({ scale: 2.4, opacity: 0, duration: .45 }), A(6.3));
+      tl.fromTo("#bl-finger", { x: PT[0], y: PT[1] }, later({ x: 860, y: 2350, duration: .5, ease: "power2.in" }), A(6.55));
 
-      // Tekanan 1: warna banjir dari hujung jari; barang pertama muncul
-      tl.fromTo("#st-flood", { clipPath: "circle(0px at 266px 870px)" }, { clipPath: "circle(2300px at 266px 870px)", duration: .6, ease: "power2.out" }, A(4.95));
-      ["#st-i1", "#st-i2"].forEach((s, i) => tl.fromTo(s, { scale: 0, x: 0, y: 0, opacity: 1, transformOrigin: "50% 100%" }, { scale: 1, duration: .45, ease: "back.out(2.2)" }, A(4.95 + i * .12)));
-      // Tekanan 2: dinding baharu masuk dengan sisi tegak yang meluncur; barang lain muncul
-      tl.fromTo("#st-wipe", { x: 1080 }, { x: 0, duration: .36, ease: "power3.inOut" }, A(6.2));
-      ["#st-i3", "#st-i4"].forEach((s, i) => tl.fromTo(s, { scale: 0, x: 0, y: 0, opacity: 1, transformOrigin: "50% 100%" }, { scale: 1, duration: .45, ease: "back.out(2.2)" }, A(6.25 + i * .12)));
+      // Tekanan: bilik yang sama bertukar dari hujung jari, ayah kini di atas katil hospital
+      tl.fromTo("#bl-b", { clipPath: `circle(0px at ${PT[0] + 100}px ${PT[1]}px)` }, { clipPath: `circle(2300px at ${PT[0] + 100}px ${PT[1]}px)`, duration: .62, ease: "power2.inOut" }, A(6.3));
+      jolt("#bl-scene", A(6.32), 8);
+      tl.fromTo("#bl-cap2 b .w", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: .3, stagger: .08, ease: "back.out(2)" }, A(6.9));
+      tl.fromTo("#bl-cap2 small .w", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: .14, stagger: .06, ease: "expo.out" }, A(7.3));
+      tl.fromTo("#bl-pill", { opacity: 0, scale: 1.7 }, { opacity: 1, scale: 1, duration: .3, ease: "expo.out" }, A(8.18));
+      jolt("#bl-pill", A(8.26), 10, "x");
+      jolt("#bl-scene", A(8.26), 7);
 
-      // Tekanan 3: barang terbang masuk kotak, kotak ditutup (kotak terbuka → kotak berreben)
-      [["#st-i1", 266, 924], ["#st-i2", 502, 904], ["#st-i3", 688, 941], ["#st-i4", 871, 909]].forEach(([s, x, y], i) => {
-        tl.fromTo(s, { x: 0, y: 0, scale: 1 }, later({ x: 540 - x, y: 1120 - y, scale: .3, duration: .45, ease: "power2.in" }), A(7.5 + i * .07));
-        tl.fromTo(s, { opacity: 1 }, later({ opacity: 0, duration: .05 }), A(7.95 + i * .07));
-      });
-      tl.fromTo("#st-closed", { opacity: 0, scaleY: 1.12, transformOrigin: "50% 100%" }, { opacity: 1, scaleY: 1, duration: .3, ease: "back.out(2.5)" }, A(8.2));
-      tl.fromTo("#st-open", { opacity: 1 }, later({ opacity: 0, duration: .08 }), A(8.22));
-      tl.fromTo("#st-closed", { y: 0 }, later({ y: -16, duration: .16, yoyo: true, repeat: 1 }), A(8.85));
-      jolt("#st-scene", A(8.24), 10);
-
-      // Keluar: zum ke kotak
-      tl.fromTo("#st-cap b", { opacity: 1, filter: "blur(0px)" }, later({ opacity: 0, filter: "blur(8px)", duration: .2, ease: "power2.in" }), A(9.02));
-      tl.fromTo("#st-cap .w", { opacity: 1, filter: "blur(0px)" }, later({ opacity: 0, filter: "blur(8px)", duration: .18, stagger: .04, ease: "power2.in" }), A(9.0));
-      tl.fromTo("#st-wrap", { scale: 1, transformOrigin: "540px 1170px" }, { scale: 3.2, duration: .6, ease: "power2.in" }, A(9.1));
+      // Keluar: zum ke katil hospital (katil itu membawa kita ke stor wakaf)
+      tl.fromTo(["#bl-cap2", "#bl-pill"], { opacity: 1, filter: "blur(0px)" }, later({ opacity: 0, filter: "blur(8px)", duration: .2, ease: "power2.in" }), A(9.0));
+      tl.fromTo("#bl-wrap", { scale: 1, transformOrigin: "544px 1424px" }, { scale: 3.2, duration: .6, ease: "power2.in" }, A(9.1));
 
       window.__timelines["stor"] = tl;
     })();

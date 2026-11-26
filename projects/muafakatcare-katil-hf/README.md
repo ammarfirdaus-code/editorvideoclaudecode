@@ -1,8 +1,11 @@
 # Benang Muafakat · Wakaf Katil Hospital (HyperFrames)
 
-Versi niche Wakaf Katil Hospital daripada iklan v9 (`../muafakatcare-benang-hf/`). Babak, masa, peralihan,
-motion craft dan bunyi sama. Yang berubah: teks di skrin, empat barang di rak (tilam, bantal, rel sisi, roda) dan
-syot dari atas (katil hospital dengan pesakit berehat, ganti pinggan). Lima imej baharu dijana dengan Codex CLI.
+Iklan Wakaf Katil Hospital dengan gaya dan tatabahasa peralihan v9 (`../muafakatcare-benang-hf/`), tetapi cerita,
+gambar dan kata-kata baharu. Tiada kotak: ceritanya mengikut perjalanan sebuah katil. Ayah terlantar di atas tilam
+di lantai, jari menekan dan bilik bertukar menjadi katil hospital, katil di stor wakaf, roda katil menjadi roda lori,
+lori melalui kampung, sukarelawan memasang katil di bilik, syot dari atas, kad dengan anak panah kitaran
+(dipulangkan untuk pesakit seterusnya), logo dan QR. Gambar baharu dijana dengan Codex CLI
+(`bilik-lantai`, `bilik-katil`, `gudang-katil`, `lori-katil`, `pasang-katil`, `katil-atas`).
 
 Fakta dari laman Muafakat Care: katil hospital dipinjamkan tanpa caj kepada keluarga yang menjaga pesakit terlantar
 di rumah, pasukan menghantar dan memasangnya, dan katil dipulangkan untuk pesakit seterusnya. RM50 = 1 slot wakaf.

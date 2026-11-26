@@ -8,20 +8,9 @@
     #lt-b2 { left: 260px; width: 380px; background: #C5162E; clip-path: polygon(0 0, 60% 0, 100% 100%, 35% 100%); }
     #lt-b3 { left: 700px; width: 560px; background: #C5162E; clip-path: polygon(45% 0, 100% 0, 60% 100%, 0 100%); }
     #lt-b4 { left: 520px; width: 70px; background: #FFB020; clip-path: polygon(40% 0, 100% 0, 60% 100%, 0 100%); }
-    /* Kiub 3D: kotak katil hospital berpusing */
-    #lt-cubewrap { position: absolute; left: 390px; top: 810px; width: 300px; height: 300px; perspective: 1600px; }
-    #lt-cube { position: absolute; inset: 0; transform-style: preserve-3d; }
-    .lt-face { position: absolute; inset: 0; border-radius: 10px; backface-visibility: hidden;
-               background:
-                 linear-gradient(90deg, transparent 44%, #ED2B3A 44%, #ED2B3A 56%, transparent 56%),
-                 linear-gradient(0deg, transparent 44%, #ED2B3A 44%, #ED2B3A 56%, transparent 56%),
-                 #C89B6D; }
-    #lt-f1 { transform: translateZ(150px); }
-    #lt-f2 { transform: rotateY(180deg) translateZ(150px); filter: brightness(.82); }
-    #lt-f3 { transform: rotateY(90deg) translateZ(150px); filter: brightness(.9); }
-    #lt-f4 { transform: rotateY(-90deg) translateZ(150px); filter: brightness(.86); }
-    #lt-f5 { transform: rotateX(90deg) translateZ(150px); filter: brightness(1.08); }
-    #lt-f6 { transform: rotateX(-90deg) translateZ(150px); filter: brightness(.76); }
+    /* Roda katil berpusing (ganti kiub): roda yang sama menjadi roda lori di babak seterusnya */
+    #lt-cubewrap { position: absolute; left: 390px; top: 810px; width: 300px; height: 300px; }
+    #lt-cube { position: absolute; inset: 0; }
   </style>
   <div id="root" data-composition-id="lontar" data-width="1080" data-height="1920">
     <div id="lt-bgwrap">
@@ -29,10 +18,14 @@
       <div class="lt-band" id="lt-b3"></div><div class="lt-band" id="lt-b4"></div>
     </div>
     <div id="lt-cubewrap">
-      <div id="lt-cube">
-        <div class="lt-face" id="lt-f1"></div><div class="lt-face" id="lt-f2"></div><div class="lt-face" id="lt-f3"></div>
-        <div class="lt-face" id="lt-f4"></div><div class="lt-face" id="lt-f5"></div><div class="lt-face" id="lt-f6"></div>
-      </div>
+      <svg id="lt-cube" viewBox="0 0 300 300">
+        <circle cx="150" cy="150" r="146" fill="#1E1A68" />
+        <circle cx="150" cy="150" r="118" fill="#2E2C8C" />
+        <circle cx="150" cy="150" r="96" fill="#D9DCE6" />
+        <g fill="#B5BACB"><circle cx="208.0" cy="150.0" r="15" /><circle cx="167.9" cy="205.2" r="15" /><circle cx="103.1" cy="184.1" r="15" /><circle cx="103.1" cy="115.9" r="15" /><circle cx="167.9" cy="94.8" r="15" /></g>
+        <circle cx="150" cy="150" r="30" fill="#F2F3F7" /><circle cx="150" cy="150" r="12" fill="#9AA0B4" />
+        <path d="M150 54 A96 96 0 0 1 238 110" stroke="#fff" stroke-width="10" fill="none" opacity=".5" stroke-linecap="round" />
+      </svg>
     </div>
   </div>
   <script>
@@ -49,10 +42,10 @@
       tl.fromTo("#lt-b3", { x: 200 }, { x: -140, duration: 1.15, ease: "none" }, A(12.25));
       tl.fromTo("#lt-b4", { x: -260 }, { x: 320, duration: 1.15, ease: "none" }, A(12.25));
 
-      // Kiub (kotak dari babak sukarelawan) mengecil dari dekat sambil berpusing, terapung sekejap, kemudian jatuh ke atas troli (babak seterusnya)
-      tl.fromTo("#lt-cubewrap", { x: 0, y: 491, scale: 2.6, opacity: 1 }, { y: -40, scale: 1.05, duration: .5, ease: "power2.out" }, A(12.25));
-      tl.fromTo("#lt-cube", { rotationX: -20, rotationY: 0, rotationZ: 8 }, { rotationX: 340, rotationY: 470, rotationZ: -12, duration: 1.05, ease: "power1.inOut" }, A(12.28));
-      tl.fromTo("#lt-cubewrap", { x: 0, y: -40, scale: 1.05 }, later({ x: 6, y: 372, scale: .4, duration: .33, ease: "power2.in" }), A(13.02));
+      // Roda (dari katil di babak stor wakaf) mengecil dari dekat sambil berpusing laju, kemudian jatuh menjadi roda belakang lori
+      tl.fromTo("#lt-cubewrap", { x: 115, y: 600, scale: 2.6, opacity: 1 }, { x: 0, y: -40, scale: 1.05, duration: .5, ease: "power2.out" }, A(12.25));
+      tl.fromTo("#lt-cube", { rotation: 0 }, { rotation: 900, duration: 1.1, ease: "power1.inOut" }, A(12.28));
+      tl.fromTo("#lt-cubewrap", { x: 0, y: -40, scale: 1.05 }, later({ x: -258, y: 754, scale: .44, duration: .33, ease: "power2.in" }), A(13.02));
       tl.fromTo("#lt-cubewrap", { opacity: 1 }, later({ opacity: 0, duration: .04 }), A(13.35));
 
       // Keluar: kerat pepenjuru ke kanan, mendedahkan syot mengekori di bawah
