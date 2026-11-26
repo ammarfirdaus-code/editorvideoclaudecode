@@ -219,3 +219,8 @@ export function handImg(id, s = .55) {
   return `<div id="${id}" style="position:absolute;left:0;top:0;width:0;height:0">` +
     `<img src="assets/img/tangan-tuding.webp" alt="" style="position:absolute;left:${-1 * s}px;top:${-122 * s}px;width:${1490 * s}px;height:${523 * s}px;max-width:none"></div>`;
 }
+
+// Pecah teks kepada <span class="w"> per perkataan, untuk kemasukan tajuk per perkataan (motion craft HyperFrames).
+export function words(text) {
+  return text.split(" ").map(w => `<span class="w" style="display:inline-block">${w}</span>`).join(" ");
+}

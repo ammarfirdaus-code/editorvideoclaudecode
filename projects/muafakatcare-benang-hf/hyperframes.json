@@ -20,6 +20,11 @@
       "name": "vignette",
       "type": "hyperframes:component",
       "target": "compositions/components/vignette.html"
+    },
+    {
+      "name": "camera-shake",
+      "type": "hyperframes:component",
+      "target": "compositions/components/camera-shake.html"
     }
   ]
 }

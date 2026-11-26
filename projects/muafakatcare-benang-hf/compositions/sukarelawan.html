@@ -10,7 +10,7 @@
   <div id="root" data-composition-id="sukarelawan" data-width="1080" data-height="1920">
     <div id="sk-wrap">
       <img id="sk-img" src="assets/img/sukarelawan-pasangan.webp" alt="Dua sukarelawan Muafakat Care memegang pek makanan" />
-      <div id="sk-cap"><b style="color:#fff">Dibungkus oleh</b><b style="color:#FFB020">sukarelawan</b></div>
+      <div id="sk-cap"><b style="color:#fff"><span class="w" style="display:inline-block">Dibungkus</span> <span class="w" style="display:inline-block">oleh</span></b><b style="color:#FFB020"><span class="w" style="display:inline-block">sukarelawan</span></b></div>
     </div>
   </div>
   <script>
@@ -23,8 +23,8 @@
       tl.fromTo("#sk-wrap", { clipPath: "circle(0px at 540px 1170px)" }, { clipPath: "circle(2300px at 540px 1170px)", duration: .5, ease: "power2.in" }, A(9.35));
       // Kamera perlahan mendekat
       tl.fromTo("#sk-img", { scale: 1.14, transformOrigin: "50% 72%" }, { scale: 1, duration: 2.5, ease: "sine.out" }, A(9.35));
-      tl.fromTo("#sk-cap", { y: 36, opacity: 0 }, { y: 0, opacity: 1, duration: .5 }, A(10.0));
-      tl.fromTo("#sk-cap", { y: 0, opacity: 1 }, later({ y: -24, opacity: 0, duration: .3, ease: "power2.in" }), A(11.7));
+      tl.fromTo("#sk-cap .w", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: .13, stagger: .067, ease: "expo.out" }, A(10.0));
+      tl.fromTo("#sk-cap .w", { opacity: 1, filter: "blur(0px)" }, later({ opacity: 0, filter: "blur(8px)", duration: .18, stagger: .04, ease: "power2.in" }), A(11.7));
       // Keluar: kamera meluru ke kotak; kotak itu menjadi kiub di babak lontar
       tl.fromTo("#sk-img", { scale: 1 }, later({ scale: 3.4, transformOrigin: "540px 1451px", duration: .38, ease: "power2.in" }), A(11.9));
 

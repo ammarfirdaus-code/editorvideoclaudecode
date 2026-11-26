@@ -29,7 +29,7 @@
       <img class="st-it" id="st-closed" src="assets/img/kotak-tutup.webp" alt="" style="left:335px; top:994px; width:410px; height:334px" />
       </div>
       <div id="st-finger" style="position:absolute;left:0;top:0;width:0;height:0"><img src="assets/img/tangan-tuding.webp" alt="" style="position:absolute;left:-0.52px;top:-63.440000000000005px;width:774.8000000000001px;height:271.96000000000004px;max-width:none"></div>
-      <div id="st-cap"><b>RM50</b><small>= 1 pek makanan asas</small></div>
+      <div id="st-cap"><b>RM50</b><small><span class="w" style="display:inline-block">=</span> <span class="w" style="display:inline-block">1</span> <span class="w" style="display:inline-block">pek</span> <span class="w" style="display:inline-block">makanan</span> <span class="w" style="display:inline-block">asas</span></small></div>
     </div>
   </div>
   <script>
@@ -37,10 +37,17 @@
       const T0 = 3.9, A = t => t - T0;
       const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
       const later = v => Object.assign({ immediateRender: false }, v);
+      const jolt = (sel, at, amp, prop = "y") => {
+        const k = [-amp, amp * .6, -amp * .3, 0];
+        let prev = 0;
+        k.forEach((v, i) => { tl.fromTo(sel, { [prop]: prev }, later({ [prop]: v, duration: i < 3 ? .034 : .06, ease: "none" }), at + i * .034); prev = v; });
+      };
 
       tl.fromTo("#st-scene", { scale: 1.06, transformOrigin: "50% 60%" }, { scale: 1, duration: 5.2, ease: "sine.out" }, A(3.9));
       tl.fromTo(["#st-open"], { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: .5 }, A(3.95));
-      tl.fromTo("#st-cap", { y: 36, opacity: 0 }, { y: 0, opacity: 1, duration: .5 }, A(4.5));
+      tl.fromTo("#st-cap b", { scale: 1.7, opacity: 0 }, { scale: 1, opacity: 1, duration: .38, ease: "expo.out" }, A(4.5));
+      jolt("#st-cap b", A(4.62), 9, "x");
+      tl.fromTo("#st-cap .w", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: .13, stagger: .067, ease: "expo.out" }, A(4.78));
 
       // Jari gergasi dari bawah (tuding atas): rehat → tiga tekanan. Kedudukan = hujung jari.
       const P = { rest: [700, 2350], t1: [266, 870], t2: [688, 880], t3: [540, 1130] };
@@ -65,9 +72,11 @@
       tl.fromTo("#st-closed", { opacity: 0, scaleY: 1.12, transformOrigin: "50% 100%" }, { opacity: 1, scaleY: 1, duration: .3, ease: "back.out(2.5)" }, A(8.2));
       tl.fromTo("#st-open", { opacity: 1 }, later({ opacity: 0, duration: .08 }), A(8.22));
       tl.fromTo("#st-closed", { y: 0 }, later({ y: -16, duration: .16, yoyo: true, repeat: 1 }), A(8.85));
+      jolt("#st-scene", A(8.24), 10);
 
       // Keluar: zum ke kotak
-      tl.fromTo("#st-cap", { y: 0, opacity: 1 }, later({ y: -24, opacity: 0, duration: .35, ease: "power2.in" }), A(9.05));
+      tl.fromTo("#st-cap b", { opacity: 1, filter: "blur(0px)" }, later({ opacity: 0, filter: "blur(8px)", duration: .2, ease: "power2.in" }), A(9.02));
+      tl.fromTo("#st-cap .w", { opacity: 1, filter: "blur(0px)" }, later({ opacity: 0, filter: "blur(8px)", duration: .18, stagger: .04, ease: "power2.in" }), A(9.0));
       tl.fromTo("#st-wrap", { scale: 1, transformOrigin: "540px 1170px" }, { scale: 3.2, duration: .6, ease: "power2.in" }, A(9.1));
 
       window.__timelines["stor"] = tl;

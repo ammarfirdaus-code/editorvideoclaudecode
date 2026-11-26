@@ -28,7 +28,7 @@
       const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
       const later = v => Object.assign({ immediateRender: false }, v);
 
-      tl.fromTo("#pt-wrap", { opacity: 0 }, { opacity: 1, duration: .35 }, A(19.55));
+      tl.fromTo("#pt-wrap", { clipPath: "circle(0px at 600px 1126px)" }, { clipPath: "circle(2300px at 600px 1126px)", duration: .4, ease: "power2.in" }, A(19.58));
       tl.fromTo("#pt-scene", { scale: 1.12, transformOrigin: "50% 60%" }, { scale: 1, duration: 2.6, ease: "sine.out" }, A(19.55));
 
       // Serahan: sukarelawan masuk dari kiri menghulur kotak; mak cik menyambut
@@ -40,8 +40,8 @@
       tl.fromTo("#pt-heart", { opacity: 0, y: 0, scale: .5, transformOrigin: "50% 100%" }, { opacity: 1, y: -60, scale: 1, duration: .6, ease: "back.out(2)" }, A(21.05));
       tl.fromTo("#pt-heart", { opacity: 1, y: -60 }, later({ opacity: 0, y: -120, duration: .5 }), A(21.75));
 
-      tl.fromTo("#pt-cap", { y: 36, opacity: 0 }, { y: 0, opacity: 1, duration: .5 }, A(20.0));
-      tl.fromTo("#pt-cap", { y: 0, opacity: 1 }, later({ y: -24, opacity: 0, duration: .35, ease: "power2.in" }), A(22.0));
+      tl.fromTo("#pt-cap", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: .18, ease: "expo.out" }, A(20.0));
+      tl.fromTo("#pt-cap", { opacity: 1, filter: "blur(0px)" }, later({ opacity: 0, filter: "blur(8px)", duration: .2, ease: "power2.in" }), A(22.0));
 
       // Sebelum potongan: sukarelawan beredar, mak cik masuk ke dalam; tinggal ambang pintu
       tl.fromTo("#pt-vol", { x: 0, opacity: 1 }, later({ x: -520, opacity: 0, duration: .45, ease: "power2.in" }), A(21.8));
