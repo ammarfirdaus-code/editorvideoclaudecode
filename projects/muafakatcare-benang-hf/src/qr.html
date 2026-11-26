@@ -23,7 +23,7 @@
         </svg>
         <div id="qr-card"><img src="assets/duitnow-qr.jpg" alt="QR DuitNow Muafakat Care" /></div>
       </div>
-      <svg id="qr-hsvg" viewBox="0 0 1080 1920">{{P.pointingHand(0, 0, -90, 1.05, "qr-hand")}}</svg>
+      {{P.handImg("qr-hand", .5)}}
       <div id="qr-cap"><b>Imbas untuk infak</b><small>QR DuitNow rasmi · Berdaftar ROS PPM-002-10-13032020<br />Pertubuhan Kebajikan Muafakat Bakri</small></div>
     </div>
   </div>
@@ -34,7 +34,7 @@
       const later = v => Object.assign({ immediateRender: false }, v);
 
       // Tangan turun dari atas memegang tali
-      tl.fromTo("#qr-hand", { x: 540, y: -700 }, { y: 150, duration: .45, ease: "power3.out" }, A(30.1));
+      tl.fromTo("#qr-hand", { x: 540, y: -700, rotation: -90 }, { y: 150, duration: .45, ease: "power3.out" }, A(30.1));
       // Kad jatuh tergantung, kemudian berayun dan reda (pangsi di hujung jari)
       tl.fromTo("#qr-swing", { y: -1500, rotation: 0, transformOrigin: "540px 150px" }, { y: 0, duration: .75, ease: "back.out(1.3)" }, A(30.35));
       const swing = [[7, .42], [-5, .46], [3, .42], [-1.4, .38], [0, .34]];

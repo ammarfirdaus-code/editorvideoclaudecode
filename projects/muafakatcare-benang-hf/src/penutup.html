@@ -21,7 +21,7 @@
       <div id="pn-url">muafakatcare.my</div>
       </div>
       <div id="pn-bar"></div>
-      <svg id="pn-fsvg" viewBox="0 0 1080 1920">{{P.pointingHand(0, 0, -90, 1.05, "pn-finger")}}</svg>
+      {{P.handImg("pn-finger", .5)}}
     </div>
   </div>
   <script>
@@ -33,7 +33,7 @@
       tl.fromTo("#pn-tag", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: .6 }, A(27.9));
 
       // Jari gergasi kembali: menekan hati pada logo (penutup bergema dengan babak stor)
-      tl.fromTo("#pn-finger", { x: 540, y: -760 }, { y: 368, duration: .5, ease: "power3.out" }, A(28.0));
+      tl.fromTo("#pn-finger", { x: 540, y: -760, rotation: -90 }, { y: 368, duration: .5, ease: "power3.out" }, A(28.0));
       tl.fromTo("#pn-logo", { scale: 1 }, later({ scale: .94, duration: .1, yoyo: true, repeat: 1, ease: "power1.inOut" }), A(28.48));
       tl.fromTo("#pn-finger", { y: 368 }, later({ y: -800, duration: .45, ease: "power2.in" }), A(28.7));
 

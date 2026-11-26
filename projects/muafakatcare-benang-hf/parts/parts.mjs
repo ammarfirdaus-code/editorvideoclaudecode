@@ -211,3 +211,11 @@ export function cardHands() {
   <g id="hd-hl">${arm([60, 2040], [120, 1740], [258, 1470], 110, C.skinA, C.navy, 1)}${hand(258, 1470, 1, 1.5, C.skinA, C.skinAd)}</g>
   <g id="hd-hr">${arm([1020, 2040], [960, 1740], [822, 1470], 110, C.skinA, C.navy, 1)}${hand(822, 1470, -1, 1.5, C.skinA, C.skinAd)}</g>`;
 }
+
+// Tangan menuding dari imej Codex (assets/img/tangan-tuding.webp, 1490×523, hujung jari di (1,122)).
+// Bekas bersaiz sifar dengan hujung jari di asalnya: GSAP x/y meletakkan hujung jari, rotation memusing
+// di sekeliling hujung jari (0° tuding kiri, 90° tuding atas, -90° tuding bawah).
+export function handImg(id, s = .55) {
+  return `<div id="${id}" style="position:absolute;left:0;top:0;width:0;height:0">` +
+    `<img src="assets/img/tangan-tuding.webp" alt="" style="position:absolute;left:${-1 * s}px;top:${-122 * s}px;width:${1490 * s}px;height:${523 * s}px;max-width:none"></div>`;
+}

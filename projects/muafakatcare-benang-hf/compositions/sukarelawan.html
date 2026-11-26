@@ -1,134 +1,32 @@
 <template>
   <style>
     #root { position: absolute; inset: 0; overflow: hidden; }
-    #sk-wrap { position: absolute; inset: 0; overflow: hidden; }
-    #sk-wrap > svg { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+    #sk-wrap { position: absolute; inset: 0; overflow: hidden; background: #1E1A68; }
+    #sk-img { position: absolute; left: 0; top: -7px; width: 1080px; height: 1935px; }
     #sk-cap { position: absolute; left: 60px; right: 60px; top: 330px; text-align: center; font-family: Poppins, sans-serif;
-              text-shadow: 0 4px 24px rgba(15,18,53,.25); }
+              text-shadow: 0 4px 24px rgba(15,18,53,.3); }
     #sk-cap b { display: block; font-weight: 800; font-size: 84px; line-height: 1.08; letter-spacing: -1px; }
   </style>
   <div id="root" data-composition-id="sukarelawan" data-width="1080" data-height="1920">
     <div id="sk-wrap">
-      <svg id="sk-svg" viewBox="0 0 1080 1920">
-        <rect width="1080" height="1920" fill="url(#blueBg)" />
-        <rect width="1080" height="1920" fill="url(#glowSoft)" />
-        <g transform="translate(0 -110)">
-  <g id="sk-a">
-    <path d="M110 2040 L122 1350 Q132 1225 245 1196 L415 1196 Q528 1225 538 1350 L550 2040 Z" fill="#C5162E" filter="url(#shP)"/>
-    <path d="M110 2040 L122 1350 Q132 1225 245 1196 L415 1196 Q528 1225 538 1350 L550 2040 Z" fill="url(#cloth)"/>
-    <g id="sk-a-head">
-      <path d="M330 862 C224 862 196 960 200 1046 C204 1130 222 1186 160 1250 Q330 1330 500 1250 C438 1186 456 1130 460 1046 C464 960 436 862 330 862 Z" fill="#1E1A68" filter="url(#shsP)"/>
-      <ellipse cx="330" cy="1028" rx="96" ry="112" fill="#F2C4A0"/>
-      <ellipse cx="330" cy="1028" rx="96" ry="112" fill="url(#skinShade)"/>
-      <path d="M228 1000 C232 900 428 900 432 1000 C404 950 256 950 228 1000 Z" fill="#1E1A68"/>
-      <path d="M330 868 C262 868 222 902 210 960" stroke="#2E2990" stroke-width="12" fill="none" stroke-linecap="round" opacity=".7"/>
-      
-    <g id="sk-a-eyes">
-      <ellipse cx="296" cy="1030" rx="9" ry="12" fill="#2B2E3A"/>
-      <ellipse cx="364" cy="1030" rx="9" ry="12" fill="#2B2E3A"/>
-      <circle cx="299" cy="1026" r="2.6" fill="#fff"/><circle cx="367" cy="1026" r="2.6" fill="#fff"/>
-    </g>
-    <path d="M280 1000 q16 -10 32 -2 M348 998 q16 -8 32 2" stroke="#2B2E3A" stroke-width="5" fill="none" stroke-linecap="round"/>
-    <path d="M332 1040 q-6 18 4 20" stroke="#E3AC85" stroke-width="4" fill="none" stroke-linecap="round"/>
-    <path d="M308 1076 q22 18 44 0" stroke="#9B4A3A" stroke-width="5" fill="none" stroke-linecap="round"/>
-    <ellipse cx="278" cy="1066" rx="15" ry="9" fill="#F28B82" opacity=".5"/>
-    <ellipse cx="382" cy="1066" rx="15" ry="9" fill="#F28B82" opacity=".5"/>
-    </g>
-    <path d="M462 1290 L470 1400" stroke="#A11226" stroke-width="82" stroke-linecap="round" filter="url(#shsP)"/><path d="M470 1400 L420 1440" stroke="#A11226" stroke-width="75.44" stroke-linecap="round" filter="url(#shsP)"/>
-    <path d="M176 1290 L158 1470" stroke="#A11226" stroke-width="86" stroke-linecap="round" filter="url(#shsP)"/><path d="M158 1470 L356 1532" stroke="#A11226" stroke-width="79.12" stroke-linecap="round" filter="url(#shsP)"/>
-  </g>
-  <g id="sk-b">
-    <path d="M540 2040 L552 1300 Q562 1175 680 1150 L860 1150 Q978 1175 988 1300 L1000 2040 Z" fill="#C5162E" filter="url(#shP)"/>
-    <path d="M540 2040 L552 1300 Q562 1175 680 1150 L860 1150 Q978 1175 988 1300 L1000 2040 Z" fill="url(#cloth)"/>
-    <rect x="728" y="1066" width="84" height="96" rx="20" fill="#C48a64"/>
-    <path d="M700 1150 Q770 1192 840 1150" fill="none" stroke="#A11226" stroke-width="14" stroke-linecap="round"/>
-    <g id="sk-b-head">
-      <ellipse cx="664" cy="982" rx="22" ry="30" fill="#D9A07A"/>
-      <ellipse cx="876" cy="982" rx="22" ry="30" fill="#D9A07A"/>
-      <ellipse cx="770" cy="980" rx="104" ry="118" fill="#D9A07A"/>
-      <ellipse cx="770" cy="980" rx="104" ry="118" fill="url(#skinShade)"/>
-      <path d="M662 938 Q666 810 770 806 Q874 810 878 938 Z" fill="#7FB3E0"/>
-      <rect x="652" y="908" width="236" height="44" rx="22" fill="#6597C6"/>
-      <path d="M674 952 q34 -16 70 -4" stroke="#3B2A22" stroke-width="13" fill="none" stroke-linecap="round" opacity=".85"/>
-      
-    <g id="sk-b-eyes">
-      <ellipse cx="735.32" cy="984" rx="9.18" ry="12.24" fill="#2B2E3A"/>
-      <ellipse cx="804.68" cy="984" rx="9.18" ry="12.24" fill="#2B2E3A"/>
-      <circle cx="738.38" cy="979.92" r="2.652" fill="#fff"/><circle cx="807.74" cy="979.92" r="2.652" fill="#fff"/>
-    </g>
-    <path d="M719 953.4 q16.32 -10.2 32.64 -2.04 M788.36 951.36 q16.32 -8.16 32.64 2.04" stroke="#2B2E3A" stroke-width="5.1" fill="none" stroke-linecap="round"/>
-    <path d="M772.04 994.2 q-6.12 18.36 4.08 20.4" stroke="#C48a64" stroke-width="4.08" fill="none" stroke-linecap="round"/>
-    <path d="M747.56 1030.92 q22.44 18.36 44.88 0" stroke="#9B4A3A" stroke-width="5.1" fill="none" stroke-linecap="round"/>
-    <ellipse cx="716.96" cy="1020.72" rx="15.3" ry="9.18" fill="#F28B82" opacity=".5"/>
-    <ellipse cx="823.04" cy="1020.72" rx="15.3" ry="9.18" fill="#F28B82" opacity=".5"/>
-    </g>
-    <path d="M600 1260 L610 1390" stroke="#D9A07A" stroke-width="68.8" stroke-linecap="round" filter="url(#shsP)"/><path d="M610 1390 L680 1440" stroke="#D9A07A" stroke-width="64" stroke-linecap="round" filter="url(#shsP)"/><path d="M600 1260 L604.5 1318.5" stroke="#A11226" stroke-width="84.80000000000001" stroke-linecap="round" filter="url(#shsP)"/>
-    <path d="M948 1270 L966 1470" stroke="#D9A07A" stroke-width="73.96" stroke-linecap="round" filter="url(#shsP)"/><path d="M966 1470 L744 1532" stroke="#D9A07A" stroke-width="68.8" stroke-linecap="round" filter="url(#shsP)"/><path d="M948 1270 L956.1 1360" stroke="#A11226" stroke-width="91.16000000000001" stroke-linecap="round" filter="url(#shsP)"/>
-  </g>
-  <g id="sk-box" filter="url(#shP)">
-    <rect x="400" y="1330" width="300" height="210" rx="6" fill="#C89B6D"/>
-    <rect x="394" y="1330" width="312" height="33.6" rx="5" fill="#D6AC80"/>
-    <rect x="400" y="1363.6" width="300" height="8" fill="#B08156" opacity=".5"/>
-    <rect x="536" y="1330" width="28" height="210" fill="#ED2B3A"/>
-    <path d="M550 1330 C480 1260 440 1325 550 1330 C660 1325 620 1260 550 1330" fill="#ED2B3A"/>
-    <circle cx="550" cy="1326" r="13" fill="#C9142C"/>
-  </g>
-  <g id="sk-hands">
-    <g  filter="url(#shsP)">
-    <rect x="413.4" y="1410.3" width="77" height="59.400000000000006" rx="26.400000000000002" fill="#F2C4A0"/>
-    <path d="M464 1426.8 l26.400000000000002 0" stroke="#E3AC85" stroke-width="3.3000000000000003" stroke-linecap="round"/><path d="M464 1442.2 l26.400000000000002 0" stroke="#E3AC85" stroke-width="3.3000000000000003" stroke-linecap="round"/><path d="M464 1457.6 l26.400000000000002 0" stroke="#E3AC85" stroke-width="3.3000000000000003" stroke-linecap="round"/>
-    <ellipse cx="444.2" cy="1409.2" rx="26.400000000000002" ry="12.100000000000001" fill="#F2C4A0" transform="rotate(-18 444.2 1409.2)"/>
-  </g>
-    <g  filter="url(#shsP)">
-    <rect x="349.4" y="1502.3" width="77" height="59.400000000000006" rx="26.400000000000002" fill="#F2C4A0"/>
-    <path d="M400 1518.8 l26.400000000000002 0" stroke="#E3AC85" stroke-width="3.3000000000000003" stroke-linecap="round"/><path d="M400 1534.2 l26.400000000000002 0" stroke="#E3AC85" stroke-width="3.3000000000000003" stroke-linecap="round"/><path d="M400 1549.6 l26.400000000000002 0" stroke="#E3AC85" stroke-width="3.3000000000000003" stroke-linecap="round"/>
-    <ellipse cx="380.2" cy="1501.2" rx="26.400000000000002" ry="12.100000000000001" fill="#F2C4A0" transform="rotate(-18 380.2 1501.2)"/>
-  </g>
-    <g  filter="url(#shsP)">
-    <rect x="609.6" y="1410.3" width="77" height="59.400000000000006" rx="26.400000000000002" fill="#D9A07A"/>
-    <path d="M636 1426.8 l-26.400000000000002 0" stroke="#C48a64" stroke-width="3.3000000000000003" stroke-linecap="round"/><path d="M636 1442.2 l-26.400000000000002 0" stroke="#C48a64" stroke-width="3.3000000000000003" stroke-linecap="round"/><path d="M636 1457.6 l-26.400000000000002 0" stroke="#C48a64" stroke-width="3.3000000000000003" stroke-linecap="round"/>
-    <ellipse cx="655.8" cy="1409.2" rx="26.400000000000002" ry="12.100000000000001" fill="#D9A07A" transform="rotate(18 655.8 1409.2)"/>
-  </g>
-    <g  filter="url(#shsP)">
-    <rect x="673.6" y="1502.3" width="77" height="59.400000000000006" rx="26.400000000000002" fill="#D9A07A"/>
-    <path d="M700 1518.8 l-26.400000000000002 0" stroke="#C48a64" stroke-width="3.3000000000000003" stroke-linecap="round"/><path d="M700 1534.2 l-26.400000000000002 0" stroke="#C48a64" stroke-width="3.3000000000000003" stroke-linecap="round"/><path d="M700 1549.6 l-26.400000000000002 0" stroke="#C48a64" stroke-width="3.3000000000000003" stroke-linecap="round"/>
-    <ellipse cx="719.8" cy="1501.2" rx="26.400000000000002" ry="12.100000000000001" fill="#D9A07A" transform="rotate(18 719.8 1501.2)"/>
-  </g>
-  </g></g>
-      </svg>
+      <img id="sk-img" src="assets/img/sukarelawan-pasangan.webp" alt="Dua sukarelawan Muafakat Care memegang pek makanan" />
       <div id="sk-cap"><b style="color:#fff">Dibungkus oleh</b><b style="color:#FFB020">sukarelawan</b></div>
     </div>
   </div>
   <script>
     (function () {
-      const T0 = 9.35, A = t => t - T0, U = 6;
+      const T0 = 9.35, A = t => t - T0;
       const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
       const later = v => Object.assign({ immediateRender: false }, v);
 
-      // Masuk: bulatan dibuka dari kotak di babak sebelum
-      tl.fromTo("#sk-wrap", { clipPath: `circle(0px at ${90 * U}px ${192 * U}px)` }, { clipPath: `circle(2300px at ${90 * U}px ${192 * U}px)`, duration: .5, ease: "power2.in" }, A(9.35));
-      tl.fromTo("#sk-svg", { scale: 1.12, transformOrigin: "50% 60%" }, { scale: 1, duration: 3.0, ease: "sine.out" }, A(9.35));
-      tl.fromTo("#sk-a", { x: -360, y: 0 }, { x: 0, duration: .7, ease: "power3.out" }, A(9.6));
-      tl.fromTo("#sk-b", { x: 360, y: 0 }, { x: 0, duration: .8, ease: "power3.out" }, A(9.75));
-
-      // Lakonan: kepala dahulu, badan menyusul, amaun berbeza; mata berkelip pada masa berbeza
-      tl.fromTo("#sk-a-head", { rotation: 0, transformOrigin: "50% 90%" }, { rotation: -5, duration: .5, yoyo: true, repeat: 1, ease: "sine.inOut" }, A(10.35));
-      tl.fromTo("#sk-b-head", { rotation: 0, transformOrigin: "50% 90%" }, { rotation: 4, duration: .6, yoyo: true, repeat: 1, ease: "sine.inOut" }, A(10.8));
-      tl.fromTo("#sk-a", { y: 0 }, later({ y: -9, duration: .65, yoyo: true, repeat: 1, ease: "sine.inOut" }), A(10.5));
-      tl.fromTo("#sk-b", { y: 0 }, later({ y: -7, duration: .55, yoyo: true, repeat: 1, ease: "sine.inOut" }), A(10.65));
-      tl.fromTo(["#sk-box", "#sk-hands"], { y: 0 }, { y: -8, duration: .7, yoyo: true, repeat: 1, ease: "sine.inOut" }, A(10.6));
-      tl.fromTo("#sk-a-eyes", { scaleY: 1, transformOrigin: "50% 50%" }, { scaleY: .15, duration: .07, yoyo: true, repeat: 1 }, A(11.1));
-      tl.fromTo("#sk-b-eyes", { scaleY: 1, transformOrigin: "50% 50%" }, { scaleY: .15, duration: .07, yoyo: true, repeat: 1 }, A(11.55));
-      tl.fromTo("#sk-a-eyes", { scaleY: 1 }, later({ scaleY: .15, duration: .07, yoyo: true, repeat: 1 }), A(12.05));
-
+      // Masuk: bulatan dibuka dari kotak di babak stor
+      tl.fromTo("#sk-wrap", { clipPath: "circle(0px at 540px 1170px)" }, { clipPath: "circle(2300px at 540px 1170px)", duration: .5, ease: "power2.in" }, A(9.35));
+      // Kamera perlahan mendekat
+      tl.fromTo("#sk-img", { scale: 1.14, transformOrigin: "50% 72%" }, { scale: 1, duration: 2.5, ease: "sine.out" }, A(9.35));
       tl.fromTo("#sk-cap", { y: 36, opacity: 0 }, { y: 0, opacity: 1, duration: .5 }, A(10.0));
-      tl.fromTo("#sk-cap", { y: 0, opacity: 1 }, later({ y: -24, opacity: 0, duration: .35, ease: "power2.in" }), A(12.1));
-
-      // Keluar (tatabahasa rujukan saat 20.7): kedua-dua watak melambung kotak ke atas
-      tl.fromTo(["#sk-a", "#sk-b"], { y: 0 }, later({ y: 14, duration: .1, ease: "power1.in" }), A(11.95));
-      tl.fromTo(["#sk-a", "#sk-b"], { y: 14 }, later({ y: -30, duration: .16, ease: "power2.out" }), A(12.05));
-      tl.fromTo("#sk-hands", { y: 0 }, later({ y: -70, duration: .14, ease: "power2.out" }), A(12.05));
-      tl.fromTo("#sk-box", { y: 0, rotation: 0, transformOrigin: "50% 50%" }, later({ y: -1500, rotation: -25, duration: .38, ease: "power2.in" }), A(12.08));
+      tl.fromTo("#sk-cap", { y: 0, opacity: 1 }, later({ y: -24, opacity: 0, duration: .3, ease: "power2.in" }), A(11.7));
+      // Keluar: kamera meluru ke kotak; kotak itu menjadi kiub di babak lontar
+      tl.fromTo("#sk-img", { scale: 1 }, later({ scale: 3.4, transformOrigin: "540px 1451px", duration: .38, ease: "power2.in" }), A(11.9));
 
       window.__timelines["sukarelawan"] = tl;
     })();

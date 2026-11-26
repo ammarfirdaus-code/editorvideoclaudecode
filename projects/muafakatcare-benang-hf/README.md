@@ -47,6 +47,19 @@ Semak satu lukisan sebelum memasukkannya ke babak (PNG ke `.hyperframes/`):
 node parts/lab.mjs volunteersPair "url(#blueBg)" .hyperframes/lab.png
 ```
 
+## Ilustrasi (Codex)
+
+Semua watak, barang dan latar dijana dengan Codex CLI (log masuk ChatGPT, ciri `image_generation`) mengikut
+`codex/PROMPTS.md`, berpandukan bingkai gaya `assets/gaya/sukarelawan-gaya.jpg`. PNG asal disimpan di
+`assets/ai/` (tidak masuk git); versi yang digunakan dalam video ialah WebP terpotong di `assets/img/`.
+Tangan menuding diletak melalui `P.handImg(id, skala)` dalam `parts/parts.mjs` (hujung jari = titik asal).
+
+Jana semula satu imej, contohnya:
+
+```bash
+codex exec -s workspace-write "Ikut codex/PROMPTS.md, jana #11 makcik-sambut.png ke assets/ai/" -i assets/gaya/sukarelawan-gaya.jpg
+```
+
 ## Bina dan render
 
 Muzik tidak disimpan dalam git (`*.wav` diabaikan). Jana semula dahulu, kemudian bina babak:

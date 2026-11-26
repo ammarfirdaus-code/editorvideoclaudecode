@@ -10,11 +10,15 @@
     #hd-head i { width: 62px; height: 62px; border-radius: 50%; background: #2FA36B; display: inline-block; position: relative; }
     #hd-head i::after { content: ""; position: absolute; left: 17px; top: 9px; width: 18px; height: 32px;
                         border: solid #fff; border-width: 0 9px 9px 0; transform: rotate(45deg); }
-    #hd-rect { position: absolute; left: 258px; top: 638px; width: 564px; height: 1320px; background: #3B2F4A;
-               outline: 42px solid #6B4A3A; box-shadow: 0 0 0 2400px #E7C58A; }
+    #hd-doorbg { position: absolute; left: -100px; top: 0; width: 1280px; height: 1920px; }
+    #hd-rect { position: absolute; left: 224px; top: 410px; width: 596px; height: 1060px; overflow: hidden;
+               background: url("assets/img/bg-pintu.webp") -324px -410px / 1280px 1920px no-repeat; }
+    #hd-rect i { position: absolute; inset: 0; background: #FFFFFF; opacity: 0; }
+    #hd-plate { position: absolute; left: 220px; top: 740px; width: 640px; height: 657px; }
+    #hd-hl { position: absolute; left: 26px; top: 1500px; width: 1029px; height: 530px; }
     #hd-logo { position: absolute; inset: 0; overflow: hidden; background: radial-gradient(circle at 50% 40%, #FFFFFF 0, #F5F6FA 100%); }
     #hd-logo img { position: absolute; left: 240px; top: 330px; width: 600px; height: 424px; }
-    #hd-hands { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+    #hd-hands { position: absolute; inset: 0; pointer-events: none; }
     .hd-cap { position: absolute; left: 60px; right: 60px; top: 330px; text-align: center; font-family: Poppins, sans-serif;
               color: #fff; text-shadow: 0 4px 24px rgba(15,18,53,.25); }
     .hd-cap b { display: block; font-weight: 800; font-size: 84px; line-height: 1.08; letter-spacing: -1px; }
@@ -25,37 +29,18 @@
       <div id="hd-panel">
         <svg viewBox="0 0 180 320">
           <rect width="180" height="320" fill="#2FA36B" /><rect width="180" height="320" fill="url(#glow)" />
-          <g id="hd-plate" filter="url(#sh)">
-            <circle cx="90" cy="178" r="50" fill="#FFFFFF" />
-            <circle cx="90" cy="178" r="41" fill="none" stroke="#E8EAF2" stroke-width="1.6" />
-            <circle cx="79" cy="186" r="21" fill="#FBF7EE" /><circle cx="72" cy="182" r="1" fill="#E8E1D0" /><circle cx="84" cy="192" r="1" fill="#E8E1D0" /><circle cx="80" cy="178" r="1" fill="#E8E1D0" />
-            <ellipse cx="108" cy="166" rx="13" ry="11" fill="#FFFFFF" stroke="#F1EEE6" stroke-width="1" /><circle cx="108" cy="166" r="5.4" fill="#FFB020" />
-            <ellipse cx="106" cy="196" rx="12" ry="7" fill="#3E8E4E" transform="rotate(-25 106 196)" /><ellipse cx="111" cy="190" rx="7" ry="4" fill="#5FB36E" transform="rotate(-25 111 190)" />
-            <ellipse cx="74" cy="158" rx="13" ry="8" fill="#B8742F" transform="rotate(-20 74 158)" />
-            <g id="hd-hand"><rect x="132" y="168" width="70" height="24" rx="5" fill="#7A6FB5" /><rect x="122" y="170" width="18" height="20" rx="8" fill="#D9A77E" /><rect x="116" y="172" width="12" height="6" rx="3" fill="#D9A77E" /></g>
-          </g>
-          <g id="hd-steam" stroke="#FFFFFF" stroke-width="2.2" fill="none" stroke-linecap="round">
+          <g id="hd-steam" transform="translate(0 -30)" stroke="#FFFFFF" stroke-width="2.2" fill="none" stroke-linecap="round">
             <path d="M78 150 Q74 142 78 134 Q82 126 78 118" /><path d="M90 146 Q86 138 90 130 Q94 122 90 114" /><path d="M102 150 Q98 142 102 134 Q106 126 102 118" />
           </g>
           <g id="hd-cup" filter="url(#sh)"><circle cx="40" cy="256" r="14" fill="#FFFFFF" /><circle cx="40" cy="256" r="10.5" fill="#C98A4B" /></g>
         </svg>
+        <img id="hd-plate" src="assets/img/pinggan-atas.webp" alt="Hidangan nasi di rumah penerima" />
         <div id="hd-head"><i></i>Papan Impak</div>
-        <div id="hd-rect"></div>
+        <img id="hd-doorbg" src="assets/img/bg-pintu.webp" alt="" />
+        <div id="hd-rect"><i></i></div>
       </div>
       <div id="hd-logo"><img src="assets/logo.png" alt="Muafakat Care" /></div>
-      <svg id="hd-hands" viewBox="0 0 1080 1920">
-        <g id="hd-hg">
-  <g id="hd-hl"><path d="M60 2040 L120 1740" stroke="#1E1A68" stroke-width="110" stroke-linecap="round" filter="url(#shsP)"/><path d="M120 1740 L258 1470" stroke="#1E1A68" stroke-width="101.2" stroke-linecap="round" filter="url(#shsP)"/><g  filter="url(#shsP)">
-    <rect x="249" y="1429.5" width="105" height="81" rx="36" fill="#F2C4A0"/>
-    <path d="M318 1452 l36 0" stroke="#E3AC85" stroke-width="4.5" stroke-linecap="round"/><path d="M318 1473 l36 0" stroke="#E3AC85" stroke-width="4.5" stroke-linecap="round"/><path d="M318 1494 l36 0" stroke="#E3AC85" stroke-width="4.5" stroke-linecap="round"/>
-    <ellipse cx="291" cy="1428" rx="36" ry="16.5" fill="#F2C4A0" transform="rotate(-18 291 1428)"/>
-  </g></g>
-  <g id="hd-hr"><path d="M1020 2040 L960 1740" stroke="#1E1A68" stroke-width="110" stroke-linecap="round" filter="url(#shsP)"/><path d="M960 1740 L822 1470" stroke="#1E1A68" stroke-width="101.2" stroke-linecap="round" filter="url(#shsP)"/><g  filter="url(#shsP)">
-    <rect x="726" y="1429.5" width="105" height="81" rx="36" fill="#F2C4A0"/>
-    <path d="M762 1452 l-36 0" stroke="#E3AC85" stroke-width="4.5" stroke-linecap="round"/><path d="M762 1473 l-36 0" stroke="#E3AC85" stroke-width="4.5" stroke-linecap="round"/><path d="M762 1494 l-36 0" stroke="#E3AC85" stroke-width="4.5" stroke-linecap="round"/>
-    <ellipse cx="789" cy="1428" rx="36" ry="16.5" fill="#F2C4A0" transform="rotate(18 789 1428)"/>
-  </g></g></g>
-      </svg>
+      <div id="hd-hands"><div id="hd-hg"><img id="hd-hl" src="assets/img/tangan-pegang-kad.webp" alt="" /></div></div>
       <div class="hd-cap" id="hd-cap1"><b>Setiap bulan</b><small>Infak ikut kemampuan</small><small style="font-weight:700;color:#FFE7A8">RM10 pun diterima</small></div>
       <div class="hd-cap" id="hd-cap2"><b>Setiap agihan</b><b>direkod</b></div>
     </div>
@@ -68,10 +53,10 @@
 
       // Masuk (tatabahasa rujukan saat 46–48): ambang pintu gelap kekal, dinding bertukar hijau,
       // segi empat itu mengecil, berpusing dan menjadi pinggan
-      tl.fromTo("#hd-rect", { boxShadow: "0 0 0 2400px rgba(231,197,138,1)", outlineColor: "rgba(107,74,58,1)" },
-        { boxShadow: "0 0 0 2400px rgba(231,197,138,0)", outlineColor: "rgba(107,74,58,0)", duration: .4, ease: "power1.inOut" }, A(22.45));
-      tl.fromTo("#hd-rect", { scaleX: 1, scaleY: 1, y: 0, rotation: 0, borderRadius: "0%", backgroundColor: "#3B2F4A", transformOrigin: "50% 50%" },
-        { scaleX: 1.064, scaleY: .4545, y: -230, rotation: 0, borderRadius: "50%", backgroundColor: "#FFFFFF", duration: .5, ease: "power2.inOut" }, A(22.8));
+      tl.fromTo("#hd-doorbg", { opacity: 1 }, { opacity: 0, duration: .4, ease: "power1.inOut" }, A(22.45));
+      tl.fromTo("#hd-rect", { scaleX: 1, scaleY: 1, x: 0, y: 0, borderRadius: "0%", transformOrigin: "50% 50%" },
+        { scaleX: 1.007, scaleY: .566, x: 18, y: 128, borderRadius: "50%", duration: .5, ease: "power2.inOut" }, A(22.8));
+      tl.fromTo("#hd-rect i", { opacity: 0 }, { opacity: 1, duration: .4, ease: "power1.in" }, A(22.85));
       tl.fromTo("#hd-rect", { rotation: 0 }, later({ rotation: 28, duration: .25, ease: "power1.out" }), A(22.8));
       tl.fromTo("#hd-rect", { rotation: 28 }, later({ rotation: 0, duration: .25, ease: "power1.in" }), A(23.05));
       tl.fromTo("#hd-rect", { opacity: 1 }, later({ opacity: 0, duration: .15 }), A(23.32));
@@ -79,9 +64,7 @@
       // Syot dari atas: pinggan diletak, tangan beredar, wap naik
       tl.fromTo("#hd-plate", { opacity: 0, scale: .97, transformOrigin: "50% 55%" }, { opacity: 1, scale: 1, duration: .2 }, A(23.25));
       tl.fromTo("#hd-cup", { opacity: 0 }, { opacity: 1, duration: .25 }, A(23.3));
-      tl.fromTo("#hd-hand", { x: 80 }, { x: 0, duration: .45, ease: "power3.out" }, A(23.45));
-      tl.fromTo("#hd-hand", { x: 0 }, later({ x: 90, duration: .5, ease: "power2.in" }), A(24.35));
-      tl.fromTo("#hd-steam", { opacity: 0 }, { opacity: .8, duration: .4 }, A(23.6));
+            tl.fromTo("#hd-steam", { opacity: 0 }, { opacity: .8, duration: .4 }, A(23.6));
       tl.fromTo("#hd-steam path", { y: 6 }, { y: -10, duration: 1.3, ease: "sine.inOut", stagger: .2 }, A(23.6));
       tl.fromTo("#hd-cap1", { y: 36, opacity: 0 }, { y: 0, opacity: 1, duration: .5 }, A(23.4));
       tl.fromTo("#hd-cap1", { y: 0, opacity: 1 }, later({ y: -24, opacity: 0, duration: .3, ease: "power2.in" }), A(24.7));
@@ -90,8 +73,7 @@
       tl.fromTo("#hd-panel", { scale: 1, y: 0, borderRadius: 0, boxShadow: "0 0 0 rgba(15,18,53,0)", opacity: 1 },
         { scale: .5, y: 160, borderRadius: 60, boxShadow: "0 40px 90px rgba(15,18,53,.45)", duration: .6, ease: "power3.inOut" }, A(24.8));
       tl.fromTo("#hd-head", { opacity: 0 }, { opacity: 1, duration: .3 }, A(25.25));
-      tl.fromTo("#hd-hl", { y: 600 }, { y: 0, duration: .6, ease: "power3.out" }, A(25.2));
-      tl.fromTo("#hd-hr", { y: 600 }, { y: 0, duration: .6, ease: "power3.out" }, A(25.3));
+      tl.fromTo("#hd-hl", { y: 700 }, { y: 0, duration: .6, ease: "power3.out" }, A(25.2));
       tl.fromTo("#hd-panel", { y: 160 }, later({ y: 120, duration: 1.2, ease: "sine.inOut" }), A(25.9));
       tl.fromTo("#hd-hg", { y: 0 }, { y: -40, duration: 1.2, ease: "sine.inOut" }, A(25.9));
       tl.fromTo("#hd-cap2", { y: 36, opacity: 0 }, { y: 0, opacity: 1, duration: .4 }, A(25.3));

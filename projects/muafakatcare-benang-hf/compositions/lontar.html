@@ -49,10 +49,10 @@
       tl.fromTo("#lt-b3", { x: 200 }, { x: -140, duration: 1.15, ease: "none" }, A(12.25));
       tl.fromTo("#lt-b4", { x: -260 }, { x: 320, duration: 1.15, ease: "none" }, A(12.25));
 
-      // Kiub naik dari bawah sambil berpusing, terapung sekejap, kemudian jatuh ke atas troli (babak seterusnya)
-      tl.fromTo("#lt-cubewrap", { x: 0, y: 1150, scale: .9, opacity: 1 }, { y: -40, scale: 1.05, duration: .5, ease: "power2.out" }, A(12.28));
+      // Kiub (kotak dari babak sukarelawan) mengecil dari dekat sambil berpusing, terapung sekejap, kemudian jatuh ke atas troli (babak seterusnya)
+      tl.fromTo("#lt-cubewrap", { x: 0, y: 491, scale: 2.6, opacity: 1 }, { y: -40, scale: 1.05, duration: .5, ease: "power2.out" }, A(12.25));
       tl.fromTo("#lt-cube", { rotationX: -20, rotationY: 0, rotationZ: 8 }, { rotationX: 340, rotationY: 470, rotationZ: -12, duration: 1.05, ease: "power1.inOut" }, A(12.28));
-      tl.fromTo("#lt-cubewrap", { x: 0, y: -40, scale: 1.05 }, later({ x: -60, y: 600, scale: .38, duration: .33, ease: "power2.in" }), A(13.02));
+      tl.fromTo("#lt-cubewrap", { x: 0, y: -40, scale: 1.05 }, later({ x: 6, y: 372, scale: .4, duration: .33, ease: "power2.in" }), A(13.02));
       tl.fromTo("#lt-cubewrap", { opacity: 1 }, later({ opacity: 0, duration: .04 }), A(13.35));
 
       // Keluar: kerat pepenjuru ke kanan, mendedahkan syot mengekori di bawah
