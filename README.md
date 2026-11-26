@@ -63,6 +63,46 @@ git submodule update --init --recursive
 
 VoiceStudio is licensed under AGPL-3.0 and has its own license notice. This repo's own files are not covered by it.
 
+## Background music (Uppbeat)
+
+The `uppbeat-music` skill (`.claude/skills/uppbeat-music/`) helps pick free tracks from [uppbeat.io/music](https://uppbeat.io/music). You download the track yourself while logged in (Claude does not scrape the site or bypass its limits), then mix it under the voice:
+
+```bash
+bash scripts/mix-music.sh talking-head.mp4 assets/music/track.mp3 final.mp4 0.35
+```
+
+The music loops to the video length, ducks while the voice speaks and fades out at the end. Check Uppbeat's current licence and credit requirements before publishing, and record the credit in `assets/music/CREDITS.md`.
+
+## VectorCraft (SVG overlays)
+
+Generates SVG assets for HyperFrames compositions. No dependencies. Text is XML-escaped.
+
+```bash
+npm run vectorcraft -- list
+npm run vectorcraft -- lower-third --title "Ammar" --subtitle "Founder" --out lower-third.svg
+npm run vectorcraft -- badge --text "NEW" --fill "#ff3d71" --out badge.svg
+```
+
+Assets: `lower-third`, `badge`, `arrow`, `underline`, `circle-highlight`. Every shape has an `id` (for example `lt-title`, `arrow-head`), and `underline` and `circle-highlight` use `pathLength="1"`, so GSAP can animate them directly (for example `strokeDashoffset` from 1 to 0). Also usable as a library: `import { lowerThird } from './tools/vectorcraft/index.mjs'`.
+
+## EffectCraft (FFmpeg effect presets)
+
+Chains named effects into one FFmpeg `-vf` filter. Width, height and duration are read from the clip with ffprobe.
+
+```bash
+npm run effectcraft -- list
+npm run effectcraft -- apply in.mp4 out.mp4 --fx zoom-punch:1.2,warm,vignette,grain:8
+npm run effectcraft -- apply in.mp4 out.mp4 --fx shake --print   # show the ffmpeg command only
+```
+
+Effects: `zoom-punch`, `vignette`, `grain`, `warm`, `cool`, `bw`, `sharpen`, `shake`, `fade-in`, `fade-out`. Use `name:value` to set a parameter. Audio is copied unchanged. Effects apply to the whole clip, not a time range.
+
+Run the tests (the FFmpeg test is skipped if FFmpeg is missing):
+
+```bash
+npm test
+```
+
 ## Verified
 
 - `hyperframes doctor`: whisper-cpp, TTS (Kokoro) and BGM (MusicGen) detected. Docker is installed but not running, which is not needed for local renders.

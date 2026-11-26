@@ -1,0 +1,11 @@
+{
+  "name": "editorvideoclaudecode",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tools/tests/*.test.mjs",
+    "vectorcraft": "node tools/vectorcraft/cli.mjs",
+    "effectcraft": "node tools/effectcraft/cli.mjs"
+  },
+  "engines": { "node": ">=22" }
+}
