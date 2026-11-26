@@ -8,7 +8,7 @@ import sys, wave
 import numpy as np
 
 SR = 44100
-DUR = 30.0
+DUR = 35.0
 BPM = 100
 BEAT = 60 / BPM
 N = int(SR * DUR)
@@ -104,7 +104,7 @@ ROOTS = [36, 43, 45, 41]
 BAR = 4 * BEAT
 ARP = [0, 1, 2, 1, 0, 2, 1, 2]  # corak arpeggio not kuaver
 CALM = (19.6, 22.6)
-END = 28.4
+END = 33.4
 
 bar = 0
 t0 = 0.0
@@ -150,6 +150,11 @@ add(chime(79), 21.1, 0.15)                   # hati di pintu
 add(plop(900, 500, 0.1), 23.05, 0.3)         # pinggan diletak
 add(chime(88), 27.6, 0.18)                   # logo muncul
 add(plop(1400, 600, 0.08), 28.48, 0.45)      # jari menekan logo
+add(whoosh(0.4), 29.55, 0.12)                # logo memampat jadi batang
+add(whoosh(0.5), 29.86, 0.13)                # batang memenuhi skrin
+add(plop(600, 220, 0.14), 30.95, 0.4)        # kad QR mendarat pada tali
+add(chime(84), 31.0, 0.18)                   # QR muncul
+add(plop(1200, 900, 0.06), 33.2, 0.25)       # manik berdenyut
 
 # Fade keluar 1 s terakhir dan normalkan ke puncak -1 dBFS
 fade = np.ones(N)

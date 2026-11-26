@@ -1,6 +1,6 @@
 # Benang Muafakat (HyperFrames)
 
-Iklan motion graphic 30 saat untuk kempen Foodbank Bulanan Muafakat Care (muafakatcare.my), dibina
+Iklan motion graphic 35 saat untuk kempen Foodbank Bulanan Muafakat Care (muafakatcare.my), dibina
 dengan HyperFrames. Format 1080×1920 (9:16) untuk Reels, TikTok dan Shorts. Teks dan muzik sahaja.
 
 Versi ini menggantikan `../muafakatcare-benang/` (versi skrip Playwright sendiri). Bahasa visual
@@ -18,7 +18,8 @@ mengekori troli, zum ke pintu, syot dari atas, kad dipegang tangan, dan penutup 
 | `compositions/perjalanan.html` | Syot mengekori troli melalui kampung, zum ke pintu | 12.40–19.95 |
 | `compositions/pintu.html` | Serahan kepada mak cik di pintu | 19.55–22.90 |
 | `compositions/hidangan.html` | Hidangan dari atas, kemudian jadi kad Papan Impak | 22.35–27.75 |
-| `compositions/penutup.html` | Logo sebenar, jari menekan, Infak Foodbank, muafakatcare.my | 27.40–30.00 |
+| `compositions/penutup.html` | Logo sebenar, jari menekan, Infak Foodbank, muafakatcare.my; keluar: mampat jadi batang | 27.40–30.20 |
+| `compositions/qr.html` | QR DuitNow rasmi tergantung pada tali dari hujung jari, berayun dan tenang | 30.05–35.00 |
 
 `index.html` memasang babak-babak ini, ditambah vignette dan bijian filem (blok registry `vignette` dan
 `grain-overlay`, diubah supaya ulangan terhad) serta trek muzik `assets/music.wav`.
@@ -59,7 +60,7 @@ npx hyperframes check
 ```
 
 ```bash
-npx hyperframes render -q delivery -f 30 -o renders/muafakatcare-foodbank-v4-30s-9x16.mp4
+npx hyperframes render -q delivery -f 30 -o renders/muafakatcare-foodbank-v5-35s-9x16.mp4
 ```
 
 Pratonton dan suntingan: `npx hyperframes preview`, atau buka projek ini dalam aplikasi desktop HyperFrames.
@@ -68,4 +69,4 @@ Pratonton dan suntingan: `npx hyperframes preview`, atau buka projek ini dalam a
 
 `hyperframes check` lulus. Amaran yang diterima: hujung logo MUAFAKAT di pembuka dan baris kedua kapsyen
 pintu menyentuh tepi kanan zon selamat TikTok/Shorts, dan `grain-overlay` mempunyai div bersarang.
-Semua fakta dari laman web Muafakat Care; tiada angka impak, dan penerima dilukis sebagai watak.
+QR DuitNow ialah imej rasmi dari repo muafakatcare (`public/img/duitnow-qr.jpg`, dipotong), bukan dilukis semula. Semua fakta dari laman web Muafakat Care; tiada angka impak, dan penerima dilukis sebagai watak.

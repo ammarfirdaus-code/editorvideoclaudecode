@@ -35,7 +35,7 @@
         position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
         background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
         opacity: 0.07;
-        animation: hf-grain-noise 0.5s steps(1) 60 both; /* 60 × 0.5 s = 30 s, terhad */
+        animation: hf-grain-noise 0.5s steps(1) 70 both; /* 70 × 0.5 s = 35 s, terhad */
       }
     </style>
   </head>
@@ -57,8 +57,8 @@
       </defs>
     </svg>
 
-    <div id="root" data-composition-id="main" data-start="0" data-duration="30" data-width="1080" data-height="1920">
-      <div id="ground" class="clip" data-start="0" data-duration="30" data-track-index="0"></div>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="35" data-width="1080" data-height="1920">
+      <div id="ground" class="clip" data-start="0" data-duration="35" data-track-index="0"></div>
 
       <!-- Babak (lorong 1 dan 2 berselang kerana peralihan bertindih) -->
       <div id="pembuka" data-composition-id="pembuka" data-composition-src="compositions/pembuka.html"
@@ -80,15 +80,18 @@
            data-start="22.35" data-duration="5.4" data-track-index="2" data-track-kind="graphics"
            data-width="1080" data-height="1920" style="z-index: 6"></div>
       <div id="penutup" data-composition-id="penutup" data-composition-src="compositions/penutup.html"
-           data-start="27.4" data-duration="2.6" data-track-index="1" data-track-kind="graphics"
+           data-start="27.4" data-duration="2.8" data-track-index="1" data-track-kind="graphics"
            data-width="1080" data-height="1920" style="z-index: 7"></div>
+      <div id="qr" data-composition-id="qr" data-composition-src="compositions/qr.html"
+           data-start="30.05" data-duration="4.95" data-track-index="2" data-track-kind="graphics"
+           data-width="1080" data-height="1920" style="z-index: 8"></div>
 
       <!-- Tekstur: vignette + bijian filem (blok registry, diubah suai) -->
-      <div id="hf-vignette" class="clip" data-start="0" data-duration="30" data-track-index="3"></div>
-      <div id="grain-overlay" class="clip" data-start="0" data-duration="30" data-track-index="4"><div class="grain-texture"></div></div>
+      <div id="hf-vignette" class="clip" data-start="0" data-duration="35" data-track-index="3"></div>
+      <div id="grain-overlay" class="clip" data-start="0" data-duration="35" data-track-index="4"><div class="grain-texture"></div></div>
 
       <!-- Muzik + kesan bunyi (music.py) -->
-      <audio id="muzik" class="clip" src="assets/music.wav" data-start="0" data-duration="30" data-track-index="5" data-volume="1"></audio>
+      <audio id="muzik" class="clip" src="assets/music.wav" data-start="0" data-duration="35" data-track-index="5" data-volume="1"></audio>
     </div>
     <script>
       window.__timelines = window.__timelines || {};
