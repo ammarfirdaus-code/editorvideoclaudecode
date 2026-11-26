@@ -1,0 +1,228 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; }
+    #st-wrap { position: absolute; inset: 0; overflow: hidden; }
+    #st-scene { position: absolute; inset: 0; }
+    #st-bg { position: absolute; left: -100px; top: 0; width: 1280px; height: 1920px; }
+    /* Tatabahasa rujukan: warna bilik bertukar. Tinta "color" mengekalkan cahaya dan bayang imej asal. */
+    #st-flood, #st-wipe { position: absolute; inset: 0; mix-blend-mode: color; }
+    #st-flood { background: #6FA88A; }
+    #st-wipe { background: #E0849A; }
+    .st-it { position: absolute; }
+    #st-cap { position: absolute; left: 60px; right: 60px; top: 296px; text-align: center; font-family: Poppins, sans-serif; color: #1E1A68; }
+    #st-cap b { display: block; font-weight: 800; font-size: 128px; line-height: 1.05; letter-spacing: -2px; }
+    #st-cap small { display: block; font-weight: 700; font-size: 46px; }
+  </style>
+  <div id="root" data-composition-id="stor" data-width="1080" data-height="1920">
+    <div id="st-wrap">
+      <div id="st-scene">
+      <svg id="st-bg"  viewBox="0 0 1280 1920" preserveAspectRatio="none" style="overflow:visible;" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="vs-wall" cx=".5" cy=".32" r=".85">
+      <stop offset="0" stop-color="#FFD9A0"/><stop offset=".45" stop-color="#F3B96A"/><stop offset="1" stop-color="#D98F3E"/></radialGradient>
+    <linearGradient id="vs-floor" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#B58A79"/><stop offset="1" stop-color="#93695B"/></linearGradient>
+    <linearGradient id="vs-top" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E29E62"/><stop offset="1" stop-color="#C47A40"/></linearGradient>
+    <linearGradient id="vs-front" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#B26934"/><stop offset="1" stop-color="#94532A"/></linearGradient>
+    <linearGradient id="vs-leg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#B9733C"/><stop offset=".5" stop-color="#A3602F"/><stop offset="1" stop-color="#874D24"/></linearGradient>
+    <radialGradient id="vs-bulb" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFF6DC" stop-opacity=".95"/><stop offset="1" stop-color="#FFE7B0" stop-opacity="0"/></radialGradient>
+    <linearGradient id="vs-cone" x1="0" y1="0" x2=".35" y2="1"><stop offset="0" stop-color="#FFF3D2" stop-opacity=".55"/><stop offset="1" stop-color="#FFF3D2" stop-opacity="0"/></linearGradient>
+    <linearGradient id="vs-shade" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4C47A8"/><stop offset="1" stop-color="#25216A"/></linearGradient>
+    <filter id="vs-soft" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="14" stdDeviation="14" flood-color="#5B2E10" flood-opacity=".28"/></filter>
+  </defs>
+  <rect width="1280" height="1920" fill="url(#vs-wall)"/>
+  <rect y="1655" width="1280" height="265" fill="url(#vs-floor)"/>
+  <rect y="1650" width="1280" height="10" fill="#7E5446" opacity=".35"/>
+  <!-- cahaya lampu jatuh ke dinding -->
+  <path d="M300 860 L700 1650 L120 1650 Z" fill="url(#vs-cone)"/>
+  <!-- lampu lengkung -->
+  <path d="M118 1700 L118 860 Q118 735 222 712" stroke="#2C2860" stroke-width="16" fill="none" stroke-linecap="round"/>
+  <ellipse cx="118" cy="1706" rx="78" ry="18" fill="#2C2860"/>
+  <g transform="rotate(22 268 790)">
+    <path d="M178 790 Q180 690 268 682 Q356 690 358 790 Z" fill="url(#vs-shade)"/>
+    <ellipse cx="268" cy="790" rx="90" ry="20" fill="#FFF1C9"/>
+    <ellipse cx="268" cy="792" rx="70" ry="13" fill="#FFFBEA"/>
+  </g>
+  <circle cx="300" cy="830" r="120" fill="url(#vs-bulb)"/>
+  <!-- rak dinding -->
+  <g filter="url(#vs-soft)">
+    <rect x="190" y="1000" width="950" height="34" rx="6" fill="url(#vs-top)"/>
+    <rect x="190" y="1022" width="950" height="14" rx="4" fill="url(#vs-front)"/>
+    <path d="M285 1036 L330 1036 L330 1110 Q330 1120 318 1118 L298 1104 Q285 1096 285 1082 Z" fill="url(#vs-front)"/>
+    <path d="M1000 1036 L1045 1036 L1045 1082 Q1045 1096 1032 1104 L1012 1118 Q1000 1120 1000 1110 Z" fill="url(#vs-front)"/>
+  </g>
+  <!-- meja -->
+  <g filter="url(#vs-soft)">
+    <rect x="215" y="1395" width="44" height="345" fill="url(#vs-leg)"/>
+    <rect x="1075" y="1395" width="44" height="345" fill="url(#vs-leg)"/>
+    <rect x="305" y="1395" width="34" height="270" fill="#8E4F26"/>
+    <rect x="995" y="1395" width="34" height="270" fill="#8E4F26"/>
+    <rect x="165" y="1322" width="1004" height="46" rx="8" fill="url(#vs-top)"/>
+    <rect x="175" y="1362" width="984" height="40" rx="4" fill="url(#vs-front)"/>
+    <rect x="165" y="1322" width="1004" height="8" rx="4" fill="#F1B57E" opacity=".7"/>
+  </g></svg>
+      <div id="st-flood"></div>
+      <div id="st-wipe"></div>
+      <!-- Barang di atas rak (permukaan rak y≈1000) -->
+      <svg id="st-i1" class="st-it" viewBox="0 0 252 310" preserveAspectRatio="none" style="overflow:visible;left:140px; top:690px; width:252px; height:310px" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="vb-sack" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#E9E4DA"/><stop offset=".45" stop-color="#FFFFFF"/><stop offset="1" stop-color="#DCD5C8"/></linearGradient>
+    <linearGradient id="vb-lab" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3E9A57"/><stop offset="1" stop-color="#2C7A43"/></linearGradient>
+  </defs>
+  <path d="M30 40 Q20 20 46 14 Q126 2 206 14 Q232 20 222 40 L236 270 Q240 300 206 304 L46 304 Q12 300 16 270 Z" fill="url(#vb-sack)"/>
+  <path d="M46 14 Q60 36 52 52 M86 10 Q92 34 86 48 M126 8 Q128 32 126 46 M166 10 Q160 34 166 48 M206 14 Q192 36 200 52" stroke="#D3CBBC" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <path d="M22 118 Q126 96 230 118 L234 216 Q126 196 18 216 Z" fill="url(#vb-lab)"/>
+  <path d="M22 118 Q126 96 230 118" stroke="#E7B44B" stroke-width="7" fill="none"/>
+  <path d="M18 216 Q126 196 234 216" stroke="#E7B44B" stroke-width="7" fill="none"/>
+  <path d="M76 200 Q90 150 108 128" stroke="#F3D27A" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <g fill="#F3D27A"><ellipse cx="98" cy="140" rx="9" ry="5" transform="rotate(-40 98 140)"/><ellipse cx="102" cy="152" rx="9" ry="5" transform="rotate(-40 102 152)"/><ellipse cx="106" cy="164" rx="9" ry="5" transform="rotate(-40 106 164)"/><ellipse cx="110" cy="176" rx="9" ry="5" transform="rotate(-40 110 176)"/><ellipse cx="114" cy="188" rx="9" ry="5" transform="rotate(-40 114 188)"/></g>
+  <g fill="#FFFFFF"><ellipse cx="140" cy="176" rx="7" ry="4"/><ellipse cx="156" cy="170" rx="7" ry="4"/><ellipse cx="170" cy="178" rx="7" ry="4"/><ellipse cx="150" cy="184" rx="7" ry="4"/><ellipse cx="164" cy="186" rx="7" ry="4"/><ellipse cx="180" cy="184" rx="7" ry="4"/><ellipse cx="144" cy="190" rx="7" ry="4"/><ellipse cx="172" cy="192" rx="7" ry="4"/></g>
+  <path d="M30 40 Q126 30 222 40" stroke="#CFC6B6" stroke-width="3" fill="none" opacity=".6"/></svg>
+      <svg id="st-i2" class="st-it" viewBox="0 0 184 240" preserveAspectRatio="none" style="overflow:visible;left:410px; top:760px; width:184px; height:240px" xmlns="http://www.w3.org/2000/svg">
+  <defs><linearGradient id="vg-p" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#F6B9C8"/><stop offset=".5" stop-color="#FBD6DF"/><stop offset="1" stop-color="#EFA6B8"/></linearGradient></defs>
+  <rect x="8" y="22" width="168" height="214" rx="10" fill="url(#vg-p)"/>
+  <path d="M4 6 L180 6 L178 32 L6 32 Z" fill="#D8263F"/>
+  <path d="M4 6 L180 6" stroke="#B51A31" stroke-width="4" stroke-dasharray="6 5"/>
+  <rect x="8" y="226" width="168" height="12" rx="4" fill="#D8263F"/>
+  <path d="M24 88 Q92 60 160 88 L160 200 Q92 214 24 200 Z" fill="#FFFFFF" opacity=".92"/>
+  <g fill="#F4ECEC"><circle cx="50" cy="120" r="4"/><circle cx="70" cy="140" r="4"/><circle cx="96" cy="118" r="4"/><circle cx="120" cy="146" r="4"/><circle cx="140" cy="124" r="4"/><circle cx="60" cy="170" r="4"/><circle cx="90" cy="176" r="4"/><circle cx="126" cy="180" r="4"/><circle cx="110" cy="160" r="4"/></g>
+  <path d="M8 150 Q92 126 176 162 L176 196 Q92 168 8 190 Z" fill="#D8263F" opacity=".85"/>
+  <path d="M136 210 L144 150 M150 212 L158 156" stroke="#9BC45A" stroke-width="9" stroke-linecap="round"/>
+  <path d="M144 160 q-16 -10 -26 -2 M158 166 q16 -12 26 -4" stroke="#6FA840" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <rect x="14" y="30" width="22" height="196" rx="8" fill="#FFFFFF" opacity=".25"/></svg>
+      <svg id="st-i3" class="st-it" viewBox="0 0 131 280" preserveAspectRatio="none" style="overflow:visible;left:622px; top:720px; width:131px; height:280px" xmlns="http://www.w3.org/2000/svg">
+  <defs><linearGradient id="vm-b" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#E8A70E"/><stop offset=".35" stop-color="#FFD54A"/><stop offset=".6" stop-color="#FFC21C"/><stop offset="1" stop-color="#D99300"/></linearGradient></defs>
+  <rect x="44" y="0" width="44" height="30" rx="7" fill="#D8263F"/>
+  <rect x="44" y="20" width="44" height="8" fill="#A9182C"/>
+  <path d="M48 30 L84 30 L90 52 Q126 70 126 112 L126 252 Q126 276 102 278 L30 278 Q6 276 6 252 L6 112 Q6 70 42 52 Z" fill="url(#vm-b)"/>
+  <path d="M8 120 Q66 130 124 120" stroke="#E0A000" stroke-width="4" fill="none" opacity=".7"/><path d="M8 150 Q66 160 124 150" stroke="#E0A000" stroke-width="4" fill="none" opacity=".7"/><path d="M8 180 Q66 190 124 180" stroke="#E0A000" stroke-width="4" fill="none" opacity=".7"/><path d="M8 210 Q66 220 124 210" stroke="#E0A000" stroke-width="4" fill="none" opacity=".7"/><path d="M8 240 Q66 250 124 240" stroke="#E0A000" stroke-width="4" fill="none" opacity=".7"/>
+  <rect x="22" y="92" width="20" height="170" rx="10" fill="#FFF3B0" opacity=".6"/></svg>
+      <svg id="st-i4" class="st-it" viewBox="0 0 163 200" preserveAspectRatio="none" style="overflow:visible;left:790px; top:800px; width:163px; height:200px" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="vt-c" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#9AA8BC"/><stop offset=".45" stop-color="#E4EAF2"/><stop offset="1" stop-color="#8794A8"/></linearGradient>
+    <linearGradient id="vt-l" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#4F73A6"/><stop offset=".5" stop-color="#6F93C4"/><stop offset="1" stop-color="#44669A"/></linearGradient>
+  </defs>
+  
+    <rect x="6" y="104" width="151" height="92" rx="10" fill="url(#vt-c)"/>
+    <ellipse cx="81.5" cy="104" rx="75.5" ry="14" fill="#C9D3E0"/>
+    <ellipse cx="81.5" cy="104" rx="64" ry="10" fill="#AEBBCD"/>
+    <path d="M6 130 L157 130 L157 178 L6 178 Z" fill="url(#vt-l)"/>
+    <path d="M6 158 Q81 144 157 160 L157 178 L6 178 Z" fill="#F2C96B"/>
+    <path d="M46 160 q20 -18 46 -6 q14 6 22 0" stroke="#F4A6A0" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <path d="M118 140 q14 6 10 20 q-12 -2 -10 -20" fill="#E0543F"/>
+    <path d="M28 148 q8 -14 22 -12 q-4 14 -22 12" fill="#7BB35C"/>
+    <rect x="6" y="14" width="151" height="92" rx="10" fill="url(#vt-c)"/>
+    <ellipse cx="81.5" cy="14" rx="75.5" ry="14" fill="#C9D3E0"/>
+    <ellipse cx="81.5" cy="14" rx="64" ry="10" fill="#AEBBCD"/>
+    <path d="M6 40 L157 40 L157 88 L6 88 Z" fill="url(#vt-l)"/>
+    <path d="M6 68 Q81 54 157 70 L157 88 L6 88 Z" fill="#F2C96B"/>
+    <path d="M46 70 q20 -18 46 -6 q14 6 22 0" stroke="#F4A6A0" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <path d="M118 50 q14 6 10 20 q-12 -2 -10 -20" fill="#E0543F"/>
+    <path d="M28 58 q8 -14 22 -12 q-4 14 -22 12" fill="#7BB35C"/></svg>
+      <!-- Kotak di atas meja (permukaan meja y≈1328) -->
+      <svg id="st-open" class="st-it" viewBox="0 0 436 322" preserveAspectRatio="none" style="overflow:visible;left:322px; top:1006px; width:436px; height:322px" xmlns="http://www.w3.org/2000/svg">
+  
+  <defs>
+    <linearGradient id="vo-f" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D3A270"/><stop offset="1" stop-color="#B98451"/></linearGradient>
+    <linearGradient id="vo-l" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E2B887"/><stop offset="1" stop-color="#CC9C66"/></linearGradient>
+  </defs>
+  
+  <path d="M60 96 L376 96 L404 64 L32 64 Z" fill="#9C6B3F"/>
+  <path d="M40 92 L10 30 L150 8 L172 70 Z" fill="url(#vo-l)"/>
+  <path d="M396 92 L426 30 L286 8 L264 70 Z" fill="url(#vo-l)"/>
+  <path d="M40 92 L10 30" stroke="#B88A5A" stroke-width="3"/><path d="M396 92 L426 30" stroke="#B88A5A" stroke-width="3"/>
+  <rect x="40" y="92" width="356" height="226" rx="8" fill="url(#vo-f)"/>
+  <rect x="40" y="92" width="356" height="14" fill="#A87444" opacity=".55"/>
+  <rect x="52" y="112" width="18" height="196" rx="8" fill="#E4BC8D" opacity=".35"/></svg>
+      <svg id="st-closed" class="st-it" viewBox="0 0 410 334" preserveAspectRatio="none" style="overflow:visible;left:335px; top:994px; width:410px; height:334px" xmlns="http://www.w3.org/2000/svg">
+  
+  <defs>
+    <linearGradient id="vc-f" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D3A270"/><stop offset="1" stop-color="#B98451"/></linearGradient>
+    <linearGradient id="vc-l" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E2B887"/><stop offset="1" stop-color="#CC9C66"/></linearGradient>
+  </defs>
+  
+  <rect x="26" y="122" width="358" height="208" rx="8" fill="url(#vc-f)"/>
+  <rect x="12" y="96" width="386" height="50" rx="8" fill="url(#vc-l)"/>
+  <rect x="12" y="140" width="386" height="10" fill="#A87444" opacity=".5"/>
+  <rect x="190" y="96" width="30" height="234" fill="#E0283F"/>
+  <rect x="190" y="96" width="9" height="234" fill="#F25A6B" opacity=".6"/>
+  <path d="M205 96 C150 30 92 66 120 96 C138 110 180 104 205 96 Z" fill="#E0283F"/>
+  <path d="M205 96 C260 30 318 66 290 96 C272 110 230 104 205 96 Z" fill="#E0283F"/>
+  <path d="M205 96 C162 56 128 72 136 90" stroke="#B3142A" stroke-width="5" fill="none"/>
+  <path d="M205 96 C248 56 282 72 274 90" stroke="#B3142A" stroke-width="5" fill="none"/>
+  <ellipse cx="205" cy="98" rx="20" ry="16" fill="#C51A31"/></svg>
+      </div>
+      <div id="st-finger" style="position:absolute;left:0;top:0;width:0;height:0"><div style="position:absolute;left:-0.52px;top:-63.440000000000005px;width:774.8000000000001px;height:271.96000000000004px"><svg viewBox="0 0 1490 523" preserveAspectRatio="none" style="position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible" xmlns="http://www.w3.org/2000/svg">
+  <defs><linearGradient id="vtt-s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F8BE92"/><stop offset="1" stop-color="#EBA375"/></linearGradient>
+  <linearGradient id="vtt-c" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#2E2C8C"/><stop offset="1" stop-color="#211E6A"/></linearGradient></defs>
+  <path d="M1010 64 Q1200 20 1490 0 L1490 523 Q1200 500 1010 476 Q1050 270 1010 64 Z" fill="url(#vtt-c)"/>
+  <path d="M1010 64 Q1050 270 1010 476 Q990 470 980 440 Q1020 270 984 80 Z" fill="#1B1857"/>
+  <!-- belakang tapak tangan -->
+  <path d="M420 44 Q620 20 820 50 Q960 70 1030 96 L1030 440 Q930 470 760 476 Q600 480 500 430 Q430 380 430 300 Z" fill="url(#vtt-s)"/>
+  <!-- tiga jari bengkok -->
+  <path d="M520 250 Q420 236 360 270 Q312 302 330 350 Q352 392 420 384 L620 366 Q650 300 600 262 Z" fill="#EFA97C"/>
+  <path d="M540 340 Q440 336 392 372 Q356 410 386 446 Q414 472 480 462 L650 440 Q676 380 630 350 Z" fill="#EAA273"/>
+  <path d="M580 420 Q500 420 466 452 Q446 488 482 506 Q520 520 580 508 L700 488 Q716 440 676 424 Z" fill="#E49A6A"/>
+  <path d="M600 262 Q650 300 620 366 M630 350 Q676 380 650 440" stroke="#D0875A" stroke-width="5" fill="none" opacity=".6"/>
+  <!-- ibu jari melintang -->
+  <path d="M700 210 Q560 190 400 214 Q330 228 330 262 Q336 296 400 296 Q560 300 720 290 Z" fill="#F6B488"/>
+  <path d="M332 248 Q340 222 384 222 Q408 234 400 260 Q380 286 346 280 Q326 270 332 248 Z" fill="#FBD2B4"/>
+  <!-- jari telunjuk, tebal di pangkal -->
+  <path d="M520 46 Q300 66 60 86 Q2 92 2 122 Q2 152 58 156 Q300 168 560 214 Q520 130 520 46 Z" fill="url(#vtt-s)"/>
+  <path d="M12 108 Q20 94 60 94 Q86 104 80 124 Q70 138 30 136 Q8 130 12 108 Z" fill="#FBD2B4"/>
+  <path d="M60 156 Q300 168 560 214" stroke="#D88C5E" stroke-width="5" fill="none" opacity=".45"/>
+  <path d="M600 90 Q700 150 820 160" stroke="#E29A6C" stroke-width="6" fill="none" opacity=".5" stroke-linecap="round"/>
+  </svg></div></div>
+      <div id="st-cap"><b>RM50</b><small><span class="w" style="display:inline-block">=</span> <span class="w" style="display:inline-block">1</span> <span class="w" style="display:inline-block">pek</span> <span class="w" style="display:inline-block">makanan</span> <span class="w" style="display:inline-block">asas</span></small></div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const T0 = 3.9, A = t => t - T0;
+      const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
+      const later = v => Object.assign({ immediateRender: false }, v);
+      const jolt = (sel, at, amp, prop = "y") => {
+        const k = [-amp, amp * .6, -amp * .3, 0];
+        let prev = 0;
+        k.forEach((v, i) => { tl.fromTo(sel, { [prop]: prev }, later({ [prop]: v, duration: i < 3 ? .034 : .06, ease: "none" }), at + i * .034); prev = v; });
+      };
+
+      tl.fromTo("#st-scene", { scale: 1.06, transformOrigin: "50% 60%" }, { scale: 1, duration: 5.2, ease: "sine.out" }, A(3.9));
+      tl.fromTo(["#st-open"], { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: .5 }, A(3.95));
+      tl.fromTo("#st-cap b", { scale: 1.7, opacity: 0 }, { scale: 1, opacity: 1, duration: .38, ease: "expo.out" }, A(4.5));
+      jolt("#st-cap b", A(4.62), 9, "x");
+      tl.fromTo("#st-cap .w", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: .13, stagger: .067, ease: "expo.out" }, A(4.78));
+
+      // Jari gergasi dari bawah (tuding atas): rehat → tiga tekanan. Kedudukan = hujung jari.
+      const P = { rest: [700, 2350], t1: [266, 870], t2: [688, 880], t3: [540, 1130] };
+      tl.fromTo("#st-finger", { x: P.rest[0], y: P.rest[1], rotation: 90 }, { x: P.t1[0], y: P.t1[1], duration: .45, ease: "power3.out" }, A(4.4));
+      const press = (p, t) => tl.fromTo("#st-finger", { y: p[1] }, later({ y: p[1] + 22, duration: .1, yoyo: true, repeat: 1, ease: "power1.inOut" }), t);
+      const move = (a, b, t, ease = "power3.out", d = .45) => tl.fromTo("#st-finger", { x: a[0], y: a[1] }, later({ x: b[0], y: b[1], duration: d, ease }), t);
+      press(P.t1, A(4.85)); move(P.t1, P.t2, A(5.7)); press(P.t2, A(6.15)); move(P.t2, P.t3, A(7.0)); press(P.t3, A(7.45));
+      move(P.t3, P.rest, A(7.65), "power2.in", .5);
+
+      // Tekanan 1: warna banjir dari hujung jari; barang pertama muncul
+      tl.fromTo("#st-flood", { clipPath: "circle(0px at 266px 870px)" }, { clipPath: "circle(2300px at 266px 870px)", duration: .6, ease: "power2.out" }, A(4.95));
+      ["#st-i1", "#st-i2"].forEach((s, i) => tl.fromTo(s, { scale: 0, x: 0, y: 0, opacity: 1, transformOrigin: "50% 100%" }, { scale: 1, duration: .45, ease: "back.out(2.2)" }, A(4.95 + i * .12)));
+      // Tekanan 2: dinding baharu masuk dengan sisi tegak yang meluncur; barang lain muncul
+      tl.fromTo("#st-wipe", { x: 1080 }, { x: 0, duration: .36, ease: "power3.inOut" }, A(6.2));
+      ["#st-i3", "#st-i4"].forEach((s, i) => tl.fromTo(s, { scale: 0, x: 0, y: 0, opacity: 1, transformOrigin: "50% 100%" }, { scale: 1, duration: .45, ease: "back.out(2.2)" }, A(6.25 + i * .12)));
+
+      // Tekanan 3: barang terbang masuk kotak, kotak ditutup (kotak terbuka → kotak berreben)
+      [["#st-i1", 266, 845], ["#st-i2", 502, 880], ["#st-i3", 688, 860], ["#st-i4", 871, 900]].forEach(([s, x, y], i) => {
+        tl.fromTo(s, { x: 0, y: 0, scale: 1 }, later({ x: 540 - x, y: 1120 - y, scale: .3, duration: .45, ease: "power2.in" }), A(7.5 + i * .07));
+        tl.fromTo(s, { opacity: 1 }, later({ opacity: 0, duration: .05 }), A(7.95 + i * .07));
+      });
+      tl.fromTo("#st-closed", { opacity: 0, scaleY: 1.12, transformOrigin: "50% 100%" }, { opacity: 1, scaleY: 1, duration: .3, ease: "back.out(2.5)" }, A(8.2));
+      tl.fromTo("#st-open", { opacity: 1 }, later({ opacity: 0, duration: .08 }), A(8.22));
+      tl.fromTo("#st-closed", { y: 0 }, later({ y: -16, duration: .16, yoyo: true, repeat: 1 }), A(8.85));
+      jolt("#st-scene", A(8.24), 10);
+
+      // Keluar: zum ke kotak
+      tl.fromTo("#st-cap b", { opacity: 1, filter: "blur(0px)" }, later({ opacity: 0, filter: "blur(8px)", duration: .2, ease: "power2.in" }), A(9.02));
+      tl.fromTo("#st-cap .w", { opacity: 1, filter: "blur(0px)" }, later({ opacity: 0, filter: "blur(8px)", duration: .18, stagger: .04, ease: "power2.in" }), A(9.0));
+      tl.fromTo("#st-wrap", { scale: 1, transformOrigin: "540px 1170px" }, { scale: 3.2, duration: .6, ease: "power2.in" }, A(9.1));
+
+      window.__timelines["stor"] = tl;
+    })();
+  </script>
+</template>

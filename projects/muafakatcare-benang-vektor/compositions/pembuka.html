@@ -1,0 +1,101 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; }
+    #pb-wrap { position: absolute; inset: 0; overflow: hidden; }
+    #pb-wrap > svg { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+    #pb-word { position: absolute; left: 0; right: 0; top: 820px; display: flex; justify-content: center;
+               font: 800 110px/1 Poppins, sans-serif; color: #fff; letter-spacing: -2px; }
+    #pb-word span { display: inline-block; }
+    .pb-bar { position: absolute; top: 820px; width: 30px; height: 110px; background: #fff; border-radius: 3px; }
+    #pb-dash { position: absolute; left: 515px; top: 975px; width: 50px; height: 6px; background: #fff; border-radius: 3px; }
+    #pb-tag { position: absolute; left: 0; right: 0; top: 1005px; text-align: center; color: #fff;
+              font: 600 46px Inter, sans-serif; letter-spacing: 26px; padding-left: 26px; }
+    .pb-wipe { position: absolute; top: 0; width: 242px; height: 1920px; background: #D9A35B; border-radius: 6px; }
+    #pb-cap { position: absolute; left: 60px; right: 60px; top: 330px; text-align: center; font-family: Poppins, sans-serif; }
+    #pb-cap b { display: block; font-weight: 800; font-size: 84px; line-height: 1.08; letter-spacing: -1px; }
+  </style>
+  <div id="root" data-composition-id="pembuka" data-width="1080" data-height="1920">
+    <div id="pb-wrap">
+      <svg viewBox="0 0 180 320">
+        <rect width="180" height="320" fill="#C5162E" /><rect width="180" height="320" fill="url(#glowSoft)" />
+        <path id="pb-thread" d="M160 -2 L160 88" stroke="#fff" stroke-width="1.4" pathLength="1" />
+        <circle id="pb-bead" cx="160" cy="92" r="4.6" fill="#FFB020" filter="url(#shs)" />
+      </svg>
+      <div id="pb-word"><span>M</span><span>U</span><span>A</span><span>F</span><span>A</span><span>K</span><span>A</span><span>T</span></div>
+      <div class="pb-bar"></div><div class="pb-bar"></div><div class="pb-bar"></div><div class="pb-bar"></div>
+      <div class="pb-bar"></div><div class="pb-bar"></div><div class="pb-bar"></div><div class="pb-bar"></div>
+      <div id="pb-dash"></div>
+      <div id="pb-tag">CARE</div>
+      <div id="pb-hand" style="position:absolute;left:0;top:0;width:0;height:0"><div style="position:absolute;left:-0.55px;top:-67.10000000000001px;width:819.5000000000001px;height:287.65000000000003px"><svg viewBox="0 0 1490 523" preserveAspectRatio="none" style="position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible" xmlns="http://www.w3.org/2000/svg">
+  <defs><linearGradient id="vtt-s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F8BE92"/><stop offset="1" stop-color="#EBA375"/></linearGradient>
+  <linearGradient id="vtt-c" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#2E2C8C"/><stop offset="1" stop-color="#211E6A"/></linearGradient></defs>
+  <path d="M1010 64 Q1200 20 1490 0 L1490 523 Q1200 500 1010 476 Q1050 270 1010 64 Z" fill="url(#vtt-c)"/>
+  <path d="M1010 64 Q1050 270 1010 476 Q990 470 980 440 Q1020 270 984 80 Z" fill="#1B1857"/>
+  <!-- belakang tapak tangan -->
+  <path d="M420 44 Q620 20 820 50 Q960 70 1030 96 L1030 440 Q930 470 760 476 Q600 480 500 430 Q430 380 430 300 Z" fill="url(#vtt-s)"/>
+  <!-- tiga jari bengkok -->
+  <path d="M520 250 Q420 236 360 270 Q312 302 330 350 Q352 392 420 384 L620 366 Q650 300 600 262 Z" fill="#EFA97C"/>
+  <path d="M540 340 Q440 336 392 372 Q356 410 386 446 Q414 472 480 462 L650 440 Q676 380 630 350 Z" fill="#EAA273"/>
+  <path d="M580 420 Q500 420 466 452 Q446 488 482 506 Q520 520 580 508 L700 488 Q716 440 676 424 Z" fill="#E49A6A"/>
+  <path d="M600 262 Q650 300 620 366 M630 350 Q676 380 650 440" stroke="#D0875A" stroke-width="5" fill="none" opacity=".6"/>
+  <!-- ibu jari melintang -->
+  <path d="M700 210 Q560 190 400 214 Q330 228 330 262 Q336 296 400 296 Q560 300 720 290 Z" fill="#F6B488"/>
+  <path d="M332 248 Q340 222 384 222 Q408 234 400 260 Q380 286 346 280 Q326 270 332 248 Z" fill="#FBD2B4"/>
+  <!-- jari telunjuk, tebal di pangkal -->
+  <path d="M520 46 Q300 66 60 86 Q2 92 2 122 Q2 152 58 156 Q300 168 560 214 Q520 130 520 46 Z" fill="url(#vtt-s)"/>
+  <path d="M12 108 Q20 94 60 94 Q86 104 80 124 Q70 138 30 136 Q8 130 12 108 Z" fill="#FBD2B4"/>
+  <path d="M60 156 Q300 168 560 214" stroke="#D88C5E" stroke-width="5" fill="none" opacity=".45"/>
+  <path d="M600 90 Q700 150 820 160" stroke="#E29A6C" stroke-width="6" fill="none" opacity=".5" stroke-linecap="round"/>
+  </svg></div></div>
+      <!-- Cangkuk pada bingkai pertama: soalan sudah di skrin sejak 0 s -->
+      <div id="pb-cap"><b style="color:#fff"><span class="w" style="display:inline-block">RM50</span> <span class="w" style="display:inline-block">anda</span></b><b style="color:#FFE7A8"><span class="w" style="display:inline-block">pergi</span> <span class="w" style="display:inline-block">ke</span> <span class="w" style="display:inline-block">mana?</span></b></div>
+      <div class="pb-wipe" id="pb-w1" style="left:14px"></div><div class="pb-wipe" id="pb-w2" style="left:284px"></div>
+      <div class="pb-wipe" id="pb-w3" style="left:554px"></div><div class="pb-wipe" id="pb-w4" style="left:824px"></div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const T0 = 0, A = t => t - T0;
+      const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
+      const later = v => Object.assign({ immediateRender: false }, v);
+      document.fonts.ready.then(() => {
+        // Ukur kedudukan huruf sekali, sebelum membina tween
+        const word = document.getElementById("pb-word");
+        const letters = [...word.querySelectorAll("span")];
+        const bars = [...document.querySelectorAll(".pb-bar")];
+        letters.forEach((l, i) => { bars[i].style.left = (word.offsetLeft + l.offsetLeft + l.offsetWidth / 2 - 15) + "px"; });
+
+        // Logo dibina daripada batang yang jatuh
+        bars.forEach((b, i) => {
+          tl.fromTo(b, { y: -1100, scaleX: 1, opacity: 1 }, { y: 0, duration: .5, ease: "power3.in" }, A(.05 + i * .07));
+          tl.fromTo(b, { scaleX: 1, opacity: 1 }, later({ scaleX: 3.2, opacity: 0, duration: .22, ease: "power1.out" }), A(.55 + i * .07));
+          tl.fromTo(letters[i], { opacity: 0, y: 0, scaleY: .6, transformOrigin: "50% 0%" }, { opacity: 1, scaleY: 1, duration: .28 }, A(.55 + i * .07));
+        });
+        tl.fromTo("#pb-dash", { scaleX: 0, opacity: 1 }, { scaleX: 1, duration: .35 }, A(1.15));
+        tl.fromTo("#pb-tag", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: .6 }, A(1.25));
+
+        // Tangan menyambut manik pada tali
+        tl.fromTo("#pb-thread", { strokeDasharray: "1 2", strokeDashoffset: 1.02 }, { strokeDashoffset: 0, duration: .45, ease: "none" }, A(.9));
+        tl.fromTo("#pb-bead", { y: -120 }, { y: 0, duration: .55, ease: "bounce.out" }, A(1.15));
+        tl.fromTo("#pb-hand", { x: 1500, y: 640 }, { x: 760, duration: .8, ease: "power3.out" }, A(1.0));
+        tl.fromTo("#pb-hand", { y: 640 }, later({ y: 624, duration: .25, yoyo: true, repeat: 1, ease: "sine.inOut" }), A(1.75));
+        tl.fromTo("#pb-bead", { scale: 1, transformOrigin: "50% 50%" }, { scale: 1.35, duration: .12, yoyo: true, repeat: 1 }, A(1.85));
+
+        // Keluar: huruf jatuh, jalur warna menyapu ke atas
+        tl.fromTo("#pb-cap .w", { opacity: 1, filter: "blur(0px)" }, { opacity: 0, filter: "blur(8px)", duration: .18, stagger: .04, ease: "power2.in" }, A(3.08));
+        // Tatabahasa rujukan (saat 4–5): logo dipampat menjadi segmen bar loading di bawah tangan
+        tl.fromTo(letters, { y: 0, scaleY: 1 }, later({ y: 240, scaleY: .12, duration: .3, stagger: .02, ease: "power3.in" }), A(2.6));
+        tl.fromTo(letters, { opacity: 1 }, later({ opacity: 0, duration: .06 }), A(2.92));
+        tl.fromTo(["#pb-tag", "#pb-dash"], { opacity: 1 }, later({ opacity: 0, duration: .2 }), A(2.6));
+        ["#pb-w1", "#pb-w2", "#pb-w3", "#pb-w4"].forEach((w, i) => {
+          // segmen "memuat" dari kiri ke kanan, satu demi satu (bunyi tok pada setiap satu)
+          tl.fromTo(w, { scaleX: 0, scaleY: .021, transformOrigin: "0% 1120px" }, { scaleX: 1, duration: .13, ease: "power2.out" }, A(2.8 + i * .14));
+          // kemudian setiap segmen meninggi menjadi tirai warna babak stor
+          tl.fromTo(w, { scaleY: .021 }, later({ scaleY: 1.02, duration: .42, ease: "power3.inOut" }), A(3.38 + i * .05));
+        });
+
+        window.__timelines["pembuka"] = tl;
+      });
+    })();
+  </script>
+</template>

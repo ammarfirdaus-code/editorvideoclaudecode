@@ -1,0 +1,79 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; }
+    #qr-wrap { position: absolute; inset: 0; overflow: hidden;
+               background: radial-gradient(circle at 50% 45%, #E0283F 0, #C5162E 55%, #9E0F23 100%); }
+    #qr-swing { position: absolute; inset: 0; }
+    #qr-thread { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+    #qr-card { position: absolute; left: 250px; top: 420px; width: 580px; height: 664px; background: #fff;
+               border-radius: 36px; overflow: hidden; box-shadow: 0 40px 90px rgba(15, 18, 53, .42); }
+    #qr-card img { width: 100%; height: 100%; display: block; }
+    #qr-hsvg { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+    #qr-cap { position: absolute; left: 60px; right: 60px; top: 1118px; text-align: center; font-family: Poppins, sans-serif; color: #fff; }
+    #qr-cap b { display: block; font-weight: 800; font-size: 70px; line-height: 1.1; letter-spacing: -1px; }
+    #qr-cap small { display: block; font-family: Inter, sans-serif; font-weight: 600; font-size: 30px; line-height: 1.35; color: #F4D9DE; margin-top: 8px; }
+  </style>
+  <div id="root" data-composition-id="qr" data-width="1080" data-height="1920">
+    <div id="qr-wrap">
+      <!-- Kad QR tergantung pada tali dan manik, berayun dari hujung jari (bergema dengan babak pembuka) -->
+      <div id="qr-swing">
+        <svg id="qr-thread" viewBox="0 0 1080 1920">
+          <path d="M540 150 L540 396" stroke="#FFFFFF" stroke-width="8" />
+          <circle cx="540" cy="404" r="26" fill="#FFB020" filter="url(#shsP)" />
+        </svg>
+        <div id="qr-card"><img src="assets/duitnow-qr.jpg" alt="QR DuitNow Muafakat Care" /></div>
+      </div>
+      <div id="qr-hand" style="position:absolute;left:0;top:0;width:0;height:0"><div style="position:absolute;left:-0.5px;top:-61px;width:745px;height:261.5px"><svg viewBox="0 0 1490 523" preserveAspectRatio="none" style="position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible" xmlns="http://www.w3.org/2000/svg">
+  <defs><linearGradient id="vtt-s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F8BE92"/><stop offset="1" stop-color="#EBA375"/></linearGradient>
+  <linearGradient id="vtt-c" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#2E2C8C"/><stop offset="1" stop-color="#211E6A"/></linearGradient></defs>
+  <path d="M1010 64 Q1200 20 1490 0 L1490 523 Q1200 500 1010 476 Q1050 270 1010 64 Z" fill="url(#vtt-c)"/>
+  <path d="M1010 64 Q1050 270 1010 476 Q990 470 980 440 Q1020 270 984 80 Z" fill="#1B1857"/>
+  <!-- belakang tapak tangan -->
+  <path d="M420 44 Q620 20 820 50 Q960 70 1030 96 L1030 440 Q930 470 760 476 Q600 480 500 430 Q430 380 430 300 Z" fill="url(#vtt-s)"/>
+  <!-- tiga jari bengkok -->
+  <path d="M520 250 Q420 236 360 270 Q312 302 330 350 Q352 392 420 384 L620 366 Q650 300 600 262 Z" fill="#EFA97C"/>
+  <path d="M540 340 Q440 336 392 372 Q356 410 386 446 Q414 472 480 462 L650 440 Q676 380 630 350 Z" fill="#EAA273"/>
+  <path d="M580 420 Q500 420 466 452 Q446 488 482 506 Q520 520 580 508 L700 488 Q716 440 676 424 Z" fill="#E49A6A"/>
+  <path d="M600 262 Q650 300 620 366 M630 350 Q676 380 650 440" stroke="#D0875A" stroke-width="5" fill="none" opacity=".6"/>
+  <!-- ibu jari melintang -->
+  <path d="M700 210 Q560 190 400 214 Q330 228 330 262 Q336 296 400 296 Q560 300 720 290 Z" fill="#F6B488"/>
+  <path d="M332 248 Q340 222 384 222 Q408 234 400 260 Q380 286 346 280 Q326 270 332 248 Z" fill="#FBD2B4"/>
+  <!-- jari telunjuk, tebal di pangkal -->
+  <path d="M520 46 Q300 66 60 86 Q2 92 2 122 Q2 152 58 156 Q300 168 560 214 Q520 130 520 46 Z" fill="url(#vtt-s)"/>
+  <path d="M12 108 Q20 94 60 94 Q86 104 80 124 Q70 138 30 136 Q8 130 12 108 Z" fill="#FBD2B4"/>
+  <path d="M60 156 Q300 168 560 214" stroke="#D88C5E" stroke-width="5" fill="none" opacity=".45"/>
+  <path d="M600 90 Q700 150 820 160" stroke="#E29A6C" stroke-width="6" fill="none" opacity=".5" stroke-linecap="round"/>
+  </svg></div></div>
+      <div id="qr-cap"><b>Imbas untuk infak</b><small>QR DuitNow rasmi · Berdaftar ROS PPM-002-10-13032020<br />Pertubuhan Kebajikan Muafakat Bakri</small></div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const T0 = 30.05, A = t => t - T0;
+      const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
+      const later = v => Object.assign({ immediateRender: false }, v);
+      const jolt = (sel, at, amp, prop = "y") => {
+        const k = [-amp, amp * .6, -amp * .3, 0];
+        let prev = 0;
+        k.forEach((v, i) => { tl.fromTo(sel, { [prop]: prev }, later({ [prop]: v, duration: i < 3 ? .034 : .06, ease: "none" }), at + i * .034); prev = v; });
+      };
+
+      // Tangan turun dari atas memegang tali
+      tl.fromTo("#qr-hand", { x: 540, y: -700, rotation: -90 }, { y: 150, duration: .45, ease: "power3.out" }, A(30.1));
+      // Kad jatuh tergantung, kemudian berayun dan reda (pangsi di hujung jari)
+      tl.fromTo("#qr-swing", { y: -1500, rotation: 0, transformOrigin: "540px 150px" }, { y: 0, duration: .75, ease: "back.out(1.3)" }, A(30.35));
+      const swing = [[7, .42], [-5, .46], [3, .42], [-1.4, .38], [0, .34]];
+      let t = 30.95, prev = 0;
+      swing.forEach(([r, d]) => {
+        tl.fromTo("#qr-swing", { rotation: prev }, later({ rotation: r, duration: d, ease: "sine.inOut" }), A(t));
+        prev = r; t += d;
+      });
+      tl.fromTo("#qr-cap", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: .2, ease: "expo.out" }, A(31.0));
+      jolt("#qr-wrap", A(31.1), 8);
+      // Hujung: manik berdenyut sekali supaya mata kembali ke QR
+      tl.fromTo("#qr-thread circle", { scale: 1, transformOrigin: "50% 50%" }, { scale: 1.3, duration: .18, yoyo: true, repeat: 1, ease: "sine.inOut" }, A(33.2));
+
+      window.__timelines["qr"] = tl;
+    })();
+  </script>
+</template>
