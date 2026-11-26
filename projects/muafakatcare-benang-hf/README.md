@@ -60,12 +60,21 @@ Jana semula satu imej, contohnya:
 codex exec -s workspace-write "Ikut codex/PROMPTS.md, jana #11 makcik-sambut.png ke assets/ai/" -i assets/gaya/sukarelawan-gaya.jpg
 ```
 
+## Bunyi
+
+`sound.py` mencampur lagu **"Bumper Car Ride" (The Fly Guy Five)** dengan 28 kesan bunyi, semuanya dari
+Epidemic Sound (folder Google Drive yang dikongsi; pastikan lesen meliputi saluran yang menyiarkan iklan ini).
+Lagu bermula dari 24.15 s supaya jeda asalnya (36.85–37.35 s) jatuh semasa kiub jatuh, dan muzik masuk semula
+kuat pada 37.53 s, iaitu tepat bila kotak mendarat di troli (13.38 s video). Intro diredam, ada jeda senyap
+3.45–3.93 s, lagu direndahkan di babak pintu dan berhenti pada 30 s sebelum babak QR. Setiap kesan bunyi
+diletak dengan titik puncaknya pada aksi di skrin. Kekuatan akhir -16 LUFS.
+
 ## Bina dan render
 
-Muzik tidak disimpan dalam git (`*.wav` diabaikan). Jana semula dahulu, kemudian bina babak:
+Campuran bunyi tidak disimpan dalam git (`*.wav` diabaikan). Jana semula dahulu, kemudian bina babak:
 
 ```bash
-python3 music.py assets/music.wav
+python3 sound.py assets/music.wav
 ```
 
 ```bash
