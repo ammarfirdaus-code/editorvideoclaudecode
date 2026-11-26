@@ -16,7 +16,7 @@
         <rect x="258" y="638" width="564" height="1320" fill="url(#warm)" />
         <path d="M822 638 L930 686 L930 1920 L822 1958 Z" fill="#2F5D8C" filter="url(#shsP)" />
         <circle cx="846" cy="1300" r="11" fill="#FFB020" />
-        {{P.doorHandover()}}
+        <g style="filter: blur(0px)">{{P.doorHandover()}}</g>
         <path id="pt-heart" d="M560 690 C512 630 452 696 560 774 C668 696 608 630 560 690" fill="#C5162E" />
       </svg>
       <div id="pt-cap"><b>Untuk asnaf, ibu tunggal,</b><b>warga emas &amp; keluarga B40</b></div>
@@ -44,8 +44,12 @@
       tl.fromTo("#pt-cap", { y: 36, opacity: 0 }, { y: 0, opacity: 1, duration: .5 }, A(20.0));
       tl.fromTo("#pt-cap", { y: 0, opacity: 1 }, later({ y: -24, opacity: 0, duration: .35, ease: "power2.in" }), A(22.2));
 
-      // Keluar: ditolak ke kiri oleh babak seterusnya
-      tl.fromTo("#pt-wrap", { x: 0 }, later({ x: -540, duration: .5, ease: "power3.inOut" }), A(22.35));
+      // Kabur kedalaman pada sukarelawan di latar depan (seperti rujukan saat 46)
+      tl.fromTo("#pt-vol", { filter: "blur(0px)" }, { filter: "blur(7px)", duration: .6 }, A(20.4));
+      // Sebelum potongan: sukarelawan beredar, mak cik membawa kotak masuk ke dalam; tinggal ambang pintu gelap
+      tl.fromTo("#pt-vol", { opacity: 1 }, later({ x: -420, opacity: 0, duration: .45, ease: "power2.in" }), A(21.8));
+      tl.fromTo(["#pt-mak", "#pt-give", "#pt-hands"], { opacity: 1, scale: 1, transformOrigin: "540px 1300px" },
+        later({ opacity: 0, scale: .9, duration: .4, ease: "power2.in" }), A(21.9));
 
       window.__timelines["pintu"] = tl;
     })();

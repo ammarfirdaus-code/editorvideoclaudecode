@@ -114,9 +114,9 @@
       // Lakonan: kepala dahulu, badan menyusul, amaun berbeza; mata berkelip pada masa berbeza
       tl.fromTo("#sk-a-head", { rotation: 0, transformOrigin: "50% 90%" }, { rotation: -5, duration: .5, yoyo: true, repeat: 1, ease: "sine.inOut" }, A(10.35));
       tl.fromTo("#sk-b-head", { rotation: 0, transformOrigin: "50% 90%" }, { rotation: 4, duration: .6, yoyo: true, repeat: 1, ease: "sine.inOut" }, A(10.8));
-      tl.fromTo("#sk-a", { y: 0 }, later({ y: -9, duration: .65, yoyo: true, repeat: 3, ease: "sine.inOut" }), A(10.5));
-      tl.fromTo("#sk-b", { y: 0 }, later({ y: -7, duration: .8, yoyo: true, repeat: 2, ease: "sine.inOut" }), A(10.65));
-      tl.fromTo(["#sk-box", "#sk-hands"], { y: 0 }, { y: -8, duration: .7, yoyo: true, repeat: 2, ease: "sine.inOut" }, A(10.6));
+      tl.fromTo("#sk-a", { y: 0 }, later({ y: -9, duration: .65, yoyo: true, repeat: 1, ease: "sine.inOut" }), A(10.5));
+      tl.fromTo("#sk-b", { y: 0 }, later({ y: -7, duration: .55, yoyo: true, repeat: 1, ease: "sine.inOut" }), A(10.65));
+      tl.fromTo(["#sk-box", "#sk-hands"], { y: 0 }, { y: -8, duration: .7, yoyo: true, repeat: 1, ease: "sine.inOut" }, A(10.6));
       tl.fromTo("#sk-a-eyes", { scaleY: 1, transformOrigin: "50% 50%" }, { scaleY: .15, duration: .07, yoyo: true, repeat: 1 }, A(11.1));
       tl.fromTo("#sk-b-eyes", { scaleY: 1, transformOrigin: "50% 50%" }, { scaleY: .15, duration: .07, yoyo: true, repeat: 1 }, A(11.55));
       tl.fromTo("#sk-a-eyes", { scaleY: 1 }, later({ scaleY: .15, duration: .07, yoyo: true, repeat: 1 }), A(12.05));
@@ -124,9 +124,11 @@
       tl.fromTo("#sk-cap", { y: 36, opacity: 0 }, { y: 0, opacity: 1, duration: .5 }, A(10.0));
       tl.fromTo("#sk-cap", { y: 0, opacity: 1 }, later({ y: -24, opacity: 0, duration: .35, ease: "power2.in" }), A(12.1));
 
-      // Keluar: putaran kiub (muka kiri)
-      tl.fromTo("#sk-wrap", { rotationY: 0, scale: 1, transformPerspective: 2600, transformOrigin: "50% 50% -540px" },
-        later({ rotationY: -90, scale: .62, duration: .8, ease: "power2.inOut" }), A(12.4));
+      // Keluar (tatabahasa rujukan saat 20.7): kedua-dua watak melambung kotak ke atas
+      tl.fromTo(["#sk-a", "#sk-b"], { y: 0 }, later({ y: 14, duration: .1, ease: "power1.in" }), A(11.95));
+      tl.fromTo(["#sk-a", "#sk-b"], { y: 14 }, later({ y: -30, duration: .16, ease: "power2.out" }), A(12.05));
+      tl.fromTo("#sk-hands", { y: 0 }, later({ y: -70, duration: .14, ease: "power2.out" }), A(12.05));
+      tl.fromTo("#sk-box", { y: 0, rotation: 0, transformOrigin: "50% 50%" }, later({ y: -1500, rotation: -25, duration: .38, ease: "power2.in" }), A(12.08));
 
       window.__timelines["sukarelawan"] = tl;
     })();

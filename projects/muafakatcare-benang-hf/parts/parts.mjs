@@ -129,14 +129,14 @@ export function trolleyWalker(x, y) {
   const leg = (id, col, dx) => `<g id="${id}">
       <rect x="${x + dx - 26}" y="${y - 262}" width="52" height="236" rx="24" fill="${col}"/>
       <ellipse cx="${x + dx + 16}" cy="${y - 16}" rx="44" ry="19" fill="#2B2E3A"/></g>`;
-  const boxSide = (bx, by, bw, bh) => `<g filter="url(#shsP)">
+  const boxSide = (bx, by, bw, bh, id = "") => `<g ${id ? `id="${id}"` : ""} filter="url(#shsP)">
       <rect x="${x + bx}" y="${y + by}" width="${bw}" height="${bh}" rx="6" fill="${C.box}"/>
       <rect x="${x + bx}" y="${y + by}" width="${bw}" height="${bh * .14}" rx="5" fill="${C.boxL}"/>
       <rect x="${x + bx + bw / 2 - 9}" y="${y + by}" width="18" height="${bh}" fill="${C.ribbon}"/></g>`;
   return `
   <g id="pj-trolley">
     <path d="M${t(118, -470)} L${t(150, -470)} M${t(134, -470)} L${t(170, -34)} L${t(380, -34)}" stroke="#3A3F55" stroke-width="16" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-    ${boxSide(176, -168, 190, 130)}${boxSide(186, -290, 170, 122)}${boxSide(208, -380, 126, 90)}
+    ${boxSide(176, -168, 190, 130)}${boxSide(186, -290, 170, 122)}${boxSide(208, -380, 126, 90, "pj-topbox")}
     <g id="pj-wh1"><circle cx="${x + 196}" cy="${y - 4}" r="30" fill="#2B2E3A"/><circle cx="${x + 196}" cy="${y - 4}" r="11" fill="#C8CCD8"/><rect x="${x + 193}" y="${y - 30}" width="6" height="14" fill="#C8CCD8"/></g>
     <g id="pj-wh2"><circle cx="${x + 352}" cy="${y - 4}" r="30" fill="#2B2E3A"/><circle cx="${x + 352}" cy="${y - 4}" r="11" fill="#C8CCD8"/><rect x="${x + 349}" y="${y - 30}" width="6" height="14" fill="#C8CCD8"/></g>
   </g>

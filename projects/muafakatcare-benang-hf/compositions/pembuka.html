@@ -10,7 +10,7 @@
     #pb-dash { position: absolute; left: 515px; top: 975px; width: 50px; height: 6px; background: #fff; border-radius: 3px; }
     #pb-tag { position: absolute; left: 0; right: 0; top: 1005px; text-align: center; color: #fff;
               font: 600 46px Inter, sans-serif; letter-spacing: 26px; padding-left: 26px; }
-    .pb-wipe { position: absolute; top: 0; width: 271px; height: 1920px; background: #D9A35B; }
+    .pb-wipe { position: absolute; top: 0; width: 242px; height: 1920px; background: #D9A35B; border-radius: 6px; }
     #pb-cap { position: absolute; left: 60px; right: 60px; top: 330px; text-align: center; font-family: Poppins, sans-serif; }
     #pb-cap b { display: block; font-weight: 800; font-size: 84px; line-height: 1.08; letter-spacing: -1px; }
   </style>
@@ -41,8 +41,8 @@
   </g></g></svg>
       <!-- Cangkuk pada bingkai pertama: soalan sudah di skrin sejak 0 s -->
       <div id="pb-cap"><b style="color:#fff">RM50 anda</b><b style="color:#FFE7A8">pergi ke mana?</b></div>
-      <div class="pb-wipe" id="pb-w1" style="left:0"></div><div class="pb-wipe" id="pb-w2" style="left:270px"></div>
-      <div class="pb-wipe" id="pb-w3" style="left:540px"></div><div class="pb-wipe" id="pb-w4" style="left:810px"></div>
+      <div class="pb-wipe" id="pb-w1" style="left:14px"></div><div class="pb-wipe" id="pb-w2" style="left:284px"></div>
+      <div class="pb-wipe" id="pb-w3" style="left:554px"></div><div class="pb-wipe" id="pb-w4" style="left:824px"></div>
     </div>
   </div>
   <script>
@@ -75,10 +75,16 @@
 
         // Keluar: huruf jatuh, jalur warna menyapu ke atas
         tl.fromTo("#pb-cap", { opacity: 1, y: 0 }, { opacity: 0, y: -24, duration: .35, ease: "power2.in" }, A(3.15));
-        tl.fromTo(letters, { y: 0 }, later({ y: 140, opacity: 0, duration: .35, stagger: .03, ease: "power2.in" }), A(3.1));
-        tl.fromTo(["#pb-tag", "#pb-dash"], { opacity: 1 }, later({ opacity: 0, duration: .25 }), A(3.1));
-        ["#pb-w1", "#pb-w2", "#pb-w3", "#pb-w4"].forEach((w, i) =>
-          tl.fromTo(w, { y: 1920 }, { y: 0, duration: .42, ease: "power3.inOut" }, A(3.25 + i * .07)));
+        // Tatabahasa rujukan (saat 4–5): logo dipampat menjadi segmen bar loading di bawah tangan
+        tl.fromTo(letters, { y: 0, scaleY: 1 }, later({ y: 240, scaleY: .12, duration: .3, stagger: .02, ease: "power3.in" }), A(2.6));
+        tl.fromTo(letters, { opacity: 1 }, later({ opacity: 0, duration: .06 }), A(2.92));
+        tl.fromTo(["#pb-tag", "#pb-dash"], { opacity: 1 }, later({ opacity: 0, duration: .2 }), A(2.6));
+        ["#pb-w1", "#pb-w2", "#pb-w3", "#pb-w4"].forEach((w, i) => {
+          // segmen "memuat" dari kiri ke kanan, satu demi satu (bunyi tok pada setiap satu)
+          tl.fromTo(w, { scaleX: 0, scaleY: .021, transformOrigin: "0% 1120px" }, { scaleX: 1, duration: .13, ease: "power2.out" }, A(2.8 + i * .14));
+          // kemudian setiap segmen meninggi menjadi tirai warna babak stor
+          tl.fromTo(w, { scaleY: .021 }, later({ scaleY: 1.02, duration: .42, ease: "power3.inOut" }), A(3.38 + i * .05));
+        });
 
         window.__timelines["pembuka"] = tl;
       });

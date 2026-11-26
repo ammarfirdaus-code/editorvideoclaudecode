@@ -1,0 +1,65 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; }
+    /* Latar jalur pepenjuru dua warna (tatabahasa rujukan saat 21–22), dikerat semasa keluar */
+    #lt-bgwrap { position: absolute; inset: 0; overflow: hidden; background: #1E1A68; }
+    .lt-band { position: absolute; top: -200px; height: 2320px; }
+    #lt-b1 { left: -300px; width: 520px; background: #C5162E; clip-path: polygon(30% 0, 100% 0, 70% 100%, 0 100%); }
+    #lt-b2 { left: 260px; width: 380px; background: #C5162E; clip-path: polygon(0 0, 60% 0, 100% 100%, 35% 100%); }
+    #lt-b3 { left: 700px; width: 560px; background: #C5162E; clip-path: polygon(45% 0, 100% 0, 60% 100%, 0 100%); }
+    #lt-b4 { left: 520px; width: 70px; background: #FFB020; clip-path: polygon(40% 0, 100% 0, 60% 100%, 0 100%); }
+    /* Kiub 3D: kotak pek makanan berpusing */
+    #lt-cubewrap { position: absolute; left: 390px; top: 810px; width: 300px; height: 300px; perspective: 1600px; }
+    #lt-cube { position: absolute; inset: 0; transform-style: preserve-3d; }
+    .lt-face { position: absolute; inset: 0; border-radius: 10px; backface-visibility: hidden;
+               background:
+                 linear-gradient(90deg, transparent 44%, #ED2B3A 44%, #ED2B3A 56%, transparent 56%),
+                 linear-gradient(0deg, transparent 44%, #ED2B3A 44%, #ED2B3A 56%, transparent 56%),
+                 #C89B6D; }
+    #lt-f1 { transform: translateZ(150px); }
+    #lt-f2 { transform: rotateY(180deg) translateZ(150px); filter: brightness(.82); }
+    #lt-f3 { transform: rotateY(90deg) translateZ(150px); filter: brightness(.9); }
+    #lt-f4 { transform: rotateY(-90deg) translateZ(150px); filter: brightness(.86); }
+    #lt-f5 { transform: rotateX(90deg) translateZ(150px); filter: brightness(1.08); }
+    #lt-f6 { transform: rotateX(-90deg) translateZ(150px); filter: brightness(.76); }
+  </style>
+  <div id="root" data-composition-id="lontar" data-width="1080" data-height="1920">
+    <div id="lt-bgwrap">
+      <div class="lt-band" id="lt-b1"></div><div class="lt-band" id="lt-b2"></div>
+      <div class="lt-band" id="lt-b3"></div><div class="lt-band" id="lt-b4"></div>
+    </div>
+    <div id="lt-cubewrap">
+      <div id="lt-cube">
+        <div class="lt-face" id="lt-f1"></div><div class="lt-face" id="lt-f2"></div><div class="lt-face" id="lt-f3"></div>
+        <div class="lt-face" id="lt-f4"></div><div class="lt-face" id="lt-f5"></div><div class="lt-face" id="lt-f6"></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const T0 = 12.25, A = t => t - T0;
+      const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
+      const later = v => Object.assign({ immediateRender: false }, v);
+
+      // Masuk: jalur menyapu dari bawah, sambil bergerak bertentangan arah (rasa laju)
+      tl.fromTo("#lt-bgwrap", { clipPath: "polygon(0% 100%, 100% 115%, 100% 115%, 0% 100%)" },
+        { clipPath: "polygon(0% -20%, 100% 0%, 100% 115%, 0% 100%)", duration: .22, ease: "power3.out" }, A(12.25));
+      tl.fromTo("#lt-b1", { x: -160 }, { x: 260, duration: 1.15, ease: "none" }, A(12.25));
+      tl.fromTo("#lt-b2", { x: 120 }, { x: -220, duration: 1.15, ease: "none" }, A(12.25));
+      tl.fromTo("#lt-b3", { x: 200 }, { x: -140, duration: 1.15, ease: "none" }, A(12.25));
+      tl.fromTo("#lt-b4", { x: -260 }, { x: 320, duration: 1.15, ease: "none" }, A(12.25));
+
+      // Kiub naik dari bawah sambil berpusing, terapung sekejap, kemudian jatuh ke atas troli (babak seterusnya)
+      tl.fromTo("#lt-cubewrap", { x: 0, y: 1150, scale: .9, opacity: 1 }, { y: -40, scale: 1.05, duration: .5, ease: "power2.out" }, A(12.28));
+      tl.fromTo("#lt-cube", { rotationX: -20, rotationY: 0, rotationZ: 8 }, { rotationX: 340, rotationY: 470, rotationZ: -12, duration: 1.05, ease: "power1.inOut" }, A(12.28));
+      tl.fromTo("#lt-cubewrap", { x: 0, y: -40, scale: 1.05 }, later({ x: -60, y: 600, scale: .38, duration: .33, ease: "power2.in" }), A(13.02));
+      tl.fromTo("#lt-cubewrap", { opacity: 1 }, later({ opacity: 0, duration: .04 }), A(13.35));
+
+      // Keluar: kerat pepenjuru ke kanan, mendedahkan syot mengekori di bawah
+      tl.fromTo("#lt-bgwrap", { clipPath: "polygon(0% -20%, 100% 0%, 100% 115%, 0% 100%)" },
+        later({ clipPath: "polygon(100% -20%, 130% 0%, 130% 115%, 85% 100%)", duration: .32, ease: "power3.in" }), A(13.02));
+
+      window.__timelines["lontar"] = tl;
+    })();
+  </script>
+</template>

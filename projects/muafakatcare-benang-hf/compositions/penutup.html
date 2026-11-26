@@ -42,8 +42,6 @@
       const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
       const later = v => Object.assign({ immediateRender: false }, v);
 
-      tl.fromTo("#pn-wrap", { clipPath: "circle(0px at 540px 860px)" }, { clipPath: "circle(2300px at 540px 860px)", duration: .55, ease: "power2.in" }, A(27.4));
-      tl.fromTo("#pn-logo", { scale: .4, opacity: 0 }, { scale: 1, opacity: 1, duration: .5, ease: "back.out(1.8)" }, A(27.6));
       tl.fromTo("#pn-tag", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: .6 }, A(27.9));
 
       // Jari gergasi kembali: menekan hati pada logo (penutup bergema dengan babak stor)

@@ -12,6 +12,8 @@
     <div id="st-wrap">
       <svg id="st-svg" viewBox="0 0 180 320">
         <rect id="st-wall" width="180" height="320" fill="#D9A35B" />
+        <circle id="st-flood" cx="48" cy="112" r="0" fill="#93A88F" />
+        <rect id="st-wipe" x="0" y="0" width="180" height="320" fill="#D98C93" />
         <rect width="180" height="320" fill="url(#glow)" />
         <rect y="246" width="180" height="74" fill="#0F1235" opacity=".14" />
         <g id="st-lamp" filter="url(#shs)">
@@ -81,9 +83,10 @@
       // Barang muncul di rak; dinding bertukar warna pada setiap tekanan
       ["#st-i1", "#st-i2"].forEach((s, i) => tl.fromTo(s, { scale: 0, x: 0, y: 0, opacity: 1, transformOrigin: "50% 100%" }, { scale: 1, duration: .45, ease: "back.out(2.4)" }, A(4.95 + i * .12)));
       ["#st-i3", "#st-i4", "#st-i5"].forEach((s, i) => tl.fromTo(s, { scale: 0, x: 0, y: 0, opacity: 1, transformOrigin: "50% 100%" }, { scale: 1, duration: .45, ease: "back.out(2.4)" }, A(6.25 + i * .1)));
-      tl.fromTo("#st-wall", { attr: { fill: "#D9A35B" } }, { attr: { fill: "#93A88F" }, duration: .35 }, A(4.95));
-      tl.fromTo("#st-wall", { attr: { fill: "#93A88F" } }, later({ attr: { fill: "#D98C93" }, duration: .35 }), A(6.25));
-      tl.fromTo("#st-wall", { attr: { fill: "#D98C93" } }, later({ attr: { fill: "#D9A35B" }, duration: .35 }), A(7.6));
+      // Tatabahasa rujukan: tekanan jari membanjirkan warna dari titik tekan (saat 15–16),
+      // dan dinding baharu masuk dengan sisi tegak yang meluncur (saat 9–11)
+      tl.fromTo("#st-flood", { attr: { r: 0 } }, { attr: { r: 380 }, duration: .55, ease: "power2.out" }, A(4.95));
+      tl.fromTo("#st-wipe", { x: 180 }, { x: 0, duration: .36, ease: "power3.inOut" }, A(6.2));
 
       // Barang terbang masuk kotak, penutup ditutup, reben diikat
       [["#st-i1", 48], ["#st-i2", 71], ["#st-i3", 91], ["#st-i4", 115], ["#st-i5", 139]].forEach(([s, x], i) => {
