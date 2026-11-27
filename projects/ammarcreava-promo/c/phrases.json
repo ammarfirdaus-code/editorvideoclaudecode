@@ -1,68 +1,13 @@
 [
- {
-  "s": "n160",
-  "text": "Lebih 160 orang dah dilatih.",
-  "tts": "lebih seratus enam puluh orang dah dilatih.",
-  "gap": 0.4
- },
- {
-  "s": "n13",
-  "text": "13 institusi,",
-  "tts": "tiga belas institusi,",
-  "gap": 0.1
- },
- {
-  "s": "n13",
-  "text": "termasuk Kementerian Kesihatan dan universiti tempatan.",
-  "tts": "termasuk kementerian kesihatan dan universiti tempatan.",
-  "gap": 0.4
- },
- {
-  "s": "n6",
-  "text": "6 tahun dalam industri digital dan AI,",
-  "tts": "enam tahun dalam industri digital dan ei ai,",
-  "gap": 0.1
- },
- {
-  "s": "n6",
-  "text": "diajar terus oleh pengamal industri.",
-  "tts": "diajar terus oleh pengamal industri.",
-  "gap": 0.45
- },
- {
-  "s": "stmt",
-  "text": "Di Ammarcreava, anda belajar AI pada kerja anda sendiri.",
-  "tts": "di amar kriava, anda belajar ei ai pada kerja anda sendiri.",
-  "gap": 0.3
- },
- {
-  "s": "stmt2",
-  "text": "Bukan teori.",
-  "tts": "bukan teori.",
-  "gap": 0.45
- },
- {
-  "s": "pkg",
-  "text": "Coaching peribadi,",
-  "tts": "koching peribadi,",
-  "gap": 0.15
- },
- {
-  "s": "pkg",
-  "text": "atau latihan berkumpulan untuk organisasi anda.",
-  "tts": "atau latihan berkumpulan untuk organisasi anda.",
-  "gap": 0.4
- },
- {
-  "s": "res",
-  "text": "Hasilnya, prompt dan workflow yang terus boleh guna.",
-  "tts": "hasilnya, prompt dan werkflo yang terus boleh guna.",
-  "gap": 0.4
- },
- {
-  "s": "cta",
-  "text": "Tempah sesi anda di ammarcreava.my",
-  "tts": "tempah sesi anda di amar kriava titik em wai.",
-  "gap": 0
- }
+ {"s": "n160", "text": "Lebih 160 orang dah dilatih.", "tts": "lebih seratus enam puluh orang dah dilatih.", "gap": 0.4, "say": "Lebih seratus enam puluh orang dah dilatih."},
+ {"s": "n13", "text": "13 institusi,", "tts": "tiga belas institusi,", "gap": 0.1, "say": "Tiga belas institusi,"},
+ {"s": "n13", "text": "termasuk Kementerian Kesihatan dan universiti tempatan.", "tts": "termasuk kementerian kesihatan dan universiti tempatan.", "gap": 0.4},
+ {"s": "n6", "text": "6 tahun dalam industri digital dan AI,", "tts": "enam tahun dalam industri digital dan ei ai,", "gap": 0.1, "say": "Enam tahun dalam industri digital dan AI,"},
+ {"s": "n6", "text": "diajar terus oleh pengamal industri.", "tts": "diajar terus oleh pengamal industri.", "gap": 0.45},
+ {"s": "stmt", "text": "Di Ammarcreava, anda belajar AI pada kerja anda sendiri.", "tts": "di amar kriava, anda belajar ei ai pada kerja anda sendiri.", "gap": 0.3, "say": "Di Ammar Kriava, anda belajar AI pada kerja anda sendiri."},
+ {"s": "stmt2", "text": "Bukan teori.", "tts": "bukan teori.", "gap": 0.45},
+ {"s": "pkg", "text": "Coaching peribadi,", "tts": "koching peribadi,", "gap": 0.15},
+ {"s": "pkg", "text": "atau latihan berkumpulan untuk organisasi anda.", "tts": "atau latihan berkumpulan untuk organisasi anda.", "gap": 0.4},
+ {"s": "res", "text": "Hasilnya, prompt dan workflow yang terus boleh guna.", "tts": "hasilnya, prompt dan werkflo yang terus boleh guna.", "gap": 0.4},
+ {"s": "cta", "text": "Tempah sesi anda di ammarcreava.my", "tts": "tempah sesi anda di amar kriava titik em wai.", "gap": 0, "say": "Tempah sesi anda di Ammar Kriava titik my."}
 ]

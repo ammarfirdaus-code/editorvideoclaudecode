@@ -21,8 +21,13 @@ def add(buf,s,t):
 def lp(x,a=0.15):
     y=np.zeros_like(x); acc=0
     # one-pole lowpass via cumulative filter (vectorised-ish)
-    from scipy.signal import lfilter
-    return lfilter([a],[1,a-1],x)
+    try:
+        from scipy.signal import lfilter
+        return lfilter([a],[1,a-1],x)
+    except ImportError:  # scipy.signal blocked (e.g. Windows Application Control): same one-pole filter in pure Python
+        k=1-a; out=[0.0]*len(x); acc=0.0
+        for i,v in enumerate(x.tolist()): acc=a*v+k*acc; out[i]=acc
+        return np.array(out)
 def theme_a(L):
     bpm=124; b=60/bpm; buf=np.zeros(int(L*SR)); bass=np.zeros_like(buf); syn=np.zeros_like(buf)
     prog=[(57,[57,60,64]),(53,[53,57,60]),(48,[48,52,55]),(55,[55,59,62])]

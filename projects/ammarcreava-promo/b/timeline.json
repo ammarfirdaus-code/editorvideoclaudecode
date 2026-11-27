@@ -1,117 +1,119 @@
 {
- "duration": 25.533,
+ "duration": 28.62,
  "phrases": [
   {
    "s": "q",
    "text": "Nak guna AI, tapi tak tahu nak mula dari mana?",
    "tts": "nak guna ei ai, tapi tak tahu nak mula dari mana?",
    "gap": 0.35,
-   "start": 0.4,
-   "end": 3.119
+   "start": 0.72,
+   "end": 3.48
   },
   {
    "s": "chaos",
    "text": "Tengok video, makin pening.",
    "tts": "tengok video, makin pening.",
    "gap": 0.2,
-   "start": 3.469,
-   "end": 4.971
+   "start": 4.04,
+   "end": 5.96
   },
   {
    "s": "chaos2",
    "text": "Prompt tak jadi, hasil pun tak menjadi.",
    "tts": "prompt tak jadi, hasil pun tak menjadi.",
    "gap": 0.4,
-   "start": 5.171,
-   "end": 7.328
+   "start": 6.52,
+   "end": 8.74
   },
   {
    "s": "turn",
    "text": "Sebenarnya, awak cuma perlukan panduan yang betul.",
    "tts": "sebenarnya, awak cuma perlukan panduan yang betul.",
    "gap": 0.35,
-   "start": 7.728,
-   "end": 10.678
+   "start": 9.5,
+   "end": 12.42
   },
   {
    "s": "phone",
    "text": "Dengan ebook Ammarcreava,",
    "tts": "dengan i-buk amar kriava,",
    "gap": 0.15,
-   "start": 11.027,
-   "end": 12.573
+   "say": "Dengan ebook Ammar Kriava,",
+   "start": 12.98,
+   "end": 14.66
   },
   {
    "s": "phone",
    "text": "buka telefon,",
    "tts": "buka telefon,",
    "gap": 0.1,
-   "start": 12.723,
-   "end": 13.736
+   "start": 15.1,
+   "end": 15.74
   },
   {
    "s": "phone",
    "text": "salin prompt,",
    "tts": "salin prompt,",
    "gap": 0.1,
-   "start": 13.836,
-   "end": 14.509
+   "start": 16.2,
+   "end": 16.86
   },
   {
    "s": "phone",
    "text": "dan terus buat.",
    "tts": "dan terus buat.",
    "gap": 0.3,
-   "start": 14.609,
-   "end": 15.452
+   "start": 16.86,
+   "end": 17.82
   },
   {
    "s": "res",
    "text": "Poster siap.",
    "tts": "poster siap.",
    "gap": 0.1,
-   "start": 15.752,
-   "end": 16.41
+   "start": 18.36,
+   "end": 19.08
   },
   {
    "s": "res",
    "text": "Video siap.",
    "tts": "video siap.",
    "gap": 0.1,
-   "start": 16.51,
-   "end": 17.228
+   "start": 19.46,
+   "end": 20.12
   },
   {
    "s": "res",
    "text": "Kerja pejabat pun lebih laju.",
    "tts": "kerja pejabat pun lebih laju.",
    "gap": 0.35,
-   "start": 17.328,
-   "end": 19.246
+   "start": 20.52,
+   "end": 21.8
   },
   {
    "s": "bm",
    "text": "Semuanya dalam Bahasa Melayu, untuk pemula.",
    "tts": "semuanya dalam bahasa melayu, untuk pemula.",
    "gap": 0.35,
-   "start": 19.596,
-   "end": 21.92
+   "start": 22.24,
+   "end": 24.74
   },
   {
    "s": "cta",
    "text": "Satu ebook pun cukup.",
    "tts": "satu i-buk pun cukup.",
    "gap": 0.2,
-   "start": 22.27,
-   "end": 23.564
+   "start": 25.24,
+   "end": 26.3
   },
   {
    "s": "cta",
    "text": "Layari ammarcreava.my",
    "tts": "layari amar kriava titik em wai.",
    "gap": 0,
-   "start": 23.764,
-   "end": 25.533
+   "say": "Layari Ammar Kriava titik my.",
+   "start": 26.8,
+   "end": 28.62
   }
  ]
 }

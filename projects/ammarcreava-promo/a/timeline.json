@@ -1,109 +1,113 @@
 {
- "duration": 26.081,
+ "duration": 24.88,
  "phrases": [
   {
    "s": "hook",
    "text": "Semua orang dah guna AI.",
    "tts": "semua orang dah guna ei ai.",
    "gap": 0.15,
-   "start": 0.4,
-   "end": 2.231
+   "start": 0.3,
+   "end": 1.5
   },
   {
    "s": "hook2",
    "text": "Awak masih tengok je?",
    "tts": "awak masih tengok je?",
    "gap": 0.35,
-   "start": 2.381,
-   "end": 3.539
+   "start": 1.96,
+   "end": 3.08
   },
   {
    "s": "brand",
    "text": "Kenalkan Ammarcreava.",
    "tts": "kenalkan amar kriava.",
    "gap": 0.15,
-   "start": 3.889,
-   "end": 5.223
+   "say": "Kenalkan, Ammar Kriava.",
+   "start": 3.48,
+   "end": 5.1
   },
   {
    "s": "brand",
    "text": "Belajar AI, dalam bahasa kita.",
    "tts": "belajar ei ai, dalam bahasa kita.",
    "gap": 0.35,
-   "start": 5.372,
-   "end": 7.214
+   "start": 5.34,
+   "end": 7.06
   },
   {
    "s": "ebook",
    "text": "28 ebook AI.",
    "tts": "dua puluh lapan i-buk ei ai.",
    "gap": 0.15,
-   "start": 7.564,
-   "end": 9.252
+   "say": "Dua puluh lapan ebook AI.",
+   "start": 7.54,
+   "end": 8.98
   },
   {
    "s": "ebook",
    "text": "Prompt siap salin, terus guna.",
    "tts": "prompt siap salin, terus guna.",
    "gap": 0.15,
-   "start": 9.402,
-   "end": 11.156
+   "start": 9.26,
+   "end": 11.12
   },
   {
    "s": "price",
    "text": "Dari RM15, sekali bayar, tiada langganan.",
    "tts": "dari lima belas ringgit, sekali bayar, tiada langganan.",
    "gap": 0.35,
-   "start": 11.306,
-   "end": 14.374
+   "say": "Dari lima belas ringgit, sekali bayar, tiada langganan.",
+   "start": 11.34,
+   "end": 14.2
   },
   {
    "s": "video",
    "text": "Tak sempat buat sendiri?",
    "tts": "tak sempat buat sendiri?",
    "gap": 0.15,
-   "start": 14.724,
-   "end": 16.016
+   "start": 14.54,
+   "end": 15.36
   },
   {
    "s": "video",
    "text": "Kami buatkan video iklan, tanpa shooting.",
    "tts": "kami buatkan video iklan, tanpa syuting.",
    "gap": 0.35,
-   "start": 16.166,
-   "end": 18.736
+   "start": 15.84,
+   "end": 18.04
   },
   {
    "s": "coach",
    "text": "Atau belajar terus,",
    "tts": "atau belajar terus,",
    "gap": 0.1,
-   "start": 19.086,
-   "end": 20.222
+   "start": 18.36,
+   "end": 19.06
   },
   {
    "s": "coach",
    "text": "satu sesi coaching, guna kerja awak sendiri.",
    "tts": "satu sesi koching, guna kerja awak sendiri.",
    "gap": 0.35,
-   "start": 20.322,
-   "end": 22.86
+   "start": 19.32,
+   "end": 21.46
   },
   {
    "s": "cta",
    "text": "Mula hari ini.",
    "tts": "mula hari ini.",
    "gap": 0.2,
-   "start": 23.21,
-   "end": 24.125
+   "start": 21.84,
+   "end": 22.72
   },
   {
    "s": "cta",
    "text": "Layari ammarcreava.my",
    "tts": "layari amar kriava titik em wai.",
    "gap": 0,
-   "start": 24.325,
-   "end": 26.081
+   "say": "Layari Ammar Kriava titik my.",
+   "start": 23.0,
+   "end": 24.88
   }
  ]
 }
