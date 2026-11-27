@@ -56,4 +56,33 @@ def grid_notes():
             d.rectangle((20 + c * 124, 20 + r * 124, 124 + c * 124, 124 + r * 124), fill=cols[(r * 4 + c) % 5])
     im.save(os.path.join(D, 'notes.png'))
 
-workflow(); screens(); pegboard(); grid_notes(); print('ok')
+
+def storyboard():
+    im = Image.new('RGB', (1024, 1448), OR); d = ImageDraw.Draw(im)
+    d.rounded_rectangle((60, 60, 170, 170), 18, fill='white'); d.text((115, 115), '3', font=F9(64), fill=OR, anchor='mm')
+    d.text((200, 115), 'Bina babak', font=F9(76), fill='white', anchor='lm')
+    d.ellipse((112, 290, 912, 1150), fill=(245, 240, 255))
+    for (x, y, n) in ((190, 470, 'f2.jpg'), (530, 470, 'f4.jpg'), (360, 690, 'f1.jpg')):
+        im.paste(cover_fit(Image.open(os.path.join(D, n)), 300, 170), (x, y))
+    d.text((512, 1000), 'Peta  ·  Arkib  ·  Muzik', font=F9(48), fill=OR, anchor='mm')
+    d.text((512, 1300), 'Sari kata selaras dengan suara', font=F8(40), fill='white', anchor='mm')
+    im.save(os.path.join(D, 'page_storyboard.png'))
+
+def prompt_page():
+    im = Image.new('RGB', (2048, 1152), (255, 253, 250)); d = ImageDraw.Draw(im)
+    d.rounded_rectangle((120, 90, 560, 160), 35, fill=OR); d.text((340, 125), 'LANGKAH 1 · BRIEF', font=F9(38), fill='white', anchor='mm')
+    d.text((120, 300), 'Tulis brief pertama', font=F9(110), fill=(108, 70, 220), anchor='ls')
+    for i, l in enumerate(['Aku nak buat video dokumentari', 'ringkas tentang [topik], sempena', '[peristiwa]. Cari fakta, tulis DRAF.md']):
+        d.text((120, 470 + i * 120), l, font=F8(64), fill=(150, 110, 210), anchor='ls')
+    for i in range(3):
+        d.rounded_rectangle((120, 860 + i * 60, 1520 - i * 260, 886 + i * 60), 10, fill=(236, 228, 248))
+    im.save(os.path.join(D, 'page_prompt.png'))
+
+def keyboard():
+    im = Image.new('RGB', (1024, 512), (33, 26, 40)); d = ImageDraw.Draw(im)
+    for r in range(5):
+        for c in range(14):
+            d.rounded_rectangle((20 + c * 71, 30 + r * 92, 82 + c * 71, 110 + r * 92), 8, fill=(58, 48, 70))
+    im.save(os.path.join(D, 'keyboard.png'))
+
+workflow(); screens(); pegboard(); grid_notes(); storyboard(); prompt_page(); keyboard(); print('ok')

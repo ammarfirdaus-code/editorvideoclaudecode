@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<title>Overlay 2D</title>
+<style>
+@font-face{font-family:Nunito;font-weight:700;src:url(../tex/Nunito-800.ttf)}
+@font-face{font-family:Nunito;font-weight:800;src:url(../tex/Nunito-800.ttf)}
+@font-face{font-family:Nunito;font-weight:900;src:url(../tex/Nunito-900.ttf)}
+:root{--v:#7c57f9;--p:#f55fbc;--ink:#2a1f4a;--cream:#f8f4fe;--grad:linear-gradient(135deg,#675afa,#ac5ce4 55%,#f55fbc)}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1280px;height:720px;overflow:hidden;background:transparent;font-family:Nunito,sans-serif;color:var(--ink)}
+.mode{position:absolute;inset:0;display:none}
+/* panel */
+#panel .bar{position:absolute;left:0;right:0;bottom:0;height:300px;background:var(--cream);display:flex;align-items:center;padding:0 70px;gap:50px}
+#panel h2{font-size:46px;font-weight:900;line-height:1.08;width:380px}
+#panel h2 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;color:transparent}
+.cards{position:relative;width:300px;height:220px}
+.c3{position:absolute;left:0;width:290px;height:74px;border-radius:12px;background:var(--grad);color:#fff;box-shadow:0 10px 24px rgba(110,70,220,.3);padding:12px 16px;display:flex;gap:12px;align-items:flex-start}
+.c3 .n{width:26px;height:26px;border-radius:7px;background:#fff;color:var(--v);font-weight:900;display:grid;place-items:center;font-size:15px;flex:none}
+.c3 b{display:block;font-size:19px;font-weight:900}.c3 span{display:block;font-size:10px;opacity:.92;font-weight:700;margin-top:3px}
+.bul{font-size:17px;font-weight:800;color:#4a3a6a;margin:9px 0;display:flex;align-items:center;gap:10px}
+.bul i{width:7px;height:7px;border-radius:50%;background:var(--p);display:inline-block}
+/* ui */
+#ui{background:#f8f5fd}
+#ui .side{position:absolute;left:0;top:0;bottom:0;width:190px;background:#efe9fb;padding:22px 18px;font-size:12px;font-weight:800;color:#6a5a8a}
+#ui .it{display:flex;gap:9px;align-items:center;padding:7px 0}#ui .it i{width:14px;height:14px;border-radius:4px;border:2px solid #b7a6dc}
+#ui .btn{position:absolute;left:18px;right:18px;height:30px;border-radius:8px;display:grid;place-items:center;font-size:11px;font-weight:900}
+#ui h3{position:absolute;left:190px;right:0;top:190px;text-align:center;font-size:46px;font-weight:900}
+#ui h3 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;color:transparent}
+#thumbs{position:absolute;left:190px;right:0;top:280px;display:flex;justify-content:center;gap:18px}
+#thumbs div{width:136px;height:192px;border-radius:8px;background:#fff center/cover;box-shadow:0 12px 26px rgba(90,60,170,.22)}
+#tags{position:absolute;left:190px;right:0;top:500px;display:flex;justify-content:center;gap:8px}
+#tags span{background:var(--grad);color:#fff;font-size:15px;font-weight:900;padding:7px 15px;border-radius:999px}
+/* kinetic */
+.kin{position:absolute;inset:0;display:grid;place-items:center;font-weight:900;opacity:0}
+</style>
+</head>
+<body>
+<div class="mode" id="panel"><div class="bar">
+  <h2>Satu ebook,<br>ajar <em>dokumentari</em><br>penuh</h2>
+  <div class="cards">
+    <div class="c3" style="top:0"><div class="n">1</div><div><b>Claude Code</b><span>Cari fakta, tulis skrip, bina babak</span></div></div>
+    <div class="c3" style="top:72px"><div class="n">2</div><div><b>Whisper</b><span>Sari kata selaras dengan suara</span></div></div>
+    <div class="c3" style="top:144px"><div class="n">3</div><div><b>FFmpeg</b><span>Render MP4 16:9 dan Reels</span></div></div>
+  </div>
+  <div><div class="bul"><i></i>27 muka · 14 prompt</div><div class="bul"><i></i>Bahasa Melayu</div><div class="bul"><i></i>16:9 + Reels 9:16</div></div>
+</div></div>
+
+<div class="mode" id="ui">
+  <div class="side">
+    <div style="display:flex;gap:9px;align-items:center;margin-bottom:22px"><img src="../tex/logo_round.png" style="width:32px;height:32px">
+      <div><div style="font-size:12px;color:#2a1f4a;font-weight:900">AMMARCREAVA</div><div style="font-size:9px">Ammar Firdaus</div></div></div>
+    <div class="it"><i></i>Persediaan</div><div class="it"><i></i>Skrip</div><div class="it"><i></i>Gambar arkib</div>
+    <div class="it"><i></i>Suara narasi</div><div class="it"><i></i>Sari kata</div><div class="it"><i></i>Render</div>
+    <div class="btn" style="bottom:62px;border:1.5px solid #d5c8ef;color:#6a5a8a">Intai prompt pertama</div>
+    <div class="btn" style="bottom:24px;background:var(--grad);color:#fff">Beli sekarang</div>
+  </div>
+  <h3 id="uih">Lebih dari <em>template.</em></h3>
+  <div id="thumbs"><div style="background-image:url(../tex/cover.jpg)"></div><div style="background-image:url(../tex/f1.jpg)"></div><div style="background-image:url(../tex/f2.jpg)"></div><div style="background-image:url(../tex/f3.jpg)"></div><div style="background-image:url(../tex/ss1.jpg)"></div></div>
+  <div id="tags"><span>Claude Code</span><span>Whisper</span><span>FFmpeg</span><span>ElevenLabs</span><span>AI Studio</span></div>
+</div>
+
+<div class="mode" id="kin">
+  <div class="kin" id="k1" style="background:var(--grad);color:#fff;font-size:86px">jom!!!!</div>
+  <div class="kin" id="k2" style="background:#f6f2fd;font-size:34px"><span><span style="color:var(--p);font-size:20px;vertical-align:middle">●</span> Bina</span></div>
+  <div class="kin" id="k3" style="background:#f6f2fd;font-size:430px;letter-spacing:-12px;overflow:hidden;white-space:nowrap"><span style="background:var(--grad);-webkit-background-clip:text;color:transparent">Dokumentari</span></div>
+  <div class="kin" id="k4" style="background:#f6f2fd;color:var(--v);font-size:34px">sendiri</div>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x));
+const E={o3:t=>1-Math.pow(1-t,3),o5:t=>1-Math.pow(1-t,5),lin:t=>t,back:t=>1+2.9*Math.pow(t-1,3)+1.9*Math.pow(t-1,2)};
+const k=(t,a,b,e=E.o3)=>e(clamp((t-a)/(b-a)));
+const lerp=(a,b,t)=>a+(b-a)*t;
+window.__render=(mode,t)=>{
+  document.querySelectorAll('.mode').forEach(m=>m.style.display=m.id===mode?'block':'none');
+  if(mode==='panel'){ // t = seconds since panel start
+    $('panel').querySelector('.bar').style.transform=`translateY(${(1-k(t,0,0.6,E.o5))*320}px)`;
+    document.querySelectorAll('.c3').forEach((c,i)=>{const q=k(t,0.3+i*.12,0.7+i*.12);c.style.transform=`translateX(${(1-q)*120}px)`;c.style.opacity=q;});
+    document.querySelectorAll('.bul').forEach((b,i)=>{const q=k(t,0.7+i*.12,1.0+i*.12);b.style.opacity=q;b.style.transform=`translateX(${(1-q)*30}px)`;});
+  }
+  if(mode==='ui'){
+    [...$('thumbs').children].forEach((d,i)=>{const q=k(t,0.1+i*.07,0.5+i*.07,E.back);d.style.transform=`translateY(${(1-q)*60}px) scale(${0.6+0.4*q})`;d.style.opacity=clamp(q*1.5);});
+    const hq=k(t,0.2,0.6);$('uih').style.opacity=hq;$('uih').style.transform=`translateY(${(1-hq)*20}px)`;
+    [...$('tags').children].forEach((d,i)=>{d.style.transform=`scale(${k(t,0.55+i*.06,0.85+i*.06,E.back)})`;});
+  }
+  if(mode==='kin'){
+    const seg=t<0.38?1:t<0.75?2:t<1.12?3:4;
+    for(let i=1;i<=4;i++)$('k'+i).style.opacity=i===seg?1:0;
+    $('k1').style.transform=`scale(${lerp(1.25,1,k(t,0,0.2))})`;
+    $('k2').style.transform=`translateX(${lerp(-60,0,k(t,0.38,0.55))}px)`;
+    $('k3').style.transform=`translateX(${lerp(900,-1500,k(t,0.75,1.12,E.lin))}px)`;
+    $('k4').style.transform=`scale(${lerp(0.6,1,k(t,1.12,1.3,E.back))})`;
+  }
+  return 1;
+};
+window.__ready=true;
+</script>
+</body>
+</html>
