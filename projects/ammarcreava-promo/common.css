@@ -1,0 +1,14 @@
+@import url('fonts/fonts.css');
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; }
+body { position: relative; -webkit-font-smoothing: antialiased; }
+.stage { position: absolute; inset: 0; overflow: hidden; }
+.scene { position: absolute; inset: 0; visibility: hidden; }
+.abs { position: absolute; }
+.center-x { left: 50%; transform: translateX(-50%); }
+
+/* captions — sit above TikTok/Reels bottom UI */
+#cap { position: absolute; left: 70px; right: 70px; top: 1440px; display: flex; justify-content: center; z-index: 50; opacity: 0; }
+.cap-inner { display: inline-block; text-align: center; padding: 22px 34px; border-radius: 26px;
+  font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 50px; line-height: 1.25; max-width: 940px; }
+.cap-inner span { transition: none; }

@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<title>Ammarcreava — Tema B Masalah ke Penyelesaian</title>
+<link rel="stylesheet" href="../common.css">
+<style>
+  :root { --bg:#F6F5F8; --ink:#1A1530; --violet:#7C3AED; --lav:#C4B5FD; --lime:#C8F14A; --orange:#FF7A45; --red:#EF4444; }
+  body { background: var(--bg); color: var(--ink); font-family:'DM Sans', sans-serif; }
+  .grid { position:absolute; inset:0; background-image: linear-gradient(rgba(26,21,48,.05) 2px, transparent 2px), linear-gradient(90deg, rgba(26,21,48,.05) 2px, transparent 2px); background-size: 72px 72px; }
+  h1, .big { font-family:'Bricolage Grotesque', sans-serif; font-weight:800; letter-spacing:-0.035em; line-height:1; }
+  .hl { background: linear-gradient(transparent 55%, var(--lime) 55%); padding: 0 6px; }
+  .tagl { display:inline-block; font-family:'Fraunces', serif; font-style:italic; font-weight:600; background:var(--orange); color:#fff; padding:10px 28px; border-radius:14px; }
+  .vcard { position:absolute; width:200px; height:130px; border-radius:16px; box-shadow:0 10px 24px rgba(26,21,48,.15); display:grid; place-items:center; }
+  .vcard::after { content:''; width:0; height:0; border-left:30px solid rgba(255,255,255,.95); border-top:19px solid transparent; border-bottom:19px solid transparent; margin-left:8px; }
+  .phone { position:absolute; width:520px; height:1040px; border-radius:76px; background:#14102A; padding:22px; box-shadow:0 60px 120px rgba(26,21,48,.35); }
+  .screen { position:relative; width:100%; height:100%; border-radius:58px; overflow:hidden; background:#fff; }
+  .notch { position:absolute; top:22px; left:50%; width:150px; height:40px; margin-left:-75px; background:#14102A; border-radius:20px; z-index:5; }
+  .scr { position:absolute; inset:0; }
+  .step { position:absolute; display:flex; align-items:center; gap:22px; font-size:46px; font-weight:700; }
+  .num { width:84px; height:84px; border-radius:50%; background:var(--violet); color:#fff; display:grid; place-items:center; font-family:'Bricolage Grotesque'; font-size:48px; }
+  .rcard { position:absolute; background:#fff; border-radius:34px; box-shadow:0 30px 70px rgba(26,21,48,.16); padding:26px; }
+  .ok { display:inline-grid; place-items:center; width:60px; height:60px; border-radius:50%; background:var(--lime); font-weight:800; font-size:34px; }
+  .chip { display:inline-flex; align-items:center; gap:12px; padding:18px 30px; border-radius:999px; background:#fff; border:3px solid var(--ink); font-size:38px; font-weight:700; }
+  .cap-inner { background: #1A1530; color:#7D769E; box-shadow: 0 16px 40px rgba(26,21,48,.25); }
+  .cap-inner span.on { color:#fff; }
+  .cap-inner span.on.kw { color: var(--lime); }
+  #purple { position:absolute; inset:0; background: radial-gradient(circle at 50% 40%, #8B5CF6, #4C1D95 75%); clip-path: circle(0% at 50% 45%); }
+</style>
+</head>
+<body>
+<div class="stage" id="stage">
+  <div class="grid" id="grid"></div>
+  <div id="purple"></div>
+
+  <!-- character (persists across first scenes) -->
+  <svg id="buddy" class="abs" viewBox="0 0 400 420" width="400" height="420" style="left:340px; top:820px; z-index:6; overflow:visible">
+    <g id="bd-body">
+      <ellipse cx="200" cy="400" rx="130" ry="16" fill="rgba(26,21,48,.12)"/>
+      <path d="M70 260 Q70 90 200 90 Q330 90 330 260 L330 340 Q330 390 280 390 L120 390 Q70 390 70 340 Z" fill="#7C3AED"/>
+      <rect x="110" y="150" width="180" height="120" rx="60" fill="#fff"/>
+      <g id="bd-eyes" fill="#1A1530"><circle cx="160" cy="205" r="16"/><circle cx="240" cy="205" r="16"/></g>
+      <g id="bd-spiral" fill="none" stroke="#1A1530" stroke-width="7" opacity="0"><path d="M160 205 m-18 0 a18 18 0 1 1 18 18 a10 10 0 1 1 -10 -10"/><path d="M240 205 m-18 0 a18 18 0 1 1 18 18 a10 10 0 1 1 -10 -10"/></g>
+      <path id="bd-mouth-sad" d="M170 248 Q200 232 230 248" stroke="#1A1530" stroke-width="8" fill="none" stroke-linecap="round"/>
+      <path id="bd-mouth-happy" d="M165 238 Q200 272 235 238" stroke="#1A1530" stroke-width="8" fill="none" stroke-linecap="round" opacity="0"/>
+      <circle cx="200" cy="70" r="16" fill="#C8F14A"/><rect x="196" y="70" width="8" height="26" fill="#7C3AED"/>
+    </g>
+    <g id="qmarks" font-family="Bricolage Grotesque" font-weight="800" font-size="90" fill="#FF7A45">
+      <text x="10" y="90" id="q1">?</text><text x="330" y="60" id="q2">?</text><text x="360" y="200" id="q3">?</text>
+    </g>
+  </svg>
+
+  <!-- 1 QUESTION -->
+  <div class="scene" id="s-q">
+    <h1 class="abs" style="top:250px; left:60px; right:60px; text-align:center; font-size:104px">
+      <span id="q-a" style="display:block">Nak guna AI,</span>
+      <span id="q-b" style="display:block; margin-top:26px; font-size:84px; color:#4B4566">tapi tak tahu nak</span>
+      <span id="q-c" style="display:block; margin-top:40px; position:relative">
+        <span style="position:relative; display:inline-block">mula
+          <svg id="circ" viewBox="0 0 400 180" style="position:absolute; left:-36px; top:-34px; width:310px; height:170px; overflow:visible"><path d="M200 15 C 330 10, 390 60, 360 120 C 330 170, 90 175, 30 120 C -10 80, 60 20, 220 18" fill="none" stroke="#7C3AED" stroke-width="9" stroke-linecap="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/></svg>
+        </span> dari mana?</span>
+    </h1>
+  </div>
+
+  <!-- 2 CHAOS: overload -->
+  <div class="scene" id="s-chaos">
+    <div id="vgrid" class="abs" style="left:-300px; top:-200px; width:1680px; height:2320px"></div>
+    <div class="abs" id="pening" style="top:430px; left:0; right:0; text-align:center; z-index:7"><span class="tagl" style="font-size:96px; transform:rotate(-4deg)">makin pening…</span></div>
+  </div>
+
+  <!-- 3 CHAOS2: failed prompt -->
+  <div class="scene" id="s-chaos2">
+    <div class="rcard" id="pbox" style="left:90px; right:90px; top:250px; padding:36px 40px; border:4px solid #1A1530">
+      <div style="font-family:'Space Mono',monospace; font-size:28px; color:#8A84A8; letter-spacing:.1em">PROMPT</div>
+      <div style="font-family:'Space Mono',monospace; font-size:40px; margin-top:12px; height:52px; white-space:nowrap; overflow:hidden" id="ptype"></div>
+    </div>
+    <div class="rcard" id="bad" style="left:200px; right:200px; top:520px; height:290px; display:grid; place-items:center; background:#FFF1F0; border:4px dashed var(--red)">
+      <div style="text-align:center">
+        <div style="font-size:120px; color:var(--red); font-family:'Bricolage Grotesque'; font-weight:800; line-height:1">✕</div>
+        <div class="big" style="font-size:54px; color:var(--red); margin-top:10px">Hasil tak menjadi</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4 TURN -->
+  <div class="scene" id="s-turn" style="color:#fff">
+    <div class="abs" style="top:300px; left:0; right:0; text-align:center; font-family:'Space Mono',monospace; font-weight:700; letter-spacing:.2em; font-size:34px; color:var(--lime)" id="t-k">SEBENARNYA…</div>
+    <h1 class="abs" style="top:420px; left:60px; right:60px; text-align:center; font-size:96px">
+      <span id="t-a" style="display:block">awak cuma perlukan</span>
+      <span id="t-b" style="display:block; margin-top:28px; font-size:128px"><span style="background:var(--lime); color:#1A1530; padding:4px 26px; border-radius:20px; display:inline-block; transform:rotate(-2deg)">panduan</span></span>
+      <span id="t-c" style="display:block; margin-top:24px; font-family:'Fraunces',serif; font-style:italic; font-weight:600; font-size:110px">yang betul.</span>
+    </h1>
+    <svg id="bulb" class="abs" viewBox="0 0 200 260" width="200" height="260" style="left:440px; top:930px">
+      <circle cx="100" cy="100" r="80" fill="#C8F14A"/><rect x="65" y="185" width="70" height="50" rx="12" fill="#fff"/>
+      <g stroke="#C8F14A" stroke-width="10" stroke-linecap="round" id="rays"><line x1="100" y1="-10" x2="100" y2="-40"/><line x1="10" y1="40" x2="-15" y2="20"/><line x1="190" y1="40" x2="215" y2="20"/></g>
+    </svg>
+  </div>
+
+  <!-- 5 PHONE -->
+  <div class="scene" id="s-phone">
+    <div class="abs big" id="ph-t" style="top:120px; left:0; right:0; text-align:center; font-size:76px">Dengan ebook <span style="color:var(--violet)">Ammarcreava</span></div>
+    <div class="phone" id="phone" style="left:80px; top:290px">
+      <div class="screen">
+        <div class="notch"></div>
+        <div class="scr" id="scr1" style="background:linear-gradient(160deg,#EDE9FE,#C4B5FD); display:grid; place-items:center"><div style="width:380px; height:543px; border-radius:16px; background:url(../assets/panduan-claude-pemula.jpg) center/cover; box-shadow:0 24px 50px rgba(26,21,48,.3)"></div></div>
+        <div class="scr" id="scr2" style="background:#F4F2FA; padding:120px 34px 0; opacity:0">
+          <div style="font-family:'Space Mono',monospace; font-size:22px; color:#8A84A8; letter-spacing:.1em">PROMPT #12 · POSTER</div>
+          <div style="margin-top:16px; background:#1A1530; color:#E7E3FF; border-radius:24px; padding:28px; font-family:'Space Mono',monospace; font-size:24px; line-height:1.5">Buat poster jualan kek lapis, gaya moden, warna ungu, tulisan "Diskaun 20%"…</div>
+          <div id="copy" style="margin-top:22px; display:inline-flex; position:relative; background:var(--violet); color:#fff; border-radius:18px; padding:18px 28px; font-weight:700; font-size:30px">Salin prompt<span id="copied" style="position:absolute; inset:0; display:grid; place-items:center; background:var(--lime); color:#1A1530; border-radius:18px; opacity:0">Disalin ✓</span></div>
+        </div>
+        <div class="scr" id="scr3" style="background:url(../assets/videos/promosi-motion-graphic-15s.jpg) center/cover; opacity:0"></div>
+      </div>
+    </div>
+    <div class="step" id="st1" style="left:640px; top:520px"><span class="num">1</span>Buka</div>
+    <div class="step" id="st2" style="left:640px; top:720px"><span class="num">2</span>Salin</div>
+    <div class="step" id="st3" style="left:640px; top:920px"><span class="num" style="background:var(--lime); color:#1A1530">3</span>Buat!</div>
+  </div>
+
+  <!-- 6 RESULTS -->
+  <div class="scene" id="s-res">
+    <div class="rcard r1" style="left:70px; top:200px; width:440px; height:620px; transform:rotate(-4deg)">
+      <div style="height:460px; border-radius:20px; background:url(../assets/nano-banana-peniaga-kecil.jpg) center/cover"></div>
+      <div class="big" style="font-size:52px; margin-top:24px; display:flex; align-items:center; gap:16px"><span class="ok">✓</span>Poster siap</div>
+    </div>
+    <div class="rcard r2" style="left:570px; top:250px; width:440px; height:620px; transform:rotate(4deg)">
+      <div style="height:460px; border-radius:20px; background:url(../assets/videos/kiara-thumb.jpg) center/cover"></div>
+      <div class="big" style="font-size:52px; margin-top:24px; display:flex; align-items:center; gap:16px"><span class="ok">✓</span>Video siap</div>
+    </div>
+    <div class="rcard r3" style="left:130px; right:130px; top:940px; display:flex; align-items:center; gap:30px; padding:34px 40px">
+      <svg viewBox="0 0 120 120" width="120" height="120"><rect x="20" y="10" width="80" height="100" rx="12" fill="#EDE9FE"/><g stroke="#7C3AED" stroke-width="8" stroke-linecap="round"><line x1="38" y1="40" x2="82" y2="40"/><line x1="38" y1="60" x2="82" y2="60"/><line x1="38" y1="80" x2="66" y2="80"/></g></svg>
+      <div><div class="big" style="font-size:54px">Kerja pejabat</div><div class="big" style="font-size:54px; color:var(--violet)">lebih laju <span id="zoom">»»</span></div></div>
+    </div>
+  </div>
+
+  <!-- 7 BM -->
+  <div class="scene" id="s-bm">
+    <div class="abs" style="top:290px; left:0; right:0; text-align:center; font-family:'Space Mono',monospace; font-weight:700; letter-spacing:.2em; font-size:32px; color:#8A84A8" id="bm-k">SEMUANYA DALAM</div>
+    <h1 class="abs" id="bm-h" style="top:380px; left:0; right:0; text-align:center; font-size:170px; color:var(--violet)">Bahasa<br>Melayu</h1>
+    <div class="abs" id="bm-st" style="top:820px; left:0; right:0; text-align:center"><span class="tagl" style="font-size:80px; background:var(--ink); transform:rotate(-3deg)">untuk pemula</span></div>
+    <div class="abs" style="top:1060px; left:0; right:0; display:flex; justify-content:center; gap:18px">
+      <div class="chip bmc">Prompt siap salin</div><div class="chip bmc">Telefon &amp; PC</div>
+    </div>
+  </div>
+
+  <!-- 8 CTA -->
+  <div class="scene" id="s-cta">
+    <h1 class="abs" id="cta-h" style="top:170px; left:0; right:0; text-align:center; font-size:108px">Satu ebook<br><span class="hl">pun cukup.</span></h1>
+    <div class="abs" id="cta-cover" style="left:370px; top:480px; width:340px; height:486px; border-radius:20px; background:url(../assets/combo-siri-ai-bm.jpg) center/cover; box-shadow:0 40px 90px rgba(26,21,48,.35)"></div>
+    <div class="abs" id="cta-price" style="left:700px; top:470px; width:230px; height:230px; border-radius:50%; background:var(--lime); display:grid; place-items:center; text-align:center; transform:rotate(12deg)"><div class="big" style="font-size:40px">Dari<br><span style="font-size:76px">RM15</span></div></div>
+    <div class="abs" id="cta-btn" style="top:1060px; left:50%; transform:translateX(-50%); display:flex; align-items:center; gap:24px; background:var(--violet); color:#fff; border-radius:999px; padding:30px 60px 30px 30px; white-space:nowrap; box-shadow:0 30px 70px rgba(124,58,237,.4)">
+      <img src="../assets/logo-af.png" style="width:110px; height:110px; border-radius:50%"><span class="big" style="font-size:76px">ammarcreava.my</span>
+    </div>
+  </div>
+
+  <div id="cap"></div>
+</div>
+
+<script src="timeline.js"></script>
+<script src="../vendor/gsap.min.js"></script>
+<script>
+window.CAP_KEYWORDS = ['AI,','pening.','panduan','ammarcreava,','ammarcreava.my','siap.','laju.','melayu,','pemula.','cukup.','buat.'];
+window.OUTRO = 2.4;
+window.build = function (tl, S, E) {
+  const q = (s) => document.querySelector(s), qa = (s) => document.querySelectorAll(s);
+  const P = window.SCENE.P, nth = (s, i) => P.filter(p => p.s === s)[i].start;
+  const show = (id, t0, t1) => { tl.set('#' + id, { autoAlpha: 1 }, t0); if (t1 != null) tl.set('#' + id, { autoAlpha: 0 }, t1); };
+  const DUR = window.TL.duration + window.OUTRO;
+  // build video grid
+  const vg = q('#vgrid'); const cols = ['#FF7A45','#7C3AED','#22C55E','#0EA5E9','#EAB308','#EC4899','#1A1530','#A78BFA'];
+  for (let r = 0; r < 14; r++) for (let c = 0; c < 7; c++) {
+    const d = document.createElement('div'); d.className = 'vcard';
+    d.style.left = (c * 240 + (r % 2) * 120) + 'px'; d.style.top = (r * 165) + 'px';
+    d.style.background = cols[(r * 3 + c * 5) % cols.length]; vg.appendChild(d);
+  }
+  tl.to('#grid', { y: 72, duration: DUR, ease: 'none' }, 0);
+
+  // buddy: idle bob + moves
+  tl.from('#buddy', { y: 700, duration: .6, ease: 'back.out(1.4)' }, .2);
+  tl.to('#bd-body', { y: -14, duration: .5, yoyo: true, repeat: Math.floor(DUR / .5), ease: 'sine.inOut' }, 0);
+  tl.from('#qmarks text', { scale: 0, opacity: 0, transformOrigin: '50% 50%', duration: .3, stagger: .25, ease: 'back.out(3)' }, .9);
+  tl.to('#qmarks text', { y: -18, duration: .4, yoyo: true, repeat: 8, stagger: .1, ease: 'sine.inOut' }, 1.3);
+
+  // 1 Q
+  const tC = S('chaos');
+  show('s-q', 0, tC - .05);
+  tl.from('#q-a', { y: 60, opacity: 0, duration: .4, ease: 'power3.out' }, .4);
+  tl.from('#q-b', { y: 60, opacity: 0, duration: .4, ease: 'power3.out' }, 1.3);
+  tl.from('#q-c', { y: 60, opacity: 0, duration: .4, ease: 'power3.out' }, 1.9);
+  tl.to('#circ path', { strokeDashoffset: 0, duration: .6, ease: 'power2.inOut' }, 2.3);
+
+  // 2 CHAOS
+  const tC2 = S('chaos2');
+  show('s-chaos', tC - .05, tC2 - .05);
+  tl.fromTo('#vgrid', { scale: 2.4, rotate: -6 }, { scale: 1, rotate: 3, duration: tC2 - tC, ease: 'power2.out' }, tC - .05);
+  tl.from('#vgrid .vcard', { scale: 0, duration: .25, stagger: { each: .006, from: 'center' }, ease: 'back.out(2)' }, tC - .05);
+  tl.set('#bd-eyes', { opacity: 0 }, tC); tl.set('#bd-spiral', { opacity: 1 }, tC);
+  tl.to('#bd-spiral', { rotate: 720, transformOrigin: '50% 50%', duration: tC2 - tC + 2, ease: 'none' }, tC);
+  tl.set('#qmarks', { opacity: 0 }, tC);
+  tl.to('#buddy', { rotate: -8, duration: .2, yoyo: true, repeat: 7, ease: 'sine.inOut' }, tC);
+  tl.from('#pening', { scale: 0, rotate: 30, duration: .4, ease: 'back.out(2.2)' }, tC + .7);
+
+  // 3 CHAOS2
+  const tT = S('turn');
+  show('s-chaos2', tC2 - .05, tT - .05);
+  tl.from('#pbox', { y: -300, opacity: 0, duration: .4, ease: 'power3.out' }, tC2 - .05);
+  const txt = 'buat poster cantik pls';
+  const o = { n: 0 };
+  tl.to(o, { n: txt.length, duration: .9, ease: 'none', onUpdate: () => q('#ptype').textContent = txt.slice(0, Math.round(o.n)) + '|' }, tC2 + .2);
+  tl.from('#bad', { scale: .3, opacity: 0, duration: .4, ease: 'back.out(2)' }, nth('chaos2', 0) + 1.3);
+  tl.to('#bad', { x: 14, duration: .05, yoyo: true, repeat: 7 }, nth('chaos2', 0) + 1.7);
+
+  // 4 TURN (purple wipe)
+  const tPh = S('phone');
+  tl.to('#purple', { clipPath: 'circle(150% at 50% 45%)', duration: .7, ease: 'expo.inOut' }, tT - .35);
+  tl.set('#bd-spiral', { opacity: 0 }, tT); tl.set('#bd-eyes', { opacity: 1 }, tT);
+  tl.set('#bd-mouth-sad', { opacity: 0 }, tT); tl.set('#bd-mouth-happy', { opacity: 1 }, tT);
+  tl.to('#buddy', { x: 300, y: 200, scale: .55, rotate: 0, duration: .6, ease: 'power3.inOut' }, tT - .2);
+  show('s-turn', tT - .05, tPh - .05);
+  tl.from('#t-k', { opacity: 0, y: 20, duration: .3 }, tT + .1);
+  tl.from('#t-a', { y: 50, opacity: 0, duration: .4, ease: 'power3.out' }, tT + .6);
+  tl.from('#t-b', { scale: 0, rotate: -10, duration: .45, ease: 'back.out(2)' }, tT + 1.7);
+  tl.from('#t-c', { y: 50, opacity: 0, duration: .4, ease: 'power3.out' }, tT + 2.2);
+  tl.from('#bulb', { scale: 0, y: 100, duration: .5, ease: 'back.out(2)' }, tT + 1.9);
+  tl.to('#rays', { opacity: .2, duration: .2, yoyo: true, repeat: 5 }, tT + 2.4);
+  // back to light for phone scene
+  tl.to('#purple', { clipPath: 'circle(0% at 50% 45%)', duration: .6, ease: 'expo.inOut' }, tPh - .35);
+  tl.to('#buddy', { opacity: 0, duration: .3 }, tPh - .3);
+
+  // 5 PHONE
+  const tR = S('res');
+  show('s-phone', tPh - .05, tR - .05);
+  tl.from('#ph-t', { y: -60, opacity: 0, duration: .4, ease: 'power3.out' }, tPh);
+  tl.from('#phone', { y: 1300, rotate: 10, duration: .7, ease: 'back.out(1.2)' }, tPh - .1);
+  const b1 = nth('phone', 1), b2 = nth('phone', 2), b3 = nth('phone', 3);
+  tl.from('#st1', { x: 400, opacity: 0, duration: .35, ease: 'back.out(2)' }, b1);
+  tl.to('#scr2', { opacity: 1, duration: .25 }, b2 - .1);
+  tl.from('#st2', { x: 400, opacity: 0, duration: .35, ease: 'back.out(2)' }, b2);
+  tl.to('#copy', { scale: .9, duration: .1, yoyo: true, repeat: 1 }, b2 + .35);
+  tl.to('#copied', { opacity: 1, duration: .1 }, b2 + .45);
+  tl.to('#scr3', { opacity: 1, duration: .3 }, b3 - .05);
+  tl.from('#st3', { x: 400, opacity: 0, duration: .35, ease: 'back.out(2)' }, b3);
+  tl.to('#phone', { rotate: -3, duration: .3, ease: 'back.out(3)' }, b3 + .1);
+
+  // 6 RESULTS
+  const tBM = S('bm');
+  show('s-res', tR - .05, tBM - .05);
+  tl.from('.r1', { y: 900, rotate: -20, duration: .5, ease: 'back.out(1.4)' }, nth('res', 0) - .1);
+  tl.from('.r2', { y: 900, rotate: 20, duration: .5, ease: 'back.out(1.4)' }, nth('res', 1) - .1);
+  tl.from('.r3', { scale: 0, duration: .45, ease: 'back.out(1.8)' }, nth('res', 2) - .1);
+  tl.to('#zoom', { x: 20, duration: .25, yoyo: true, repeat: 5, ease: 'sine.inOut' }, nth('res', 2) + .4);
+
+  // 7 BM
+  const tCTA = S('cta');
+  show('s-bm', tBM - .05, tCTA - .05);
+  tl.from('#bm-k', { opacity: 0, y: 20, duration: .3 }, tBM);
+  tl.from('#bm-h', { scale: 1.6, opacity: 0, duration: .5, ease: 'expo.out' }, tBM + .2);
+  tl.from('#bm-st', { scale: 0, rotate: 20, duration: .4, ease: 'back.out(2.2)' }, tBM + 1.3);
+  tl.from('.bmc', { y: 60, opacity: 0, duration: .35, stagger: .15, ease: 'back.out(2)' }, tBM + 1.7);
+
+  // 8 CTA
+  show('s-cta', tCTA - .05, null);
+  tl.from('#cta-h', { y: 80, opacity: 0, duration: .45, ease: 'power3.out' }, tCTA);
+  tl.from('#cta-cover', { y: 800, rotate: -15, duration: .6, ease: 'back.out(1.3)' }, tCTA + .2);
+  tl.from('#cta-price', { scale: 0, rotate: -90, duration: .45, ease: 'back.out(2)' }, tCTA + .8);
+  tl.from('#cta-btn', { y: 200, opacity: 0, duration: .5, ease: 'back.out(1.5)' }, nth('cta', 1) - .1);
+  tl.to('#cta-btn', { scale: 1.05, duration: .45, yoyo: true, repeat: 5, ease: 'sine.inOut' }, nth('cta', 1) + .5);
+  tl.to('#stage', { opacity: 0, duration: .5 }, DUR - .5);
+};
+</script>
+<script src="../engine.js"></script>
+</body>
+</html>

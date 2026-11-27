@@ -14,3 +14,9 @@ out/
 
 # Personal permission overrides
 .claude/settings.local.json
+
+# Promo project scratch output
+projects/*/*/stills/
+projects/*/sheet_*.jpg
+projects/*/*/render.log
+projects/*/*/timeline.js

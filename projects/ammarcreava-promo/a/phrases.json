@@ -1,0 +1,15 @@
+[
+ {"s":"hook","text":"Semua orang dah guna AI.","tts":"semua orang dah guna ei ai.","gap":0.15},
+ {"s":"hook2","text":"Awak masih tengok je?","tts":"awak masih tengok je?","gap":0.35},
+ {"s":"brand","text":"Kenalkan Ammarcreava.","tts":"kenalkan amar kriava.","gap":0.15},
+ {"s":"brand","text":"Belajar AI, dalam bahasa kita.","tts":"belajar ei ai, dalam bahasa kita.","gap":0.35},
+ {"s":"ebook","text":"28 ebook AI.","tts":"dua puluh lapan i-buk ei ai.","gap":0.15},
+ {"s":"ebook","text":"Prompt siap salin, terus guna.","tts":"prompt siap salin, terus guna.","gap":0.15},
+ {"s":"price","text":"Dari RM15, sekali bayar, tiada langganan.","tts":"dari lima belas ringgit, sekali bayar, tiada langganan.","gap":0.35},
+ {"s":"video","text":"Tak sempat buat sendiri?","tts":"tak sempat buat sendiri?","gap":0.15},
+ {"s":"video","text":"Kami buatkan video iklan, tanpa shooting.","tts":"kami buatkan video iklan, tanpa syuting.","gap":0.35},
+ {"s":"coach","text":"Atau belajar terus,","tts":"atau belajar terus,","gap":0.1},
+ {"s":"coach","text":"satu sesi coaching, guna kerja awak sendiri.","tts":"satu sesi koching, guna kerja awak sendiri.","gap":0.35},
+ {"s":"cta","text":"Mula hari ini.","tts":"mula hari ini.","gap":0.2},
+ {"s":"cta","text":"Layari ammarcreava.my","tts":"layari amar kriava titik em wai.","gap":0}
+]
