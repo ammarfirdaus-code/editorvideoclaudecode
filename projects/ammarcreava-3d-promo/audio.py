@@ -3,12 +3,14 @@
 import numpy as np, wave
 from scipy.signal import butter, sosfilt, fftconvolve
 
-SR = 48000; DUR = 33.0; N = int(SR * DUR)
+SR = 48000; DUR = 27.0; N = int(SR * DUR)
 rng = np.random.default_rng(11)
 music = np.zeros((N, 2)); sfx = np.zeros((N, 2))
 
 # timeline warp (same keyframes as main.js): old 18 s event times -> new 30 s times
-WN = [0, 5.5, 11.5, 20.5, 24.5, 27, 28.2, 33]; WO = [0, 3.4, 7.2, 12.2, 15.2, 16.75, 17.5, 18]
+BEAT = 60 / 117.45; B0 = 0.07; BAR = 4 * BEAT
+def bar(k): return B0 + k * BAR
+WN = [0, bar(2), bar(4), bar(5), bar(6), bar(7), bar(8), bar(9.25), bar(9.5), bar(10.5), bar(10.5) + 1.1, 27]; WO = [0, 3.4, 7.2, 8.5, 9.8, 11.0, 12.2, 14.7, 15.2, 16.75, 17.5, 18]
 def nt(old): return float(np.interp(old, WO, WN))
 
 def add(buf, t0, sig, gain=1.0, pan=0.0):
@@ -52,48 +54,22 @@ def shaker():
 def snap():
     n = int(.25 * SR); t = np.arange(n) / SR; return bp(rng.standard_normal(n), 1200, 4000) * np.exp(-t / .05)
 
-# ---- arrangement: 95 bpm, D major, I–V–vi–IV ----
-BPM = 95; beat = 60 / BPM; bar = 4 * beat
-prog = [[62, 66, 69], [57, 61, 64], [59, 62, 66], [55, 59, 62]]       # D A Bm G
-bass = [38, 33, 35, 31]
-END = nt(16.75)                                                       # resolve on the end card
-b = 0
-while b * bar < END - .05:
-    t0 = b * bar; c = prog[b % 4]
-    for i, k in enumerate([0, 1, 2, 1, 3, 2, 1, 2]):                  # felt piano broken chord
-        tt = t0 + i * beat / 2
-        if tt >= END: break
-        note = c[k % 3] + (12 if k == 3 else 0)
-        add(music, tt, piano(note, 2.2, .55 if i % 2 else .75), .22, pan=-.15 + .3 * (i % 2))
-    add(music, t0, piano(bass[b % 4] + 12, 3.0, .8), .28)
-    if b >= 1: add(music, t0, pad([n - 12 for n in c], bar + 1.2), .5)
-    if t0 >= nt(3.4) - .2:                                            # plucked strings
-        for i in (0, 3, 6):
-            if t0 + i * beat / 2 < END: add(music, t0 + i * beat / 2, pluck(c[(i // 3) % 3] + 12), .16, pan=.35)
-    if t0 >= nt(7.2) - .3 and not (nt(12.2) - .3 <= t0 < nt(15.2) - .6):   # glock + light percussion
-        for i, m in enumerate([c[2] + 12, c[1] + 24, c[0] + 24, c[2] + 12]):
-            if t0 + i * beat < END: add(music, t0 + i * beat, glock(m), .06, pan=-.3)
-        for i in range(4):
-            tt = t0 + i * beat
-            if tt >= END: break
-            add(music, tt, kick(), .32 if i % 2 == 0 else .2)
-            add(music, tt + beat / 2, shaker(), .05, .3)
-            if i % 2: add(music, tt, snap(), .06, -.2)
-    b += 1
-for i, n in enumerate([50, 57, 62, 66, 69, 74]): add(music, END + i * .03, piano(n, 3.3, .8), .2, pan=(i - 2.5) * .12)
-add(music, END, pad([50, 57, 62, 66], 6.0), .55)
-# gentle outro on the end card hold: slow piano arpeggio over D
-for i, n in enumerate([62, 66, 69, 74, 69, 66, 74, 78]):
-    add(music, END + 2.6 + i * .42, piano(n, 2.6, .5), .14, pan=(-.2 if i % 2 else .2))
-for i, n in enumerate([86, 90, 93, 98]): add(music, END + .15 + i * .09, glock(n, 2.5), .05, pan=(i - 1.5) * .3)
-# room reverb
-ir_t = np.arange(int(1.6 * SR)) / SR
-ir = lp(rng.standard_normal(len(ir_t)) * np.exp(-ir_t / .45), 5000); ir /= np.sqrt(np.sum(ir ** 2))
-wet = np.stack([fftconvolve(music[:, ch], ir)[:N] for ch in range(2)], 1)
-music += wet * .22
+# ---- music: "Inspired" by Kevin MacLeod (incompetech.com), CC BY 4.0 ----
+# Bars 0-10 straight from the top of the track, then a beat-matched crossfade into the
+# track's ending so its final hit lands on bar 12 (the button click on the end card).
+import subprocess
+raw = subprocess.run(['ffmpeg', '-v', 'error', '-i', 'assets/music/Inspired.mp3', '-f', 'f32le', '-ac', '2', '-ar', str(SR), '-'], capture_output=True, check=True).stdout
+song = np.frombuffer(raw, dtype='<f4').reshape(-1, 2).astype(np.float64)
+XF = bar(10); HIT_SRC = 272.07; B_SRC = HIT_SRC - (bar(12) - XF)        # 267.98 s, also on the beat grid
+fade = int(.12 * SR); iX = int(XF * SR)
+music[:iX + fade] = song[:iX + fade]
+tail = song[int(B_SRC * SR): int(B_SRC * SR) + (N - iX)]
+ramp = np.linspace(0, 1, fade)[:, None]
+music[iX:iX + fade] = music[iX:iX + fade] * (1 - ramp) + tail[:fade] * ramp
+music[iX + fade:iX + len(tail)] = tail[fade:]
 t_all = np.arange(N) / SR
-music *= np.interp(t_all, [0, .4, nt(12.2) - .2, nt(12.2) + .3, nt(15.2) - .4, nt(15.2), 31.8, 33], [0, 1, 1, .72, .72, 1, 1, 0])[:, None]
-
+music *= np.interp(t_all, [0, .05, 26.3, 27], [0, 1, 1, 0])[:, None]
+music *= .62
 # ---- soft SFX (no typing clicks, no pops) ----
 def air(dur=1.0, lo=200, hi=1600):
     n = int(dur * SR); t = np.arange(n) / SR; s = rng.standard_normal(n); out = np.zeros(n); seg = 2400
@@ -113,14 +89,14 @@ def shimmer(dur=2.0):
         g = ting(nn); st = int(i * .07 * SR); out[st:st + len(g)] += g[: len(out) - st] * .35
     return out
 
-for old, d, g in [(3.4, 1.3, .2), (7.2, 1.4, .2), (12.2, 1.1, .14), (15.2, 1.1, .14)]:
+for old, d, g in [(3.4, .9, .16), (7.2, 1.0, .16), (12.2, .8, .12), (15.2, .8, .12)]:
     add(sfx, nt(old) - d * .55, air(d), g)                             # scene transitions
 for old, note in [(9.0, 88), (10.3, 91), (11.5, 93)]:                  # info cards appear
     add(sfx, nt(old), ting(note), .08, .3)
 add(sfx, nt(13.35), ting(95), .07)                                     # "+" in pill
 add(sfx, nt(14.7), felt_thump(), .32)                                  # ebook lands
 add(sfx, nt(16.4) - .5, air(1.0, 300, 2600), .1)                       # circle wipe
-add(sfx, nt(16.75), shimmer(2.0), .13)                                 # end card
+add(sfx, nt(16.75), shimmer(2.0), .1)                                 # end card
 
 # 0:02 key tiles burst out of the phone: soft wooden marimba plinks (pentatonic D), quiet
 def marimba(note):
@@ -146,10 +122,9 @@ for i, ch in enumerate(q):
 def mouse_click():
     n = int(.06 * SR); t = np.arange(n) / SR
     return bp(rng.standard_normal(n), 2500, 8000) * np.exp(-t / .003) + np.sin(2*np.pi*900*t) * np.exp(-t / .006) * .3
-add(sfx, 30.12, mouse_click(), .22)
-add(sfx, 30.16, ting(98), .06)
+add(sfx, bar(12) - .02, mouse_click(), .3)
 
-mix = music * .85 + sfx
+mix = music + sfx
 mix = np.tanh(mix * 1.1) / 1.1
 mix /= np.max(np.abs(mix)) / .89
 with wave.open('renders/audio.wav', 'wb') as w:

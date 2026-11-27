@@ -4,8 +4,13 @@ import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.j
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 
 const W = 1920, H = 1080;
-export const DURATION = 33;
-const WN = [0, 5.5, 11.5, 20.5, 24.5, 27, 28.2, 33], WO = [0, 3.4, 7.2, 12.2, 15.2, 16.75, 17.5, 18];
+export const DURATION = 27;
+// scene cuts land on bar lines of the music ("Inspired", 117.45 bpm, first beat 0.07 s)
+const BEAT = 60 / 117.45, B0 = 0.07, BAR = 4 * BEAT, bar = k => B0 + k * BAR;
+const WN = [0, bar(2), bar(4), bar(5), bar(6), bar(7), bar(8), bar(9.25), bar(9.5), bar(10.5), bar(10.5) + 1.1, 27],
+      WO = [0, 3.4, 7.2, 8.5, 9.8, 11.0, 12.2, 14.7, 15.2, 16.75, 17.5, 18];
+let TN = 0;
+function bp(div = 1, dec = .12) { const p = BEAT * div; const ph = (((TN - B0) % p) + p) % p; return Math.exp(-ph / dec); }
 function warp(t) { for (let i = 1; i < WN.length; i++) if (t <= WN[i]) return WO[i - 1] + (WO[i] - WO[i - 1]) * (t - WN[i - 1]) / (WN[i] - WN[i - 1]); return 18; }
 const P = '#5B2DFF', P2 = '#7A4DFF', K = '#FF4D88', K2 = '#FFB3E6';
 
@@ -253,10 +258,11 @@ function seek1(t) {
   phone1.rotation.set(mix(.35, .12, up) - lin(t, 2.6, 3.4) * .2, mix(-.5, -.18, up) + Math.sin(t * .9) * .05, mix(.1, .03, up));
   c1.position.set(0, .2, mix(7.6, 6.7, eio(lin(t, 0, 3.4))) - ei(lin(t, 2.8, 3.4)) * 3);
   c1.lookAt(0, -.1, 0);
+  phone1.scale.setScalar(1 + .018 * bp(4, .18));
   tiles.forEach(o => {
     const u = o.userData; const k = eo(lin(t, 1.0 + u.d, 1.8 + u.d));
     const fly = ei(lin(t, 2.75 + u.d * .3, 3.4));
-    o.scale.setScalar(Math.max(.001, back(clamp(k)) * (1 - fly * .2)));
+    o.scale.setScalar(Math.max(.001, back(clamp(k)) * (1 - fly * .2) * (1 + .09 * bp())));
     o.position.set(u.tx * k * (1 + fly * 1.5), mix(-.8, u.ty, k) + Math.sin(t * 2 * u.sp + u.d * 9) * .08 + fly * u.ty, mix(0, u.tz, k) + fly * 6);
     o.rotation.set(u.rx + t * .3 * u.sp, u.ry + Math.sin(t + u.d) * .3, u.rz);
   });
@@ -310,7 +316,8 @@ function seek2(t) {
   c2.rotation.set(0, 0, 0);
   c2.rotateZ(Math.sin(u * 2.2) * .12 - ei(lin(t, 6.4, 7.2)) * .5);
   cards.forEach((c, i) => { const r = c.userData.r0; c.rotation.set(r.x + t * c.userData.sp * .4, r.y + Math.sin(t * .8 + i) * .1, r.z); });
-  sp2.material.size = .12 + Math.sin(t * 6) * .01;
+  sp2.material.size = .12 + .05 * bp();
+  c2.fov = 50 - 3.5 * bp(4, .2); c2.updateProjectionMatrix();
 }
 
 // ======================= SCENE 3: studio with knit balls, bubbles, products =======================
@@ -324,7 +331,7 @@ balls.forEach(b => s3.add(b));
 const bubbles = []; { const R = rng(3); for (let i = 0; i < 9; i++) { const b = new THREE.Mesh(new THREE.SphereGeometry(.22 + R() * .25, 48, 32), bubbleMat); b.userData = { x: (R() - .5) * 10, y: (R() - .5) * 5.4, z: R() * 2 - .5, p: R() * 6 }; s3.add(b); bubbles.push(b); } }
 const cube = new THREE.Mesh(new RoundedBoxGeometry(.9, .9, .9, 5, .25), new THREE.MeshPhysicalMaterial({ color: K2, roughness: .9, sheen: 1, sheenColor: new THREE.Color(0xffffff) })); s3.add(cube);
 const floatIcons = [['claude', -3.7, 1.9, 1.2, 1.0], ['ai', 3.9, 1.6, 1.0, .9], ['film', -4.0, -1.0, 1.6, .8], ['mic', 2.6, -2.4, 2.0, .7], ['music', -1.8, 2.9, .2, .65], ['globe', 1.8, 2.9, -.6, .6], ['wave', 4.6, -.6, -1.2, .7], ['photo', -2.4, -2.9, .8, .7]]
-  .map(([k, x, y, z, sc], i) => { const o = iconTile(k, sc); o.userData = { x, y, z, p: i * 1.7 }; s3.add(o); return o; });
+  .map(([k, x, y, z, sc], i) => { const o = iconTile(k, sc); o.userData = { x, y, z, p: i * 1.7, sc }; s3.add(o); return o; });
 // hero A: gifts
 const gifts = new THREE.Group(); gifts.scale.setScalar(1.3); s3.add(gifts);
 const gA = makeBook(1.3, 'dokumentari'), gB = makeBook(.82, '67-prompt'), gC = makeBook(.8, 'satu-ayat'), gD = makeBook(.62, 'rakam-suara'), gE = makeBook(.62, 'komik');
@@ -372,7 +379,10 @@ function seek3(t) {
   bubbles.forEach(b => { const u = b.userData; b.position.set(u.x + Math.sin(k * .7 + u.p) * .3, u.y + Math.cos(k * .5 + u.p) * .25 + k * .12, u.z); });
   floatIcons.forEach((o, i) => { const u = o.userData; const a = eo(lin(t, S3A + .1 + i * .06, S3A + .8 + i * .06));
     o.position.set(u.x * mix(1.6, 1, a) + Math.sin(k * .7 + u.p) * .12, u.y * mix(1.6, 1, a) + Math.cos(k * .6 + u.p) * .15, u.z);
+    o.scale.setScalar(u.sc * (1 + .14 * bp(1, .1)));
     o.rotation.set(Math.sin(k * .8 + u.p) * .25, Math.sin(k * .5 + u.p) * .5 - u.x * .06, Math.sin(k * .4 + u.p) * .12); });
+  balls.forEach(b => b.scale.setScalar(1 + .035 * bp(2, .15)));
+  const hp = 1 + .03 * bp(4, .18); gifts.scale.setScalar(1.3 * hp); laptop.scale.setScalar(1.2 * hp); phones.scale.setScalar(1.15 * hp); klass.scale.setScalar(1.15 * hp);
   cube.position.set(3.2 + Math.sin(k) * .1, -2.4 + Math.cos(k * .8) * .15, 1.2); cube.rotation.set(k * .4, k * .6, .3);
 
   // gifts
@@ -443,11 +453,13 @@ function seek5(t) {
   c5.position.set(mix(-1.6, 1.4, eio(clamp(u * 1.6))), mix(1.4, .8, u), mix(11.5, 10, u));
   c5.lookAt(mix(-.6, .5, eio(clamp(u * 1.6))), -.4, 0);
   lp.position.y = .1 + Math.sin(t * 1.5) * .05;
+  line.scale.setScalar(1 + .012 * bp(4, .2));
 }
 
 // ======================= master seek =======================
 const typed = (s, t, a, cps) => s.slice(0, Math.max(0, Math.floor((t - a) * cps)));
 export function seek(tn) {
+  TN = tn;
   const t = warp(tn);
   // pick scene
   let scene, cam;
@@ -484,7 +496,7 @@ export function seek(tn) {
   km.style.display = inS4 ? '' : 'none';
   if (inS4) {
     const k = t - S4;
-    const w = km.querySelector('.w'); w.style.opacity = clamp(lin(k, .05, .3)); w.style.transform = `translateY(${(1 - eo(lin(k, 0, .45))) * 60}px)`;
+    const w = km.querySelector('.w'); w.style.opacity = clamp(lin(k, .05, .3)); w.style.transform = `translateY(${(1 - eo(lin(k, 0, .45))) * 60}px) scale(${1 + .025 * bp(1, .1)})`;
     const pill = $('pill'); const pin = eo(lin(k, .35, .85)); const shrink = eio(lin(k, .9, 1.4));
     const pw = mix(900, 790, shrink);
     pill.style.width = pw + 'px'; pill.style.opacity = clamp(lin(k, .35, .6)); pill.style.transform = `translateX(${(1 - pin) * 500}px)`;
@@ -506,20 +518,20 @@ export function seek(tn) {
     fade('.sub', 16.9); fade('.cta', 17.05); fade('.btn', 17.15); fade('.tag', 17.25);
     const ic = end.querySelector('.icons');
     if (!ic.children.length) ic.innerHTML = ['claude', 'ai', 'film', 'mic', 'music', 'globe'].map(k => `<img src="${window.__iconData[k]}">`).join('');
-    [...ic.children].forEach((im, i) => { const q = back(clamp(lin(t, 16.95 + i * .04, 17.2 + i * .04))); im.style.transform = `scale(${q})`; im.style.opacity = clamp(lin(t, 16.95 + i * .04, 17.05 + i * .04)); });
+    [...ic.children].forEach((im, i) => { const q = back(clamp(lin(t, 16.95 + i * .04, 17.2 + i * .04))); im.style.transform = `scale(${q}) translateY(${-10 * bp(1, .1) * (i % 2 ? 1 : .6)}px)`; im.style.opacity = clamp(lin(t, 16.95 + i * .04, 17.05 + i * .04)); });
   }
   const cur = $('cursor'); const btn = end.querySelector('.btn');
-  if (tn >= 28.6) {
+  if (tn >= 23.0) {
     const r = btn.getBoundingClientRect(); const bx = r.left + r.width * .62, by = r.top + r.height * .55;
-    const m = eio(lin(tn, 28.8, 29.9)); const cx = mix(1500, bx, m), cy = mix(1080, by, m) + Math.sin(m * Math.PI) * -60;
-    const press = Math.max(0, 1 - Math.abs(tn - 30.15) / .18);
-    cur.style.opacity = clamp(lin(tn, 28.8, 29.1)) * (1 - lin(tn, 32.4, 32.8));
+    const m = eio(lin(tn, 23.2, 24.35)); const cx = mix(1500, bx, m), cy = mix(1080, by, m) + Math.sin(m * Math.PI) * -60;
+    const press = Math.max(0, 1 - Math.abs(tn - bar(12)) / .18);
+    cur.style.opacity = clamp(lin(tn, 23.2, 23.5)) * (1 - lin(tn, 26.2, 26.6));
     cur.style.transform = `translate(${cx - 10}px, ${cy - 6}px) scale(${1 - press * .15})`;
-    btn.style.transform = `translateY(0) scale(${1 - press * .05 + Math.max(0, Math.sin((tn - 30.3) * 3)) * .02 * (tn > 30.3 ? 1 : 0)})`;
-    const rp = end.querySelector('.ripple'); const ru = lin(tn, 30.15, 30.9);
-    rp.style.width = rp.style.height = (10 + ru * 800) + 'px'; rp.style.opacity = tn > 30.15 ? .6 * (1 - ru) : 0;
+    btn.style.transform = `translateY(0) scale(${1 - press * .05 + Math.max(0, Math.sin((tn - bar(12) - .15) * 3)) * .02 * (tn > bar(12) + .15 ? 1 : 0)})`;
+    const rp = end.querySelector('.ripple'); const ru = lin(tn, bar(12), bar(12) + .75);
+    rp.style.width = rp.style.height = (10 + ru * 800) + 'px'; rp.style.opacity = tn > bar(12) ? .6 * (1 - ru) : 0;
   } else cur.style.opacity = 0;
-  if (t >= 16.75) end.querySelector('.arr').style.transform = `translateX(${Math.max(0, Math.sin(tn * 5)) * 12}px)`;
+  if (t >= 16.75) end.querySelector('.arr').style.transform = `translateX(${12 * bp(1, .14)}px)`;
   // white flashes at cuts
   const flashAt = (c, w) => Math.max(0, 1 - Math.abs(t - c) / w);
   $('flash').style.opacity = Math.max(flashAt(3.4, .22), flashAt(7.2, .25) * .95, flashAt(S4, .2) * .9, flashAt(S5, .2) * .8);
