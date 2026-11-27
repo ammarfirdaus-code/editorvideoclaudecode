@@ -7,7 +7,7 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = __dirname, FPS = 30;
-const types = { '.html': 'text/html', '.js': 'text/javascript', '.woff2': 'font/woff2', '.json': 'application/json' };
+const types = { '.html': 'text/html', '.js': 'text/javascript', '.woff2': 'font/woff2', '.json': 'application/json', '.jpg': 'image/jpeg', '.png': 'image/png' };
 function serve() {
   return new Promise(res => {
     const srv = http.createServer((req, rsp) => {
@@ -34,9 +34,9 @@ function serve() {
       console.log('still', a);
     }
   } else {
-    const part = +(args[0] || 0), parts = +(args[1] || 1);
+    const part = +(args[0] || 0), parts = +(args[1] || 1), from = +(args[2] || 0), to = +(args[3] || 1e9);
     const total = Math.round(await page.evaluate('window.DURATION') * FPS);
-    for (let f = part; f < total; f += parts) {
+    for (let f = from + part; f < Math.min(total, to); f += parts) {
       await page.evaluate(t => window.seek(t), f / FPS);
       await page.screenshot({ path: path.join(ROOT, `renders/frames/f${String(f).padStart(5, '0')}.jpg`), type: 'jpeg', quality: 93 });
       if (f % 60 === part) console.log(`part ${part}: frame ${f}/${total}`);

@@ -88,8 +88,8 @@ def shimmer(dur=1.2):
         b = bell(84 + rng.integers(0, 12), dur, .25); st = int(i * .05 * SR); out[st:] += b[: len(out) - st] * .3
     return out
 
-for i in range(len('Hai AI...')): add(sfx, .9 + i / 11, tick(), .35, rng.uniform(-.2, .2))
-for i in range(len('Idea video untuk bisnes saya...')): add(sfx, 4.0 + i / 16, tick(), .25, rng.uniform(-.2, .2))
+for i in range(len('Hai Claude...')): add(sfx, .9 + i / 13, tick(), .35, rng.uniform(-.2, .2))
+for i in range(len('Buat video dokumentari...')): add(sfx, 4.0 + i / 16, tick(), .25, rng.uniform(-.2, .2))
 for i in range(14): add(sfx, 1.0 + rng.uniform(0, .5), pop(rng.uniform(.8, 1.5)), .18, rng.uniform(-.8, .8))
 for tt, d, gn in [(3.15, .6, .5), (6.95, .65, .5), (11.95, .55, .4), (14.95, .55, .4), (16.3, .8, .45)]:
     add(sfx, tt, whoosh(d), gn)
@@ -97,6 +97,7 @@ for tt in (8.95, 10.25, 11.45): add(sfx, tt, pop(1.2), .4)
 add(sfx, 12.5, whoosh(.5, 600, 4000), .35, .5)
 add(sfx, 13.3, pop(1.6), .45)
 add(sfx, 14.7, thud(), .8)
+add(sfx, 7.35, whoosh(.5, 400, 2500), .3)
 add(sfx, 16.8, shimmer(1.2), .35)
 
 mixd = music * .7 + sfx * .9

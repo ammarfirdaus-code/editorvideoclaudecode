@@ -22,6 +22,8 @@ await document.fonts.load('800 100px Montserrat');
 await document.fonts.load('700 100px Montserrat');
 await document.fonts.load('600 100px Inter');
 await document.fonts.ready;
+const COVER = await new Promise(r => { const im = new Image(); im.onload = () => r(im); im.src = 'assets/cover-dokumentari.jpg'; });
+const NAVY = '#23256A', LIME = '#C9C2FF';
 
 const renderer = new THREE.WebGLRenderer({ canvas: $('gl'), antialias: true, preserveDrawingBuffer: true });
 renderer.setPixelRatio(1);
@@ -54,22 +56,33 @@ const whitePlastic = new THREE.MeshPhysicalMaterial({ color: 0xffffff, roughness
 const bubbleMat = new THREE.MeshPhysicalMaterial({ color: 0xffffff, transmission: 1, thickness: 0.15, roughness: 0, ior: 1.2, iridescence: 1, iridescenceIOR: 1.4, transparent: true, opacity: 1, envMapIntensity: 1.6 });
 
 function screenTex(variant) {
-  return canvasTex(512, 1056, (g, w, h) => {
+  return canvasTex(512, 1100, (g, w, h) => {
     g.save(); rr(g, 0, 0, w, h, 70); g.clip();
-    g.fillStyle = lgrad(g, 0, 0, w, h, [[0, '#2A0F8F'], [.45, P], [.75, '#C03CE0'], [1, K]]); g.fillRect(0, 0, w, h);
-    const blobs = variant === 'b' ? [[380, 300, 260, '#FF4D88'], [100, 800, 300, '#7A4DFF']] : [[120, 380, 280, '#FF77B0'], [420, 760, 300, '#3A6BFF'], [300, 1000, 200, '#FFB3E6']];
-    blobs.forEach(([x, y, r, c]) => { const gr = g.createRadialGradient(x, y, 0, x, y, r); gr.addColorStop(0, c); gr.addColorStop(1, 'rgba(0,0,0,0)'); g.globalAlpha = .75; g.fillStyle = gr; g.fillRect(0, 0, w, h); });
-    g.globalAlpha = 1; g.fillStyle = '#fff'; g.textAlign = 'center';
-    g.font = '600 30px Inter'; g.fillText('Jumaat, 27 November', w / 2, 170);
-    g.font = '800 170px Montserrat'; g.fillText('10:00', w / 2, 330);
-    // notification cards
-    [[560, 'ammarcreava', 'Video anda sudah siap ✓'], [700, 'Reel baharu', '12.4K tontonan hari ini']].forEach(([y, a, b]) => {
-      g.fillStyle = 'rgba(255,255,255,.28)'; rr(g, 40, y, w - 80, 116, 30); g.fill();
-      g.fillStyle = lgrad(g, 64, y + 26, 128, y + 90, [[0, '#fff'], [1, K2]]); rr(g, 64, y + 28, 60, 60, 16); g.fill();
-      g.textAlign = 'left'; g.fillStyle = '#fff'; g.font = '700 28px Montserrat'; g.fillText(a, 146, y + 52); g.font = '500 25px Inter'; g.fillText(b, 146, y + 88);
-    });
+    g.fillStyle = lgrad(g, 0, 0, 0, h, [[0, '#2A2468'], [1, NAVY]]); g.fillRect(0, 0, w, h);
+    g.fillStyle = '#fff'; g.font = '600 26px Inter'; g.textAlign = 'left'; g.fillText('10:00', 52, 62);
+    g.textAlign = 'center'; g.font = '600 24px Inter'; g.fillStyle = 'rgba(255,255,255,.7)'; g.fillText('Ebook PDF', w / 2, 128);
+    const cw = 400, ch = cw * COVER.height / COVER.width, cx = (w - cw) / 2, cy = 150;
+    g.shadowColor = 'rgba(0,0,0,.55)'; g.shadowBlur = 40; g.shadowOffsetY = 18;
+    g.fillStyle = '#000'; g.fillRect(cx, cy, cw, ch); g.shadowColor = 'transparent';
+    g.drawImage(COVER, cx, cy, cw, ch);
+    g.fillStyle = '#fff'; g.font = '800 32px Montserrat'; g.fillText('Buat Video Dokumentari', w / 2, cy + ch + 62);
+    g.fillStyle = 'rgba(255,255,255,.7)'; g.font = '500 24px Inter'; g.fillText('27 muka  •  6 langkah', w / 2, cy + ch + 100);
+    g.fillStyle = LIME; rr(g, 96, cy + ch + 130, w - 192, 70, 35); g.fill();
+    g.fillStyle = NAVY; g.font = '700 28px Montserrat'; g.fillText(variant === 'b' ? 'Baca sekarang' : 'Dapatkan ebook', w / 2, cy + ch + 175);
     g.restore();
   });
+}
+function makeBook(s = 1) {
+  const coverT = canvasTex(1241, 1763, g => g.drawImage(COVER, 0, 0));
+  const pages = canvasTex(64, 512, (g, w, h) => { g.fillStyle = '#f6f4ee'; g.fillRect(0, 0, w, h); for (let x = 0; x < w; x += 3) { g.fillStyle = `rgba(0,0,0,${.04 + (x % 6 ? .03 : 0)})`; g.fillRect(x, 0, 1, h); } });
+  const pagesH = canvasTex(512, 64, (g, w, h) => { g.fillStyle = '#f6f4ee'; g.fillRect(0, 0, w, h); for (let y = 0; y < h; y += 3) { g.fillStyle = 'rgba(0,0,0,.05)'; g.fillRect(0, y, w, 1); } });
+  const spine = canvasTex(128, 1024, (g, w, h) => { g.fillStyle = NAVY; g.fillRect(0, 0, w, h); g.save(); g.translate(w / 2, h / 2); g.rotate(Math.PI / 2); g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillStyle = '#fff'; g.font = '800 56px Montserrat'; g.font = '800 50px Montserrat'; g.fillText('VIDEO DOKUMENTARI', -90, 0); g.fillStyle = LIME; g.fillText('CLAUDE', 290, 0); g.restore(); });
+  const navyM = new THREE.MeshPhysicalMaterial({ color: NAVY, roughness: .5, clearcoat: .6 });
+  const mats = [new THREE.MeshStandardMaterial({ map: pages, roughness: .9 }), new THREE.MeshPhysicalMaterial({ map: spine, roughness: .45, clearcoat: .6 }),
+    new THREE.MeshStandardMaterial({ map: pagesH, roughness: .9 }), new THREE.MeshStandardMaterial({ map: pagesH, roughness: .9 }),
+    new THREE.MeshPhysicalMaterial({ map: coverT, roughness: .35, clearcoat: 1, clearcoatRoughness: .1 }), navyM];
+  const m = new THREE.Mesh(new THREE.BoxGeometry(1.41, 2.0, .2), mats);
+  const grp = new THREE.Group(); grp.add(m); grp.scale.setScalar(s); return grp;
 }
 function makePhone(color = metal, variant = 'a') {
   const grp = new THREE.Group();
@@ -95,11 +108,14 @@ function makeLaptop() {
   const lid = new THREE.Mesh(new RoundedBoxGeometry(3.4, 2.25, 0.07, 4, 0.04), silver); lid.position.set(0, 1.125, 0); hinge.add(lid);
   const st = canvasTex(1024, 660, (g, w, h) => {
     g.fillStyle = '#0b0b10'; g.fillRect(0, 0, w, h);
-    g.fillStyle = lgrad(g, 0, 0, w, h, [[0, '#1A1A2E'], [.5, P], [1, K]]); g.fillRect(24, 24, w - 48, h - 48);
-    for (let i = 0; i < 7; i++) { g.strokeStyle = `rgba(255,255,255,${.06 + i * .02})`; g.lineWidth = 3; g.beginPath(); g.arc(780, 520, 120 + i * 70, 0, Math.PI * 2); g.stroke(); }
-    g.fillStyle = '#fff'; g.font = '800 92px Montserrat'; g.fillText('MOTION', 80, 280); g.fillText('GRAPHIC', 80, 380);
-    g.font = '600 34px Inter'; g.fillStyle = K2; g.fillText('Iklan 30 saat • 1080×1920', 84, 450);
-    g.fillStyle = 'rgba(255,255,255,.2)'; rr(g, 80, 540, 600, 14, 7); g.fill(); g.fillStyle = '#fff'; rr(g, 80, 540, 380, 14, 7); g.fill();
+    g.fillStyle = '#2A2468'; g.fillRect(16, 16, w - 32, h - 32);
+    const ch = h - 90, cw = ch * COVER.width / COVER.height; g.drawImage(COVER, 60, 45, cw, ch);
+    g.fillStyle = '#f7f6fb'; g.fillRect(90 + cw, 45, w - 150 - cw, ch);
+    const x0 = 120 + cw; g.fillStyle = '#7A4DFF'; g.font = '700 22px Inter'; g.fillText('LANGKAH 1 • BRIEF & SKRIP', x0, 100);
+    g.fillStyle = '#15131F'; g.font = '800 38px Montserrat'; g.fillText('Sejarah 75 tahun,', x0, 156); g.fillText('video 6 minit.', x0, 200);
+    g.fillStyle = '#1E1B4A'; rr(g, x0, 232, w - x0 - 90, 250, 16); g.fill();
+    g.font = '500 19px monospace'; ['Buat video dokumentari', '1 minit tentang', '[SEJARAH KAMPUNG SAYA].', 'Cari fakta, tulis skrip,', 'kemudian bina video.'].forEach((l, i) => { g.fillStyle = i % 2 ? '#C5E84A' : '#fff'; g.fillText(l, x0 + 22, 274 + i * 42); });
+    g.fillStyle = LIME; rr(g, x0, 512, 200, 54, 27); g.fill(); g.fillStyle = NAVY; g.font = '700 22px Inter'; g.fillText('Salin prompt', x0 + 30, 546);
   });
   const scr = new THREE.Mesh(new THREE.PlaneGeometry(3.25, 2.1), new THREE.MeshBasicMaterial({ map: st, toneMapped: false }));
   scr.position.set(0, 1.125, 0.037); hinge.add(scr);
@@ -137,7 +153,7 @@ const c1 = new THREE.PerspectiveCamera(32, W / H, .1, 100);
 const phone1 = makePhone(metal, 'a'); s1.add(phone1);
 const tiles = [];
 {
-  const letters = ['A', 'I', 'v', 'i', 'd', 'e', 'o', '▶', '★', '✦', 'm', 'g', 'k', 'l', '♪', '#', 'r', 's'];
+  const letters = ['D', 'o', 'k', 'u', 'm', 'e', 'n', 't', 'a', 'r', 'i', '▶', '✦', 'C', 'l', 'a', '♪', '#'];
   const R = rng(7);
   letters.forEach((ch, i) => {
     const grp = new THREE.Group();
@@ -172,9 +188,9 @@ const s2 = makeScene('#E7E3F7');
 s2.fog = new THREE.Fog(0xE7E3F7, 8, 34);
 const c2 = new THREE.PerspectiveCamera(50, W / H, .1, 100);
 const services = [
-  ['Video AI', '▶', P], ['Motion Graphic', '✦', K], ['Kelas AI', '◆', '#3A6BFF'], ['Reel TikTok', '♪', '#FF7A45'],
-  ['Poster', '▣', '#13B98A'], ['Avatar AI', '●', P2], ['Copywriting', '✎', K], ['Suara AI', '♫', '#3A6BFF'],
-  ['Iklan FB', '◎', '#FF7A45'], ['Branding', '★', '#13B98A'], ['Proposal', '▤', P], ['Lagu Iklan', '♬', K],
+  ['Brief & Skrip', '✎', P], ['Fakta Web', '◎', '#3A6BFF'], ['Gambar Arkib', '▣', '#FF7A45'], ['Suara AI', '♪', K],
+  ['Whisper', '●', '#13B98A'], ['Peta & Babak', '◆', P2], ['Muzik & SFX', '♫', '#3A6BFF'], ['Semak Fakta', '★', '#13B98A'],
+  ['MP4 16:9', '▶', P], ['Reels 9:16', '▶', K], ['14 Prompt', '✦', '#FF7A45'], ['Claude Code', '◆', P2],
 ];
 const serviceTex = services.map(([label, icon, col]) => canvasTex(512, 384, (g, w, h) => {
   g.fillStyle = '#fff'; rr(g, 0, 0, w, h, 40); g.fill();
@@ -231,16 +247,16 @@ const bubbles = []; { const R = rng(3); for (let i = 0; i < 9; i++) { const b = 
 const cube = new THREE.Mesh(new RoundedBoxGeometry(.9, .9, .9, 5, .25), new THREE.MeshPhysicalMaterial({ color: K2, roughness: .9, sheen: 1, sheenColor: new THREE.Color(0xffffff) })); s3.add(cube);
 // hero A: gifts
 const gifts = new THREE.Group(); gifts.scale.setScalar(1.3); s3.add(gifts);
-const gA = giftBox(0xffffff, 0x5B2DFF, 1.25), gB = giftBox(0x5B2DFF, 0xFFB3E6, .95), gC = giftBox(0xFF4D88, 0xffffff, .8);
-gA.position.set(-1.4, 0, 0); gB.position.set(1.4, .5, -.5); gC.position.set(.1, -1.3, .6); gifts.add(gA, gB, gC);
+const gA = makeBook(1.35), gB = makeBook(1.0), gC = makeBook(.8);
+gA.position.set(-.1, 0, .5); gB.position.set(2.1, .5, -1.2); gC.position.set(-2.1, -.6, -.8); gifts.add(gA, gB, gC);
 // hero B: laptop
 const laptop = makeLaptop(); laptop.scale.setScalar(1.2); s3.add(laptop);
 // hero C: fanned phones
 const phones = new THREE.Group(); phones.scale.setScalar(1.15); s3.add(phones);
 const pmA = new THREE.MeshPhysicalMaterial({ color: 0x6a3cff, metalness: .8, roughness: .3, clearcoat: 1 });
 const pmB = new THREE.MeshPhysicalMaterial({ color: 0xff4d88, metalness: .7, roughness: .3, clearcoat: 1 });
-const ph1 = makePhone(silver, 'b'), ph2 = makePhone(pmB, 'a'), ph3 = makePhone(pmA, 'b');
-[ph1, ph2, ph3].forEach((p, i) => { p.position.set((i - 1) * .9, (i === 1 ? .25 : 0), i * .25); p.rotation.set(0, Math.PI - .25 + i * .05, (1 - i) * .25); phones.add(p); });
+const ph1 = makePhone(pmA, 'b'), ph2 = makePhone(metal, 'a'), ph3 = makePhone(pmB, 'b');
+[ph1, ph2, ph3].forEach((p, i) => { p.position.set((i - 1) * .9, (i === 1 ? .25 : 0), i * .25); p.rotation.set(0, .25 - i * .12, (1 - i) * .22); phones.add(p); });
 // hero D: class — floating board with AI chip
 const klass = new THREE.Group(); klass.scale.setScalar(1.15); s3.add(klass);
 {
@@ -248,9 +264,9 @@ const klass = new THREE.Group(); klass.scale.setScalar(1.15); s3.add(klass);
   const bt = canvasTex(900, 570, (g, w, h) => {
     g.fillStyle = '#fff'; g.fillRect(0, 0, w, h);
     g.fillStyle = lgrad(g, 0, 0, w, h, [[0, '#F1ECFF'], [1, '#FFE8F2']]); rr(g, 30, 30, w - 60, h - 60, 30); g.fill();
-    g.fillStyle = '#1d1b28'; g.font = '800 64px Montserrat'; g.fillText('Prompt → Video', 70, 140);
+    g.fillStyle = '#1d1b28'; g.font = '800 64px Montserrat'; g.fillText('Skrip → Video', 70, 140);
     [[200, P, 520], [260, K, 640], [320, P2, 420], [380, '#3A6BFF', 580]].forEach(([y, c, wd]) => { g.fillStyle = c; rr(g, 70, y, 22, 22, 11); g.fill(); g.fillStyle = '#d9d3ee'; rr(g, 112, y + 2, wd, 18, 9); g.fill(); });
-    g.fillStyle = lgrad(g, 0, 0, w, 0, [[0, P], [1, K]]); rr(g, 70, 450, 260, 64, 32); g.fill(); g.fillStyle = '#fff'; g.font = '600 30px Inter'; g.fillText('Jana sekarang', 100, 492);
+    g.fillStyle = lgrad(g, 0, 0, w, 0, [[0, P], [1, K]]); rr(g, 70, 450, 260, 64, 32); g.fill(); g.fillStyle = '#fff'; g.font = '600 30px Inter'; g.fillText('Render MP4', 112, 492);
   });
   const bp = new THREE.Mesh(new THREE.PlaneGeometry(2.9, 1.84), new THREE.MeshBasicMaterial({ map: bt, toneMapped: false })); bp.position.z = .052; klass.add(bp);
   const chip = new THREE.Mesh(new RoundedBoxGeometry(.9, .9, .22, 5, .1), new THREE.MeshPhysicalMaterial({ color: 0x5B2DFF, metalness: .4, roughness: .25, clearcoat: 1 }));
@@ -267,7 +283,7 @@ function project(obj, off, cam) { v.copy(off); obj.localToWorld(v); v.project(ca
 function heroIO(t, a, b) { // 0..1 in, 1 hold, then out to 2
   const i = eo(lin(t, a, a + .55)); const o = ei(lin(t, b - .45, b)); return [i, o];
 }
-const S3A = 7.2, S3B = 8.5, S3C = 9.8, S3D = 11.0, S3E = 12.2;
+const S3A = 7.2, S3C = 8.5, S3B = 9.8, S3D = 11.0, S3E = 12.2;
 function seek3(t) {
   c3.position.set(Math.sin(t * .35) * .5, Math.cos(t * .3) * .2, 9.2);
   c3.lookAt(0, 0, 0);
@@ -277,17 +293,17 @@ function seek3(t) {
   cube.position.set(3.2 + Math.sin(k) * .1, -2.4 + Math.cos(k * .8) * .15, 1.2); cube.rotation.set(k * .4, k * .6, .3);
 
   // gifts
-  let [i, o] = heroIO(t, S3A, S3B);
-  gifts.visible = t < S3B; gifts.position.set(0, mix(-6, 0, i) + o * 7, 0); gifts.rotation.set(.15, k * .5 - .4, 0);
-  [gA, gB, gC].forEach((g, j) => { g.rotation.set(Math.sin(k + j) * .2, k * (.4 + j * .2), Math.cos(k * .8 + j) * .15); g.position.y = [0, .5, -1.3][j] + Math.sin(k * 1.4 + j * 2) * .12; });
+  let [i, o] = heroIO(t, S3A, S3C);
+  gifts.visible = t < S3C; gifts.position.set(0, mix(-6, 0, i) + o * 7, 0); gifts.rotation.set(.05, 0, 0);
+  [gA, gB, gC].forEach((g, j) => { g.rotation.set(Math.sin(k + j) * .12, j === 0 ? mix(-2.4, -.25, eo(lin(t, S3A, S3A + 1.1))) + Math.sin(k * 1.2) * .08 : (j === 1 ? -.6 : .5) + Math.sin(k + j) * .15, Math.cos(k * .8 + j) * .08); g.position.y = [0, .5, -.6][j] + Math.sin(k * 1.4 + j * 2) * .12; });
   // laptop
-  [i, o] = heroIO(t, S3B, S3C);
-  laptop.visible = t > S3B - .1 && t < S3C; laptop.position.set(mix(5, -.4, i) - o * 7, -.5 + Math.sin(k) * .08, 0);
+  [i, o] = heroIO(t, S3B, S3D);
+  laptop.visible = t > S3B - .1 && t < S3D; laptop.position.set(mix(5, -.4, i) - o * 7, -.5 + Math.sin(k) * .08, 0);
   laptop.rotation.set(.45 - o * .2, mix(-1.2, -.35, i) - o * .6, .08);
   laptop.userData.hinge.rotation.x = mix(1.52, -0.22, eio(lin(t, S3B + .25, S3B + 1.0)));
   // phones
-  [i, o] = heroIO(t, S3C, S3D);
-  phones.visible = t > S3C - .1 && t < S3D; phones.position.set(.4, mix(-6, -.1, i) + o * 7, 0); phones.rotation.set(-.15, mix(-1.2, -.1, i) + Math.sin(k) * .08, mix(.4, .08, i));
+  [i, o] = heroIO(t, S3C, S3B);
+  phones.visible = t > S3C - .1 && t < S3B; phones.position.set(.4, mix(-6, -.1, i) + o * 7, 0); phones.rotation.set(-.05, mix(-1.2, .05, i) + Math.sin(k) * .06, mix(.4, .05, i));
   [ph1, ph2, ph3].forEach((p, j) => { p.position.x = (j - 1) * mix(.2, .95, eo(lin(t, S3C + .2, S3C + .9))); });
   // class board
   [i, o] = heroIO(t, S3D, S3E + .4);
@@ -299,8 +315,8 @@ function seek3(t) {
     const [x, y] = project(obj, off, c3); const ii = back(clamp(lin(t, a + .45, a + .9))); const oo = lin(t, b - .4, b - .1);
     el.style.opacity = clamp(lin(t, a + .45, a + .7)) * (1 - oo); el.style.transform = `translate(${x}px, ${y}px) translateY(-50%) scale(${.6 + .4 * ii})`;
   };
-  cardFor($('info1'), laptop, new THREE.Vector3(2.0, .5, .6), S3B, S3C);
-  cardFor($('info2'), phones, new THREE.Vector3(-4.1, -.9, 0), S3C, S3D);
+  cardFor($('info1'), laptop, new THREE.Vector3(2.0, .5, .6), S3B, S3D);
+  cardFor($('info2'), phones, new THREE.Vector3(-4.1, -.9, 0), S3C, S3B);
   cardFor($('info3'), klass, new THREE.Vector3(1.8, -.4, 0), S3D, S3E + .5);
   // keep card 2 on left side
   const e2 = $('info2'); e2.style.transformOrigin = '100% 50%';
@@ -309,13 +325,13 @@ function seek3(t) {
 // ======================= SCENE 4: "Kami, [+ uruskan]" + gift drop =======================
 const s4 = makeScene('#EEEDF3');
 const c4 = new THREE.PerspectiveCamera(30, W / H, .1, 100); c4.position.set(0, 1.2, 12); c4.lookAt(0, -.4, 0);
-const bigGift = giftBox(0xffffff, 0x5B2DFF, 2.1); s4.add(bigGift);
+const bigGift = makeBook(1.6); s4.add(bigGift);
 const blob4 = new THREE.Mesh(new THREE.PlaneGeometry(5, 5), new THREE.MeshBasicMaterial({ map: blobTex, transparent: true, depthWrite: false })); blob4.rotation.x = -Math.PI / 2; blob4.position.y = -2.6; s4.add(blob4);
 const S4 = 12.2;
 function seek4(t) {
   const d = lin(t, S4 + 1.9, S4 + 2.5);
-  const yb = d < 1 ? mix(9, -2.6 + 0.945 * 2.1, ei(d)) : -2.6 + .945 * 2.1 + Math.abs(Math.sin((t - S4 - 2.5) * 9)) * .5 * Math.exp(-(t - S4 - 2.5) * 6);
-  bigGift.position.set(0, yb, 0); bigGift.rotation.set(0, -.6 + (t - S4) * .25, 0);
+  const yb = d < 1 ? mix(9, -2.6 + 1.6, ei(d)) : -2.6 + 1.6 + Math.abs(Math.sin((t - S4 - 2.5) * 9)) * .5 * Math.exp(-(t - S4 - 2.5) * 6);
+  bigGift.position.set(0, yb, 0); bigGift.rotation.set(0, -.5 + (t - S4) * .2, 0);
   bigGift.visible = t > S4 + 1.8;
   blob4.material.opacity = clamp(lin(t, S4 + 2.0, S4 + 2.5)); blob4.scale.setScalar(.6 + .4 * clamp(lin(t, S4 + 2.0, S4 + 2.5)));
 }
@@ -326,8 +342,8 @@ const c5 = new THREE.PerspectiveCamera(30, W / H, .1, 100);
 const line = new THREE.Group(); s5.add(line);
 const lp = makePhone(metal, 'a'); lp.position.set(2.6, .1, .4); lp.rotation.y = -.35; line.add(lp);
 const ll = makeLaptop(); ll.position.set(-2.3, -1.55, -.4); ll.rotation.y = .5; ll.userData.hinge.rotation.x = -0.22; ll.scale.setScalar(.9); line.add(ll);
-const lg = giftBox(0x5B2DFF, 0xffffff, 1.2); lg.position.set(.1, -1.0, -.8); line.add(lg);
-const lg2 = giftBox(0xFF4D88, 0xffffff, .7); lg2.position.set(1.1, -1.32, 1.2); lg2.rotation.y = .5; line.add(lg2);
+const lg = makeBook(1.25); lg.position.set(.1, -.35, -.3); lg.rotation.y = .1; line.add(lg);
+const lg2 = makeBook(.8); lg2.position.set(1.2, -.8, 1.0); lg2.rotation.y = -.35; line.add(lg2);
 const floor = new THREE.Mesh(new THREE.PlaneGeometry(14, 6), new THREE.MeshBasicMaterial({ map: blobTex, transparent: true, depthWrite: false, opacity: .8 })); floor.rotation.x = -Math.PI / 2; floor.position.y = -1.6; line.add(floor);
 const sp5 = sparkles(400, 9, 12, 3, -6, .08); s5.add(sp5);
 const S5 = 15.2;
@@ -352,19 +368,19 @@ export function seek(t) {
 
   // ---- DOM ----
   const hai = $('hai');
-  const hs = 'Hai AI...'; const ht = typed(hs, t, .9, 11);
+  const hs = 'Hai Claude...'; const ht = typed(hs, t, .9, 13);
   const inS1 = t < 3.4;
   hai.style.display = inS1 ? '' : 'none';
   if (inS1) {
     const caret = (Math.floor(t * 3) % 2 === 0 || ht.length < hs.length) ? '<span class="caret"></span>' : '';
-    hai.innerHTML = ht.replace('AI', '<span class="grad">AI</span>').replace(/^(Hai )A$/, '$1<span class="grad">A</span>') + caret;
+    hai.innerHTML = ht.replace(/^Hai (.*)$/, (m, w) => 'Hai <span class="grad">' + w.replace(/\.+$/, '') + '</span>' + (w.match(/\.+$/) || [''])[0]) + caret;
     hai.style.transform = `translateY(${-ei(lin(t, 2.9, 3.4)) * 200}px) scale(${1 + ei(lin(t, 2.9, 3.4)) * .3})`;
     hai.style.opacity = 1 - lin(t, 3.0, 3.35);
   }
   const pr = $('prompt'); const inS2 = t >= 3.4 && t < 7.2;
   pr.style.display = inS2 ? '' : 'none';
   if (inS2) {
-    const q = 'Idea video untuk bisnes saya...';
+    const q = 'Buat video dokumentari...';
     pr.querySelector('.q').textContent = typed(q, t, 4.0, 16);
     const a = back(clamp(lin(t, 3.5, 4.0))); const tilt = eio(lin(t, 6.0, 7.2));
     pr.style.opacity = clamp(lin(t, 3.5, 3.75));
@@ -378,7 +394,7 @@ export function seek(t) {
     const k = t - S4;
     const w = km.querySelector('.w'); w.style.opacity = clamp(lin(k, .05, .3)); w.style.transform = `translateY(${(1 - eo(lin(k, 0, .45))) * 60}px)`;
     const pill = $('pill'); const pin = eo(lin(k, .35, .85)); const shrink = eio(lin(k, .9, 1.4));
-    const pw = mix(980, 470, shrink);
+    const pw = mix(900, 790, shrink);
     pill.style.width = pw + 'px'; pill.style.opacity = clamp(lin(k, .35, .6)); pill.style.transform = `translateX(${(1 - pin) * 500}px)`;
     const rect = $('pillrect'); rect.setAttribute('width', pw - 8); rect.setAttribute('height', 142); rect.setAttribute('stroke-dashoffset', -k * 60);
     const plus = pill.querySelector('.plus'); plus.style.transform = `scale(${back(clamp(lin(k, 1.1, 1.45)))}) rotate(${(1 - clamp(lin(k, 1.1, 1.5))) * -180}deg)`;
@@ -393,9 +409,9 @@ export function seek(t) {
   end.style.display = t >= 16.75 ? '' : 'none';
   if (t >= 16.75) {
     const e = back(clamp(lin(t, 16.75, 17.25)));
-    end.querySelector('.mark').style.transform = `scale(${.75 + .25 * e})`; end.querySelector('.mark').style.opacity = clamp(lin(t, 16.75, 17.0));
-    end.querySelector('.url').style.opacity = clamp(lin(t, 17.0, 17.3)); end.querySelector('.url').style.transform = `translateY(${(1 - eo(lin(t, 17.0, 17.4))) * 30}px)`;
-    end.querySelector('.tag').style.opacity = clamp(lin(t, 17.15, 17.45));
+    const ti = end.querySelector('.title'); ti.style.transform = `scale(${.75 + .25 * e})`; ti.style.opacity = clamp(lin(t, 16.75, 17.0));
+    const fade = (sel, a) => { const el = end.querySelector(sel); el.style.opacity = clamp(lin(t, a, a + .3)); el.style.transform = `translateY(${(1 - eo(lin(t, a, a + .4))) * 30}px)`; };
+    fade('.sub', 16.9); fade('.tag', 17.0); fade('.url', 17.12); fade('.mark', 17.25);
   }
   // white flashes at cuts
   const flashAt = (c, w) => Math.max(0, 1 - Math.abs(t - c) / w);
