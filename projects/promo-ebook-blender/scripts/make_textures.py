@@ -4,7 +4,7 @@ from PIL import Image, ImageDraw, ImageFont
 D = os.path.join(os.path.dirname(__file__), '..', 'tex')
 F9 = lambda s: ImageFont.truetype(os.path.join(D, 'Nunito-900.ttf'), s)
 F8 = lambda s: ImageFont.truetype(os.path.join(D, 'Nunito-800.ttf'), s)
-OR = (242, 106, 27)
+OR = (124, 87, 249)
 
 def cover_fit(img, w, h):
     r = max(w / img.width, h / img.height)
@@ -21,7 +21,7 @@ def workflow():
     im = Image.new('RGB', (1024, 1448), (255, 250, 244)); d = ImageDraw.Draw(im)
     header(d, '1', 'Workflow 5 fasa')
     items = ['Sediakan Claude Code', 'Brief & draf skrip', 'Kumpul bahan', 'Bina video', 'Semak & render']
-    cols = [OR, (255, 138, 61), (232, 69, 44), (58, 47, 166), (255, 179, 58)]
+    cols = [OR, (172, 92, 228), (245, 95, 188), (103, 90, 250), (255, 200, 60)]
     for i, t in enumerate(items):
         y = 240 + i * 120
         d.ellipse((74, y - 36, 146, y + 36), fill=cols[i])
@@ -42,15 +42,15 @@ def screens():
     im.save(os.path.join(D, 'page_screens.png'))
 
 def pegboard():
-    im = Image.new('RGB', (512, 512), (240, 138, 75)); d = ImageDraw.Draw(im)
+    im = Image.new('RGB', (512, 512), (140, 98, 245)); d = ImageDraw.Draw(im)
     for y in range(24, 512, 44):
         for x in range(24, 512, 44):
-            d.ellipse((x - 9, y - 9, x + 9, y + 9), fill=(120, 55, 25))
+            d.ellipse((x - 9, y - 9, x + 9, y + 9), fill=(60, 35, 120))
     im.save(os.path.join(D, 'pegboard.png'))
 
 def grid_notes():
-    im = Image.new('RGB', (512, 512), (246, 210, 185)); d = ImageDraw.Draw(im)
-    cols = [OR, (255, 179, 58), (255, 212, 90), (245, 139, 76), (232, 69, 44)]
+    im = Image.new('RGB', (512, 512), (236, 226, 250)); d = ImageDraw.Draw(im)
+    cols = [OR, (245, 95, 188), (255, 210, 63), (172, 92, 228), (103, 90, 250)]
     for r in range(4):
         for c in range(4):
             d.rectangle((20 + c * 124, 20 + r * 124, 124 + c * 124, 124 + r * 124), fill=cols[(r * 4 + c) % 5])

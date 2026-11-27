@@ -53,24 +53,24 @@ def srgb(hexv):
     return tuple(((x + 0.055) / 1.055) ** 2.4 if x > 0.04045 else x / 12.92 for x in c)
 
 M = {
-    'wall': mat('wall', srgb('f6d3bb'), 0.95, bump=0.15),
-    'floor': mat('floor', srgb('efc2a3'), 0.75, bump=0.1),
+    'wall': mat('wall', srgb('ece2fa'), 0.95, bump=0.15),
+    'floor': mat('floor', srgb('dccbf3'), 0.75, bump=0.1),
     'white': mat('white', srgb('fffaf4'), 0.45),
-    'desk': mat('desk', srgb('fbefe4'), 0.4, coat=0.2),
-    'wood': mat('wood', srgb('e9b98e'), 0.55),
-    'orange': mat('orange', srgb('ff5a0a'), 0.35, coat=0.6, bump=0.25, sss=0.1),
-    'chair': mat('chair', srgb('ff7a2e'), 0.55),
+    'desk': mat('desk', srgb('fbf8ff'), 0.4, coat=0.2),
+    'wood': mat('wood', srgb('cdb8f5'), 0.55),
+    'orange': mat('orange', srgb('f55fbc'), 0.35, coat=0.6, bump=0.25, sss=0.1),
+    'chair': mat('chair', srgb('8b62f5'), 0.55),
     'peg': mat('peg', (1, 1, 1), 0.6, tex='pegboard.png'),
     'notes': mat('notes', (1, 1, 1), 0.7, tex='notes.png'),
     'plant': mat('plant', srgb('9cc46a'), 0.5, sss=0.2),
-    'pot': mat('pot', srgb('f3e3d3'), 0.5),
-    'cup': mat('cup', srgb('f5d2b6'), 0.5),
+    'pot': mat('pot', srgb('f1eafc'), 0.5),
+    'cup': mat('cup', srgb('e7dcfb'), 0.5),
     'page_l': mat('page_l', (1, 1, 1), 0.7, tex='page_workflow.png'),
     'page_r': mat('page_r', (1, 1, 1), 0.7, tex='page_screens.png'),
     'indigo': mat('indigo', srgb('3a2fa6'), 0.5),
-    'pencils': [mat(f'pen{i}', srgb(h), 0.4) for i, h in enumerate(['f26a1b', 'ffb33a', 'e8452c', 'ffc93c', 'f58b4c'])],
-    'btn': mat('btn', srgb('f6c7a6'), 0.3, coat=0.8),
-    'btntxt': mat('btntxt', srgb('ff5a0a'), 0.3, coat=0.6, emit=(1, 0.95, 0.85), emit_str=0.0),
+    'pencils': [mat(f'pen{i}', srgb(h), 0.4) for i, h in enumerate(['7c57f9', 'f55fbc', 'ffd23f', 'ac5ce4', '675afa'])],
+    'btn': mat('btn', srgb('e6dcfd'), 0.3, coat=0.8),
+    'btntxt': mat('btntxt', srgb('7c57f9'), 0.3, coat=0.6, emit=(1, 0.95, 0.85), emit_str=0.0),
 }
 
 # ---------------------------------------------------------------- mesh helpers
@@ -109,7 +109,7 @@ box('sill', (WW + 0.4, 0.5, 0.1), (0, WY - 0.15, WZ - WH / 2), M['white'], bevel
 box('sidewall', (0.3, 20, 10), (-5.2, 0, 5), M['wall'])
 plane('notes', 1.7, 1.7, (-5.04, 2.2, 3.0), (math.pi / 2, 0, math.pi / 2), M['notes'])
 # bright outside
-sky = mat('outside', (1, 1, 1), 1.0, emit=(1.0, 0.93, 0.82), emit_str=7.0)
+sky = mat('outside', (1, 1, 1), 1.0, emit=(1.0, 0.95, 0.92), emit_str=7.0)
 plane('outside', 12, 7, (0, WY + 1.5, WZ), (math.pi / 2, 0, 0), sky)
 
 # desk
@@ -147,6 +147,14 @@ for i in range(6):
     a = i / 6 * 2 * math.pi
     p = cyl('pencil', 0.02, 0.5, (1.15 + math.cos(a) * 0.06, 2.55 + math.sin(a) * 0.06, 1.48), M['pencils'][i % 5], verts=6,
             rot=(math.sin(a) * 0.25, -math.cos(a) * 0.25, 0))
+# AMMARCREAVA logo disc standing on the desk
+logo_m = mat('logo', (1, 1, 1), 0.35, coat=0.6, tex='logo_round.png')
+lnt = logo_m.node_tree; limg = [n for n in lnt.nodes if n.type == 'TEX_IMAGE'][0]
+lnt.links.new(limg.outputs['Alpha'], lnt.nodes['Principled BSDF'].inputs['Alpha'])
+logo_m.blend_method = 'HASHED' if hasattr(logo_m, 'blend_method') else None
+cyl('logostand', 0.05, 0.03, (0.72, 2.45, 1.105), M['white'], verts=24)
+cyl('logoback', 0.172, 0.02, (0.72, 2.45, 1.29), M['white'], verts=64, rot=(math.pi / 2, 0, 0))
+plane('logo', 0.34, 0.34, (0.72, 2.438, 1.29), (math.pi / 2, 0, 0), logo_m)
 # lying book
 box('bookflat', (0.55, 0.78, 0.09), (-0.45, 2.25, 1.135), M['indigo'], bevel=0.01, rot=(0, 0, 0.3))
 # chair
@@ -194,11 +202,11 @@ cam_data.dof.use_dof = True; cam_data.dof.focus_object = btn; cam_data.dof.apert
 
 # ---------------------------------------------------------------- lights
 world = bpy.data.worlds.new('w'); sc.world = world; world.use_nodes = True
-world.node_tree.nodes['Background'].inputs['Color'].default_value = (*srgb('f7d5bd'), 1)
+world.node_tree.nodes['Background'].inputs['Color'].default_value = (*srgb('e9dcfb'), 1)
 world.node_tree.nodes['Background'].inputs['Strength'].default_value = 0.35
-sun = bpy.data.lights.new('sun', 'SUN'); sun.energy = 4.5; sun.color = (1.0, 0.9, 0.78); sun.angle = math.radians(6)
+sun = bpy.data.lights.new('sun', 'SUN'); sun.energy = 4.5; sun.color = (1.0, 0.94, 0.88); sun.angle = math.radians(6)
 so = link(bpy.data.objects.new('sun', sun)); so.rotation_euler = (math.radians(-58), math.radians(8), math.radians(185))
-fill = bpy.data.lights.new('fill', 'AREA'); fill.energy = 120; fill.size = 4; fill.color = (1.0, 0.85, 0.75)
+fill = bpy.data.lights.new('fill', 'AREA'); fill.energy = 120; fill.size = 4; fill.color = (0.92, 0.85, 1.0)
 fo = link(bpy.data.objects.new('fill', fill)); fo.location = (1.5, -2.5, 3.0); fo.rotation_euler = (math.radians(60), 0, math.radians(20))
 
 # ---------------------------------------------------------------- animation
@@ -230,7 +238,7 @@ cur.rotation_euler = (0, math.radians(12), math.radians(-12))
 # colour change on press
 b = M['btn'].node_tree.nodes['Principled BSDF'].inputs['Base Color']
 t = M['btntxt'].node_tree.nodes['Principled BSDF']
-for fr, bc, tcol, em in ((f(1.7), srgb('f6c7a6'), srgb('ff5a0a'), 0.0), (f(1.95), srgb('ff5a0a'), (1, 1, 1), 2.2)):
+for fr, bc, tcol, em in ((f(1.7), srgb('e6dcfd'), srgb('7c57f9'), 0.0), (f(1.95), srgb('7c57f9'), (1, 1, 1), 2.2)):
     b.default_value = (*bc, 1); b.keyframe_insert('default_value', frame=fr)
     t.inputs['Base Color'].default_value = (*tcol, 1); t.inputs['Base Color'].keyframe_insert('default_value', frame=fr)
     t.inputs['Emission Strength'].default_value = em; t.inputs['Emission Strength'].keyframe_insert('default_value', frame=fr)
