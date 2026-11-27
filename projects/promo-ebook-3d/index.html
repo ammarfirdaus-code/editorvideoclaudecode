@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<title>Promo Ebook Dokumentari 3D</title>
+<style>
+@font-face{font-family:Nunito;font-weight:600;src:url(fonts/Nunito-600.woff2) format('woff2')}
+@font-face{font-family:Nunito;font-weight:700;src:url(fonts/Nunito-700.woff2) format('woff2')}
+@font-face{font-family:Nunito;font-weight:800;src:url(fonts/Nunito-800.woff2) format('woff2')}
+@font-face{font-family:Nunito;font-weight:900;src:url(fonts/Nunito-900.woff2) format('woff2')}
+:root{--or:#f26a1b;--or2:#ff8a3d;--ink:#2b1d16;--cream:#fbf5ee;--indigo:#3a2fa6}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1280px;height:720px;overflow:hidden;background:#f7e6d8;font-family:Nunito,sans-serif;color:var(--ink)}
+#wrap{position:relative;width:1280px;height:720px;overflow:hidden}
+canvas#gl{position:absolute;inset:0;width:1280px;height:720px}
+.ov{position:absolute;inset:0;pointer-events:none}
+#halftone{background-image:radial-gradient(rgba(200,90,30,.35) 1.1px,transparent 1.4px);background-size:7px 7px;
+  -webkit-mask-image:radial-gradient(120% 110% at 50% 45%,transparent 62%,#000 100%);mask-image:radial-gradient(120% 110% at 50% 45%,transparent 62%,#000 100%);opacity:.55}
+#vig{background:radial-gradient(100% 90% at 50% 45%,transparent 55%,rgba(150,70,25,.30) 100%)}
+#grain{opacity:.07;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' seed='3'/></filter><rect width='160' height='160' filter='url(%23n)'/></svg>");mix-blend-mode:multiply}
+#meta{left:40px;top:150px;right:auto;bottom:auto;font-size:9px;line-height:1.5;color:rgba(255,255,255,.85);font-weight:700;opacity:0}
+#meta b{font-size:10px}
+#footer{top:auto;bottom:22px;left:0;right:0;text-align:center;font-size:8px;color:rgba(120,70,40,.55);font-weight:700;opacity:0}
+.scene2d{position:absolute;inset:0;opacity:0}
+/* lower-third panel (shot I) */
+#panel{position:absolute;left:0;right:0;bottom:0;height:300px;background:var(--cream);transform:translateY(320px);display:flex;align-items:center;padding:0 70px;gap:50px}
+#panel h2{font-size:46px;font-weight:900;line-height:1.08;width:380px}
+#panel h2 em{font-style:normal;color:var(--or)}
+.cards{position:relative;width:300px;height:220px}
+.c3{position:absolute;left:0;width:280px;height:74px;border-radius:10px;background:linear-gradient(180deg,#ff8a3d,#f26a1b);color:#fff;
+  box-shadow:0 10px 24px rgba(200,80,20,.3);padding:12px 16px;display:flex;gap:12px;align-items:flex-start}
+.c3 .n{width:26px;height:26px;border-radius:6px;background:#fff;color:var(--or);font-weight:900;display:grid;place-items:center;font-size:15px;flex:none}
+.c3 b{display:block;font-size:19px;font-weight:900}
+.c3 span{display:block;font-size:10px;opacity:.9;font-weight:700;margin-top:3px}
+.bul{font-size:17px;font-weight:800;color:#4a3328;margin:9px 0;display:flex;align-items:center;gap:10px;opacity:0}
+.bul i{width:7px;height:7px;border-radius:50%;background:var(--or);display:inline-block}
+/* UI shot K */
+#ui{background:#f8f3ec}
+#ui .side{position:absolute;left:0;top:0;bottom:0;width:190px;background:#f1ebe3;padding:22px 18px;font-size:12px;font-weight:800;color:#6d5a4e}
+#ui .side .it{display:flex;gap:9px;align-items:center;padding:7px 0}
+#ui .side .it i{width:14px;height:14px;border-radius:4px;border:2px solid #b49a88;display:inline-block}
+#ui .btn{position:absolute;left:18px;right:18px;height:30px;border-radius:7px;display:grid;place-items:center;font-size:11px;font-weight:900}
+#ui h3{position:absolute;left:190px;right:0;top:190px;text-align:center;font-size:46px;font-weight:900}
+#ui h3 em{font-style:normal;color:var(--or)}
+#thumbs{position:absolute;left:190px;right:0;top:280px;display:flex;justify-content:center;gap:18px}
+#thumbs div{width:136px;height:192px;border-radius:6px;background:#fff center/cover;box-shadow:0 10px 22px rgba(120,60,20,.2)}
+#tags{position:absolute;left:190px;right:0;top:500px;display:flex;justify-content:center;gap:8px}
+#tags span{background:var(--or);color:#fff;font-size:15px;font-weight:900;padding:7px 15px;border-radius:999px}
+/* kinetic L */
+.kin{position:absolute;inset:0;display:grid;place-items:center;font-weight:900}
+#cta2{position:absolute;opacity:0}
+</style>
+</head>
+<body>
+<div id="wrap">
+  <canvas id="gl" width="1280" height="720"></canvas>
+  <svg width="0" height="0" style="position:absolute">
+    <filter id="mb" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur id="mbg" stdDeviation="0 0"/></filter>
+  </svg>
+
+  <!-- I: lower third -->
+  <div id="panel">
+    <h2>Satu ebook,<br>ajar <em>dokumentari</em><br>penuh</h2>
+    <div class="cards">
+      <div class="c3" id="c3a" style="top:0"><div class="n">1</div><div><b>Claude Code</b><span>Cari fakta, tulis skrip, bina babak</span></div></div>
+      <div class="c3" id="c3b" style="top:72px"><div class="n">2</div><div><b>Whisper</b><span>Sari kata selaras dengan suara</span></div></div>
+      <div class="c3" id="c3c" style="top:144px"><div class="n">3</div><div><b>FFmpeg</b><span>Render MP4 16:9 dan Reels</span></div></div>
+    </div>
+    <div>
+      <div class="bul"><i></i>27 muka · 14 prompt</div>
+      <div class="bul"><i></i>Bahasa Melayu</div>
+      <div class="bul"><i></i>16:9 + Reels 9:16</div>
+    </div>
+  </div>
+
+  <!-- K: website UI -->
+  <div class="scene2d" id="ui">
+    <div class="side">
+      <div style="display:flex;gap:9px;align-items:center;margin-bottom:22px">
+        <img src="assets/logo.png" style="width:30px;height:30px;border-radius:50%">
+        <div><div style="font-size:12px;color:#2b1d16;font-weight:900">Ammar Firdaus</div><div style="font-size:9px">ammarcreava.creative</div></div>
+      </div>
+      <div class="it"><i></i>Persediaan</div><div class="it"><i></i>Skrip</div><div class="it"><i></i>Gambar arkib</div>
+      <div class="it"><i></i>Suara narasi</div><div class="it"><i></i>Sari kata</div><div class="it"><i></i>Render</div>
+      <div class="btn" style="bottom:62px;border:1.5px solid #d8c6b6;color:#6d5a4e">Intai prompt pertama</div>
+      <div class="btn" style="bottom:24px;background:var(--or);color:#fff">Beli sekarang</div>
+    </div>
+    <h3 id="uih">Lebih dari <em>template.</em></h3>
+    <div id="thumbs">
+      <div style="background-image:url(assets/cover.jpg)"></div>
+      <div style="background-image:url(assets/f1.jpg)"></div>
+      <div style="background-image:url(assets/f2.jpg)"></div>
+      <div style="background-image:url(assets/f3.jpg)"></div>
+      <div style="background-image:url(assets/ss1.jpg)"></div>
+    </div>
+    <div id="tags"><span>Claude Code</span><span>Whisper</span><span>FFmpeg</span><span>ElevenLabs</span><span>AI Studio</span></div>
+  </div>
+
+  <!-- L: kinetic words -->
+  <div class="scene2d" id="kin">
+    <div class="kin" id="k1" style="background:radial-gradient(circle,#f79a6a,#e9703d);color:#fff;font-size:86px">jom!!!!</div>
+    <div class="kin" id="k2" style="background:#f5efe9;font-size:34px"><span><span style="color:var(--or);font-size:20px;vertical-align:middle">●</span> Bina</span></div>
+    <div class="kin" id="k3" style="background:#f5efe9;color:var(--or);font-size:430px;letter-spacing:-12px;overflow:hidden;white-space:nowrap">Dokumentari</div>
+    <div class="kin" id="k4" style="background:#f5efe9;color:var(--or);font-size:34px">sendiri</div>
+  </div>
+
+  <div class="ov" id="halftone"></div>
+  <div class="ov" id="vig"></div>
+  <div class="ov" id="grain"></div>
+  <div class="ov" id="meta"><b>Buat Video Dokumentari<br>Menggunakan Claude</b><br>Ebook oleh Ammar Firdaus<br><br>27 muka · 14 prompt<br><br>Bahasa Melayu</div>
+  <div class="ov" id="footer">Buat Video Dokumentari Menggunakan Claude · Ebook oleh Ammar Firdaus</div>
+</div>
+<script type="importmap">
+{"imports":{"three":"./vendor/three/three.module.js","three/addons/":"./vendor/three/jsm/"}}
+</script>
+<script type="module" src="main.js"></script>
+</body>
+</html>
