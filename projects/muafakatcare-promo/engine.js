@@ -65,16 +65,15 @@
     tiles.forEach((d, i) => bob(d, 3, 5, 1.1, i * 0.6, 2));
 
     // ---------- 2 EBOOK
-    show('s2', T2, T3 + 0.4);
-    flash(T2 + 0.1, 0.6);
+    show('s2', T2 - 0.15, T3 + 0.4);
     tl.from('#eb-k', { y: -40, opacity: 0, duration: 0.6, ease: E3 }, T2 + 0.3);
     tl.from('#eb-h', { y: 60, opacity: 0, duration: 0.8, ease: E4 }, T2 + 0.4);
     const cv = [['#cv1', -320, -32, -260, -6], ['#cv3', 320, 32, -260, 6], ['#cv2', 0, 0, 80, 0]];
     cv.forEach(([id, x, ry, z, rz], i) => {
       tl.fromTo(id, { x: x * 0.2, y: 700, z: -2200, rotationY: ry * 4 + 180, rotationX: 40, opacity: 0 },
-        { x, y: 0, z, rotationY: ry, rotationX: 4, rotationZ: rz, opacity: 1, duration: 1.4, ease: 'expo.out', immediateRender: false }, T2 + 0.35 + i * 0.18);
+        { x, y: 0, z, rotationY: ry, rotationX: 4, rotationZ: rz, opacity: 1, duration: 1.4, ease: 'expo.out' }, T2 + 0.35 + i * 0.18);
     });
-    tl.fromTo('#covers', { rotationY: -10 }, { rotationY: 10, duration: T3 - T2, ease: 'none', immediateRender: false }, T2);
+    tl.fromTo('#covers', { rotationY: -10 }, { rotationY: 10, duration: T3 - T2, ease: 'none' }, T2);
     bob($('cv2'), 6, 12, 1.0, 0.3); bob($('cv1'), 5, 10, 0.9, 1.2); bob($('cv3'), 5, 10, 0.95, 2.4);
     ['#tg1', '#tg2', '#tg3'].forEach((id, i) => tl.from(id, { scale: 0, opacity: 0, duration: 0.5, ease: EB }, S('ebook') + 1.55 + i * 0.42));
     [$('tg1'), $('tg2'), $('tg3')].forEach((e, i) => bob(e, 8, 12, 1.2, i * 2));
@@ -82,12 +81,12 @@
     tl.to(['#covers', '#eb-h', '#eb-k', '#eb-chip', '#tg1', '#tg2', '#tg3'], { z: 600, opacity: 0, duration: 0.5, ease: 'power3.in' }, T3 - 0.3);
 
     // ---------- 3 SEARCH
-    show('s3', T3, T4 + 0.5);
+    show('s3', T3 - 0.15, T4 + 0.5);
     tl.fromTo('#srchwrap', { rotationX: 25, rotationY: -20, rotationZ: -10, z: -900, y: 200, opacity: 0 },
-      { rotationX: 14, rotationY: -12, rotationZ: -6, z: 0, y: 0, opacity: 1, duration: 1.0, ease: E4, immediateRender: false }, T3);
+      { rotationX: 14, rotationY: -12, rotationZ: -6, z: 0, y: 0, opacity: 1, duration: 1.0, ease: E4 }, T3);
     tl.to('#srchwrap', { rotationX: 6, rotationY: 8, rotationZ: -2, duration: T4 - T3 - 0.8, ease: 'sine.inOut' }, T3 + 1.0);
     ['#pt1', '#pt2', '#pt3', '#pt4', '#pt5'].forEach((id, i) => {
-      tl.fromTo(id, { z: -1400, opacity: 0, rotationY: 30 - i * 15 }, { z: -200 + i * 60, opacity: 1, rotationY: -15 + i * 8, rotationX: 10, duration: 1.2, ease: E3, immediateRender: false }, T3 + 0.1 + i * 0.08);
+      tl.fromTo(id, { z: -1400, opacity: 0, rotationY: 30 - i * 15 }, { z: -200 + i * 60, opacity: 1, rotationY: -15 + i * 8, rotationX: 10, duration: 1.2, ease: E3 }, T3 + 0.1 + i * 0.08);
       bob($(id.slice(1)), 10, 14, 0.8 + i * 0.1, i, 3);
     });
     const q = 'Ke mana nak salurkan infak?'; const ty = { n: 0 };
@@ -97,7 +96,7 @@
     tl.to(['#srchwrap', '#ptiles'], { x: -1200, rotationY: 40, opacity: 0, duration: 0.6, ease: 'power3.in' }, T4 - 0.25);
 
     // ---------- 4 PROGRAMS
-    show('s4', T4, T5 + 0.3);
+    show('s4', T4 - 0.15, T5 + 0.3);
     const progs = [
       ['pek-bantuan.jpg', 'Foodbank Bulanan', 'Pek makanan asas untuk asnaf, ibu tunggal & warga emas.', 'RM50 = 1 pek makanan'],
       ['katil-pasang.jpg', 'Wakaf Katil Hospital', 'Dipinjamkan tanpa caj kepada pesakit terlantar di rumah.', 'RM50 = 1 slot wakaf'],
@@ -111,21 +110,21 @@
         <div class="label"><div class="t">${t}</div><div class="d">${d}</div><div class="pr">${pr}</div><span class="pill red btn">Infak Sekarang</span></div>`;
       $('progs').appendChild(el);
       const a = T4 + i * per;
-      tl.fromTo(el, { x: 1100, z: -500, rotationY: -45, opacity: 0 }, { x: 0, z: 0, rotationY: -6, opacity: 1, duration: 0.75, ease: 'expo.out', immediateRender: false }, a);
-      tl.fromTo(el.querySelector('.label'), { x: 160, z: 200, opacity: 0 }, { x: 0, z: 120, opacity: 1, duration: 0.7, ease: E4, immediateRender: false }, a + 0.18);
-      tl.to(el, { rotationY: 6, duration: per - 0.6, ease: 'none' }, a + 0.75);
+      tl.fromTo(el, { x: 720, z: -420, rotationY: -35, opacity: 0 }, { x: 0, z: 0, rotationY: -6, opacity: 1, duration: 0.95, ease: 'power3.out' }, a - 0.05);
+      tl.fromTo(el.querySelector('.label'), { x: 160, z: 200, opacity: 0 }, { x: 0, z: 120, opacity: 1, duration: 0.7, ease: E4 }, a + 0.18);
+      tl.to(el, { rotationY: 6, duration: per - 1.2, ease: 'sine.inOut' }, a + 0.9);
       tl.to(el.querySelector('.frame'), { backgroundPosition: '50% 30%', duration: per, ease: 'none' }, a);
-      tl.to(el, { x: -1150, z: -400, rotationY: 45, opacity: 0, duration: 0.55, ease: 'power3.in' }, a + per - 0.2);
+      tl.to(el, { x: -720, z: -420, rotationY: 35, opacity: 0, duration: 0.6, ease: 'power2.in' }, a + per - 0.3);
       tl.set(el, { opacity: 0 }, 0);
       bob(el.querySelector('.label'), 4, 8, 1.3, i);
     });
 
     // ---------- 5 TRUST
-    show('s5', T5, T6 + 0.3);
+    show('s5', T5 - 0.15, T6 + 0.3);
     const imgs = ['serahan', 'hantar-pintu', 'van-bekalan', 'muat-bekalan', 'hantar-kotak', 'banjir-redah', 'pek-bantuan', 'katil-pasang', 'stok-foodbank', 'serahan', 'jaga-pesakit', 'hantar-pintu'];
     imgs.forEach((m) => { const d = document.createElement('div'); d.style.backgroundImage = `url(assets/${m}.jpg)`; $('plane').appendChild(d); });
     tl.fromTo('#planeWrap', { rotationX: 38, rotationZ: -14, z: -700, y: 300, opacity: 0 },
-      { rotationX: 30, rotationZ: -12, z: -300, y: -120, opacity: 1, duration: 1.2, ease: E4, immediateRender: false }, T5 - 0.1);
+      { rotationX: 30, rotationZ: -12, z: -300, y: -120, opacity: 1, duration: 1.2, ease: E4 }, T5 - 0.1);
     tl.to('#planeWrap', { y: -520, rotationZ: -8, duration: T6 - T5 - 0.9, ease: 'none' }, T5 + 1.1);
     tl.from('#tr1', { y: 60, opacity: 0, duration: 0.6, ease: E4 }, T5 + 0.15);
     tl.to('#tr1', { y: -60, opacity: 0, duration: 0.4, ease: 'power2.in' }, S('trust') + 1.75);
@@ -135,9 +134,8 @@
     tl.to('#s5 > *', { opacity: 0, duration: 0.4 }, T6 - 0.2);
 
     // ---------- 6 BAG
-    show('s6', T6, T7 + 0.4);
-    flash(T6 + 0.05, 0.5);
-    tl.fromTo('#bag', { y: 900, rotationY: -40, rotationX: 20 }, { y: 0, rotationY: -14, rotationX: 4, duration: 1.0, ease: 'expo.out', immediateRender: false }, T6);
+    show('s6', T6 - 0.15, T7 + 0.4);
+    tl.fromTo('#bag', { y: 900, rotationY: -40, rotationX: 20 }, { y: 0, rotationY: -14, rotationX: 4, duration: 1.0, ease: 'expo.out' }, T6);
     tl.to('#bag', { rotationY: 10, duration: T7 - T6 - 1, ease: 'sine.inOut' }, T6 + 1);
     tl.from('#bg-h', { y: 60, opacity: 0, duration: 0.7, ease: E4 }, T6 + 0.25);
     const dr = ['pek-bantuan', 'katil-pasang', 'hantar-kotak', 'serahan', 'muat-bekalan'];
@@ -146,7 +144,7 @@
       Object.assign(d.style, { left: 430 + ((i * 97) % 200) - 60 + 'px', top: '880px', width: '220px', height: '220px', backgroundImage: `url(assets/${m}.jpg)`, borderWidth: '6px' });
       $('drops').appendChild(d);
       tl.fromTo(d, { y: -230, x: (i - 2) * 230, rotation: (i - 2) * 25, opacity: 0, scale: 0.8 },
-        { y: 120, x: 0, rotation: (i - 2) * 6, scale: 0.6, opacity: 1, duration: 0.75, ease: 'power2.in', immediateRender: false }, T6 + 0.9 + i * 0.28);
+        { y: 120, x: 0, rotation: (i - 2) * 6, scale: 0.6, opacity: 1, duration: 0.75, ease: 'power2.in' }, T6 + 0.9 + i * 0.28);
       tl.set(d, { opacity: 0 }, T6 + 0.9 + i * 0.28 + 0.75);
       tl.to('#bag', { scaleY: 0.96, scaleX: 1.03, duration: 0.08, yoyo: true, repeat: 1, transformOrigin: '50% 100%' }, T6 + 0.9 + i * 0.28 + 0.72);
       tl.set(d, { opacity: 0 }, 0);
@@ -154,8 +152,7 @@
     tl.to(['#bag', '#bg-h'], { scale: 2.6, z: 600, opacity: 0, duration: 0.55, ease: 'power3.in' }, T7 - 0.35);
 
     // ---------- 7 END
-    show('s7', T7);
-    flash(T7 + 0.15, 0.9);
+    show('s7', T7 - 0.15);
     tl.from('#en-logo', { scale: 0.4, opacity: 0, rotationY: -60, duration: 1.1, ease: 'expo.out' }, T7 + 0.15);
     tl.from('#en-tag', { y: 40, opacity: 0, duration: 0.6, ease: E3 }, T7 + 0.6);
     tl.from('#en-url', { scale: 0.5, opacity: 0, duration: 0.7, ease: EB }, T7 + 0.85);
@@ -164,6 +161,14 @@
     tl.from('#en-reg', { opacity: 0, duration: 0.6 }, T7 + 1.6);
     tl.to('#en-b1', { scale: 1.07, duration: 0.35, yoyo: true, repeat: 3, ease: 'sine.inOut' }, T7 + 2.2);
     bob($('en-logo'), 0, 10, 1.1, 0);
+
+    // ---------- unified scene transitions (camera push-through)
+    const cuts = [[null, 's1', 0], ['s1', 's2', T2], ['s2', 's3', T3], ['s3', 's4', T4], ['s4', 's5', T5], ['s5', 's6', T6], ['s6', 's7', T7]];
+    cuts.forEach(([out, inn, t]) => {
+      if (out) tl.to('#' + out, { scale: 1.14, opacity: 0, filter: 'blur(14px)', duration: 0.5, ease: 'power2.in' }, t - 0.32);
+      if (t > 0) tl.fromTo('#' + inn, { scale: 0.88, opacity: 0, filter: 'blur(14px)' },
+        { scale: 1, opacity: 1, filter: 'blur(0px)', duration: 0.7, ease: 'power3.out' }, t - 0.12);
+    });
     tl.set({}, {}, END);
   }
 
