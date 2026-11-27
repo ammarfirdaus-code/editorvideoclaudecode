@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <title>Muafakat Care — Promo eBook & Infak</title>
 <link rel="stylesheet" href="fonts/fonts.css">
+<script>if (location.search.includes('land')) document.documentElement.classList.add('land');</script>
 <style>
   :root { --red:#C5162E; --red2:#E8344B; --navy:#2B2F7A; --ink:#1B1E4B; --mute:#6B6F93; --bg1:#F7F6F9; --bg2:#E6E5EC; }
   * { box-sizing:border-box; margin:0; padding:0; }
@@ -88,6 +89,55 @@
                font-family:'Poppins'; font-weight:600; font-size:44px; line-height:1.28; max-width:960px; color:rgba(255,255,255,.45); box-shadow:0 20px 50px -20px rgba(20,20,60,.5); }
   .cap-inner span.on { color:#fff; }
   .cap-inner span.on.kw { color:#FF7A8A; }
+
+  /* ================= LANDSCAPE 1920x1080 ================= */
+  .land, .land body { width:1920px; height:1080px; }
+  .land .scene { perspective-origin:50% 50%; }
+  .land .lft { left:150px !important; right:auto !important; text-align:left !important; }
+  /* 2 ebook */
+  .land #eb-k { top:250px !important; }
+  .land #eb-h { top:340px !important; font-size:150px !important; }
+  .land #eb-h span { font-size:46px !important; }
+  .land #eb-chip { top:690px !important; }
+  .land .cover { left:1260px !important; top:240px !important; }
+  .land #tg1 { left:1000px !important; top:230px !important; }
+  .land #tg2 { left:auto !important; right:110px !important; top:200px !important; }
+  .land #tg3 { left:auto !important; right:120px !important; top:760px !important; }
+  /* 3 search */
+  .land .search { left:510px; top:300px; }
+  .land .sugg { left:570px; height:88px; font-size:34px; }
+  .land #sg1 { top:480px !important; } .land #sg2 { top:580px !important; } .land #sg3 { top:680px !important; } .land #sg4 { top:780px !important; }
+  .land #pt1 { left:110px !important; top:110px !important; }
+  .land #pt2 { left:1530px !important; top:120px !important; }
+  .land #pt3 { left:90px !important; top:620px !important; }
+  .land #pt4 { left:1580px !important; top:560px !important; }
+  .land #pt5 { left:330px !important; top:420px !important; }
+  /* 4 programs */
+  .land .prog { width:1920px; height:1080px; }
+  .land .frame { left:330px; top:110px; width:640px; height:760px; }
+  .land .label { left:900px; top:290px; width:680px; }
+  .land .label .t { font-size:56px; }
+  .land .count { right:300px; top:120px; }
+  /* 5 trust */
+  .land .plane { left:900px; top:-60px; }
+  .land .fadeTop { width:1150px; height:100%; background:linear-gradient(90deg, var(--bg1) 62%, rgba(247,246,249,0)); }
+  .land .fadeBot { height:260px; }
+  .land #tr1, .land #tr2 { top:250px !important; font-size:104px !important; }
+  .land #tr-chip { top:560px !important; }
+  .land #tr-reg { top:690px !important; }
+  /* 6 bag */
+  .land #bg-h { top:280px !important; font-size:104px !important; }
+  .land #bg-h span:last-child { font-size:78px !important; }
+  .land .bag { left:1150px; top:330px; }
+  /* 7 end */
+  .land #en-logo { left:680px !important; top:60px !important; width:560px !important; }
+  .land #en-tag { top:480px !important; font-size:42px !important; }
+  .land #en-url { top:570px !important; }
+  .land #en-btns { top:720px !important; }
+  .land #en-reg { top:870px !important; font-size:24px !important; }
+  /* captions */
+  .land #cap { top:950px; left:120px; right:120px; }
+  .land .cap-inner { font-size:38px; padding:16px 30px; max-width:1600px; }
 </style>
 </head>
 <body>
@@ -109,8 +159,8 @@
 
   <!-- 2 EBOOK -->
   <div class="scene" id="s2" style="z-index:5">
-    <div class="abs ctr" id="eb-k" style="top:250px"><span class="pill red" style="padding:16px 34px;font-size:34px;letter-spacing:.14em">PERCUMA</span></div>
-    <h1 class="abs ctr" id="eb-h" style="top:350px;font-size:132px">10 eBook<br><span style="font-size:58px;font-weight:700;color:var(--mute);letter-spacing:-0.02em">untuk hati yang suka memberi</span></h1>
+    <div class="abs ctr lft" id="eb-k" style="top:250px"><span class="pill red" style="padding:16px 34px;font-size:34px;letter-spacing:.14em">PERCUMA</span></div>
+    <h1 class="abs ctr lft" id="eb-h" style="top:350px;font-size:132px">10 eBook<br><span style="font-size:58px;font-weight:700;color:var(--mute);letter-spacing:-0.02em">untuk hati yang suka memberi</span></h1>
     <div class="abs p3" id="covers" style="left:0;top:0;width:1080px;height:1920px">
       <div class="cover" id="cv1" style="left:350px;top:720px;background-image:url(assets/30-hadis-tentang-memberi.jpg)"></div>
       <div class="cover" id="cv2" style="left:350px;top:720px;background-image:url(assets/20-ayat-infak-dalam-al-quran.jpg)"></div>
@@ -119,7 +169,7 @@
     <div class="abs pill wh" id="tg1" style="left:70px;top:690px;padding:16px 30px;font-size:34px">Sedekah</div>
     <div class="abs pill wh" id="tg2" style="right:80px;top:660px;padding:16px 30px;font-size:34px">Doa</div>
     <div class="abs pill wh" id="tg3" style="right:60px;top:1250px;padding:16px 30px;font-size:34px">Wakaf</div>
-    <div class="abs ctr" id="eb-chip" style="top:1320px"><span class="pill wh" style="padding:22px 38px;font-size:38px"><span class="tick">✓</span>Muat turun terus · tanpa daftar</span></div>
+    <div class="abs ctr lft" id="eb-chip" style="top:1320px"><span class="pill wh" style="padding:22px 38px;font-size:38px"><span class="tick">✓</span>Muat turun terus · tanpa daftar</span></div>
   </div>
 
   <!-- 3 SEARCH -->
@@ -152,15 +202,15 @@
       <div class="plane" id="plane"></div>
     </div>
     <div class="fadeTop"></div><div class="fadeBot"></div>
-    <h1 class="abs ctr" id="tr1" style="top:230px;font-size:92px;z-index:4">Setiap ringgit<br><span class="red">direkod.</span></h1>
-    <h1 class="abs ctr" id="tr2" style="top:230px;font-size:92px;z-index:4">Setiap agihan<br><span class="red">dilaporkan.</span></h1>
-    <div class="abs ctr" id="tr-chip" style="top:1190px;z-index:4"><span class="pill wh" style="padding:24px 40px;font-size:42px"><span class="tick">✓</span>Papan Impak</span></div>
-    <div class="abs ctr" id="tr-reg" style="top:1320px;z-index:4"><span class="pill wh" style="padding:14px 28px;font-size:28px;font-family:Inter;font-weight:600;color:var(--mute)">Pertubuhan berdaftar · PPM-002-10-13032020</span></div>
+    <h1 class="abs ctr lft" id="tr1" style="top:230px;font-size:92px;z-index:4">Setiap ringgit<br><span class="red">direkod.</span></h1>
+    <h1 class="abs ctr lft" id="tr2" style="top:230px;font-size:92px;z-index:4">Setiap agihan<br><span class="red">dilaporkan.</span></h1>
+    <div class="abs ctr lft" id="tr-chip" style="top:1190px;z-index:4"><span class="pill wh" style="padding:24px 40px;font-size:42px"><span class="tick">✓</span>Papan Impak</span></div>
+    <div class="abs ctr lft" id="tr-reg" style="top:1320px;z-index:4"><span class="pill wh" style="padding:14px 28px;font-size:28px;font-family:Inter;font-weight:600;color:var(--mute)">Pertubuhan berdaftar · PPM-002-10-13032020</span></div>
   </div>
 
   <!-- 6 BAG -->
   <div class="scene" id="s6" style="z-index:5">
-    <h1 class="abs ctr" id="bg-h" style="top:250px;font-size:96px;z-index:3">Infak anda,<br><span class="red">sampai terus</span><br><span style="font-size:72px">ke rumah mereka.</span></h1>
+    <h1 class="abs ctr lft" id="bg-h" style="top:250px;font-size:96px;z-index:3">Infak anda,<br><span class="red">sampai terus</span><br><span style="font-size:72px">ke rumah mereka.</span></h1>
     <div class="abs p3" id="drops" style="inset:0;z-index:1"></div>
     <div class="bag p3" id="bag" style="z-index:2">
       <svg class="abs" id="handle" style="left:110px;top:-150px" width="280" height="190" viewBox="0 0 280 190"><path d="M20 190 C20 40 260 40 260 190" fill="none" stroke="#B9B7C6" stroke-width="16" stroke-linecap="round"/><path d="M20 190 C20 40 260 40 260 190" fill="none" stroke="#E2E0EA" stroke-width="7" stroke-linecap="round" transform="translate(-3,-3)"/></svg>

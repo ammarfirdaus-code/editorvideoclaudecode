@@ -9,15 +9,16 @@ const dir = __dirname;
 const args = process.argv.slice(2);
 const stillsArg = args.includes('--stills') ? args[args.indexOf('--stills') + 1] : null;
 const fps = args.includes('--fps') ? +args[args.indexOf('--fps') + 1] : 30;
-const name = 'muafakatcare';
+const land = args.includes('--land');
+const name = land ? 'muafakatcare-landscape' : 'muafakatcare';
 
 fs.writeFileSync(path.join(dir, 'timeline.js'), 'window.TL=' + fs.readFileSync(path.join(dir, 'timeline.json'), 'utf8') + ';');
 
 (async () => {
   const browser = await chromium.launch();
-  const page = await browser.newPage({ viewport: { width: 1080, height: 1920 }, deviceScaleFactor: 1 });
+  const page = await browser.newPage({ viewport: land ? { width: 1920, height: 1080 } : { width: 1080, height: 1920 }, deviceScaleFactor: 1 });
   page.on('pageerror', (e) => console.error('PAGE ERROR', e.message));
-  await page.goto('file://' + path.join(dir, 'index.html'));
+  await page.goto('file://' + path.join(dir, 'index.html') + (land ? '?land' : ''));
   await page.waitForFunction(() => window.READY === true, null, { timeout: 30000 });
   const duration = await page.evaluate(() => window.DURATION);
 
@@ -32,7 +33,7 @@ fs.writeFileSync(path.join(dir, 'timeline.js'), 'window.TL=' + fs.readFileSync(p
     return;
   }
 
-  const silent = path.join(dir, 'silent.mp4');
+  const silent = path.join(dir, land ? 'silent-landscape.mp4' : 'silent.mp4');
   const remixOnly = args.includes('--remix') && fs.existsSync(silent);
   if (!remixOnly) {
   const ff = spawn('ffmpeg', ['-y', '-loglevel', 'error', '-f', 'image2pipe', '-framerate', String(fps), '-c:v', 'mjpeg', '-i', '-',
@@ -50,7 +51,7 @@ fs.writeFileSync(path.join(dir, 'timeline.js'), 'window.TL=' + fs.readFileSync(p
   await browser.close();
 
   // mix: VO (delayed 0) + music ducked under VO via sidechain, loudness-normalised
-  const out = path.join(dir, 'muafakatcare-promo.mp4');
+  const out = path.join(dir, land ? 'muafakatcare-promo-landscape.mp4' : 'muafakatcare-promo.mp4');
   const hasVO = fs.existsSync(path.join(dir, 'vo.wav'));
   const fc = hasVO
     ? '[1:a]aresample=44100,highpass=f=70,acompressor=threshold=-18dB:ratio=3:attack=5:release=80,volume=1.6,apad,asplit=2[vo][sc];' +

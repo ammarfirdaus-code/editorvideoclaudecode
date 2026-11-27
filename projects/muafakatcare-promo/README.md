@@ -19,7 +19,8 @@ Semua aset (logo, kulit eBook, foto) dan fakta (harga, no. PPM) diambil dari mua
 python3 build_music.py 33     # music.wav (prosedur, bebas royalti)
 python3 build_vo.py           # VO Gemini TTS (Google AI Studio) -> vo.wav + timeline.json
 python3 build_vo.py --no-vo   # tanpa suara (kapsyen ikut slot dalam script.json)
-node render.js                # -> muafakatcare-promo.mp4 (campur VO jika vo.wav ada)
+node render.js                # -> muafakatcare-promo.mp4 (9:16, campur VO jika vo.wav ada)
+node render.js --land         # -> muafakatcare-promo-landscape.mp4 (16:9, 1920×1080)
 node render.js --remix        # campur semula audio sahaja, tanpa render frame
 node render.js --stills 3,10  # semak frame
 ```

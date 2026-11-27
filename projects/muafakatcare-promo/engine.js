@@ -21,6 +21,7 @@
   };
   const flash = (t, peak = 0.85) => tl.fromTo('#flash', { opacity: peak }, { opacity: 0, duration: 0.45, ease: 'power2.out', immediateRender: false }, t);
 
+  const L = document.documentElement.classList.contains('land');
   function build() {
     const T2 = S('ebook') - 0.25, T3 = 9.25, T4 = 12.65, T5 = 20.1, T6 = 24.75, T7 = 28.0;
     const END = TL.duration;
@@ -40,6 +41,7 @@
     ];
     layout.forEach(([t, m], k) => {
       Object.entries(m).forEach(([id, [x, y, s]]) => {
+        if (L) { x = x * 1920 / 1080 - 40; y = y * 1080 / 1920 - 60; s *= 0.8; }
         if (k === 0) tl.set('#' + id, { x, y, scale: s }, 0);
         else tl.to('#' + id, { x, y, scale: s, duration: 1.1, ease: EI }, t - 0.35);
       });
@@ -53,12 +55,12 @@
     rows.forEach((r, ri) => r.forEach((ch, ci) => {
       const d = document.createElement('div');
       d.className = 'tile' + (ri === 0 ? ' r' : ''); d.textContent = ch;
-      const W = 108, x0 = 540 - (r.length * W - 8) / 2 + ci * W, y0 = 640 + ri * 160;
+      const W = 108, CX = L ? 960 : 540, CY = L ? 440 : 800, x0 = CX - (r.length * W - 8) / 2 + ci * W, y0 = (L ? 280 : 640) + ri * 160;
       d.style.left = x0 + 'px'; d.style.top = y0 + 'px'; box.appendChild(d); tiles.push(d);
       const rnd = (k) => Math.sin(n * 12.9898 + k * 78.233) * 43758.5453 % 1;
       tl.from(d, { x: rnd(1) * 900, y: rnd(2) * 1100, z: -1800 + rnd(3) * 900, rotationX: rnd(4) * 360, rotationY: rnd(5) * 360, rotationZ: rnd(6) * 180,
         opacity: 0, duration: 1.3, ease: 'expo.out' }, 0.1 + n * 0.045);
-      tl.to(d, { x: (x0 - 490) * 2.2, y: (y0 - 800) * 2.2, z: 900, rotationY: rnd(7) * 120, rotationX: rnd(8) * 90, opacity: 0, duration: 0.6, ease: 'power3.in' }, T2 - 0.35 + rnd(9) * 0.12);
+      tl.to(d, { x: (x0 - CX + 50) * 2.2, y: (y0 - CY) * 2.2, z: 900, rotationY: rnd(7) * 120, rotationX: rnd(8) * 90, opacity: 0, duration: 0.6, ease: 'power3.in' }, T2 - 0.35 + rnd(9) * 0.12);
       n++;
     }));
     tl.to(tiles, { y: '-=14', duration: 0.25, ease: 'sine.inOut', yoyo: true, repeat: 1, stagger: 0.03 }, 1.9);
@@ -141,7 +143,7 @@
     const dr = ['pek-bantuan', 'katil-pasang', 'hantar-kotak', 'serahan', 'muat-bekalan'];
     dr.forEach((m, i) => {
       const d = document.createElement('div'); d.className = 'ptile';
-      Object.assign(d.style, { left: 430 + ((i * 97) % 200) - 60 + 'px', top: '880px', width: '220px', height: '220px', backgroundImage: `url(assets/${m}.jpg)`, borderWidth: '6px' });
+      Object.assign(d.style, { left: (L ? 1290 : 430) + ((i * 97) % 200) - 60 + 'px', top: (L ? 390 : 880) + 'px', width: '220px', height: '220px', backgroundImage: `url(assets/${m}.jpg)`, borderWidth: '6px' });
       $('drops').appendChild(d);
       tl.fromTo(d, { y: -230, x: (i - 2) * 230, rotation: (i - 2) * 25, opacity: 0, scale: 0.8 },
         { y: 120, x: 0, rotation: (i - 2) * 6, scale: 0.6, opacity: 1, duration: 0.75, ease: 'power2.in' }, T6 + 0.9 + i * 0.28);
