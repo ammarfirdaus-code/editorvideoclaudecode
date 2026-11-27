@@ -44,13 +44,18 @@ canvas#gl { position: absolute; inset: 0; width: 1920px; height: 1080px; }
 #wipe { left: 50%; top: 50%; width: 10px; height: 10px; border-radius: 50%; background: #F6F5FA; transform: translate(-50%,-50%); box-shadow: 0 0 120px rgba(91,45,255,.12); }
 #endcard { background: radial-gradient(900px 500px at 50% 50%, rgba(122,77,255,.13), rgba(255,77,136,.06) 50%, rgba(0,0,0,0) 75%); left: 0; right: 0; top: 0; bottom: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
 #endcard .title { font: 800 104px/1.15 Montserrat; letter-spacing: -1px; color: #23256A; }
-#endcard .sub { margin-top: 34px; font: italic 600 48px/1 Inter; color: #5B4FD0; }
+#endcard .sub { margin-top: 30px; font: italic 600 48px/1 Inter; color: #5B4FD0; }
 #endcard .lime { color: #fff; background: linear-gradient(90deg,#3D2FBF,#7A4DFF); padding: 4px 26px 12px; margin-left: 10px; border-radius: 26px; }
-#endcard .icons { margin-top: 46px; display: flex; gap: 22px; }
+#endcard .icons { margin-top: 40px; display: flex; gap: 22px; }
 #endcard .icons img { width: 76px; height: 76px; border-radius: 18px; box-shadow: 0 10px 24px rgba(40,20,90,.22); }
-#endcard .mark { margin-top: 30px; font: 800 44px/1 Montserrat; letter-spacing: -1px; padding-bottom: 6px; }
-#endcard .url { margin-top: 44px; font: 700 52px/1 Montserrat; color: #15131F; letter-spacing: 1px; }
-#endcard .tag { margin-top: 40px; font: 600 30px Inter; color: #6B6880; letter-spacing: 4px; }
+#endcard .cta { margin-top: 44px; font: 500 34px Inter; color: #3B3950; }
+#endcard .cta b { font-weight: 600; color: #23256A; }
+#endcard .btn { position: relative; overflow: hidden; margin-top: 26px; display: flex; align-items: center; gap: 22px; padding: 26px 56px; border-radius: 60px; background: linear-gradient(90deg,#3D2FBF,#7A4DFF 55%,#FF4D88); box-shadow: 0 18px 44px rgba(91,45,255,.35); }
+#endcard .bt { font: 800 52px/1 Montserrat; color: #fff; letter-spacing: .5px; }
+#endcard .arr { font: 800 54px/1 Inter; color: #fff; display: inline-block; }
+#endcard .ripple { position: absolute; left: 50%; top: 50%; width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,.45); transform: translate(-50%,-50%); opacity: 0; }
+#cursor { left: 0; top: 0; filter: drop-shadow(0 6px 10px rgba(0,0,0,.3)); opacity: 0; }
+#endcard .tag { margin-top: 38px; font: 600 30px Inter; color: #6B6880; letter-spacing: 4px; }
 #flash { background: #fff; opacity: 0; }
 </style>
 <script type="importmap">{ "imports": { "three": "./node_modules/three/build/three.module.js", "three/addons/": "./node_modules/three/examples/jsm/" } }</script>
@@ -63,9 +68,10 @@ canvas#gl { position: absolute; inset: 0; width: 1920px; height: 1080px; }
   <div class="abs info" id="info1"><h3>14 Prompt Sebenar</h3><p>Siap copy, dengan<br>screenshot sebenar</p><b>Lihat contoh</b></div>
   <div class="abs info" id="info2"><h3>Ebook Buat Video<br>Dokumentari</h3><p>PDF 27 muka,<br>langkah demi langkah</p><b>Dapatkan sekarang</b></div>
   <div class="abs info" id="info3"><h3>6 Langkah</h3><p>Brief, bahan, suara,<br>bina, semak, render</p><b>Mula buat</b></div>
-  <div class="abs" id="kami"><div class="w">Satu sesi,</div><div id="pill"><svg width="100%" height="100%"><defs><linearGradient id="pg" x1="0" x2="1"><stop offset="0" stop-color="#FFB347"/><stop offset=".45" stop-color="#FF4D88"/><stop offset="1" stop-color="#5B2DFF"/></linearGradient></defs><rect id="pillrect" x="4" y="4" rx="70" ry="70" fill="rgba(255,255,255,.35)" stroke="url(#pg)" stroke-width="6" stroke-dasharray="22 16" stroke-linecap="round"/></svg><div class="plus">+</div><div class="txt">satu dokumentari</div></div></div>
+  <div class="abs" id="kami"><div class="w">Satu ilmu,</div><div id="pill"><svg width="100%" height="100%"><defs><linearGradient id="pg" x1="0" x2="1"><stop offset="0" stop-color="#FFB347"/><stop offset=".45" stop-color="#FF4D88"/><stop offset="1" stop-color="#5B2DFF"/></linearGradient></defs><rect id="pillrect" x="4" y="4" rx="70" ry="70" fill="rgba(255,255,255,.35)" stroke="url(#pg)" stroke-width="6" stroke-dasharray="22 16" stroke-linecap="round"/></svg><div class="plus">+</div><div class="txt">satu skill Claude</div></div></div>
   <div class="abs" id="wipe"></div>
-  <div class="abs" id="endcard"><div class="title">Buat Video <span class="lime">Dokumentari</span></div><div class="sub">menggunakan Claude</div><div class="icons"></div><div class="tag">EBOOK PDF &nbsp;•&nbsp; 27 MUKA &nbsp;•&nbsp; RM19</div><div class="url">ammarcreava.my</div><div class="mark grad">ammarcreava</div></div>
+  <div class="abs" id="endcard"><div class="title">Buat Video <span class="lime">Dokumentari</span></div><div class="sub">dengan Claude</div><div class="icons"></div><div class="cta">Dapatkan ebook <b>Buat Video Dokumentari dengan Claude</b> di</div><div class="btn"><span class="ripple"></span><span class="bt">ammarcreava.my</span><span class="arr">→</span></div><div class="tag">EBOOK PDF &nbsp;•&nbsp; 27 MUKA &nbsp;•&nbsp; RM19</div></div>
+  <svg class="abs" id="cursor" width="64" height="64" viewBox="0 0 24 24"><path d="M4 2 L4 19 L8.5 15 L11.5 22 L14.5 20.7 L11.6 14 L18 14 Z" fill="#15131F" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/></svg>
   <div class="abs layer" id="flash"></div>
 </div>
 <script type="module" src="main.js"></script>

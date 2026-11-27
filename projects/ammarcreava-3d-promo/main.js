@@ -4,8 +4,8 @@ import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.j
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 
 const W = 1920, H = 1080;
-export const DURATION = 30;
-const WN = [0, 5.5, 11.5, 20.5, 24.5, 27, 28.2, 30], WO = [0, 3.4, 7.2, 12.2, 15.2, 16.75, 17.5, 18];
+export const DURATION = 33;
+const WN = [0, 5.5, 11.5, 20.5, 24.5, 27, 28.2, 33], WO = [0, 3.4, 7.2, 12.2, 15.2, 16.75, 17.5, 18];
 function warp(t) { for (let i = 1; i < WN.length; i++) if (t <= WN[i]) return WO[i - 1] + (WO[i] - WO[i - 1]) * (t - WN[i - 1]) / (WN[i] - WN[i - 1]); return 18; }
 const P = '#5B2DFF', P2 = '#7A4DFF', K = '#FF4D88', K2 = '#FFB3E6';
 
@@ -24,7 +24,13 @@ await document.fonts.load('800 100px Montserrat');
 await document.fonts.load('700 100px Montserrat');
 await document.fonts.load('600 100px Inter');
 await document.fonts.ready;
-const COVER = await new Promise(r => { const im = new Image(); im.onload = () => r(im); im.src = 'assets/cover-dokumentari.jpg'; });
+const loadImg = src => new Promise(r => { const im = new Image(); im.onload = () => r(im); im.src = src; });
+const COVERS = {};
+for (const k of ['dokumentari', '67-prompt', 'satu-ayat', 'rakam-suara', 'komik', 'kinetik']) COVERS[k] = await loadImg(`assets/cover-${k}.jpg`);
+const COVER = COVERS.dokumentari;
+const EBOOK = { dokumentari: ['Buat Video Dokumentari', '27 muka  •  6 langkah'], '67-prompt': ['67 Prompt Video Claude', '146 muka  •  67 prompt'],
+  'satu-ayat': ['Satu Ayat, Satu Video', 'Panduan + 4 fail skill'], 'rakam-suara': ['Rakam Suara, Jadi Video', 'Panduan + fail skill'],
+  komik: ['Video Cerita Komik', 'Panduan + fail skill'], kinetik: ['Video Promo Kinetik', 'Panduan + fail skill'] };
 const NAVY = '#23256A', LIME = '#C9C2FF';
 
 const renderer = new THREE.WebGLRenderer({ canvas: $('gl'), antialias: true, preserveDrawingBuffer: true });
@@ -32,6 +38,7 @@ renderer.setPixelRatio(1);
 renderer.setSize(W, H, false);
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.toneMappingExposure = 1.05;
+renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 const pmrem = new THREE.PMREMGenerator(renderer);
 const envTex = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
@@ -57,39 +64,57 @@ const silver = new THREE.MeshPhysicalMaterial({ color: 0xc9c9d2, metalness: 0.95
 const whitePlastic = new THREE.MeshPhysicalMaterial({ color: 0xffffff, roughness: 0.35, clearcoat: 0.6 });
 const bubbleMat = new THREE.MeshPhysicalMaterial({ color: 0xffffff, transmission: 1, thickness: 0.15, roughness: 0, ior: 1.2, iridescence: 1, iridescenceIOR: 1.4, transparent: true, opacity: 1, envMapIntensity: 1.6 });
 
-function screenTex(variant) {
+function screenTex(variant, key = 'dokumentari') {
+  const IMG = COVERS[key], [TT, SUB] = EBOOK[key];
   return canvasTex(512, 1100, (g, w, h) => {
     g.save(); rr(g, 0, 0, w, h, 70); g.clip();
     g.fillStyle = lgrad(g, 0, 0, 0, h, [[0, '#2A2468'], [1, NAVY]]); g.fillRect(0, 0, w, h);
     g.fillStyle = '#fff'; g.font = '600 26px Inter'; g.textAlign = 'left'; g.fillText('10:00', 52, 62);
     g.textAlign = 'center'; g.font = '600 24px Inter'; g.fillStyle = 'rgba(255,255,255,.7)'; g.fillText('Ebook PDF', w / 2, 128);
-    const cw = 400, ch = cw * COVER.height / COVER.width, cx = (w - cw) / 2, cy = 150;
+    const cw = 400, ch = cw * IMG.height / IMG.width, cx = (w - cw) / 2, cy = 150;
     g.shadowColor = 'rgba(0,0,0,.55)'; g.shadowBlur = 40; g.shadowOffsetY = 18;
     g.fillStyle = '#000'; g.fillRect(cx, cy, cw, ch); g.shadowColor = 'transparent';
-    g.drawImage(COVER, cx, cy, cw, ch);
-    g.fillStyle = '#fff'; g.font = '800 32px Montserrat'; g.fillText('Buat Video Dokumentari', w / 2, cy + ch + 62);
-    g.fillStyle = 'rgba(255,255,255,.7)'; g.font = '500 24px Inter'; g.fillText('27 muka  •  6 langkah', w / 2, cy + ch + 100);
+    g.drawImage(IMG, cx, cy, cw, ch);
+    g.fillStyle = '#fff'; g.font = '800 32px Montserrat'; g.fillText(TT, w / 2, cy + ch + 62);
+    g.fillStyle = 'rgba(255,255,255,.7)'; g.font = '500 24px Inter'; g.fillText(SUB, w / 2, cy + ch + 100);
     g.fillStyle = LIME; rr(g, 96, cy + ch + 130, w - 192, 70, 35); g.fill();
     g.fillStyle = NAVY; g.font = '700 28px Montserrat'; g.fillText(variant === 'b' ? 'Baca sekarang' : 'Dapatkan ebook', w / 2, cy + ch + 175);
     g.restore();
   });
 }
-function makeBook(s = 1) {
-  const coverT = canvasTex(1241, 1763, g => g.drawImage(COVER, 0, 0));
-  const pages = canvasTex(64, 512, (g, w, h) => { g.fillStyle = '#f6f4ee'; g.fillRect(0, 0, w, h); for (let x = 0; x < w; x += 3) { g.fillStyle = `rgba(0,0,0,${.04 + (x % 6 ? .03 : 0)})`; g.fillRect(x, 0, 1, h); } });
-  const pagesH = canvasTex(512, 64, (g, w, h) => { g.fillStyle = '#f6f4ee'; g.fillRect(0, 0, w, h); for (let y = 0; y < h; y += 3) { g.fillStyle = 'rgba(0,0,0,.05)'; g.fillRect(0, y, w, 1); } });
-  const spine = canvasTex(128, 1024, (g, w, h) => { g.fillStyle = NAVY; g.fillRect(0, 0, w, h); g.save(); g.translate(w / 2, h / 2); g.rotate(Math.PI / 2); g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillStyle = '#fff'; g.font = '800 56px Montserrat'; g.font = '800 50px Montserrat'; g.fillText('VIDEO DOKUMENTARI', -90, 0); g.fillStyle = LIME; g.fillText('CLAUDE', 290, 0); g.restore(); });
-  const navyM = new THREE.MeshPhysicalMaterial({ color: NAVY, roughness: .5, clearcoat: .6 });
-  const mats = [new THREE.MeshStandardMaterial({ map: pages, roughness: .9 }), new THREE.MeshPhysicalMaterial({ map: spine, roughness: .45, clearcoat: .6 }),
-    new THREE.MeshStandardMaterial({ map: pagesH, roughness: .9 }), new THREE.MeshStandardMaterial({ map: pagesH, roughness: .9 }),
-    new THREE.MeshPhysicalMaterial({ map: coverT, roughness: .35, clearcoat: 1, clearcoatRoughness: .1 }), navyM];
-  const m = new THREE.Mesh(new THREE.BoxGeometry(1.41, 2.0, .2), mats);
-  const grp = new THREE.Group(); grp.add(m); grp.scale.setScalar(s); return grp;
+function makeBook(s = 1, key = 'dokumentari') {
+  const IMG = COVERS[key];
+  // sample the cover's edge colour for spine / back
+  const sc = document.createElement('canvas'); sc.width = sc.height = 8; const sg = sc.getContext('2d'); sg.drawImage(IMG, 0, IMG.height * .45, 30, IMG.height * .1, 0, 0, 8, 8);
+  const [cr, cg, cb] = sg.getImageData(2, 4, 1, 1).data; const edge = `rgb(${cr},${cg},${cb})`;
+  const Wd = 1.41, Hd = Wd * IMG.height / IMG.width, T = .17, bd = .014, oh = .022;
+  const coverT = canvasTex(IMG.width, IMG.height, g => g.drawImage(IMG, 0, 0));
+  const pageEdge = canvasTex(64, 512, (g, w, h) => { g.fillStyle = '#f7f5ef'; g.fillRect(0, 0, w, h); for (let x = 0; x < w; x += 2) { g.fillStyle = `rgba(80,70,60,${.05 + ((x * 7) % 5) * .012})`; g.fillRect(x, 0, 1, h); } });
+  const pageTop = canvasTex(512, 64, (g, w, h) => { g.fillStyle = '#f7f5ef'; g.fillRect(0, 0, w, h); for (let y = 0; y < h; y += 2) { g.fillStyle = `rgba(80,70,60,${.05 + ((y * 7) % 5) * .012})`; g.fillRect(0, y, w, 1); } });
+  const spineT = canvasTex(1024, 128, (g, w, h) => { g.fillStyle = edge; g.fillRect(0, 0, w, h); g.fillStyle = 'rgba(255,255,255,.12)'; g.fillRect(0, h * .2, w, 2); g.fillRect(0, h * .8, w, 2);
+    g.fillStyle = '#fff'; g.font = '800 46px Montserrat'; g.textBaseline = 'middle'; g.fillText(EBOOK[key][0].toUpperCase(), 70, h / 2 + 2); g.font = '700 30px Montserrat'; g.textAlign = 'right'; g.fillText('AMMARCREAVA', w - 60, h / 2 + 2); });
+  const edgeM = new THREE.MeshPhysicalMaterial({ color: edge, roughness: .5, clearcoat: .4 });
+  const innerM = new THREE.MeshStandardMaterial({ color: 0xf2f0ea, roughness: .9 });
+  const front = new THREE.Mesh(new THREE.BoxGeometry(Wd + oh, Hd + oh * 2, bd), [edgeM, edgeM, edgeM, edgeM, new THREE.MeshPhysicalMaterial({ map: coverT, roughness: .38, clearcoat: .8, clearcoatRoughness: .2 }), innerM]);
+  front.position.set(oh / 2, 0, T / 2 + bd / 2);
+  const backB = new THREE.Mesh(new THREE.BoxGeometry(Wd + oh, Hd + oh * 2, bd), [edgeM, edgeM, edgeM, edgeM, innerM, edgeM]);
+  backB.position.set(oh / 2, 0, -T / 2 - bd / 2);
+  const pm = new THREE.MeshStandardMaterial({ map: pageEdge, roughness: .95 }), pt = new THREE.MeshStandardMaterial({ map: pageTop, roughness: .95 });
+  const block = new THREE.Mesh(new THREE.BoxGeometry(Wd - .01, Hd, T), [pm, pm, pt, pt, innerM, innerM]); block.position.x = .005;
+  // rounded spine: half cylinder wrapping the left edge
+  const r = T / 2 + bd;
+  const spineGeo = new THREE.CylinderGeometry(r, r, Hd + oh * 2, 32, 1, true, Math.PI, Math.PI);
+  const spine = new THREE.Mesh(spineGeo, new THREE.MeshPhysicalMaterial({ map: spineT, roughness: .45, clearcoat: .6, side: THREE.DoubleSide }));
+  spine.position.x = -Wd / 2 + .01; spine.scale.x = .55;
+  spineT.rotation = Math.PI / 2; spineT.center.set(.5, .5);
+  const grp = new THREE.Group(); grp.add(front, backB, block, spine);
+  grp.traverse(m => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } });
+  grp.scale.setScalar(s); grp.userData.H = Hd; return grp;
 }
-function makePhone(color = metal, variant = 'a') {
+function makePhone(color = metal, variant = 'a', key = 'dokumentari') {
   const grp = new THREE.Group();
   const body = new THREE.Mesh(new RoundedBoxGeometry(1.6, 3.3, 0.17, 6, 0.24), color); grp.add(body);
-  const scr = new THREE.Mesh(new THREE.PlaneGeometry(1.48, 3.18), new THREE.MeshBasicMaterial({ map: screenTex(variant), transparent: true, toneMapped: false }));
+  const scr = new THREE.Mesh(new THREE.PlaneGeometry(1.48, 3.18), new THREE.MeshBasicMaterial({ map: screenTex(variant, key), transparent: true, toneMapped: false }));
   scr.position.z = 0.0865; grp.add(scr);
   const isl = new THREE.Mesh(new RoundedBoxGeometry(0.42, 0.12, 0.01, 3, 0.05), new THREE.MeshBasicMaterial({ color: 0x050505 }));
   isl.position.set(0, 1.42, 0.09); grp.add(isl);
@@ -302,16 +327,16 @@ const floatIcons = [['claude', -3.7, 1.9, 1.2, 1.0], ['ai', 3.9, 1.6, 1.0, .9], 
   .map(([k, x, y, z, sc], i) => { const o = iconTile(k, sc); o.userData = { x, y, z, p: i * 1.7 }; s3.add(o); return o; });
 // hero A: gifts
 const gifts = new THREE.Group(); gifts.scale.setScalar(1.3); s3.add(gifts);
-const gA = makeBook(1.35), gB = makeBook(1.0), gC = makeBook(.8);
-gA.position.set(-.1, 0, .5); gB.position.set(2.1, .5, -1.2); gC.position.set(-2.1, -.6, -.8); gifts.add(gA, gB, gC);
+const gA = makeBook(1.3, 'dokumentari'), gB = makeBook(.82, '67-prompt'), gC = makeBook(.8, 'satu-ayat'), gD = makeBook(.62, 'rakam-suara'), gE = makeBook(.62, 'komik');
+gA.position.set(-.1, 0, .6); gB.position.set(2.15, .4, -1.0); gC.position.set(-2.2, -.4, -.8); gD.position.set(3.4, -1.0, -2.2); gE.position.set(-3.3, 1.2, -2.4); gifts.add(gA, gB, gC, gD, gE);
 // hero B: laptop
 const laptop = makeLaptop(); laptop.scale.setScalar(1.2); s3.add(laptop);
 // hero C: fanned phones
 const phones = new THREE.Group(); phones.scale.setScalar(1.15); s3.add(phones);
 const pmA = new THREE.MeshPhysicalMaterial({ color: 0x6a3cff, metalness: .8, roughness: .3, clearcoat: 1 });
 const pmB = new THREE.MeshPhysicalMaterial({ color: 0xff4d88, metalness: .7, roughness: .3, clearcoat: 1 });
-const ph1 = makePhone(pmA, 'b'), ph2 = makePhone(metal, 'a'), ph3 = makePhone(pmB, 'b');
-[ph1, ph2, ph3].forEach((p, i) => { p.position.set((i - 1) * .9, (i === 1 ? .25 : 0), i * .25); p.rotation.set(0, .25 - i * .12, (1 - i) * .22); phones.add(p); });
+const ph1 = makePhone(pmA, 'b', '67-prompt'), ph2 = makePhone(metal, 'a', 'dokumentari'), ph3 = makePhone(pmB, 'b', 'satu-ayat');
+[ph1, ph2, ph3].forEach((p, i) => { p.position.set((i - 1) * .9, (i === 1 ? .25 : 0), i === 1 ? .55 : 0); p.rotation.set(0, .25 - i * .12, (1 - i) * .22); phones.add(p); });
 // hero D: class — floating board with AI chip
 const klass = new THREE.Group(); klass.scale.setScalar(1.15); s3.add(klass);
 {
@@ -353,7 +378,7 @@ function seek3(t) {
   // gifts
   let [i, o] = heroIO(t, S3A, S3C);
   gifts.visible = t < S3C; gifts.position.set(0, mix(-6, 0, i) + o * 7, 0); gifts.rotation.set(.05, 0, 0);
-  [gA, gB, gC].forEach((g, j) => { g.rotation.set(Math.sin(k + j) * .12, j === 0 ? mix(-2.4, -.25, eo(lin(t, S3A, S3A + 1.1))) + Math.sin(k * 1.2) * .08 : (j === 1 ? -.6 : .5) + Math.sin(k + j) * .15, Math.cos(k * .8 + j) * .08); g.position.y = [0, .5, -.6][j] + Math.sin(k * 1.4 + j * 2) * .12; });
+  [gA, gB, gC, gD, gE].forEach((g, j) => { g.rotation.set(Math.sin(k + j) * .1, j === 0 ? mix(-2.6, -.22, eo(lin(t, S3A, S3A + 1.1))) + Math.sin(k * 1.2) * .08 : [0, -.55, .5, -.4, .45][j] + Math.sin(k + j) * .12, Math.cos(k * .8 + j) * .07); g.position.y = [0, .4, -.4, -1.0, 1.2][j] + Math.sin(k * 1.4 + j * 2) * .12; });
   // laptop
   [i, o] = heroIO(t, S3B, S3D);
   laptop.visible = t > S3B - .1 && t < S3D; laptop.position.set(mix(5, -.4, i) - o * 7, -.5 + Math.sin(k) * .08, 0);
@@ -383,12 +408,12 @@ function seek3(t) {
 // ======================= SCENE 4: "Kami, [+ uruskan]" + gift drop =======================
 const s4 = makeScene('#EEEDF3');
 const c4 = new THREE.PerspectiveCamera(30, W / H, .1, 100); c4.position.set(0, 1.2, 12); c4.lookAt(0, -.4, 0);
-const bigGift = makeBook(1.6); s4.add(bigGift);
+const bigGift = makeBook(1.45, 'dokumentari'); s4.add(bigGift);
 const blob4 = new THREE.Mesh(new THREE.PlaneGeometry(5, 5), new THREE.MeshBasicMaterial({ map: blobTex, transparent: true, depthWrite: false })); blob4.rotation.x = -Math.PI / 2; blob4.position.y = -2.6; s4.add(blob4);
 const S4 = 12.2;
 function seek4(t) {
   const d = lin(t, S4 + 1.9, S4 + 2.5);
-  const yb = d < 1 ? mix(9, -2.6 + 1.6, ei(d)) : -2.6 + 1.6 + Math.abs(Math.sin((t - S4 - 2.5) * 9)) * .5 * Math.exp(-(t - S4 - 2.5) * 6);
+  const BH = bigGift.userData.H * 1.45 / 2 + .03; const yb = d < 1 ? mix(9, -2.6 + BH, ei(d)) : -2.6 + BH + Math.abs(Math.sin((t - S4 - 2.5) * 9)) * .5 * Math.exp(-(t - S4 - 2.5) * 6);
   bigGift.position.set(0, yb, 0); bigGift.rotation.set(0, -.5 + (t - S4) * .2, 0);
   bigGift.visible = t > S4 + 1.8;
   blob4.material.opacity = clamp(lin(t, S4 + 2.0, S4 + 2.5)); blob4.scale.setScalar(.6 + .4 * clamp(lin(t, S4 + 2.0, S4 + 2.5)));
@@ -400,9 +425,17 @@ const c5 = new THREE.PerspectiveCamera(30, W / H, .1, 100);
 const line = new THREE.Group(); s5.add(line);
 const lp = makePhone(metal, 'a'); lp.position.set(2.6, .1, .4); lp.rotation.y = -.35; line.add(lp);
 const ll = makeLaptop(); ll.position.set(-2.3, -1.55, -.4); ll.rotation.y = .5; ll.userData.hinge.rotation.x = -0.22; ll.scale.setScalar(.9); line.add(ll);
-const lg = makeBook(1.25); lg.position.set(.1, -.35, -.3); lg.rotation.y = .1; line.add(lg);
-const lg2 = makeBook(.8); lg2.position.set(1.2, -.8, 1.0); lg2.rotation.y = -.35; line.add(lg2);
-const floor = new THREE.Mesh(new THREE.PlaneGeometry(14, 6), new THREE.MeshBasicMaterial({ map: blobTex, transparent: true, depthWrite: false, opacity: .8 })); floor.rotation.x = -Math.PI / 2; floor.position.y = -1.6; line.add(floor);
+const lg = makeBook(1.2, 'dokumentari'); lg.position.set(.1, -1.6 + lg.userData.H * 1.2 / 2 + .03, -.3); lg.rotation.y = .1; line.add(lg);
+const lg2 = makeBook(.78, '67-prompt'); lg2.position.set(1.25, -1.6 + lg2.userData.H * .78 / 2 + .02, 1.0); lg2.rotation.y = -.35; line.add(lg2);
+const lg3 = makeBook(.7, 'kinetik'); lg3.rotation.set(-Math.PI / 2, 0, .35); lg3.position.set(-.55, -1.6 + .11, 1.25); line.add(lg3);
+const lg4 = makeBook(.7, 'komik'); lg4.rotation.set(-Math.PI / 2, 0, .1); lg4.position.set(-.5, -1.6 + .25, 1.2); line.add(lg4);
+const shadowFloor = new THREE.Mesh(new THREE.PlaneGeometry(30, 20), new THREE.ShadowMaterial({ opacity: .38 })); shadowFloor.rotation.x = -Math.PI / 2; shadowFloor.position.y = -1.6; shadowFloor.receiveShadow = true; line.add(shadowFloor);
+const sun5 = new THREE.DirectionalLight(0xffffff, 1.2); sun5.position.set(-4.5, 8, 1.5); sun5.castShadow = true; sun5.shadow.mapSize.set(2048, 2048);
+Object.assign(sun5.shadow.camera, { left: -7, right: 7, top: 7, bottom: -7, near: 1, far: 30 }); sun5.shadow.radius = 4; sun5.shadow.bias = -.0008; s5.add(sun5);
+const contactTex = canvasTex(256, 128, g => { const gr = g.createRadialGradient(128, 64, 0, 128, 64, 128); gr.addColorStop(0, 'rgba(20,10,50,.55)'); gr.addColorStop(.5, 'rgba(20,10,50,.18)'); gr.addColorStop(1, 'rgba(20,10,50,0)'); g.fillStyle = gr; g.fillRect(0, 0, 256, 128); });
+[[2.6, .4, 2.0, .7], [.1, -.3, 2.0, .6], [1.25, 1.0, 1.3, .5], [-.5, 1.2, 1.9, 1.2], [-2.3, -.4, 3.6, 2.4]].forEach(([x, z, w, d]) => { const c = new THREE.Mesh(new THREE.PlaneGeometry(w, d), new THREE.MeshBasicMaterial({ map: contactTex, transparent: true, depthWrite: false })); c.rotation.x = -Math.PI / 2; c.position.set(x, -1.595, z); line.add(c); });
+[lp, ll].forEach(o => o.traverse(m => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } }));
+const floor = new THREE.Mesh(new THREE.PlaneGeometry(14, 6), new THREE.MeshBasicMaterial({ map: blobTex, transparent: true, depthWrite: false, opacity: .45 })); floor.rotation.x = -Math.PI / 2; floor.position.y = -1.6; line.add(floor);
 const sp5 = sparkles(400, 9, 12, 3, -6, .08); s5.add(sp5);
 const S5 = 15.2;
 function seek5(t) {
@@ -470,11 +503,23 @@ export function seek(tn) {
     const e = back(clamp(lin(t, 16.75, 17.25)));
     const ti = end.querySelector('.title'); ti.style.transform = `scale(${.75 + .25 * e})`; ti.style.opacity = clamp(lin(t, 16.75, 17.0));
     const fade = (sel, a) => { const el = end.querySelector(sel); el.style.opacity = clamp(lin(t, a, a + .3)); el.style.transform = `translateY(${(1 - eo(lin(t, a, a + .4))) * 30}px)`; };
-    fade('.sub', 16.9); fade('.tag', 17.0); fade('.url', 17.12); fade('.mark', 17.25);
+    fade('.sub', 16.9); fade('.cta', 17.05); fade('.btn', 17.15); fade('.tag', 17.25);
     const ic = end.querySelector('.icons');
     if (!ic.children.length) ic.innerHTML = ['claude', 'ai', 'film', 'mic', 'music', 'globe'].map(k => `<img src="${window.__iconData[k]}">`).join('');
     [...ic.children].forEach((im, i) => { const q = back(clamp(lin(t, 16.95 + i * .04, 17.2 + i * .04))); im.style.transform = `scale(${q})`; im.style.opacity = clamp(lin(t, 16.95 + i * .04, 17.05 + i * .04)); });
   }
+  const cur = $('cursor'); const btn = end.querySelector('.btn');
+  if (tn >= 28.6) {
+    const r = btn.getBoundingClientRect(); const bx = r.left + r.width * .62, by = r.top + r.height * .55;
+    const m = eio(lin(tn, 28.8, 29.9)); const cx = mix(1500, bx, m), cy = mix(1080, by, m) + Math.sin(m * Math.PI) * -60;
+    const press = Math.max(0, 1 - Math.abs(tn - 30.15) / .18);
+    cur.style.opacity = clamp(lin(tn, 28.8, 29.1)) * (1 - lin(tn, 32.4, 32.8));
+    cur.style.transform = `translate(${cx - 10}px, ${cy - 6}px) scale(${1 - press * .15})`;
+    btn.style.transform = `translateY(0) scale(${1 - press * .05 + Math.max(0, Math.sin((tn - 30.3) * 3)) * .02 * (tn > 30.3 ? 1 : 0)})`;
+    const rp = end.querySelector('.ripple'); const ru = lin(tn, 30.15, 30.9);
+    rp.style.width = rp.style.height = (10 + ru * 800) + 'px'; rp.style.opacity = tn > 30.15 ? .6 * (1 - ru) : 0;
+  } else cur.style.opacity = 0;
+  if (t >= 16.75) end.querySelector('.arr').style.transform = `translateX(${Math.max(0, Math.sin(tn * 5)) * 12}px)`;
   // white flashes at cuts
   const flashAt = (c, w) => Math.max(0, 1 - Math.abs(t - c) / w);
   $('flash').style.opacity = Math.max(flashAt(3.4, .22), flashAt(7.2, .25) * .95, flashAt(S4, .2) * .9, flashAt(S5, .2) * .8);

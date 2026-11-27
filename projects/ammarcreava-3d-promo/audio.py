@@ -3,12 +3,12 @@
 import numpy as np, wave
 from scipy.signal import butter, sosfilt, fftconvolve
 
-SR = 48000; DUR = 30.0; N = int(SR * DUR)
+SR = 48000; DUR = 33.0; N = int(SR * DUR)
 rng = np.random.default_rng(11)
 music = np.zeros((N, 2)); sfx = np.zeros((N, 2))
 
 # timeline warp (same keyframes as main.js): old 18 s event times -> new 30 s times
-WN = [0, 5.5, 11.5, 20.5, 24.5, 27, 28.2, 30]; WO = [0, 3.4, 7.2, 12.2, 15.2, 16.75, 17.5, 18]
+WN = [0, 5.5, 11.5, 20.5, 24.5, 27, 28.2, 33]; WO = [0, 3.4, 7.2, 12.2, 15.2, 16.75, 17.5, 18]
 def nt(old): return float(np.interp(old, WO, WN))
 
 def add(buf, t0, sig, gain=1.0, pan=0.0):
@@ -81,7 +81,10 @@ while b * bar < END - .05:
             if i % 2: add(music, tt, snap(), .06, -.2)
     b += 1
 for i, n in enumerate([50, 57, 62, 66, 69, 74]): add(music, END + i * .03, piano(n, 3.3, .8), .2, pan=(i - 2.5) * .12)
-add(music, END, pad([50, 57, 62, 66], 3.2), .55)
+add(music, END, pad([50, 57, 62, 66], 6.0), .55)
+# gentle outro on the end card hold: slow piano arpeggio over D
+for i, n in enumerate([62, 66, 69, 74, 69, 66, 74, 78]):
+    add(music, END + 2.6 + i * .42, piano(n, 2.6, .5), .14, pan=(-.2 if i % 2 else .2))
 for i, n in enumerate([86, 90, 93, 98]): add(music, END + .15 + i * .09, glock(n, 2.5), .05, pan=(i - 1.5) * .3)
 # room reverb
 ir_t = np.arange(int(1.6 * SR)) / SR
@@ -89,7 +92,7 @@ ir = lp(rng.standard_normal(len(ir_t)) * np.exp(-ir_t / .45), 5000); ir /= np.sq
 wet = np.stack([fftconvolve(music[:, ch], ir)[:N] for ch in range(2)], 1)
 music += wet * .22
 t_all = np.arange(N) / SR
-music *= np.interp(t_all, [0, .4, nt(12.2) - .2, nt(12.2) + .3, nt(15.2) - .4, nt(15.2), 29.2, 30], [0, 1, 1, .72, .72, 1, 1, 0])[:, None]
+music *= np.interp(t_all, [0, .4, nt(12.2) - .2, nt(12.2) + .3, nt(15.2) - .4, nt(15.2), 31.8, 33], [0, 1, 1, .72, .72, 1, 1, 0])[:, None]
 
 # ---- soft SFX (no typing clicks, no pops) ----
 def air(dur=1.0, lo=200, hi=1600):
@@ -118,6 +121,33 @@ add(sfx, nt(13.35), ting(95), .07)                                     # "+" in 
 add(sfx, nt(14.7), felt_thump(), .32)                                  # ebook lands
 add(sfx, nt(16.4) - .5, air(1.0, 300, 2600), .1)                       # circle wipe
 add(sfx, nt(16.75), shimmer(2.0), .13)                                 # end card
+
+# 0:02 key tiles burst out of the phone: soft wooden marimba plinks (pentatonic D), quiet
+def marimba(note):
+    n = int(.6 * SR); t = np.arange(n) / SR; fr = f(note)
+    return (np.sin(2*np.pi*fr*t) + .3*np.sin(2*np.pi*fr*4*t)*np.exp(-t/.03)) * np.exp(-t / .16) * np.minimum(1, t / .002)
+penta = [74, 76, 78, 81, 83, 86, 88, 90]
+for i in range(16):
+    tt = nt(1.0) + i * .085 + rng.uniform(0, .03)
+    add(sfx, tt, marimba(penta[i % 8] + (0 if i < 8 else 12)), .05, rng.uniform(-.7, .7))
+add(sfx, nt(1.0) - .15, air(1.1, 300, 2200), .07)
+# 0:06 typing in the prompt bar: soft laptop keys
+def key():
+    n = int(.05 * SR); t = np.arange(n) / SR
+    click = bp(rng.standard_normal(n), 1800, 6000) * np.exp(-t / .004)
+    thock = np.sin(2 * np.pi * rng.uniform(170, 230) * t) * np.exp(-t / .012) * .6
+    return click * .7 + thock
+q = 'Buat video dokumentari...'
+for i, ch in enumerate(q):
+    tt = nt(4.0 + i / 16)
+    if ch != ' ': add(sfx, tt + rng.uniform(-.012, .012), key(), .12 * rng.uniform(.75, 1.1), rng.uniform(-.15, .15))
+    else: add(sfx, tt, key() * 1.2, .13)                                # space bar slightly heavier
+# 0:30 button click
+def mouse_click():
+    n = int(.06 * SR); t = np.arange(n) / SR
+    return bp(rng.standard_normal(n), 2500, 8000) * np.exp(-t / .003) + np.sin(2*np.pi*900*t) * np.exp(-t / .006) * .3
+add(sfx, 30.12, mouse_click(), .22)
+add(sfx, 30.16, ting(98), .06)
 
 mix = music * .85 + sfx
 mix = np.tanh(mix * 1.1) / 1.1
