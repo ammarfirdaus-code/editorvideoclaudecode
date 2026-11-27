@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<title>Promo Ebook Dokumentari Claude</title>
+<link href="fonts/fonts.css" rel="stylesheet">
+<style>
+  :root{
+    --cream:#fff6ea; --peach:#ffe4c9; --peach2:#ffd2a8; --ink:#1d1838;
+    --indigo:#3a2fa6; --purple:#6b2fb3; --yellow:#ffd23f; --pink:#ff4f9a; --paper:#fffdf7;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:1920px;height:1080px;overflow:hidden;background:var(--cream)}
+  body{font-family:Nunito,system-ui,sans-serif;color:var(--ink)}
+  #stage{position:relative;width:1920px;height:1080px;overflow:hidden;
+    background:radial-gradient(120% 90% at 50% 20%,#fffaf2 0%,var(--peach) 70%,var(--peach2) 100%)}
+  .scene{position:absolute;inset:0;opacity:0;overflow:hidden}
+  .persp{perspective:1600px;perspective-origin:50% 40%}
+  .abs{position:absolute}
+  .grain{position:absolute;inset:0;pointer-events:none;z-index:50;opacity:.10;mix-blend-mode:multiply;
+    background-image:radial-gradient(#7a4a2a 1px,transparent 1.2px);background-size:6px 6px}
+  .vignette{position:absolute;inset:0;pointer-events:none;z-index:49;
+    background:radial-gradient(90% 80% at 50% 45%,transparent 55%,rgba(150,80,30,.28) 100%)}
+
+  /* Objects */
+  .book{width:420px;height:593px;border-radius:6px 14px 14px 6px;background:url(assets/cover.jpg) center/cover;
+    box-shadow:-10px 0 0 #2a2180 inset, 30px 40px 60px rgba(90,40,10,.35)}
+  .photo{background:#fff;padding:14px 14px 40px;box-shadow:12px 18px 30px rgba(90,40,10,.28);border-radius:3px}
+  .photo img{display:block;width:100%;height:100%;object-fit:cover;filter:sepia(.25)}
+  .tape{position:absolute;width:110px;height:30px;background:rgba(255,210,63,.75);top:-12px;left:50%;margin-left:-55px;transform:rotate(-4deg)}
+  .sticky{background:var(--yellow);padding:22px 26px;font-weight:800;font-size:30px;line-height:1.15;
+    box-shadow:10px 14px 24px rgba(90,40,10,.25);border-radius:4px}
+  .pill{display:flex;align-items:center;gap:22px;background:#fff;border-radius:28px;padding:26px 34px;
+    box-shadow:0 30px 60px rgba(90,40,10,.25),0 4px 0 #f1d9c2}
+  .pill .ico{width:64px;height:64px;border-radius:18px;background:var(--indigo);display:grid;place-items:center;color:#fff;font-size:34px}
+  .pill b{display:block;font-size:46px;font-weight:900}
+  .pill span{display:block;font-size:24px;color:#7a6a80;font-weight:700}
+  .cursor{width:150px;height:150px}
+  .btn3d{padding:40px 110px;border-radius:999px;font-weight:900;font-size:120px;color:#fff;letter-spacing:2px;
+    background:linear-gradient(180deg,#5a4be0,var(--indigo));box-shadow:0 22px 0 #241b78,0 50px 80px rgba(40,20,120,.35);
+    text-shadow:0 6px 0 rgba(0,0,0,.18)}
+  .pencilcup{width:170px;height:200px;border-radius:0 0 30px 30px;background:linear-gradient(90deg,#e8743b,#ff9a5a 50%,#d8642b);
+    box-shadow:20px 30px 40px rgba(90,40,10,.3)}
+  .pencil{position:absolute;bottom:150px;width:22px;height:230px;border-radius:4px;transform-origin:50% 100%}
+  .pencil::after{content:"";position:absolute;top:-28px;left:0;border-left:11px solid transparent;border-right:11px solid transparent;border-bottom:28px solid #f4c99a}
+  .mug{width:150px;height:160px;border-radius:12px 12px 40px 40px;background:var(--yellow);box-shadow:20px 30px 40px rgba(90,40,10,.25)}
+  .desk{position:absolute;left:-200px;right:-200px;bottom:-260px;height:620px;background:linear-gradient(180deg,#ffe9d3,#ffd9b8);
+    transform:rotateX(62deg);transform-origin:50% 0;border-top:8px solid #ffcfa1}
+  .window{position:absolute;top:70px;width:420px;height:470px;border-radius:12px;
+    background:linear-gradient(180deg,#fffef8,#fff3df);box-shadow:inset 0 0 0 16px #ffe6cc,0 0 120px 40px rgba(255,255,240,.9)}
+  .h1{font-weight:900;font-size:120px;line-height:.98;letter-spacing:-2px}
+  .indigo{color:var(--indigo)} .pinkc{color:var(--pink)}
+  .card{background:#fff;border-radius:22px;box-shadow:0 24px 50px rgba(90,40,10,.22);padding:24px 30px;display:flex;align-items:center;gap:22px}
+  .card .ico{width:70px;height:70px;border-radius:18px;display:grid;place-items:center;font-size:38px;color:#fff;flex:none}
+  .card b{font-size:40px;font-weight:900}
+  .bul{font-size:34px;font-weight:800;color:#5b4b63;display:flex;align-items:center;gap:16px}
+  .bul i{width:14px;height:14px;border-radius:50%;background:var(--pink);display:inline-block}
+  .cloud{position:absolute;background:#fff;border-radius:999px;filter:blur(1px);opacity:.95}
+  .cloud::before,.cloud::after{content:"";position:absolute;background:#fff;border-radius:50%}
+  .cloud::before{width:55%;height:150%;left:15%;top:-70%}
+  .cloud::after{width:40%;height:120%;left:50%;top:-45%}
+  .ring{position:absolute;border-radius:50%;border:44px solid var(--indigo)}
+  .folder{width:420px;height:300px;position:relative}
+  .folder .back{position:absolute;inset:0;background:#e9a23b;border-radius:18px}
+  .folder .tab{position:absolute;top:-34px;left:0;width:170px;height:60px;background:#e9a23b;border-radius:16px 16px 0 0}
+  .folder .doc{position:absolute;left:40px;right:40px;top:-60px;height:240px;background:#fff;border-radius:10px;box-shadow:0 10px 20px rgba(0,0,0,.1);
+    font-weight:900;font-size:40px;padding:22px 26px;color:var(--ink)}
+  .folder .front{position:absolute;left:0;right:0;bottom:0;height:220px;background:linear-gradient(180deg,#ffc35a,#f5a93a);border-radius:14px 14px 18px 18px;
+    transform-origin:50% 100%;display:flex;align-items:flex-end;padding:24px 30px;font-weight:900;font-size:36px;color:#7a3f00}
+  .ui{width:1400px;height:780px;background:#fbf8f3;border-radius:22px;box-shadow:0 50px 100px rgba(90,40,10,.25);overflow:hidden;display:flex}
+  .ui .side{width:300px;background:#f3eee6;padding:34px 28px;font-weight:800;font-size:24px;color:#6a5f70}
+  .ui .side div{padding:12px 0}
+  .ui .main{flex:1;position:relative}
+  .phase{position:absolute;width:190px;height:250px;border-radius:18px;background:#fff;box-shadow:0 20px 40px rgba(90,40,10,.18);
+    padding:18px;display:flex;flex-direction:column;gap:12px}
+  .phase .n{width:56px;height:56px;border-radius:14px;color:#fff;font-weight:900;font-size:32px;display:grid;place-items:center}
+  .phase b{font-size:26px;font-weight:900;line-height:1.1}
+  .phase .ln{height:10px;border-radius:5px;background:#eee4da}
+  .word{position:absolute;left:0;right:0;text-align:center;font-weight:900;font-size:92px}
+  .cta{display:inline-block;background:var(--pink);color:#fff;font-weight:900;font-size:54px;padding:22px 56px;border-radius:999px;
+    box-shadow:0 14px 0 #c22d6e,0 30px 50px rgba(200,40,110,.35)}
+  .conf{position:absolute;width:26px;height:26px}
+  .mono{font-family:"Special Elite",monospace}
+</style>
+</head>
+<body>
+<div id="stage">
+
+  <!-- S1: Desk overhead, floating ebook and archive photos -->
+  <div class="scene persp" id="s1">
+    <div class="abs" id="s1world" style="inset:0;transform-style:preserve-3d">
+      <div class="abs photo" id="s1p1" style="left:180px;top:150px;width:470px;height:310px"><div class="tape"></div><img src="assets/f1.jpg"></div>
+      <div class="abs photo" id="s1p2" style="left:1260px;top:600px;width:470px;height:310px"><div class="tape"></div><img src="assets/f2.jpg"></div>
+      <div class="abs photo" id="s1p3" style="left:1350px;top:110px;width:400px;height:260px"><div class="tape"></div><img src="assets/f3.jpg"></div>
+      <div class="abs book" id="s1book" style="left:750px;top:240px"></div>
+      <div class="abs sticky" id="s1s1" style="left:230px;top:640px;transform:rotate(-6deg)">Dokumentari<br>6 minit ✦</div>
+      <div class="abs pencilcup" id="s1cup" style="left:120px;top:480px">
+        <div class="pencil" style="left:30px;background:#3a2fa6;transform:rotate(-14deg)"></div>
+        <div class="pencil" style="left:74px;background:#ff4f9a;transform:rotate(4deg)"></div>
+        <div class="pencil" style="left:116px;background:#ffd23f;transform:rotate(18deg)"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S2: "Belajar Prompt" pill + cursor -->
+  <div class="scene persp" id="s2">
+    <div class="abs book" id="s2book" style="left:250px;top:250px;transform:rotate(-8deg) scale(.8)"></div>
+    <div class="abs photo" id="s2p" style="left:1250px;top:120px;width:420px;height:270px;transform:rotate(6deg)"><img src="assets/f4.jpg"></div>
+    <div class="abs pill" id="s2pill" style="left:700px;top:430px">
+      <div class="ico">✎</div><div><b>Belajar Prompt</b><span>Salin & tampal, tanpa koding</span></div>
+    </div>
+    <svg class="abs cursor" id="s2cur" style="left:1150px;top:560px" viewBox="0 0 100 100"><path d="M10 6 L86 46 L52 56 L68 92 L54 98 L38 62 L12 84 Z" fill="#3a2fa6" stroke="#fff" stroke-width="5" stroke-linejoin="round"/></svg>
+  </div>
+
+  <!-- S3: room with window, then big "Mula" button -->
+  <div class="scene persp" id="s3">
+    <div class="abs" id="s3room" style="inset:0;transform-style:preserve-3d">
+      <div class="window" style="left:300px"></div><div class="window" style="left:1200px"></div>
+      <div class="desk"></div>
+      <div class="abs book" id="s3book" style="left:770px;top:330px;transform:scale(.62) rotateX(8deg)"></div>
+      <div class="abs mug" style="left:420px;top:700px"></div>
+      <div class="abs pencilcup" style="left:1350px;top:660px"></div>
+    </div>
+    <div class="abs btn3d" id="s3btn" style="left:50%;top:66%;transform:translate(-50%,-50%)">Mula</div>
+    <svg class="abs cursor" id="s3cur" style="left:1250px;top:640px;width:190px;height:190px" viewBox="0 0 100 100"><path d="M10 6 L86 46 L52 56 L68 92 L54 98 L38 62 L12 84 Z" fill="#ff4f9a" stroke="#fff" stroke-width="5" stroke-linejoin="round"/></svg>
+  </div>
+
+  <!-- S4: prompt typed on paper + highlighter -->
+  <div class="scene persp" id="s4">
+    <div class="abs" id="s4paper" style="left:160px;top:120px;width:1700px;height:900px;background:var(--paper);border-radius:10px;
+      box-shadow:0 40px 80px rgba(90,40,10,.25);padding:90px 100px;transform:rotateX(28deg) rotateZ(-8deg)">
+      <div class="mono" style="font-size:30px;color:#a08a7a;margin-bottom:26px">LANGKAH 1 · PROMPT PERTAMA</div>
+      <div class="mono" id="s4txt" style="font-size:54px;line-height:1.45;position:relative">
+        <span id="s4hl" class="abs" style="left:-10px;top:4px;height:70px;width:0;background:rgba(255,210,63,.7);z-index:0"></span>
+        <span style="position:relative;z-index:1" id="s4type"></span>
+      </div>
+    </div>
+    <div class="abs" id="s4marker" style="left:1300px;top:120px;width:90px;height:420px;border-radius:40px 40px 14px 14px;
+      background:linear-gradient(90deg,#f0b800,#ffd23f 50%,#e3a900);transform:rotate(28deg);box-shadow:30px 30px 40px rgba(90,40,10,.3)"></div>
+  </div>
+
+  <!-- yellow flash -->
+  <div class="scene" id="flash" style="background:var(--yellow)"></div>
+
+  <!-- S5: open ebook spread + flying stickies -->
+  <div class="scene persp" id="s5">
+    <div class="abs" id="s5spread" style="left:360px;top:200px;width:1200px;height:680px;display:flex;transform:rotateX(38deg) rotateZ(-10deg);
+      box-shadow:30px 60px 80px rgba(90,40,10,.3)">
+      <div style="flex:1;background:#fff;border-radius:12px 0 0 12px;padding:40px;border-right:2px solid #eadfd2">
+        <div style="font-weight:900;font-size:40px;color:var(--indigo)">Workflow 5 fasa</div>
+        <img src="assets/f1.jpg" style="width:100%;margin-top:24px;border-radius:8px">
+        <div style="height:14px;background:#efe6dc;border-radius:7px;margin-top:22px;width:80%"></div>
+        <div style="height:14px;background:#efe6dc;border-radius:7px;margin-top:14px;width:60%"></div>
+      </div>
+      <div style="flex:1;background:url(assets/cover.jpg) center/cover;border-radius:0 12px 12px 0"></div>
+    </div>
+    <div class="abs sticky" id="s5a" style="left:1500px;top:640px;transform:rotate(8deg)">14 prompt<br>sebenar</div>
+    <div class="abs sticky" id="s5b" style="left:180px;top:150px;background:#ffb3d1;transform:rotate(-8deg)">27 muka<br>step by step</div>
+    <div class="abs sticky" id="s5c" style="left:1450px;top:120px;background:#c9c2ff;transform:rotate(5deg)">Bonus:<br>fail skill</div>
+  </div>
+
+  <!-- S6: Brand + clouds, then headline + tool cards -->
+  <div class="scene" id="s6" style="background:linear-gradient(180deg,#ffcf9e 0%,#ffe9d2 55%,#fff6ea 100%)">
+    <div class="cloud" style="left:-80px;top:620px;width:520px;height:120px"></div>
+    <div class="cloud" style="left:1450px;top:560px;width:560px;height:130px"></div>
+    <div class="cloud" id="s6c3" style="left:700px;top:800px;width:700px;height:140px"></div>
+    <div class="abs" id="s6brand" style="left:0;right:0;top:330px;text-align:center">
+      <img src="assets/logo.png" style="width:150px;height:150px;border-radius:50%;box-shadow:0 20px 40px rgba(90,40,10,.25)">
+      <div style="font-weight:900;font-size:110px;color:#fff;text-shadow:0 8px 30px rgba(150,70,20,.35);letter-spacing:2px">AMMARCREAVA</div>
+      <div style="font-weight:800;font-size:34px;color:var(--pink)">oleh Ammar Firdaus</div>
+    </div>
+    <div class="abs" id="s6head" style="left:140px;top:600px;opacity:0">
+      <div style="font-weight:900;font-size:84px;line-height:1.02">Satu ebook,<br><span class="indigo">dokumentari penuh</span><br>dari skrip ke MP4</div>
+    </div>
+    <div class="abs" id="s6cards" style="left:1000px;top:560px;display:flex;flex-direction:column;gap:22px">
+      <div class="card"><div class="ico" style="background:#d97757">✳</div><b>Claude Code</b></div>
+      <div class="card"><div class="ico" style="background:var(--purple)">🎙</div><b>Whisper + Suara</b></div>
+      <div class="card"><div class="ico" style="background:var(--indigo)">🎬</div><b>FFmpeg → MP4</b></div>
+    </div>
+    <div class="abs" id="s6bul" style="left:1500px;top:600px;display:flex;flex-direction:column;gap:26px">
+      <div class="bul"><i></i>27 muka</div><div class="bul"><i></i>14 prompt asal</div>
+      <div class="bul"><i></i>Bahasa Melayu</div><div class="bul"><i></i>16:9 + Reels</div>
+    </div>
+  </div>
+
+  <!-- S7: ring + folder skill -->
+  <div class="scene" id="s7" style="background:#fffaf3">
+    <div class="ring" id="s7r1" style="left:50%;top:50%;width:900px;height:900px;margin:-450px 0 0 -450px"></div>
+    <div class="ring" id="s7r2" style="left:50%;top:50%;width:1300px;height:1300px;margin:-650px 0 0 -650px;border-width:20px;border-color:var(--pink)"></div>
+    <div class="abs folder" id="s7f" style="left:750px;top:400px">
+      <div class="back"></div><div class="tab"></div>
+      <div class="doc" id="s7doc">.pdf<div style="font-size:24px;color:#8a7a90;margin-top:6px">+ SKILL.md</div></div>
+      <div class="front" id="s7front">video-dokumentari</div>
+    </div>
+  </div>
+
+  <!-- S8: Claude Code UI + 5 phase cards -->
+  <div class="scene" id="s8" style="background:#fbf6ee">
+    <div class="abs ui" id="s8ui" style="left:260px;top:150px">
+      <div class="side">
+        <div style="color:var(--ink);font-size:30px;font-weight:900">✳ Code</div>
+        <div>＋ New</div><div>⌕ Search</div><div>▤ Artifacts</div><div>⧉ Plugins</div>
+        <div style="margin-top:30px;color:var(--indigo)">● dokumentari-pas75</div>
+      </div>
+      <div class="main">
+        <div class="abs" id="s8title" style="left:0;right:0;top:60px;text-align:center;font-weight:900;font-size:56px">Workflow 5 fasa</div>
+        <div class="phase" style="left:50px;top:220px"><div class="n" style="background:#d97757">1</div><b>Sediakan Claude Code</b><div class="ln"></div><div class="ln" style="width:60%"></div></div>
+        <div class="phase" style="left:260px;top:220px"><div class="n" style="background:var(--purple)">2</div><b>Brief & draf skrip</b><div class="ln"></div><div class="ln" style="width:60%"></div></div>
+        <div class="phase" style="left:470px;top:220px"><div class="n" style="background:var(--pink)">3</div><b>Kumpul bahan</b><div class="ln"></div><div class="ln" style="width:60%"></div></div>
+        <div class="phase" style="left:680px;top:220px"><div class="n" style="background:var(--indigo)">4</div><b>Bina video</b><div class="ln"></div><div class="ln" style="width:60%"></div></div>
+        <div class="phase" style="left:890px;top:220px"><div class="n" style="background:#e9a23b">5</div><b>Semak & render</b><div class="ln"></div><div class="ln" style="width:60%"></div></div>
+        <div class="abs" id="s8cap" style="left:0;right:0;top:540px;text-align:center;font-weight:800;font-size:36px;color:#7a6a80">Bukan template. Projek sebenar, prompt sebenar.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S9: kinetic words -->
+  <div class="scene" id="s9" style="background:#fbf6ee">
+    <div class="word" id="w1" style="top:440px">Taip prompt.</div>
+    <div class="word" id="w2" style="top:440px">Claude bina.</div>
+    <div class="word indigo" id="w3" style="top:440px">Dokumentari siap.</div>
+  </div>
+
+  <!-- S10: end card -->
+  <div class="scene persp" id="s10">
+    <div class="window" style="left:120px;opacity:.7"></div>
+    <div class="desk"></div>
+    <div class="abs pencilcup" id="s10cup" style="left:160px;top:560px">
+      <div class="pencil" style="left:30px;background:#3a2fa6;transform:rotate(-14deg)"></div>
+      <div class="pencil" style="left:74px;background:#ff4f9a;transform:rotate(4deg)"></div>
+      <div class="pencil" style="left:116px;background:#ffd23f;transform:rotate(18deg)"></div>
+    </div>
+    <div class="abs" id="s10title" style="left:420px;top:200px">
+      <div class="h1" id="t1">Video</div>
+      <div class="h1 indigo" id="t2">Dokumentari</div>
+      <div class="h1" id="t3" style="font-size:96px">dengan <span class="pinkc">Claude</span></div>
+      <div style="margin-top:40px" id="s10cta">
+        <div class="cta">Dapatkan · RM19</div>
+        <div style="margin-top:34px;font-weight:800;font-size:30px;color:#7a6a80">ammarcreavacreative.bcl.my/form/video-dokumentari-claude</div>
+      </div>
+    </div>
+    <div class="abs book" id="s10book" style="left:1330px;top:200px;transform:rotate(6deg)"></div>
+    <div id="confs"></div>
+  </div>
+
+  <div class="vignette"></div>
+  <div class="grain"></div>
+</div>
+
+<script src="vendor/gsap.min.js"></script>
+<script>
+const PROMPT = "Aku nak buat video dokumentari ringkas tentang [topik], sempena [peristiwa]. Cari fakta, tulis DRAF.md…";
+const tl = gsap.timeline({paused:true, defaults:{ease:"power3.out"}});
+const show=(id,t)=>tl.set(id,{opacity:1},t), hide=(id,t)=>tl.set(id,{opacity:0},t);
+
+/* S1 0–3.2 */
+show("#s1",0);
+tl.fromTo("#s1world",{scale:1.35,rotateX:28,rotateZ:-6,y:60},{scale:1,rotateX:18,rotateZ:-2,y:0,duration:3.2,ease:"power2.out"},0);
+tl.from("#s1book",{y:-500,rotateZ:-25,duration:1.1,ease:"back.out(1.4)"},0.1);
+tl.from(["#s1p1","#s1p3"],{y:-700,rotate:-30,duration:1,stagger:.12,ease:"back.out(1.2)"},0.25);
+tl.from("#s1p2",{y:600,rotate:20,duration:1,ease:"back.out(1.2)"},0.4);
+tl.from("#s1s1",{scale:0,rotate:-40,duration:.6,ease:"back.out(2)"},0.9);
+tl.from("#s1cup",{y:400,duration:.8,ease:"back.out(1.5)"},0.6);
+tl.to("#s1world",{scale:1.8,x:-200,y:-120,duration:.5,ease:"power3.in"},2.75);
+hide("#s1",3.2);
+
+/* S2 3.2–6.0 */
+show("#s2",3.2);
+tl.from("#s2book",{x:-500,rotate:-30,duration:.8},3.2);
+tl.from("#s2p",{x:500,rotate:25,duration:.8},3.25);
+tl.from("#s2pill",{scale:.3,opacity:0,y:120,duration:.7,ease:"back.out(1.7)"},3.35);
+tl.from("#s2cur",{x:500,y:300,duration:.8},3.7);
+tl.to("#s2cur",{scale:.82,duration:.1,yoyo:true,repeat:1},4.6);
+tl.to("#s2pill",{scale:.94,duration:.1,yoyo:true,repeat:1},4.6);
+tl.to("#s2",{scale:2.2,duration:.6,ease:"power3.in"},5.4);
+hide("#s2",6.0);
+
+/* S3 6.0–9.0 */
+show("#s3",6.0);
+tl.fromTo("#s3room",{scale:1.25,rotateY:-10},{scale:1,rotateY:0,duration:2.4,ease:"power2.out"},6.0);
+tl.from("#s3btn",{scale:0,rotateX:60,duration:.8,ease:"back.out(1.8)"},6.9);
+tl.from("#s3cur",{x:500,y:400,duration:.7},7.3);
+tl.to("#s3btn",{scale:.9,boxShadow:"0 8px 0 #241b78,0 20px 40px rgba(40,20,120,.35)",y:"+=14",duration:.1,yoyo:true,repeat:1},8.05);
+tl.to("#s3cur",{scale:.85,duration:.1,yoyo:true,repeat:1},8.05);
+tl.to("#s3",{scale:3,opacity:0,duration:.6,ease:"power3.in"},8.45);
+hide("#s3",9.05);
+
+/* S4 9.0–12.0 */
+show("#s4",9.0);
+tl.fromTo("#s4paper",{rotateX:40,rotateZ:-14,scale:1.2},{rotateX:22,rotateZ:-6,scale:1,duration:3,ease:"power1.out"},9.0);
+tl.to("#s4hl",{width:1350,duration:.9,ease:"power2.inOut"},10.4);
+tl.set("#s4marker",{opacity:0},9.0);tl.set("#s4marker",{opacity:1},10.4);tl.fromTo("#s4marker",{x:-1050,y:20,immediateRender:false},{x:300,y:20,duration:.9,ease:"power2.inOut"},10.4);
+tl.to("#s4marker",{x:900,y:-500,duration:.5,ease:"power2.in"},11.4);
+hide("#s4",12.0);
+
+/* flash 12.0–12.35 */
+show("#flash",12.0); tl.to("#flash",{opacity:0,duration:.35,ease:"power1.in"},12.0);
+
+/* S5 12.0–15.4 */
+show("#s5",12.0);
+tl.fromTo("#s5spread",{scale:.5,rotateX:70,y:200},{scale:1,rotateX:38,y:0,duration:1.1,ease:"back.out(1.2)"},12.05);
+tl.from("#s5a",{x:700,y:300,rotate:60,duration:.8,ease:"back.out(1.4)"},12.6);
+tl.from("#s5b",{x:-700,y:-200,rotate:-60,duration:.8,ease:"back.out(1.4)"},12.8);
+tl.from("#s5c",{y:-600,rotate:40,duration:.8,ease:"back.out(1.4)"},13.0);
+tl.to("#s5spread",{rotateZ:-4,scale:1.08,duration:2,ease:"none"},13.2);
+tl.to(["#s5a","#s5b","#s5c"],{y:"-=40",duration:2,ease:"sine.inOut"},13.2);
+tl.to("#s5",{opacity:0,duration:.35},15.05);
+hide("#s5",15.4);
+
+/* S6 15.4–19.2 */
+show("#s6",15.4);
+tl.from("#s6brand",{y:80,opacity:0,scale:.9,duration:.8},15.5);
+tl.from(".cloud",{x:(i)=>i%2?300:-300,duration:1.4,ease:"power2.out"},15.4);
+tl.to("#s6brand",{y:-260,scale:.55,duration:.7,ease:"power3.inOut"},16.9);
+tl.to("#s6head",{opacity:1,duration:.01},17.2);
+tl.from("#s6head",{x:-80,duration:.6},17.2);
+tl.from("#s6cards .card",{x:200,opacity:0,stagger:.15,duration:.55,ease:"back.out(1.5)"},17.4);
+tl.from("#s6bul .bul",{x:80,opacity:0,stagger:.12,duration:.45},17.9);
+hide("#s6",19.2);
+
+/* S7 19.2–21.2 */
+show("#s7",19.2);
+tl.fromTo("#s7r1",{scale:3,rotate:0},{scale:1,rotate:90,duration:.9,ease:"power3.out"},19.2);
+tl.fromTo("#s7r2",{scale:.2,opacity:0},{scale:1,opacity:1,duration:1.1},19.3);
+tl.from("#s7f",{scale:0,rotate:-20,duration:.7,ease:"back.out(1.8)"},19.5);
+tl.from("#s7doc",{y:120,duration:.5},20.0);
+tl.to("#s7front",{rotateX:28,duration:.4},20.0);
+tl.to(["#s7r1","#s7r2"],{scale:4,duration:.5,ease:"power3.in"},20.75);
+tl.to("#s7f",{scale:6,opacity:0,duration:.5,ease:"power3.in"},20.75);
+hide("#s7",21.25);
+
+/* S8 21.2–23.8 */
+show("#s8",21.2);
+tl.from("#s8ui",{y:300,scale:.85,opacity:0,duration:.7},21.2);
+tl.from("#s8ui .phase",{y:160,opacity:0,rotate:(i)=>(i-2)*6,stagger:.1,duration:.55,ease:"back.out(1.6)"},21.6);
+tl.from("#s8cap",{opacity:0,y:30,duration:.5},22.5);
+tl.to("#s8ui",{scale:.25,opacity:0,duration:.5,ease:"power3.in"},23.35);
+hide("#s8",23.85);
+
+/* S9 23.85–25.6 */
+show("#s9",23.85);
+["#w1","#w2","#w3"].forEach((w,i)=>{
+  const t=23.9+i*.55;
+  tl.fromTo(w,{opacity:0,y:60,scale:.9},{opacity:1,y:0,scale:1,duration:.25},t);
+  if(i<2) tl.to(w,{opacity:0,y:-60,duration:.2},t+.42);
+});
+tl.to("#w3",{scale:1.2,duration:.5,ease:"power1.in"},25.1);
+hide("#s9",25.6);
+
+/* S10 25.6–30 */
+show("#s10",25.6);
+tl.from("#s10cup",{y:500,duration:.7,ease:"back.out(1.4)"},25.6);
+tl.from(["#t1","#t2","#t3"],{y:90,opacity:0,stagger:.12,duration:.55,ease:"back.out(1.6)"},25.7);
+tl.from("#s10book",{x:600,rotate:40,duration:.9,ease:"back.out(1.3)"},26.1);
+tl.from("#s10cta",{y:60,opacity:0,duration:.6,ease:"back.out(1.6)"},26.6);
+tl.to("#s10cta .cta",{scale:1.06,duration:.4,yoyo:true,repeat:5,ease:"sine.inOut"},27.2);
+tl.to("#s10book",{y:-25,rotate:3,duration:1.6,yoyo:true,repeat:1,ease:"sine.inOut"},27);
+// confetti
+const cols=["#ffd23f","#ff4f9a","#3a2fa6","#6b2fb3","#e9a23b"], box=document.getElementById("confs");
+let seed=7; const rnd=()=>{seed=(seed*16807)%2147483647;return seed/2147483647};
+for(let i=0;i<46;i++){
+  const d=document.createElement("div"); d.className="conf";
+  d.style.background=cols[i%5]; d.style.left=(1250+rnd()*600)+"px"; d.style.top="560px";
+  if(i%3==0) d.style.borderRadius="50%"; if(i%3==1){d.style.width="14px";d.style.height="34px";}
+  box.appendChild(d);
+  tl.fromTo(d,{opacity:0,scale:0},{opacity:1,scale:1,x:(rnd()-.5)*900,y:-300-rnd()*350,rotate:rnd()*720,duration:.9,ease:"power2.out"},26.3+rnd()*.25);
+  tl.to(d,{y:"+=700",rotate:"+=360",duration:2.5,ease:"power1.in"},27.2+rnd()*.3);
+}
+tl.set({},{},30);
+const typeEl=document.getElementById("s4type");
+window.__render=(t)=>{tl.seek(t);const p=Math.min(1,Math.max(0,(t-9.2)/2.0));typeEl.textContent=PROMPT.slice(0,Math.round(p*PROMPT.length));};
+window.__tl=tl; window.__dur=30;
+</script>
+</body>
+</html>
