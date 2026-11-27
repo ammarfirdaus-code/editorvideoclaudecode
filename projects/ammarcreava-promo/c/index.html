@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<title>Ammarcreava — Tema C Editorial Premium</title>
+<link rel="stylesheet" href="../common.css">
+<style>
+  :root { --paper:#F3EFE7; --ink:#15122B; --violet:#6D28D9; --lav:#C4B5FD; --lime:#C8F14A; --mute:#7A7590; }
+  body { background: var(--paper); color: var(--ink); font-family:'DM Sans', sans-serif; }
+  .grain { position:absolute; inset:0; background: radial-gradient(ellipse at 50% 30%, rgba(255,255,255,.7), transparent 60%), radial-gradient(ellipse at 50% 120%, rgba(109,40,217,.10), transparent 60%); }
+  .serif { font-family:'Fraunces', serif; font-weight:800; letter-spacing:-0.03em; line-height:.95; }
+  .ital { font-family:'Fraunces', serif; font-style:italic; font-weight:600; }
+  .label { font-family:'Space Mono', monospace; font-weight:700; font-size:28px; letter-spacing:.22em; text-transform:uppercase; color: var(--mute); }
+  .rule { position:absolute; height:3px; background: var(--ink); transform-origin: left center; }
+  .logo-card { background:#fff; border-radius:22px; display:grid; place-items:center; box-shadow: 0 14px 34px rgba(21,18,43,.08); border:1px solid rgba(21,18,43,.08); }
+  .logo-card img { max-width:78%; max-height:72%; object-fit:contain; }
+  #dark { position:absolute; inset:0; background: #15122B; transform-origin: 50% 100%; transform: scaleY(0); }
+  .pkg { position:absolute; left:90px; right:90px; border-radius:30px; padding:44px 50px; background:#fff; border:2px solid rgba(21,18,43,.12); box-shadow:0 30px 70px rgba(21,18,43,.12); }
+  .pkg .price { position:absolute; right:50px; top:44px; text-align:right; }
+  .cap-inner { background: rgba(21,18,43,.92); color:#8C87A6; }
+  .cap-inner span.on { color:#fff; }
+  .cap-inner span.on.kw { color: var(--lime); }
+</style>
+</head>
+<body>
+<div class="stage" id="stage">
+  <div class="grain"></div>
+  <div id="dark"></div>
+
+  <!-- persistent masthead -->
+  <div class="abs label" id="mast" style="top:90px; left:90px; right:90px; display:flex; justify-content:space-between; z-index:10">
+    <span>Ammarcreava · Coaching AI</span><span id="mast-r">Muar, Johor</span>
+  </div>
+  <div class="rule" id="mastrule" style="top:150px; left:90px; width:900px; z-index:10"></div>
+
+  <!-- 1 n160 -->
+  <div class="scene" id="s-n160">
+    <div class="abs label" id="a-l" style="top:430px; left:90px">Rekod latihan · 2025–2026</div>
+    <div class="abs serif" id="a-n" style="top:500px; left:70px; font-size:430px; color:var(--violet)"><span id="n160">0</span>+</div>
+    <div class="rule" id="a-r" style="top:960px; left:90px; width:900px"></div>
+    <div class="abs ital" id="a-t" style="top:1000px; left:90px; font-size:96px">orang dah dilatih.</div>
+  </div>
+
+  <!-- 2 n13 -->
+  <div class="scene" id="s-n13">
+    <div class="abs serif" id="b-n" style="top:230px; left:80px; font-size:300px; color:var(--violet)">13</div>
+    <div class="abs ital" id="b-t" style="top:300px; left:430px; font-size:84px; line-height:1.05">institusi<br><span style="color:var(--mute); font-size:56px">& organisasi</span></div>
+    <div id="logos" class="abs" style="top:620px; left:90px; right:90px; display:grid; grid-template-columns: repeat(3, 1fr); gap:22px">
+      <div class="logo-card lg-key" style="height:190px"><img src="../assets/clients/kkm.png"></div>
+      <div class="logo-card lg-key" style="height:190px"><img src="../assets/clients/ukm.png"></div>
+      <div class="logo-card lg-key" style="height:190px"><img src="../assets/clients/utm.png"></div>
+      <div class="logo-card lg-key" style="height:190px"><img src="../assets/clients/ums.png"></div>
+      <div class="logo-card lg-oth" style="height:190px"><img src="../assets/clients/pum.png"></div>
+      <div class="logo-card lg-oth" style="height:190px"><img src="../assets/clients/ar-razi.png"></div>
+      <div class="logo-card lg-oth" style="height:190px"><img src="../assets/clients/kspro-mind.png"></div>
+      <div class="logo-card lg-oth" style="height:190px"><img src="../assets/clients/al-kazimie.png"></div>
+      <div class="logo-card lg-oth" style="height:190px"><img src="../assets/clients/smatt.png"></div>
+    </div>
+  </div>
+
+  <!-- 3 n6 -->
+  <div class="scene" id="s-n6">
+    <div class="abs serif" id="c-n" style="top:300px; left:80px; font-size:420px; color:var(--violet)">6</div>
+    <div class="abs" id="c-t" style="top:390px; left:370px"><div class="serif" style="font-size:120px">tahun</div><div class="ital" style="font-size:66px; color:var(--mute)">dalam digital &amp; AI</div></div>
+    <div class="rule" id="c-r" style="top:800px; left:90px; width:900px"></div>
+    <div class="abs" id="seal" style="left:340px; top:870px; width:400px; height:400px">
+      <svg viewBox="0 0 400 400" width="400" height="400">
+        <defs><path id="circ" d="M200 200 m-150 0 a150 150 0 1 1 300 0 a150 150 0 1 1 -300 0"/></defs>
+        <circle cx="200" cy="200" r="190" fill="#15122B"/>
+        <circle cx="200" cy="200" r="118" fill="none" stroke="#C8F14A" stroke-width="3"/>
+        <g id="sealtext"><text font-family="Space Mono" font-weight="700" font-size="25" letter-spacing="5" fill="#fff"><textPath href="#circ">CANVA CERTIFIED TRAINER · CANVA CERTIFIED TRAINER · </textPath></text></g>
+        <text x="200" y="190" text-anchor="middle" font-family="Fraunces" font-weight="800" font-size="64" fill="#C8F14A">✓</text>
+        <text x="200" y="250" text-anchor="middle" font-family="Fraunces" font-style="italic" font-weight="600" font-size="38" fill="#fff">Certified</text>
+      </svg>
+    </div>
+  </div>
+
+  <!-- 4 STATEMENT (dark) -->
+  <div class="scene" id="s-stmt" style="color:#fff">
+    <div class="abs serif" id="d-q" style="top:260px; left:70px; font-size:360px; color:var(--lav); line-height:1">“</div>
+    <div class="abs" style="top:540px; left:90px; right:90px; font-size:104px; line-height:1.08">
+      <div class="serif" id="d-1">Belajar AI</div>
+      <div class="serif" id="d-2">pada kerja</div>
+      <div class="ital" id="d-3" style="color:var(--lime)">anda sendiri.</div>
+    </div>
+    <div class="abs label" id="d-sig" style="top:1080px; left:90px; color:#A9A3C9">— Ammarcreava</div>
+  </div>
+  <div class="scene" id="s-stmt2" style="color:#fff">
+    <div class="abs serif" style="top:560px; left:0; right:0; text-align:center; font-size:170px">
+      <span id="e-1" class="ital" style="font-size:120px; color:#A9A3C9; display:block; margin-bottom:20px">Bukan</span>
+      <span style="position:relative; display:inline-block">teori.<span id="strike" style="position:absolute; left:-20px; right:-20px; top:52%; height:16px; background:var(--lime); transform-origin:left center"></span></span>
+    </div>
+  </div>
+
+  <!-- 5 PACKAGES -->
+  <div class="scene" id="s-pkg">
+    <div class="abs label" id="f-l" style="top:260px; left:90px">Pilihan latihan</div>
+    <div class="pkg" id="pk1" style="top:330px; height:390px">
+      <div class="label" style="color:var(--violet)">01 · Peribadi</div>
+      <div class="serif" style="font-size:70px; margin-top:18px">Coaching 1-ke-1</div>
+      <div style="font-size:36px; color:var(--mute); margin-top:22px; line-height:1.4">2 jam · Google Meet<br>Rakaman + semua prompt</div>
+      <div class="price"><div class="label">Dari</div><div class="serif" style="font-size:72px; color:var(--violet)">RM799</div></div>
+    </div>
+    <div class="pkg" id="pk2" style="top:760px; height:390px; background:#15122B; color:#fff">
+      <div class="label" style="color:var(--lime)">02 · Organisasi</div>
+      <div class="serif" style="font-size:80px; margin-top:18px">Latihan Berkumpulan</div>
+      <div style="font-size:36px; color:#A9A3C9; margin-top:22px; line-height:1.4">Hingga 10 peserta · online / bersemuka<br>Sijil penyertaan</div>
+      <div class="price" style="top:auto; bottom:44px"><div class="label" style="color:#A9A3C9">Dari</div><div class="serif" style="font-size:72px; color:var(--lime)">RM3,300</div></div>
+    </div>
+  </div>
+
+  <!-- 6 RESULT -->
+  <div class="scene" id="s-res">
+    <div class="abs label" id="g-l" style="top:300px; left:90px">Hasilnya</div>
+    <div class="abs serif" id="g-h" style="top:360px; left:90px; font-size:120px; line-height:1">Prompt &amp;<br><span class="ital" style="color:var(--violet)">workflow</span></div>
+    <svg class="abs" id="flow" viewBox="0 0 900 380" width="900" height="380" style="left:90px; top:760px; overflow:visible">
+      <path id="fl-line" d="M120 190 L450 190 L780 190" stroke="#15122B" stroke-width="5" fill="none" stroke-dasharray="12 12"/>
+      <g class="node" id="nd1"><circle cx="120" cy="190" r="100" fill="#fff" stroke="#15122B" stroke-width="4"/><text x="120" y="182" text-anchor="middle" font-family="Space Mono" font-weight="700" font-size="24" fill="#7A7590">01</text><text x="120" y="222" text-anchor="middle" font-family="Fraunces" font-weight="800" font-size="38" fill="#15122B">Tugasan</text></g>
+      <g class="node" id="nd2"><circle cx="450" cy="190" r="100" fill="#6D28D9"/><text x="450" y="182" text-anchor="middle" font-family="Space Mono" font-weight="700" font-size="24" fill="#C4B5FD">02</text><text x="450" y="222" text-anchor="middle" font-family="Fraunces" font-weight="800" font-size="38" fill="#fff">Prompt</text></g>
+      <g class="node" id="nd3"><circle cx="780" cy="190" r="100" fill="#C8F14A"/><text x="780" y="182" text-anchor="middle" font-family="Space Mono" font-weight="700" font-size="24" fill="#15122B">03</text><text x="780" y="222" text-anchor="middle" font-family="Fraunces" font-weight="800" font-size="38" fill="#15122B">Siap ✓</text></g>
+    </svg>
+  </div>
+
+  <!-- 7 CTA -->
+  <div class="scene" id="s-cta">
+    <img class="abs" id="h-logo" src="../assets/logo-af.png" style="left:430px; top:300px; width:220px; height:220px; border-radius:50%; box-shadow:0 30px 70px rgba(109,40,217,.35)">
+    <div class="abs ital" id="h-t" style="top:600px; left:0; right:0; text-align:center; font-size:90px">Tempah sesi anda</div>
+    <div class="rule" id="h-r" style="top:740px; left:240px; width:600px"></div>
+    <div class="abs serif" id="h-url" style="top:790px; left:0; right:0; text-align:center; font-size:112px; color:var(--violet)">ammarcreava.my</div>
+    <div class="abs label" id="h-wa" style="top:960px; left:0; right:0; text-align:center; font-size:32px; color:var(--ink)">WhatsApp · 013-691 2423</div>
+  </div>
+
+  <div id="cap"></div>
+</div>
+
+<script src="timeline.js"></script>
+<script src="../vendor/gsap.min.js"></script>
+<script>
+window.CAP_KEYWORDS = ['160','13','6','ammarcreava,','teori.','certified','trainer.','workflow','ammarcreava.my'];
+window.OUTRO = 2.6;
+window.build = function (tl, S, E) {
+  const q = (s) => document.querySelector(s);
+  const P = window.SCENE.P, nth = (s, i) => P.filter(p => p.s === s)[i].start;
+  const show = (id, t0, t1) => { tl.set('#' + id, { autoAlpha: 1 }, t0); if (t1 != null) tl.set('#' + id, { autoAlpha: 0 }, t1); };
+  const DUR = window.TL.duration + window.OUTRO;
+  const fadeOut = (id, t) => tl.to('#' + id + ' > *', { opacity: 0, y: -30, duration: .35, stagger: .03, ease: 'power2.in' }, t - .4);
+
+  tl.from('#mast', { opacity: 0, y: -20, duration: .6 }, 0);
+  tl.fromTo('#mastrule', { scaleX: 0 }, { scaleX: 1, duration: 1, ease: 'expo.inOut' }, 0);
+
+  // 1
+  const t2 = S('n13');
+  show('s-n160', 0, t2);
+  tl.from('#a-l', { opacity: 0, x: -30, duration: .5 }, .3);
+  tl.from('#a-n', { opacity: 0, y: 80, duration: .8, ease: 'power3.out' }, .4);
+  const c1 = { v: 0 }; tl.to(c1, { v: 160, duration: 1.8, ease: 'power3.out', onUpdate: () => q('#n160').textContent = Math.round(c1.v) }, .4);
+  tl.fromTo('#a-r', { scaleX: 0 }, { scaleX: 1, duration: .9, ease: 'expo.inOut' }, 1.0);
+  tl.from('#a-t', { opacity: 0, y: 40, duration: .6, ease: 'power3.out' }, 1.4);
+  fadeOut('s-n160', t2);
+
+  // 2
+  const t3 = S('n6');
+  show('s-n13', t2 - .05, t3);
+  tl.from('#b-n', { opacity: 0, y: 80, duration: .7, ease: 'power3.out' }, t2);
+  tl.from('#b-t', { opacity: 0, x: 40, duration: .6, ease: 'power3.out' }, t2 + .3);
+  const tk = nth('n13', 1);
+  tl.from('.lg-key', { opacity: 0, y: 50, scale: .9, duration: .5, stagger: .18, ease: 'power3.out' }, tk);
+  tl.from('.lg-oth', { opacity: 0, y: 50, scale: .9, duration: .5, stagger: .12, ease: 'power3.out' }, tk + 1.3);
+  tl.to('#logos', { y: -20, duration: t3 - tk, ease: 'none' }, tk);
+  fadeOut('s-n13', t3);
+
+  // 3
+  const t4 = S('stmt');
+  show('s-n6', t3 - .05, t4);
+  tl.from('#c-n', { opacity: 0, y: 80, duration: .7, ease: 'power3.out' }, t3);
+  tl.from('#c-t', { opacity: 0, x: 40, duration: .6, ease: 'power3.out' }, t3 + .3);
+  tl.fromTo('#c-r', { scaleX: 0 }, { scaleX: 1, duration: .9, ease: 'expo.inOut' }, t3 + .8);
+  const ts = nth('n6', 1);
+  tl.from('#seal', { scale: 0, rotate: -120, duration: .8, ease: 'back.out(1.6)' }, ts - .2);
+  tl.to('#sealtext', { rotate: 120, transformOrigin: '200px 200px', duration: t4 - ts + 1, ease: 'none' }, ts - .2);
+
+  // 4 STATEMENT dark
+  const t5 = S('stmt2');
+  tl.to('#dark', { scaleY: 1, duration: .7, ease: 'expo.inOut' }, t4 - .45);
+  tl.to(['#mast', '#mastrule'], { opacity: .25, duration: .4 }, t4 - .3);
+  show('s-stmt', t4 - .05, t5 - .05);
+  tl.from('#d-q', { opacity: 0, y: 60, duration: .6, ease: 'power3.out' }, t4);
+  tl.from(['#d-1', '#d-2', '#d-3'], { opacity: 0, y: 60, duration: .6, stagger: .55, ease: 'power3.out' }, t4 + .5);
+  tl.from('#d-sig', { opacity: 0, duration: .5 }, t4 + 2.4);
+  show('s-stmt2', t5 - .05, S('pkg') - .05);
+  tl.from('#e-1', { opacity: 0, y: 30, duration: .3 }, t5);
+  tl.fromTo('#strike', { scaleX: 0 }, { scaleX: 1, duration: .4, ease: 'power3.inOut' }, t5 + .45);
+
+  // 5 PKG (back to paper)
+  const t6 = S('pkg'), t7 = S('res');
+  tl.to('#dark', { scaleY: 0, transformOrigin: '50% 0%', duration: .7, ease: 'expo.inOut' }, t6 - .45);
+  tl.to(['#mast', '#mastrule'], { opacity: 1, duration: .4 }, t6 - .1);
+  show('s-pkg', t6 - .05, t7);
+  tl.from('#f-l', { opacity: 0, duration: .4 }, t6);
+  tl.from('#pk1', { opacity: 0, y: 120, duration: .7, ease: 'power3.out' }, t6);
+  tl.from('#pk2', { opacity: 0, y: 120, duration: .7, ease: 'power3.out' }, nth('pkg', 1));
+  fadeOut('s-pkg', t7);
+
+  // 6 RESULT
+  const t8 = S('cta');
+  show('s-res', t7 - .05, t8);
+  tl.from('#g-l', { opacity: 0, duration: .4 }, t7);
+  tl.from('#g-h', { opacity: 0, y: 60, duration: .7, ease: 'power3.out' }, t7 + .1);
+  tl.from('#nd1', { scale: 0, transformOrigin: '120px 190px', duration: .5, ease: 'back.out(1.8)' }, t7 + .8);
+  tl.from('#nd2', { scale: 0, transformOrigin: '450px 190px', duration: .5, ease: 'back.out(1.8)' }, t7 + 1.3);
+  tl.from('#nd3', { scale: 0, transformOrigin: '780px 190px', duration: .5, ease: 'back.out(1.8)' }, t7 + 1.8);
+  tl.fromTo('#fl-line', { strokeDashoffset: 0 }, { strokeDashoffset: -240, duration: t8 - t7, ease: 'none' }, t7);
+  fadeOut('s-res', t8);
+
+  // 7 CTA
+  show('s-cta', t8 - .05, null);
+  tl.from('#h-logo', { scale: 0, duration: .7, ease: 'back.out(1.6)' }, t8);
+  tl.from('#h-t', { opacity: 0, y: 40, duration: .6, ease: 'power3.out' }, t8 + .3);
+  tl.fromTo('#h-r', { scaleX: 0 }, { scaleX: 1, duration: .8, ease: 'expo.inOut' }, t8 + .6);
+  tl.from('#h-url', { opacity: 0, y: 40, duration: .7, ease: 'power3.out' }, t8 + 1.2);
+  tl.from('#h-wa', { opacity: 0, duration: .6 }, t8 + 1.9);
+  tl.to('#stage', { opacity: 0, duration: .6 }, DUR - .6);
+};
+</script>
+<script src="../engine.js"></script>
+</body>
+</html>

@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<title>Ammarcreava — Tema A Neon Kinetik</title>
+<link rel="stylesheet" href="../common.css">
+<style>
+  :root { --bg:#0E0B1E; --ink:#fff; --violet:#7C3AED; --lav:#C4B5FD; --lime:#C8F14A; --mute:#9A93C0; }
+  body { background: var(--bg); color: var(--ink); font-family: 'DM Sans', sans-serif; }
+  .dots { position:absolute; inset:-40px; background-image: radial-gradient(rgba(255,255,255,.09) 2px, transparent 2.5px); background-size: 38px 38px; }
+  .glow { position:absolute; width:900px; height:900px; border-radius:50%; filter: blur(120px); opacity:.55; }
+  .g1 { background:#7C3AED; left:-300px; top:200px; }
+  .g2 { background:#4F46E5; right:-350px; top:1000px; opacity:.4; }
+  .g3 { background:#C026D3; left:200px; top:-450px; opacity:.25; }
+  h1, .big { font-family:'Bricolage Grotesque', sans-serif; font-weight:800; letter-spacing:-0.04em; line-height:.95; }
+  .line { display:block; text-align:center; }
+  .lav { color: var(--lav); text-shadow: 0 0 60px rgba(124,58,237,.9); }
+  .limeblock { background: var(--lime); color:#120E2A; padding: 0 22px; border-radius: 18px; display:inline-block; }
+  .kicker { font-family:'Space Mono', monospace; font-weight:700; font-size:30px; letter-spacing:.2em; color: var(--mute); text-transform:uppercase; }
+  .chip { display:inline-flex; align-items:center; gap:14px; padding:18px 30px; border-radius:999px; background: rgba(255,255,255,.08); border:2px solid rgba(196,181,253,.35); font-size:36px; font-weight:500; }
+  .tick { width:40px; height:40px; border-radius:50%; background: var(--violet); display:inline-grid; place-items:center; font-size:24px; font-weight:700; }
+  .cover { position:absolute; width:340px; height:486px; border-radius:20px; background-size:cover; box-shadow: 0 40px 80px rgba(0,0,0,.6), 0 0 0 2px rgba(255,255,255,.12); }
+  .thumb { position:absolute; width:270px; height:480px; border-radius:26px; background-size:cover; background-position:center; box-shadow: 0 30px 70px rgba(0,0,0,.6); border: 6px solid #1f1a3a; }
+  .card { position:absolute; border-radius:36px; background: linear-gradient(160deg, rgba(124,58,237,.35), rgba(30,24,64,.9)); border:2px solid rgba(196,181,253,.4); box-shadow: 0 40px 100px rgba(0,0,0,.5); }
+  .flash { position:absolute; inset:0; background:#fff; opacity:0; z-index:40; pointer-events:none; }
+  .cap-inner { background: rgba(14,11,30,.82); border: 2px solid rgba(196,181,253,.3); color: #6E6890; backdrop-filter: blur(6px); }
+  .cap-inner span.on { color:#fff; }
+  .cap-inner span.on.kw { color: var(--lime); }
+</style>
+</head>
+<body>
+<div class="stage" id="stage">
+  <div class="dots" id="dots"></div>
+  <div class="glow g1" id="g1"></div><div class="glow g2" id="g2"></div><div class="glow g3"></div>
+
+  <!-- 1 HOOK -->
+  <div class="scene" id="s-hook">
+    <div class="kicker abs center-x" style="top:380px" id="hk-k">2026 · ZAMAN AI</div>
+    <h1 class="abs" style="top:560px; left:0; right:0; font-size:150px;">
+      <span class="line" id="hw1">Semua orang</span>
+      <span class="line" id="hw2">dah guna</span>
+      <span class="line lav" id="hw3" style="font-size:300px">AI.</span>
+    </h1>
+  </div>
+
+  <!-- 2 HOOK2 -->
+  <div class="scene" id="s-hook2">
+    <h1 class="abs" style="top:600px; left:0; right:0; font-size:150px;">
+      <span class="line" id="h2a">Awak masih</span>
+      <span class="line" id="h2b" style="margin-top:20px"><span class="limeblock">tengok je?</span></span>
+    </h1>
+    <div class="abs" id="h2eyes" style="top:330px; left:50%; margin-left:-170px; width:340px; height:160px;">
+      <svg viewBox="0 0 340 160" width="340" height="160"><g fill="#fff"><ellipse cx="85" cy="80" rx="70" ry="70"/><ellipse cx="255" cy="80" rx="70" ry="70"/></g><g fill="#120E2A" id="pupils"><circle cx="85" cy="90" r="30"/><circle cx="255" cy="90" r="30"/></g></svg>
+    </div>
+  </div>
+
+  <!-- 3 BRAND -->
+  <div class="scene" id="s-brand">
+    <div class="abs" id="ring" style="left:340px; top:330px; width:400px; height:400px; border-radius:50%; border:4px solid rgba(196,181,253,.6); box-shadow: 0 0 80px rgba(124,58,237,.8), inset 0 0 60px rgba(124,58,237,.5);"></div>
+    <img class="abs" id="logo" src="../assets/logo-af.png" style="left:390px; top:380px; width:300px; height:300px; border-radius:50%;">
+    <div class="abs big" id="wm" style="top:800px; left:0; right:0; text-align:center; font-size:118px;">Ammarcreava<span style="color:var(--lav)">.my</span></div>
+    <div class="abs" id="tag" style="top:960px; left:0; right:0; text-align:center; font-size:60px; font-weight:500; color:#E7E3FF">Belajar AI, <i style="font-family:'Fraunces',serif; color:var(--lime)">dalam bahasa kita.</i></div>
+    <div class="abs" style="top:1110px; left:0; right:0; display:flex; justify-content:center; gap:18px; flex-wrap:wrap; padding:0 60px;">
+      <div class="chip bchip"><span class="tick">✓</span>Bahasa Melayu</div>
+      <div class="chip bchip"><span class="tick">✓</span>Prompt siap salin</div>
+      <div class="chip bchip"><span class="tick">✓</span>Telefon &amp; komputer</div>
+    </div>
+  </div>
+
+  <!-- 4 EBOOK -->
+  <div class="scene" id="s-ebook">
+    <div class="abs big" style="top:170px; left:0; right:0; text-align:center;">
+      <span id="n28" style="font-size:300px; color:var(--lime); text-shadow:0 0 70px rgba(200,241,74,.5)">0</span>
+      <span style="font-size:110px; display:block; margin-top:-10px">ebook AI</span>
+    </div>
+    <div id="covers" class="abs" style="left:0; right:0; top:680px; height:560px;">
+      <div class="cover" style="background-image:url(../assets/panduan-claude-pemula.jpg); left:40px; top:60px"></div>
+      <div class="cover" style="background-image:url(../assets/ai-jadi-duit.jpg); left:690px; top:60px"></div>
+      <div class="cover" style="background-image:url(../assets/video-dokumentari-claude.jpg); left:150px; top:20px"></div>
+      <div class="cover" style="background-image:url(../assets/nano-banana-peniaga-kecil.jpg); left:590px; top:20px"></div>
+      <div class="cover" style="background-image:url(../assets/67-prompt-video-claude.jpg); left:370px; top:0px"></div>
+    </div>
+    <div class="abs" id="copybox" style="left:110px; right:110px; top:1050px; height:150px; border-radius:28px; background:#1A1533; border:2px solid rgba(196,181,253,.45); display:flex; align-items:center; padding:0 26px 0 36px; gap:20px; box-shadow:0 30px 80px rgba(0,0,0,.6)">
+      <div style="font-family:'Space Mono',monospace; font-size:30px; color:#CFC8F5; flex:1; white-space:nowrap; overflow:hidden" id="ptxt">Buat poster jualan untuk…</div>
+      <div id="copybtn" style="position:relative; background:var(--violet); padding:20px 30px; border-radius:20px; font-weight:700; font-size:34px; white-space:nowrap"><span id="cb1">Salin prompt</span><span id="cb2" style="position:absolute; inset:0; display:grid; place-items:center; background:#C8F14A; color:#120E2A; border-radius:20px; opacity:0">Disalin ✓</span></div>
+    </div>
+  </div>
+
+  <!-- 5 PRICE -->
+  <div class="scene" id="s-price">
+    <div class="kicker abs center-x" style="top:420px">HARGA EBOOK</div>
+    <div class="abs big" id="dari" style="top:520px; left:0; right:0; text-align:center; font-size:110px; color:#E7E3FF">Dari</div>
+    <div class="abs big" id="rm15" style="top:620px; left:0; right:0; text-align:center; font-size:360px; color:var(--lime); text-shadow:0 0 90px rgba(200,241,74,.45)">RM15</div>
+    <div class="abs" style="top:1060px; left:0; right:0; display:flex; justify-content:center; gap:22px">
+      <div class="chip pchip" style="font-size:42px; background:rgba(124,58,237,.35)">Sekali bayar</div>
+      <div class="chip pchip" style="font-size:42px;">Tiada langganan</div>
+    </div>
+  </div>
+
+  <!-- 6 VIDEO -->
+  <div class="scene" id="s-video">
+    <h1 class="abs" id="v-q" style="top:190px; left:0; right:0; text-align:center; font-size:100px">Tak sempat<br>buat sendiri?</h1>
+    <div id="thumbs" class="abs" style="left:0; right:0; top:480px; height:560px">
+      <div class="thumb" style="background-image:url(../assets/videos/motion-graphic-3-tanda-bekam.jpg); left:30px; top:40px"></div>
+      <div class="thumb" style="background-image:url(../assets/videos/promosi-motion-graphic-15s.jpg); left:290px; top:0"></div>
+      <div class="thumb" style="background-image:url(../assets/videos/pop-art-tiktok.jpg); left:530px; top:0"></div>
+      <div class="thumb" style="background-image:url(../assets/videos/spa-bekam-3-sebab.jpg); left:780px; top:40px"></div>
+    </div>
+    <div class="abs" id="v-badge" style="top:1080px; left:0; right:0; text-align:center">
+      <span class="limeblock big" style="font-size:76px; padding:10px 34px; transform:rotate(-3deg)">Siap tanpa shooting</span>
+    </div>
+    <div class="abs" id="v-price" style="top:1240px; left:0; right:0; text-align:center; font-size:46px; font-weight:700; color:#E7E3FF">Video iklan AI · <span style="color:var(--lime)">RM200</span> / <span style="color:var(--lime)">RM450</span></div>
+  </div>
+
+  <!-- 7 COACH -->
+  <div class="scene" id="s-coach">
+    <h1 class="abs" id="c-h" style="top:230px; left:0; right:0; text-align:center; font-size:110px">Atau <span class="lav">belajar terus</span></h1>
+    <div class="card" id="c-card" style="left:110px; right:110px; top:470px; height:560px; padding:56px">
+      <div class="kicker" style="color:var(--lime)">PERSONAL COACHING</div>
+      <div class="big" style="font-size:84px; margin-top:22px">1-ke-1, guna kerja<br>awak sendiri</div>
+      <div style="display:flex; gap:16px; margin-top:44px; flex-wrap:wrap">
+        <div class="chip cchip" style="font-size:32px">2 jam · Google Meet</div>
+        <div class="chip cchip" style="font-size:32px">Rakaman + prompt</div>
+      </div>
+      <div class="big" style="position:absolute; right:56px; bottom:46px; font-size:58px; color:var(--lime)">Dari RM799</div>
+    </div>
+    <div class="abs" style="top:1100px; left:0; right:0; display:flex; justify-content:center; gap:60px">
+      <div class="stat" style="text-align:center"><div class="big" style="font-size:110px"><span id="st160">0</span>+</div><div style="font-size:34px; color:var(--mute)">orang dilatih</div></div>
+      <div class="stat" style="text-align:center"><div class="big" style="font-size:110px"><span id="st13">0</span>+</div><div style="font-size:34px; color:var(--mute)">institusi</div></div>
+    </div>
+  </div>
+
+  <!-- 8 CTA -->
+  <div class="scene" id="s-cta">
+    <h1 class="abs" id="cta-h" style="top:300px; left:0; right:0; text-align:center; font-size:150px">Mula<br><span class="lav">hari ini.</span></h1>
+    <img class="abs" id="cta-logo" src="../assets/logo-af.png" style="left:440px; top:740px; width:200px; height:200px; border-radius:50%; box-shadow:0 0 90px rgba(124,58,237,.9)">
+    <div class="abs" id="cta-btn" style="top:1010px; left:50%; transform:translateX(-50%); background:var(--violet); border-radius:999px; padding:34px 70px; white-space:nowrap; box-shadow:0 0 0 0 rgba(124,58,237,.7), 0 30px 80px rgba(124,58,237,.6)">
+      <span class="big" style="font-size:84px">ammarcreava.my</span>
+    </div>
+    <div class="abs" id="cta-sub" style="top:1220px; left:0; right:0; text-align:center; font-size:38px; color:#CFC8F5">Ebook · Servis Video · Coaching</div>
+  </div>
+
+  <div class="flash" id="flash"></div>
+  <div id="cap"></div>
+</div>
+
+<script src="timeline.js"></script>
+<script src="../vendor/gsap.min.js"></script>
+<script>
+window.CAP_KEYWORDS = ['AI','AI.','ammarcreava.','ammarcreava.my','RM15','28','shooting','coaching','kita'];
+window.OUTRO = 2.4;
+window.build = function (tl, S, E) {
+  const q = (s) => document.querySelector(s), qa = (s) => document.querySelectorAll(s);
+  const show = (id, t0, t1) => { tl.set('#' + id, { autoAlpha: 1 }, t0); if (t1 != null) tl.set('#' + id, { autoAlpha: 0 }, t1); };
+  const flash = (t) => tl.fromTo('#flash', { opacity: .55 }, { opacity: 0, duration: .35, ease: 'power2.out' }, t);
+  const DUR = window.TL.duration + window.OUTRO;
+
+  // ambient background motion across whole video
+  tl.to('#dots', { y: 76, duration: DUR, ease: 'none' }, 0);
+  tl.to('#g1', { x: 420, y: 500, duration: DUR, ease: 'sine.inOut' }, 0);
+  tl.to('#g2', { x: -380, y: -600, duration: DUR, ease: 'sine.inOut' }, 0);
+
+  // 1 HOOK
+  const tH2 = S('hook2');
+  show('s-hook', 0, tH2 - .05);
+  tl.from('#hk-k', { y: -30, opacity: 0, duration: .4, ease: 'power3.out' }, .2);
+  tl.from('#hw1', { scale: 2.2, opacity: 0, duration: .35, ease: 'expo.out' }, .4);
+  tl.from('#hw2', { scale: 2.2, opacity: 0, duration: .35, ease: 'expo.out' }, 1.0);
+  tl.from('#hw3', { scale: 3, opacity: 0, rotate: -8, duration: .45, ease: 'back.out(2)' }, 1.5);
+  flash(1.5);
+  tl.to('#s-hook h1', { scale: 1.06, duration: tH2 - 1.5, ease: 'none' }, 1.5);
+
+  // 2 HOOK2
+  const tB = S('brand');
+  show('s-hook2', tH2 - .05, tB - .05);
+  tl.from('#h2a', { x: -1100, duration: .35, ease: 'expo.out' }, tH2);
+  tl.from('#h2b', { x: 1100, duration: .35, ease: 'expo.out' }, tH2 + .25);
+  tl.from('#h2eyes', { scale: 0, duration: .4, ease: 'back.out(2)' }, tH2 + .1);
+  tl.to('#pupils', { x: -25, duration: .25, yoyo: true, repeat: 3, ease: 'sine.inOut' }, tH2 + .5);
+  tl.to('#s-hook2 h1', { x: 8, duration: .05, yoyo: true, repeat: 5 }, tH2 + .7);
+
+  // 3 BRAND
+  const tE = S('ebook');
+  show('s-brand', tB - .05, tE - .05);
+  flash(tB - .05);
+  tl.from('#ring', { scale: 0, rotate: -180, duration: .7, ease: 'expo.out' }, tB);
+  tl.from('#logo', { scale: 0, duration: .6, ease: 'back.out(1.8)' }, tB + .1);
+  tl.to('#ring', { rotate: 180, duration: tE - tB, ease: 'none' }, tB + .7);
+  tl.from('#wm', { y: 60, opacity: 0, duration: .5, ease: 'power3.out' }, tB + .35);
+  const tTag = window.SCENE.P.filter(p => p.s === 'brand')[1].start;
+  tl.from('#tag', { y: 40, opacity: 0, duration: .45, ease: 'power3.out' }, tTag);
+  tl.from('.bchip', { y: 50, opacity: 0, scale: .8, duration: .4, stagger: .18, ease: 'back.out(1.7)' }, tTag + .5);
+
+  // 4 EBOOK
+  const tP = S('price');
+  show('s-ebook', tE - .05, tP - .05);
+  const cnt = { v: 0 };
+  tl.to(cnt, { v: 28, duration: 1.0, ease: 'power2.out', onUpdate: () => q('#n28').textContent = Math.round(cnt.v) }, tE);
+  tl.from('#n28', { scale: .5, duration: .5, ease: 'back.out(2)' }, tE);
+  const covers = qa('#covers .cover');
+  const rots = [-14, 14, -7, 7, 0];
+  covers.forEach((c, i) => {
+    tl.fromTo(c, { y: 900, rotate: rots[i] * 3, opacity: 0 }, { y: 0, rotate: rots[i], opacity: 1, duration: .6, ease: 'back.out(1.4)' }, tE + .15 + i * .1);
+  });
+  const tCopy = window.SCENE.P.filter(p => p.s === 'ebook')[1].start;
+  tl.to('#covers', { y: -110, scale: .82, duration: .5, ease: 'power3.inOut' }, tCopy - .2);
+  tl.from('#copybox', { y: 300, opacity: 0, duration: .5, ease: 'back.out(1.4)' }, tCopy - .1);
+  tl.to('#copybtn', { scale: .9, duration: .1, yoyo: true, repeat: 1 }, tCopy + .7);
+  tl.set('#cb2', { opacity: 1 }, tCopy + .8);
+
+  // 5 PRICE
+  const tV = S('video');
+  show('s-price', tP - .05, tV - .05);
+  flash(tP - .05);
+  tl.from('#dari', { y: 40, opacity: 0, duration: .35 }, tP);
+  tl.from('#rm15', { scale: 2.5, opacity: 0, duration: .5, ease: 'expo.out' }, tP + .25);
+  tl.to('#rm15', { scale: 1.06, duration: tV - tP - .8, ease: 'none' }, tP + .75);
+  const pchips = qa('.pchip');
+  tl.from(pchips[0], { x: -600, opacity: 0, duration: .4, ease: 'back.out(1.5)' }, tP + 1.2);
+  tl.from(pchips[1], { x: 600, opacity: 0, duration: .4, ease: 'back.out(1.5)' }, tP + 1.9);
+
+  // 6 VIDEO
+  const tC = S('coach');
+  show('s-video', tV - .05, tC - .05);
+  tl.from('#v-q', { y: -80, opacity: 0, duration: .45, ease: 'power3.out' }, tV);
+  const tV2 = window.SCENE.P.filter(p => p.s === 'video')[1].start;
+  qa('#thumbs .thumb').forEach((th, i) => {
+    tl.fromTo(th, { y: 800, rotate: (i - 1.5) * 10 }, { y: 0, rotate: (i - 1.5) * 4, duration: .55, ease: 'back.out(1.3)' }, tV2 - .3 + i * .1);
+  });
+  tl.from('#v-badge', { scale: 0, rotate: -20, duration: .45, ease: 'back.out(2)' }, tV2 + 1.3);
+  tl.from('#v-price', { y: 30, opacity: 0, duration: .4 }, tV2 + 1.7);
+
+  // 7 COACH
+  const tCTA = S('cta');
+  show('s-coach', tC - .05, tCTA - .05);
+  flash(tC - .05);
+  tl.from('#c-h', { y: 60, opacity: 0, duration: .4, ease: 'power3.out' }, tC);
+  const tC2 = window.SCENE.P.filter(p => p.s === 'coach')[1].start;
+  tl.from('#c-card', { y: 400, rotate: 6, opacity: 0, duration: .6, ease: 'back.out(1.3)' }, tC2 - .3);
+  tl.from('.cchip', { scale: 0, duration: .35, stagger: .15, ease: 'back.out(2)' }, tC2 + .4);
+  const s1 = { v: 0 }, s2 = { v: 0 };
+  tl.from('.stat', { y: 60, opacity: 0, duration: .4, stagger: .15 }, tC2 + .9);
+  tl.to(s1, { v: 160, duration: 1.2, ease: 'power2.out', onUpdate: () => q('#st160').textContent = Math.round(s1.v) }, tC2 + .9);
+  tl.to(s2, { v: 13, duration: 1.2, ease: 'power2.out', onUpdate: () => q('#st13').textContent = Math.round(s2.v) }, tC2 + 1.05);
+
+  // 8 CTA
+  show('s-cta', tCTA - .05, null);
+  flash(tCTA - .05);
+  tl.from('#cta-h', { scale: 1.8, opacity: 0, duration: .5, ease: 'expo.out' }, tCTA);
+  const tCTA2 = window.SCENE.P.filter(p => p.s === 'cta')[1].start;
+  tl.from('#cta-logo', { scale: 0, rotate: -90, duration: .5, ease: 'back.out(2)' }, tCTA2 - .3);
+  tl.from('#cta-btn', { y: 120, opacity: 0, duration: .5, ease: 'back.out(1.6)' }, tCTA2);
+  tl.to('#cta-btn', { scale: 1.06, duration: .45, yoyo: true, repeat: 5, ease: 'sine.inOut' }, tCTA2 + .6);
+  tl.from('#cta-sub', { opacity: 0, y: 20, duration: .4 }, tCTA2 + .8);
+  tl.to('#stage', { opacity: 0, duration: .5 }, DUR - .5);
+};
+</script>
+<script src="../engine.js"></script>
+</body>
+</html>

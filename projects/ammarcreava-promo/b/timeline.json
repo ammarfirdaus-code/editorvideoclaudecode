@@ -1,0 +1,117 @@
+{
+ "duration": 25.533,
+ "phrases": [
+  {
+   "s": "q",
+   "text": "Nak guna AI, tapi tak tahu nak mula dari mana?",
+   "tts": "nak guna ei ai, tapi tak tahu nak mula dari mana?",
+   "gap": 0.35,
+   "start": 0.4,
+   "end": 3.119
+  },
+  {
+   "s": "chaos",
+   "text": "Tengok video, makin pening.",
+   "tts": "tengok video, makin pening.",
+   "gap": 0.2,
+   "start": 3.469,
+   "end": 4.971
+  },
+  {
+   "s": "chaos2",
+   "text": "Prompt tak jadi, hasil pun tak menjadi.",
+   "tts": "prompt tak jadi, hasil pun tak menjadi.",
+   "gap": 0.4,
+   "start": 5.171,
+   "end": 7.328
+  },
+  {
+   "s": "turn",
+   "text": "Sebenarnya, awak cuma perlukan panduan yang betul.",
+   "tts": "sebenarnya, awak cuma perlukan panduan yang betul.",
+   "gap": 0.35,
+   "start": 7.728,
+   "end": 10.678
+  },
+  {
+   "s": "phone",
+   "text": "Dengan ebook Ammarcreava,",
+   "tts": "dengan i-buk amar kriava,",
+   "gap": 0.15,
+   "start": 11.027,
+   "end": 12.573
+  },
+  {
+   "s": "phone",
+   "text": "buka telefon,",
+   "tts": "buka telefon,",
+   "gap": 0.1,
+   "start": 12.723,
+   "end": 13.736
+  },
+  {
+   "s": "phone",
+   "text": "salin prompt,",
+   "tts": "salin prompt,",
+   "gap": 0.1,
+   "start": 13.836,
+   "end": 14.509
+  },
+  {
+   "s": "phone",
+   "text": "dan terus buat.",
+   "tts": "dan terus buat.",
+   "gap": 0.3,
+   "start": 14.609,
+   "end": 15.452
+  },
+  {
+   "s": "res",
+   "text": "Poster siap.",
+   "tts": "poster siap.",
+   "gap": 0.1,
+   "start": 15.752,
+   "end": 16.41
+  },
+  {
+   "s": "res",
+   "text": "Video siap.",
+   "tts": "video siap.",
+   "gap": 0.1,
+   "start": 16.51,
+   "end": 17.228
+  },
+  {
+   "s": "res",
+   "text": "Kerja pejabat pun lebih laju.",
+   "tts": "kerja pejabat pun lebih laju.",
+   "gap": 0.35,
+   "start": 17.328,
+   "end": 19.246
+  },
+  {
+   "s": "bm",
+   "text": "Semuanya dalam Bahasa Melayu, untuk pemula.",
+   "tts": "semuanya dalam bahasa melayu, untuk pemula.",
+   "gap": 0.35,
+   "start": 19.596,
+   "end": 21.92
+  },
+  {
+   "s": "cta",
+   "text": "Satu ebook pun cukup.",
+   "tts": "satu i-buk pun cukup.",
+   "gap": 0.2,
+   "start": 22.27,
+   "end": 23.564
+  },
+  {
+   "s": "cta",
+   "text": "Layari ammarcreava.my",
+   "tts": "layari amar kriava titik em wai.",
+   "gap": 0,
+   "start": 23.764,
+   "end": 25.533
+  }
+ ]
+}
