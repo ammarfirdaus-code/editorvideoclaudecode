@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<title>Muafakat Care — Promo eBook & Infak</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+  :root { --red:#C5162E; --red2:#E8344B; --navy:#2B2F7A; --ink:#1B1E4B; --mute:#6B6F93; --bg1:#F7F6F9; --bg2:#E6E5EC; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html, body { width:1080px; height:1920px; overflow:hidden; }
+  body { background:var(--bg1); font-family:'Inter',sans-serif; color:var(--ink); -webkit-font-smoothing:antialiased; }
+  .stage { position:absolute; inset:0; overflow:hidden; background: radial-gradient(ellipse 120% 80% at 50% 38%, #FFFFFF 0%, var(--bg1) 45%, var(--bg2) 100%); }
+  .scene { position:absolute; inset:0; visibility:hidden; perspective:1600px; perspective-origin:50% 45%; }
+  .p3 { transform-style:preserve-3d; }
+  .abs { position:absolute; }
+  h1,.h { font-family:'Poppins',sans-serif; font-weight:800; letter-spacing:-0.035em; line-height:1.0; color:var(--ink); }
+  .red { color:var(--red); }
+  .ctr { left:0; right:0; text-align:center; }
+
+  /* floating props */
+  #props { position:absolute; inset:0; perspective:1400px; z-index:1; }
+  .sph { position:absolute; border-radius:50%; }
+  .sph.r { background: radial-gradient(circle at 32% 28%, #FF8A98 0%, #E8344B 22%, #C5162E 55%, #7E0A1B 100%); box-shadow: 0 50px 80px -20px rgba(150,10,30,.35); }
+  .sph.n { background: radial-gradient(circle at 32% 28%, #8E93E6 0%, #4A50B0 25%, #2B2F7A 60%, #14164A 100%); box-shadow: 0 50px 80px -20px rgba(30,30,100,.35); }
+  .sph.w { background: radial-gradient(circle at 32% 28%, #FFFFFF 0%, #F1F0F5 35%, #CFCDD8 80%, #B4B2C0 100%); box-shadow: 0 50px 80px -20px rgba(60,60,90,.25); }
+  .sph.g { background: radial-gradient(circle at 30% 26%, rgba(255,255,255,.95) 0 6%, rgba(255,255,255,.15) 14%, rgba(255,255,255,.05) 55%, rgba(180,190,230,.35) 88%, rgba(255,255,255,.8) 97%);
+           box-shadow: inset 0 0 30px rgba(255,255,255,.7), 0 40px 70px -25px rgba(60,60,120,.25); backdrop-filter: blur(3px); }
+  .heart { position:absolute; filter: drop-shadow(0 40px 40px rgba(150,10,30,.28)); }
+
+  /* scene 1 tiles */
+  .tile { position:absolute; width:100px; height:124px; border-radius:22px; background:linear-gradient(160deg,#FFFFFF,#ECEBF2);
+          box-shadow: 0 2px 0 #fff inset, 0 10px 0 #D3D1DD, 0 30px 50px -10px rgba(40,40,90,.28);
+          font-family:'Poppins'; font-weight:800; font-size:76px; color:var(--navy); display:grid; place-items:center; }
+  .tile.r { background:linear-gradient(160deg,#E8344B,#B5122A); color:#fff; box-shadow: 0 2px 0 #ff8796 inset, 0 10px 0 #8E0C20, 0 30px 50px -10px rgba(150,10,30,.4); }
+
+  /* covers */
+  .cover { position:absolute; width:380px; height:539px; border-radius:16px; background-size:cover; background-position:center;
+           box-shadow: 0 60px 90px -30px rgba(20,20,60,.55), 0 0 0 1px rgba(0,0,0,.08); backface-visibility:hidden; }
+  .cover::after { content:''; position:absolute; inset:0; border-radius:16px; background:linear-gradient(105deg, rgba(255,255,255,.35) 0%, rgba(255,255,255,0) 30%, rgba(255,255,255,0) 70%, rgba(0,0,0,.15) 100%); }
+  .pill { display:inline-flex; align-items:center; gap:14px; border-radius:999px; font-family:'Poppins'; font-weight:700; }
+  .pill.red { background:var(--red); color:#fff; box-shadow: 0 20px 40px -12px rgba(197,22,46,.55); }
+  .pill.wh { background:rgba(255,255,255,.92); color:var(--ink); box-shadow: 0 20px 50px -15px rgba(40,40,90,.35); border:1px solid rgba(255,255,255,.9); }
+  .tick { width:46px; height:46px; border-radius:50%; background:var(--red); color:#fff; display:inline-grid; place-items:center; font-size:28px; font-weight:800; font-family:'Inter'; }
+
+  /* search */
+  .search { position:absolute; width:900px; height:150px; left:90px; top:760px; border-radius:75px; background:rgba(255,255,255,.96);
+            box-shadow: 0 50px 90px -25px rgba(40,40,100,.4), 0 0 0 1px rgba(255,255,255,1) inset; display:flex; align-items:center; padding:0 50px; gap:28px; }
+  .search .txt { font-family:'Poppins'; font-weight:600; font-size:46px; color:var(--ink); white-space:nowrap; }
+  .caret { display:inline-block; width:4px; height:54px; background:var(--red); vertical-align:middle; margin-left:4px; }
+  .sugg { position:absolute; left:150px; width:780px; height:104px; border-radius:30px; background:rgba(255,255,255,.9);
+          box-shadow: 0 30px 60px -25px rgba(40,40,100,.35); display:flex; align-items:center; gap:26px; padding:0 34px; font-family:'Poppins'; font-weight:600; font-size:38px; }
+  .sugg i { width:58px; height:58px; border-radius:16px; background-size:cover; background-position:center; }
+  .sugg b { margin-left:auto; color:var(--red); font-size:30px; }
+  .ptile { position:absolute; border-radius:28px; background-size:cover; background-position:center; box-shadow: 0 40px 70px -25px rgba(30,30,80,.5); border:8px solid #fff; }
+
+  /* program cards */
+  .prog { position:absolute; left:0; top:0; width:1080px; height:1400px; }
+  .frame { position:absolute; left:170px; top:250px; width:740px; height:820px; border-radius:48px; background-size:cover; background-position:center;
+           border:12px solid #fff; box-shadow: 0 80px 120px -40px rgba(20,20,70,.55); }
+  .label { position:absolute; left:110px; top:930px; width:640px; padding:36px 40px 40px; border-radius:36px; background:rgba(255,255,255,.94);
+           box-shadow: 0 50px 90px -30px rgba(20,20,70,.45); }
+  .label .t { font-family:'Poppins'; font-weight:700; font-size:50px; line-height:1.05; color:var(--ink); }
+  .label .d { font-size:31px; color:var(--mute); margin-top:12px; line-height:1.3; }
+  .label .pr { font-family:'Poppins'; font-weight:800; font-size:44px; color:var(--red); margin-top:18px; }
+  .label .btn { margin-top:22px; padding:20px 34px; font-size:30px; }
+  .count { position:absolute; right:110px; top:170px; font-family:'Poppins'; font-weight:700; font-size:30px; color:var(--mute); letter-spacing:.1em; }
+
+  /* collage */
+  .plane { position:absolute; left:-260px; top:380px; width:1600px; display:grid; grid-template-columns:repeat(4, 380px); gap:26px; }
+  .plane div { height:470px; border-radius:30px; background-size:cover; background-position:center; box-shadow: 0 30px 50px -20px rgba(20,20,70,.45); border:7px solid #fff; }
+  .fadeTop { position:absolute; left:0; right:0; top:0; height:760px; background:linear-gradient(var(--bg1) 45%, rgba(247,246,249,0)); z-index:3; }
+  .fadeBot { position:absolute; left:0; right:0; bottom:0; height:700px; background:linear-gradient(rgba(230,229,236,0), #EDECF2 60%); z-index:3; }
+
+  /* bag */
+  .bag { position:absolute; left:290px; top:820px; width:500px; height:560px; }
+  .bag .front { position:absolute; inset:0; border-radius:18px 18px 28px 28px; background:linear-gradient(170deg,#FFFFFF 0%,#F2F1F6 60%,#E0DEE8 100%);
+                box-shadow: 0 90px 120px -40px rgba(20,20,70,.5), inset 0 -20px 40px rgba(0,0,0,.05); }
+  .bag .side { position:absolute; top:0; width:90px; height:560px; background:linear-gradient(90deg,#D9D7E2,#EDEBF2); right:-60px; transform-origin:left; transform:skewY(-18deg) scaleX(.7); border-radius:0 12px 20px 0; }
+  .bag .top { position:absolute; left:0; top:-40px; width:500px; height:60px; background:linear-gradient(#C9C7D3,#E9E8EF); border-radius:10px; transform:skewX(-30deg) scaleY(.6); transform-origin:bottom; }
+
+  /* end */
+  .btn2 { padding:30px 52px; font-size:42px; }
+  .pill.ol { background:#fff; color:var(--navy); border:4px solid var(--navy); box-shadow: 0 20px 40px -15px rgba(40,40,90,.3); }
+
+  .flash { position:absolute; inset:0; background:#fff; opacity:0; z-index:40; }
+  #cap { position:absolute; left:60px; right:60px; top:1468px; display:flex; justify-content:center; z-index:50; opacity:0; }
+  .cap-inner { display:inline-block; text-align:center; padding:20px 34px; border-radius:28px; background:rgba(27,30,75,.86);
+               font-family:'Poppins'; font-weight:600; font-size:44px; line-height:1.28; max-width:960px; color:rgba(255,255,255,.45); box-shadow:0 20px 50px -20px rgba(20,20,60,.5); }
+  .cap-inner span.on { color:#fff; }
+  .cap-inner span.on.kw { color:#FF7A8A; }
+</style>
+</head>
+<body>
+<div class="stage" id="stage">
+
+  <!-- global floating props -->
+  <div id="props">
+    <div class="sph r" id="pA" style="width:220px;height:220px;"></div>
+    <div class="sph g" id="pB" style="width:260px;height:260px;"></div>
+    <div class="sph n" id="pC" style="width:170px;height:170px;"></div>
+    <div class="sph w" id="pD" style="width:300px;height:300px;"></div>
+    <div class="sph g" id="pE" style="width:150px;height:150px;"></div>
+    <svg class="heart" id="pF" width="190" height="180" viewBox="0 0 100 92"><defs><radialGradient id="hg" cx="35%" cy="30%" r="80%"><stop offset="0" stop-color="#FF9AA6"/><stop offset=".3" stop-color="#E8344B"/><stop offset=".75" stop-color="#C5162E"/><stop offset="1" stop-color="#7E0A1B"/></radialGradient></defs><path d="M50 90 C20 68 2 50 2 28 C2 12 14 2 28 2 C38 2 46 8 50 16 C54 8 62 2 72 2 C86 2 98 12 98 28 C98 50 80 68 50 90Z" fill="url(#hg)"/><ellipse cx="27" cy="20" rx="11" ry="6" fill="#fff" opacity=".55" transform="rotate(-30 27 20)"/></svg>
+    <svg class="heart" id="pG" width="120" height="112" viewBox="0 0 100 92"><path d="M50 90 C20 68 2 50 2 28 C2 12 14 2 28 2 C38 2 46 8 50 16 C54 8 62 2 72 2 C86 2 98 12 98 28 C98 50 80 68 50 90Z" fill="url(#hg)"/><ellipse cx="27" cy="20" rx="11" ry="6" fill="#fff" opacity=".55" transform="rotate(-30 27 20)"/></svg>
+  </div>
+
+  <!-- 1 HOOK: letter tiles -->
+  <div class="scene" id="s1" style="z-index:5"><div class="abs p3" id="tiles" style="inset:0"></div></div>
+
+  <!-- 2 EBOOK -->
+  <div class="scene" id="s2" style="z-index:5">
+    <div class="abs ctr" id="eb-k" style="top:250px"><span class="pill red" style="padding:16px 34px;font-size:34px;letter-spacing:.14em">PERCUMA</span></div>
+    <h1 class="abs ctr" id="eb-h" style="top:350px;font-size:132px">10 eBook<br><span style="font-size:58px;font-weight:700;color:var(--mute);letter-spacing:-0.02em">untuk hati yang suka memberi</span></h1>
+    <div class="abs p3" id="covers" style="left:0;top:0;width:1080px;height:1920px">
+      <div class="cover" id="cv1" style="left:350px;top:720px;background-image:url(assets/30-hadis-tentang-memberi.jpg)"></div>
+      <div class="cover" id="cv2" style="left:350px;top:720px;background-image:url(assets/20-ayat-infak-dalam-al-quran.jpg)"></div>
+      <div class="cover" id="cv3" style="left:350px;top:720px;background-image:url(assets/sedekah-subuh-30-hari.jpg)"></div>
+    </div>
+    <div class="abs pill wh" id="tg1" style="left:70px;top:690px;padding:16px 30px;font-size:34px">Sedekah</div>
+    <div class="abs pill wh" id="tg2" style="right:80px;top:660px;padding:16px 30px;font-size:34px">Doa</div>
+    <div class="abs pill wh" id="tg3" style="right:60px;top:1250px;padding:16px 30px;font-size:34px">Wakaf</div>
+    <div class="abs ctr" id="eb-chip" style="top:1320px"><span class="pill wh" style="padding:22px 38px;font-size:38px"><span class="tick">✓</span>Muat turun terus · tanpa daftar</span></div>
+  </div>
+
+  <!-- 3 SEARCH -->
+  <div class="scene" id="s3" style="z-index:5">
+    <div class="abs p3" id="ptiles" style="inset:0">
+      <div class="ptile" id="pt1" style="left:60px;top:300px;width:260px;height:320px;background-image:url(assets/hantar-pintu.jpg)"></div>
+      <div class="ptile" id="pt2" style="left:720px;top:250px;width:300px;height:240px;background-image:url(assets/serahan.jpg)"></div>
+      <div class="ptile" id="pt3" style="left:40px;top:1120px;width:300px;height:230px;background-image:url(assets/muat-bekalan.jpg)"></div>
+      <div class="ptile" id="pt4" style="left:760px;top:1150px;width:250px;height:320px;background-image:url(assets/van-bekalan.jpg)"></div>
+      <div class="ptile" id="pt5" style="left:400px;top:180px;width:220px;height:170px;background-image:url(assets/stok-foodbank.jpg)"></div>
+    </div>
+    <div class="abs p3" id="srchwrap" style="inset:0">
+      <div class="search" id="search">
+        <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#C5162E" stroke-width="2.6" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="7"/><path d="M16 16l5 5"/></svg>
+        <span class="txt"><span id="typed"></span><span class="caret" id="caret"></span></span>
+      </div>
+      <div class="sugg" id="sg1" style="top:950px"><i style="background-image:url(assets/pek-bantuan.jpg)"></i>Foodbank Bulanan<b>RM50</b></div>
+      <div class="sugg" id="sg2" style="top:1070px"><i style="background-image:url(assets/katil-pasang.jpg)"></i>Wakaf Katil Hospital<b>RM50</b></div>
+      <div class="sugg" id="sg3" style="top:1190px"><i style="background-image:url(assets/hantar-pintu.jpg)"></i>Sedekah Subuh<b>RM1</b></div>
+      <div class="sugg" id="sg4" style="top:1310px"><i style="background-image:url(assets/banjir-redah.jpg)"></i>Bantuan Kecemasan<b>›</b></div>
+    </div>
+  </div>
+
+  <!-- 4 PROGRAMS -->
+  <div class="scene" id="s4" style="z-index:5"><div class="abs p3" id="progs" style="inset:0"></div></div>
+
+  <!-- 5 TRUST -->
+  <div class="scene" id="s5" style="z-index:5;perspective:1300px">
+    <div class="abs p3" id="planeWrap" style="inset:0">
+      <div class="plane" id="plane"></div>
+    </div>
+    <div class="fadeTop"></div><div class="fadeBot"></div>
+    <h1 class="abs ctr" id="tr1" style="top:230px;font-size:92px;z-index:4">Setiap ringgit<br><span class="red">direkod.</span></h1>
+    <h1 class="abs ctr" id="tr2" style="top:230px;font-size:92px;z-index:4">Setiap agihan<br><span class="red">dilaporkan.</span></h1>
+    <div class="abs ctr" id="tr-chip" style="top:1190px;z-index:4"><span class="pill wh" style="padding:24px 40px;font-size:42px"><span class="tick">✓</span>Papan Impak</span></div>
+    <div class="abs ctr" id="tr-reg" style="top:1320px;z-index:4"><span class="pill wh" style="padding:14px 28px;font-size:28px;font-family:Inter;font-weight:600;color:var(--mute)">Pertubuhan berdaftar · PPM-002-10-13032020</span></div>
+  </div>
+
+  <!-- 6 BAG -->
+  <div class="scene" id="s6" style="z-index:5">
+    <h1 class="abs ctr" id="bg-h" style="top:250px;font-size:96px;z-index:3">Infak anda,<br><span class="red">sampai terus</span><br><span style="font-size:72px">ke rumah mereka.</span></h1>
+    <div class="abs p3" id="drops" style="inset:0;z-index:1"></div>
+    <div class="bag p3" id="bag" style="z-index:2">
+      <svg class="abs" id="handle" style="left:110px;top:-150px" width="280" height="190" viewBox="0 0 280 190"><path d="M20 190 C20 40 260 40 260 190" fill="none" stroke="#B9B7C6" stroke-width="16" stroke-linecap="round"/><path d="M20 190 C20 40 260 40 260 190" fill="none" stroke="#E2E0EA" stroke-width="7" stroke-linecap="round" transform="translate(-3,-3)"/></svg>
+      <div class="side"></div>
+      <div class="front"></div>
+      <img class="abs" src="assets/logo.png" style="left:85px;top:150px;width:330px">
+    </div>
+  </div>
+
+  <!-- 7 END -->
+  <div class="scene" id="s7" style="z-index:5">
+    <img class="abs" id="en-logo" src="assets/logo.png" style="left:220px;top:380px;width:640px">
+    <div class="abs ctr" id="en-tag" style="top:880px;font-family:'Poppins';font-weight:600;font-size:46px;color:var(--navy)">Care That Unites Communities</div>
+    <div class="abs ctr" id="en-url" style="top:1000px"><span class="pill" style="background:var(--navy);color:#fff;padding:26px 56px;font-size:58px;box-shadow:0 30px 60px -20px rgba(43,47,122,.6)">muafakatcare.my</span></div>
+    <div class="abs ctr" id="en-btns" style="top:1180px;display:flex;justify-content:center;gap:30px">
+      <span class="pill red btn2" id="en-b1">Jom Infak</span><span class="pill ol btn2" id="en-b2">eBook Percuma</span>
+    </div>
+    <div class="abs ctr" id="en-reg" style="top:1660px;font-size:28px;font-weight:600;color:var(--mute)">Pertubuhan Kebajikan Muafakat Bakri · PPM-002-10-13032020</div>
+  </div>
+
+  <div class="flash" id="flash"></div>
+  <div id="cap"></div>
+</div>
+
+<script src="vendor/gsap.min.js"></script>
+<script src="timeline.js"></script>
+<script src="engine.js"></script>
+</body>
+</html>

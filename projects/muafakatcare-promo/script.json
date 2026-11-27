@@ -1,0 +1,15 @@
+{
+  "voice": "Sulafat",
+  "style": "Baca dalam Bahasa Melayu Malaysia dengan suara wanita yang mesra, tenang dan penuh harapan, seperti iklan kebajikan. Sebut dengan jelas dan semula jadi:",
+  "duration": 33.0,
+  "phrases": [
+    { "s": "hook",   "slot": [0.45, 3.2],  "text": "Nak buat kebaikan hari ini?", "tts": "Nak buat kebaikan hari ini?" },
+    { "s": "ebook",  "slot": [3.7, 6.7],   "text": "Mulakan dengan 10 eBook percuma tentang sedekah, doa dan wakaf.", "tts": "Mulakan dengan sepuluh e-book percuma, tentang sedekah, doa dan wakaf." },
+    { "s": "ebook",  "slot": [6.85, 9.0],  "text": "Muat turun terus, tanpa perlu daftar.", "tts": "Muat turun terus, tanpa perlu daftar." },
+    { "s": "search", "slot": [9.4, 12.5],  "text": "Nak infak, tapi tak pasti ke mana?", "tts": "Nak infak, tapi tak pasti ke mana?" },
+    { "s": "prog",   "slot": [12.8, 19.9], "text": "Foodbank bulanan, wakaf katil hospital, sedekah subuh serendah RM1, dan bantuan kecemasan.", "tts": "Foodbank bulanan. Wakaf katil hospital. Sedekah subuh, serendah seringgit. Dan bantuan kecemasan." },
+    { "s": "trust",  "slot": [20.3, 24.6], "text": "Setiap ringgit direkod. Setiap agihan dilaporkan di Papan Impak.", "tts": "Setiap ringgit direkod. Setiap agihan, dilaporkan di Papan Impak." },
+    { "s": "bag",    "slot": [24.9, 27.8], "text": "Infak anda sampai terus ke rumah mereka.", "tts": "Infak anda, sampai terus ke rumah mereka." },
+    { "s": "end",    "slot": [28.2, 31.6], "text": "Layari muafakatcare.my. Jom infak hari ini!", "tts": "Layari muafakat care dot my. Jom infak hari ini!" }
+  ]
+}

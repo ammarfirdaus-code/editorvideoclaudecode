@@ -20,3 +20,6 @@ projects/*/*/stills/
 projects/*/sheet_*.jpg
 projects/*/*/render.log
 projects/*/*/timeline.js
+projects/*/stills/
+projects/*/timeline.js
+projects/*/sheet_*.jpg
