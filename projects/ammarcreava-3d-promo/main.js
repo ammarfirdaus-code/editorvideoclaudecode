@@ -4,7 +4,9 @@ import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.j
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 
 const W = 1920, H = 1080;
-export const DURATION = 18;
+export const DURATION = 30;
+const WN = [0, 5.5, 11.5, 20.5, 24.5, 27, 28.2, 30], WO = [0, 3.4, 7.2, 12.2, 15.2, 16.75, 17.5, 18];
+function warp(t) { for (let i = 1; i < WN.length; i++) if (t <= WN[i]) return WO[i - 1] + (WO[i] - WO[i - 1]) * (t - WN[i - 1]) / (WN[i] - WN[i - 1]); return 18; }
 const P = '#5B2DFF', P2 = '#7A4DFF', K = '#FF4D88', K2 = '#FFB3E6';
 
 // ---------- helpers ----------
@@ -147,20 +149,72 @@ function giftBox(wrap, ribbon, s = 1) {
   g.scale.setScalar(s); return g;
 }
 
+
+// ---------- icon set (drawn, no external assets) ----------
+const ICON_BG = { claude: ['#E08A66', '#C96442'], ai: [P, K], film: ['#3D3FA0', '#23256A'], mic: ['#FF6FA3', K], photo: ['#FF9A5C', '#FF7A45'],
+  music: ['#9A78FF', P2], code: ['#3a3850', '#1d1b28'], globe: ['#5C8BFF', '#3A6BFF'], wave: ['#2ED3A4', '#13B98A'], check: ['#2ED3A4', '#13B98A'],
+  script: ['#7A5CFF', P], map: ['#FF9A5C', '#FF7A45'], play: ['#FF6FA3', K] };
+function drawIcon(g, kind, cx, cy, s, col = '#fff') {
+  g.save(); g.translate(cx, cy); g.fillStyle = col; g.strokeStyle = col; g.lineWidth = s * .075; g.lineCap = 'round'; g.lineJoin = 'round';
+  const L = s / 2;
+  if (kind === 'claude') {
+    for (let i = 0; i < 12; i++) { const a = i / 12 * Math.PI * 2 + .13, len = (i % 2 ? .66 : .9) * L * (1 - (i % 3) * .06), wd = s * .055;
+      g.save(); g.rotate(a); g.beginPath(); g.moveTo(-wd, 0); g.lineTo(0, -len); g.lineTo(wd, 0); g.closePath(); g.fill(); g.beginPath(); g.arc(0, -len + wd * .4, wd * .55, 0, Math.PI * 2); g.fill(); g.restore(); }
+    g.beginPath(); g.arc(0, 0, s * .1, 0, Math.PI * 2); g.fill();
+  } else if (kind === 'ai') { g.font = `800 ${s * .5}px Montserrat`; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText('AI', 0, s * .03);
+    [[-.38, -.38], [.38, .38]].forEach(([x, y]) => { g.beginPath(); g.arc(x * L * 1.6, y * L * 1.6, s * .035, 0, 7); g.fill(); });
+  } else if (kind === 'film') { rr(g, -L * .8, -L * .25, L * 1.6, L * 1.05, s * .06); g.stroke();
+    g.save(); g.translate(-L * .8, -L * .35); g.rotate(-.28); rr(g, 0, -L * .32, L * 1.6, L * .32, s * .04); g.stroke();
+    for (let i = 0; i < 4; i++) { g.beginPath(); g.moveTo(L * (.2 + i * .38), -L * .32); g.lineTo(L * (.4 + i * .38), 0); g.stroke(); } g.restore();
+  } else if (kind === 'mic') { rr(g, -L * .28, -L * .78, L * .56, L * .98, L * .28); g.fill();
+    g.beginPath(); g.arc(0, -L * .15, L * .5, .15 * Math.PI, .85 * Math.PI); g.stroke(); g.beginPath(); g.moveTo(0, L * .36); g.lineTo(0, L * .7); g.moveTo(-L * .3, L * .7); g.lineTo(L * .3, L * .7); g.stroke();
+  } else if (kind === 'photo') { rr(g, -L * .8, -L * .6, L * 1.6, L * 1.2, s * .07); g.stroke();
+    g.beginPath(); g.moveTo(-L * .6, L * .4); g.lineTo(-L * .15, -L * .1); g.lineTo(L * .15, L * .2); g.lineTo(L * .35, 0); g.lineTo(L * .6, L * .4); g.closePath(); g.fill();
+    g.beginPath(); g.arc(L * .35, -L * .3, L * .14, 0, 7); g.fill();
+  } else if (kind === 'music') { g.beginPath(); g.moveTo(-L * .3, L * .45); g.lineTo(-L * .3, -L * .55); g.lineTo(L * .5, -L * .75); g.lineTo(L * .5, L * .3); g.stroke(); g.beginPath(); g.moveTo(-L * .3, -L * .3); g.lineTo(L * .5, -L * .5); g.stroke();
+    [[-L * .5, L * .48], [L * .3, L * .33]].forEach(([x, y]) => { g.beginPath(); g.ellipse(x, y, L * .24, L * .18, -.4, 0, 7); g.fill(); });
+  } else if (kind === 'code') { g.font = `800 ${s * .44}px Montserrat`; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText('</>', 0, s * .02);
+  } else if (kind === 'globe') { g.beginPath(); g.arc(0, 0, L * .72, 0, 7); g.stroke(); g.beginPath(); g.ellipse(0, 0, L * .32, L * .72, 0, 0, 7); g.stroke();
+    g.beginPath(); g.moveTo(-L * .72, 0); g.lineTo(L * .72, 0); g.moveTo(-L * .62, -L * .36); g.lineTo(L * .62, -L * .36); g.moveTo(-L * .62, L * .36); g.lineTo(L * .62, L * .36); g.stroke();
+  } else if (kind === 'wave') { [.3, .7, 1, .55, .85, .4, .2].forEach((h, i) => { const x = (i - 3) * L * .26; g.beginPath(); g.moveTo(x, -h * L * .7); g.lineTo(x, h * L * .7); g.stroke(); });
+  } else if (kind === 'check') { g.lineWidth = s * .11; g.beginPath(); g.moveTo(-L * .55, 0); g.lineTo(-L * .12, L * .42); g.lineTo(L * .6, -L * .45); g.stroke();
+  } else if (kind === 'script') { rr(g, -L * .55, -L * .75, L * 1.1, L * 1.5, s * .06); g.stroke(); [-.4, -.1, .2].forEach((y, i) => { g.beginPath(); g.moveTo(-L * .3, y * L); g.lineTo(L * (i === 2 ? .05 : .3), y * L); g.stroke(); });
+  } else if (kind === 'map') { g.beginPath(); g.arc(0, -L * .2, L * .45, Math.PI * .85, Math.PI * 2.15); g.lineTo(0, L * .75); g.closePath(); g.fill(); g.fillStyle = 'rgba(0,0,0,.25)'; g.beginPath(); g.arc(0, -L * .2, L * .17, 0, 7); g.fill();
+  } else if (kind === 'play') { g.beginPath(); g.moveTo(-L * .35, -L * .5); g.lineTo(L * .55, 0); g.lineTo(-L * .35, L * .5); g.closePath(); g.fill(); }
+  g.restore();
+}
+function iconCanvas(kind, size = 256) {
+  const c = document.createElement('canvas'); c.width = c.height = size; const g = c.getContext('2d');
+  const [a, b] = ICON_BG[kind]; g.fillStyle = lgrad(g, 0, 0, size, size, [[0, a], [1, b]]); rr(g, 0, 0, size, size, size * .24); g.fill();
+  g.fillStyle = 'rgba(255,255,255,.18)'; rr(g, 0, 0, size, size * .5, size * .24); g.fill();
+  drawIcon(g, kind, size / 2, size / 2, size * .58); return c;
+}
+function iconTex(kind) { const tx = new THREE.CanvasTexture(iconCanvas(kind)); tx.colorSpace = THREE.SRGBColorSpace; tx.anisotropy = 8; return tx; }
+function iconTile(kind, s = 1) {
+  const grp = new THREE.Group();
+  const [a] = ICON_BG[kind];
+  grp.add(new THREE.Mesh(new RoundedBoxGeometry(.8, .8, .18, 5, .17), new THREE.MeshPhysicalMaterial({ color: a, roughness: .25, clearcoat: 1, clearcoatRoughness: .05 })));
+  const pl = new THREE.Mesh(new THREE.PlaneGeometry(.78, .78), new THREE.MeshBasicMaterial({ map: iconTex(kind), transparent: true, toneMapped: false })); pl.position.z = .092; grp.add(pl);
+  grp.scale.setScalar(s); return grp;
+}
+window.__iconData = Object.fromEntries(Object.keys(ICON_BG).map(k => [k, iconCanvas(k, 160).toDataURL()]));
+
 // ======================= SCENE 1: phone + "Hai AI..." + flying key tiles =======================
 const s1 = makeScene('#ECEBF2');
 const c1 = new THREE.PerspectiveCamera(32, W / H, .1, 100);
 const phone1 = makePhone(metal, 'a'); s1.add(phone1);
 const tiles = [];
 {
-  const letters = ['D', 'o', 'k', 'u', 'm', 'e', 'n', 't', 'a', 'r', 'i', '▶', '✦', 'C', 'l', 'a', '♪', '#'];
+  const letters = ['@claude', 'D', 'o', '@ai', 'k', 'u', '@film', 'm', 'e', '@mic', 'n', 't', '@photo', 'a', 'r', '@music', 'i', '@globe'];
   const R = rng(7);
   letters.forEach((ch, i) => {
-    const grp = new THREE.Group();
+    let grp;
+    if (ch[0] === '@') { grp = new THREE.Group(); grp.add(iconTile(ch.slice(1), .78)); } else {
+    grp = new THREE.Group();
     const tint = [0xffffff, 0xffffff, 0xf4eeff, 0xffeef5][i % 4];
     grp.add(new THREE.Mesh(new RoundedBoxGeometry(.5, .5, .16, 4, .09), new THREE.MeshPhysicalMaterial({ color: tint, roughness: .3, clearcoat: 1, transmission: .25, thickness: .3 })));
     const lt = canvasTex(128, 128, (g) => { g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillStyle = i % 5 === 0 ? P : (i % 5 === 3 ? K : '#1d1b28'); g.font = '700 74px Montserrat'; g.fillText(ch, 64, 70); });
-    const lp = new THREE.Mesh(new THREE.PlaneGeometry(.42, .42), new THREE.MeshBasicMaterial({ map: lt, transparent: true })); lp.position.z = .082; grp.add(lp);
+    const lp = new THREE.Mesh(new THREE.PlaneGeometry(.42, .42), new THREE.MeshBasicMaterial({ map: lt, transparent: true })); lp.position.z = .082; grp.add(lp); }
     const ang = (i / letters.length) * Math.PI * 2 + R() * .3;
     const rad = 1.6 + R() * 1.3;
     grp.userData = { tx: Math.cos(ang) * rad * 1.25, ty: Math.sin(ang) * rad * .75 + .5, tz: .6 + R() * 1.4, rx: (R() - .5) * 1.2, ry: (R() - .5) * 1.4, rz: (R() - .5) * .8, d: R() * .35, sp: .5 + R() };
@@ -188,14 +242,13 @@ const s2 = makeScene('#E7E3F7');
 s2.fog = new THREE.Fog(0xE7E3F7, 8, 34);
 const c2 = new THREE.PerspectiveCamera(50, W / H, .1, 100);
 const services = [
-  ['Brief & Skrip', '✎', P], ['Fakta Web', '◎', '#3A6BFF'], ['Gambar Arkib', '▣', '#FF7A45'], ['Suara AI', '♪', K],
-  ['Whisper', '●', '#13B98A'], ['Peta & Babak', '◆', P2], ['Muzik & SFX', '♫', '#3A6BFF'], ['Semak Fakta', '★', '#13B98A'],
-  ['MP4 16:9', '▶', P], ['Reels 9:16', '▶', K], ['14 Prompt', '✦', '#FF7A45'], ['Claude Code', '◆', P2],
+  ['Brief & Skrip', 'script', P], ['Fakta Web', 'globe', '#3A6BFF'], ['Gambar Arkib', 'photo', '#FF7A45'], ['Suara AI', 'mic', K],
+  ['Whisper', 'wave', '#13B98A'], ['Peta & Babak', 'map', '#FF7A45'], ['Muzik & SFX', 'music', P2], ['Semak Fakta', 'check', '#13B98A'],
+  ['MP4 16:9', 'film', '#23256A'], ['Reels 9:16', 'play', K], ['14 Prompt', 'ai', P], ['Claude Code', 'claude', '#C96442'],
 ];
 const serviceTex = services.map(([label, icon, col]) => canvasTex(512, 384, (g, w, h) => {
   g.fillStyle = '#fff'; rr(g, 0, 0, w, h, 40); g.fill();
-  g.fillStyle = lgrad(g, 0, 0, w, 0, [[0, col], [1, col + 'AA']]); rr(g, 36, 40, 120, 120, 30); g.fill();
-  g.fillStyle = '#fff'; g.font = '700 70px Inter'; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(icon, 96, 104);
+  g.drawImage(iconCanvas(icon, 128), 36, 36, 128, 128);
   g.textAlign = 'left'; g.textBaseline = 'alphabetic'; g.fillStyle = '#1d1b28'; g.font = '800 52px Montserrat'; g.fillText(label, 36, 260);
   g.fillStyle = '#e6e3f0'; rr(g, 36, 296, 300, 18, 9); g.fill(); rr(g, 36, 330, 200, 18, 9); g.fill();
 }));
@@ -245,6 +298,8 @@ const ballBase = [[-5.6, -2.6, -1.5], [5.4, 2.7, -2], [-5.2, 2.9, -3.5], [4.6, -
 balls.forEach(b => s3.add(b));
 const bubbles = []; { const R = rng(3); for (let i = 0; i < 9; i++) { const b = new THREE.Mesh(new THREE.SphereGeometry(.22 + R() * .25, 48, 32), bubbleMat); b.userData = { x: (R() - .5) * 10, y: (R() - .5) * 5.4, z: R() * 2 - .5, p: R() * 6 }; s3.add(b); bubbles.push(b); } }
 const cube = new THREE.Mesh(new RoundedBoxGeometry(.9, .9, .9, 5, .25), new THREE.MeshPhysicalMaterial({ color: K2, roughness: .9, sheen: 1, sheenColor: new THREE.Color(0xffffff) })); s3.add(cube);
+const floatIcons = [['claude', -3.7, 1.9, 1.2, 1.0], ['ai', 3.9, 1.6, 1.0, .9], ['film', -4.0, -1.0, 1.6, .8], ['mic', 2.6, -2.4, 2.0, .7], ['music', -1.8, 2.9, .2, .65], ['globe', 1.8, 2.9, -.6, .6], ['wave', 4.6, -.6, -1.2, .7], ['photo', -2.4, -2.9, .8, .7]]
+  .map(([k, x, y, z, sc], i) => { const o = iconTile(k, sc); o.userData = { x, y, z, p: i * 1.7 }; s3.add(o); return o; });
 // hero A: gifts
 const gifts = new THREE.Group(); gifts.scale.setScalar(1.3); s3.add(gifts);
 const gA = makeBook(1.35), gB = makeBook(1.0), gC = makeBook(.8);
@@ -290,6 +345,9 @@ function seek3(t) {
   const k = t - S3A;
   balls.forEach((b, i) => { const [x, y, z] = ballBase[i]; b.position.set(x + Math.sin(k * .6 + i) * .15, y + Math.cos(k * .5 + i * 2) * .18 - (1 - eo(lin(t, S3A, S3A + .8))) * 2 * (i % 2 ? -1 : 1), z); b.rotation.set(k * .1 * (i + 1), k * .15, 0); });
   bubbles.forEach(b => { const u = b.userData; b.position.set(u.x + Math.sin(k * .7 + u.p) * .3, u.y + Math.cos(k * .5 + u.p) * .25 + k * .12, u.z); });
+  floatIcons.forEach((o, i) => { const u = o.userData; const a = eo(lin(t, S3A + .1 + i * .06, S3A + .8 + i * .06));
+    o.position.set(u.x * mix(1.6, 1, a) + Math.sin(k * .7 + u.p) * .12, u.y * mix(1.6, 1, a) + Math.cos(k * .6 + u.p) * .15, u.z);
+    o.rotation.set(Math.sin(k * .8 + u.p) * .25, Math.sin(k * .5 + u.p) * .5 - u.x * .06, Math.sin(k * .4 + u.p) * .12); });
   cube.position.set(3.2 + Math.sin(k) * .1, -2.4 + Math.cos(k * .8) * .15, 1.2); cube.rotation.set(k * .4, k * .6, .3);
 
   // gifts
@@ -356,7 +414,8 @@ function seek5(t) {
 
 // ======================= master seek =======================
 const typed = (s, t, a, cps) => s.slice(0, Math.max(0, Math.floor((t - a) * cps)));
-export function seek(t) {
+export function seek(tn) {
+  const t = warp(tn);
   // pick scene
   let scene, cam;
   if (t < 3.4) { seek1(t); scene = s1; cam = c1; }
@@ -412,6 +471,9 @@ export function seek(t) {
     const ti = end.querySelector('.title'); ti.style.transform = `scale(${.75 + .25 * e})`; ti.style.opacity = clamp(lin(t, 16.75, 17.0));
     const fade = (sel, a) => { const el = end.querySelector(sel); el.style.opacity = clamp(lin(t, a, a + .3)); el.style.transform = `translateY(${(1 - eo(lin(t, a, a + .4))) * 30}px)`; };
     fade('.sub', 16.9); fade('.tag', 17.0); fade('.url', 17.12); fade('.mark', 17.25);
+    const ic = end.querySelector('.icons');
+    if (!ic.children.length) ic.innerHTML = ['claude', 'ai', 'film', 'mic', 'music', 'globe'].map(k => `<img src="${window.__iconData[k]}">`).join('');
+    [...ic.children].forEach((im, i) => { const q = back(clamp(lin(t, 16.95 + i * .04, 17.2 + i * .04))); im.style.transform = `scale(${q})`; im.style.opacity = clamp(lin(t, 16.95 + i * .04, 17.05 + i * .04)); });
   }
   // white flashes at cuts
   const flashAt = (c, w) => Math.max(0, 1 - Math.abs(t - c) / w);

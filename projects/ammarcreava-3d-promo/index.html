@@ -43,12 +43,14 @@ canvas#gl { position: absolute; inset: 0; width: 1920px; height: 1080px; }
 /* Scene 5 */
 #wipe { left: 50%; top: 50%; width: 10px; height: 10px; border-radius: 50%; background: #F6F5FA; transform: translate(-50%,-50%); box-shadow: 0 0 120px rgba(91,45,255,.12); }
 #endcard { background: radial-gradient(900px 500px at 50% 50%, rgba(122,77,255,.13), rgba(255,77,136,.06) 50%, rgba(0,0,0,0) 75%); left: 0; right: 0; top: 0; bottom: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-#endcard .title { font: 800 108px/1 Montserrat; letter-spacing: -4px; color: #23256A; }
-#endcard .sub { margin-top: 18px; font: italic 600 48px/1 Inter; color: #5B4FD0; }
-#endcard .lime { color: #fff; background: linear-gradient(90deg,#3D2FBF,#7A4DFF); padding: 0 22px 8px; border-radius: 24px; }
-#endcard .mark { margin-top: 34px; font: 800 44px/1 Montserrat; letter-spacing: -1px; padding-bottom: 6px; }
-#endcard .url { margin-top: 34px; font: 700 52px/1 Montserrat; color: #15131F; letter-spacing: 1px; }
-#endcard .tag { margin-top: 30px; font: 600 30px Inter; color: #6B6880; letter-spacing: 2px; }
+#endcard .title { font: 800 104px/1.15 Montserrat; letter-spacing: -1px; color: #23256A; }
+#endcard .sub { margin-top: 34px; font: italic 600 48px/1 Inter; color: #5B4FD0; }
+#endcard .lime { color: #fff; background: linear-gradient(90deg,#3D2FBF,#7A4DFF); padding: 4px 26px 12px; margin-left: 10px; border-radius: 26px; }
+#endcard .icons { margin-top: 46px; display: flex; gap: 22px; }
+#endcard .icons img { width: 76px; height: 76px; border-radius: 18px; box-shadow: 0 10px 24px rgba(40,20,90,.22); }
+#endcard .mark { margin-top: 30px; font: 800 44px/1 Montserrat; letter-spacing: -1px; padding-bottom: 6px; }
+#endcard .url { margin-top: 44px; font: 700 52px/1 Montserrat; color: #15131F; letter-spacing: 1px; }
+#endcard .tag { margin-top: 40px; font: 600 30px Inter; color: #6B6880; letter-spacing: 4px; }
 #flash { background: #fff; opacity: 0; }
 </style>
 <script type="importmap">{ "imports": { "three": "./node_modules/three/build/three.module.js", "three/addons/": "./node_modules/three/examples/jsm/" } }</script>
@@ -63,7 +65,7 @@ canvas#gl { position: absolute; inset: 0; width: 1920px; height: 1080px; }
   <div class="abs info" id="info3"><h3>6 Langkah</h3><p>Brief, bahan, suara,<br>bina, semak, render</p><b>Mula buat</b></div>
   <div class="abs" id="kami"><div class="w">Satu sesi,</div><div id="pill"><svg width="100%" height="100%"><defs><linearGradient id="pg" x1="0" x2="1"><stop offset="0" stop-color="#FFB347"/><stop offset=".45" stop-color="#FF4D88"/><stop offset="1" stop-color="#5B2DFF"/></linearGradient></defs><rect id="pillrect" x="4" y="4" rx="70" ry="70" fill="rgba(255,255,255,.35)" stroke="url(#pg)" stroke-width="6" stroke-dasharray="22 16" stroke-linecap="round"/></svg><div class="plus">+</div><div class="txt">satu dokumentari</div></div></div>
   <div class="abs" id="wipe"></div>
-  <div class="abs" id="endcard"><div class="title">Buat Video <span class="lime">Dokumentari</span></div><div class="sub">menggunakan Claude</div><div class="tag">EBOOK PDF &nbsp;•&nbsp; 27 MUKA &nbsp;•&nbsp; RM19</div><div class="url">ammarcreava.my</div><div class="mark grad">ammarcreava</div></div>
+  <div class="abs" id="endcard"><div class="title">Buat Video <span class="lime">Dokumentari</span></div><div class="sub">menggunakan Claude</div><div class="icons"></div><div class="tag">EBOOK PDF &nbsp;•&nbsp; 27 MUKA &nbsp;•&nbsp; RM19</div><div class="url">ammarcreava.my</div><div class="mark grad">ammarcreava</div></div>
   <div class="abs layer" id="flash"></div>
 </div>
 <script type="module" src="main.js"></script>
