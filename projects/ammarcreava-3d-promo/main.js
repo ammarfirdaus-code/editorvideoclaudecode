@@ -113,7 +113,7 @@ function makeBook(s = 1, key = 'dokumentari') {
   spine.position.x = -Wd / 2 + .01; spine.scale.x = .55;
   spineT.rotation = Math.PI / 2; spineT.center.set(.5, .5);
   const grp = new THREE.Group(); grp.add(front, backB, block, spine);
-  grp.traverse(m => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } });
+  grp.traverse(m => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = false; } });
   grp.scale.setScalar(s); grp.userData.H = Hd; return grp;
 }
 function makePhone(color = metal, variant = 'a', key = 'dokumentari') {
@@ -439,21 +439,20 @@ const lg = makeBook(1.2, 'dokumentari'); lg.position.set(.1, -1.6 + lg.userData.
 const lg2 = makeBook(.78, '67-prompt'); lg2.position.set(1.25, -1.6 + lg2.userData.H * .78 / 2 + .02, 1.0); lg2.rotation.y = -.35; line.add(lg2);
 const lg3 = makeBook(.7, 'kinetik'); lg3.rotation.set(-Math.PI / 2, 0, .35); lg3.position.set(-.55, -1.6 + .11, 1.25); line.add(lg3);
 const lg4 = makeBook(.7, 'komik'); lg4.rotation.set(-Math.PI / 2, 0, .1); lg4.position.set(-.5, -1.6 + .25, 1.2); line.add(lg4);
-const shadowFloor = new THREE.Mesh(new THREE.PlaneGeometry(30, 20), new THREE.ShadowMaterial({ opacity: .38 })); shadowFloor.rotation.x = -Math.PI / 2; shadowFloor.position.y = -1.6; shadowFloor.receiveShadow = true; line.add(shadowFloor);
-const sun5 = new THREE.DirectionalLight(0xffffff, 1.2); sun5.position.set(-4.5, 8, 1.5); sun5.castShadow = true; sun5.shadow.mapSize.set(2048, 2048);
-Object.assign(sun5.shadow.camera, { left: -7, right: 7, top: 7, bottom: -7, near: 1, far: 30 }); sun5.shadow.radius = 4; sun5.shadow.bias = -.0008; s5.add(sun5);
+const shadowFloor = new THREE.Mesh(new THREE.PlaneGeometry(30, 20), new THREE.ShadowMaterial({ opacity: .38 })); shadowFloor.rotation.x = -Math.PI / 2; shadowFloor.position.y = -1.6; shadowFloor.receiveShadow = true; shadowFloor.renderOrder = 2; shadowFloor.material.depthWrite = false; line.add(shadowFloor);
+const sun5 = new THREE.DirectionalLight(0xffffff, 1.2); sun5.position.set(-4.5, 8, 1.5); sun5.castShadow = true; sun5.shadow.mapSize.set(4096, 4096); sun5.shadow.normalBias = .02;
+Object.assign(sun5.shadow.camera, { left: -7, right: 7, top: 7, bottom: -7, near: 1, far: 30 }); sun5.shadow.radius = 4; sun5.shadow.bias = -.0004; s5.add(sun5);
 const contactTex = canvasTex(256, 128, g => { const gr = g.createRadialGradient(128, 64, 0, 128, 64, 128); gr.addColorStop(0, 'rgba(20,10,50,.55)'); gr.addColorStop(.5, 'rgba(20,10,50,.18)'); gr.addColorStop(1, 'rgba(20,10,50,0)'); g.fillStyle = gr; g.fillRect(0, 0, 256, 128); });
-[[2.6, .4, 2.0, .7], [.1, -.3, 2.0, .6], [1.25, 1.0, 1.3, .5], [-.5, 1.2, 1.9, 1.2], [-2.3, -.4, 3.6, 2.4]].forEach(([x, z, w, d]) => { const c = new THREE.Mesh(new THREE.PlaneGeometry(w, d), new THREE.MeshBasicMaterial({ map: contactTex, transparent: true, depthWrite: false })); c.rotation.x = -Math.PI / 2; c.position.set(x, -1.595, z); line.add(c); });
-[lp, ll].forEach(o => o.traverse(m => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } }));
-const floor = new THREE.Mesh(new THREE.PlaneGeometry(14, 6), new THREE.MeshBasicMaterial({ map: blobTex, transparent: true, depthWrite: false, opacity: .45 })); floor.rotation.x = -Math.PI / 2; floor.position.y = -1.6; line.add(floor);
+[[2.6, .4, 2.0, .7], [.1, -.3, 2.0, .6], [1.25, 1.0, 1.3, .5], [-.5, 1.2, 1.9, 1.2], [-2.3, -.4, 3.6, 2.4]].forEach(([x, z, w, d]) => { const c = new THREE.Mesh(new THREE.PlaneGeometry(w, d), new THREE.MeshBasicMaterial({ map: contactTex, transparent: true, depthWrite: false })); c.rotation.x = -Math.PI / 2; c.position.set(x, -1.58, z); c.renderOrder = 3; line.add(c); });
+[lp, ll].forEach(o => o.traverse(m => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = false; } }));
+const floor = new THREE.Mesh(new THREE.PlaneGeometry(14, 6), new THREE.MeshBasicMaterial({ map: blobTex, transparent: true, depthWrite: false, opacity: .45 })); floor.rotation.x = -Math.PI / 2; floor.position.y = -1.63; floor.renderOrder = 1; line.add(floor);
 const sp5 = sparkles(400, 9, 12, 3, -6, .08); s5.add(sp5);
 const S5 = 15.2;
 function seek5(t) {
   const u = lin(t, S5, 18);
   c5.position.set(mix(-1.6, 1.4, eio(clamp(u * 1.6))), mix(1.4, .8, u), mix(11.5, 10, u));
   c5.lookAt(mix(-.6, .5, eio(clamp(u * 1.6))), -.4, 0);
-  lp.position.y = .1 + Math.sin(t * 1.5) * .05;
-  line.scale.setScalar(1 + .012 * bp(4, .2));
+  lp.position.y = .1;
 }
 
 // ======================= master seek =======================
