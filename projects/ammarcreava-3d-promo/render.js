@@ -37,6 +37,7 @@ function serve() {
     const part = +(args[0] || 0), parts = +(args[1] || 1), from = +(args[2] || 0), to = +(args[3] || 1e9);
     const total = Math.round(await page.evaluate('window.DURATION') * FPS);
     for (let f = from + part; f < Math.min(total, to); f += parts) {
+      if (process.env.RESUME && fs.existsSync(path.join(ROOT, `renders/frames/f${String(f).padStart(5, '0')}.jpg`))) continue;
       await page.evaluate(t => window.seek(t), f / FPS);
       await page.screenshot({ path: path.join(ROOT, `renders/frames/f${String(f).padStart(5, '0')}.jpg`), type: 'jpeg', quality: 93 });
       if (f % 60 === part) console.log(`part ${part}: frame ${f}/${total}`);
